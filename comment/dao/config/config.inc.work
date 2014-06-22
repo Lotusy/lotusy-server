@@ -1,0 +1,43 @@
+<?php
+
+// Database sharding configuration 
+//
+if (!isset($dbconfig)) {
+	$dbconfig = array();
+}
+
+$dbconfig['comment'] =
+	array (
+        'total_shards' => 30,
+        'shards_digit' => 100,
+        'username' => 'lotusyuser',
+        'password' => 'password',
+        'server_list' => array (
+            '192.168.175.233' => array('min'=>0, 'max'=>9),
+            '192.168.175.123' => array('min'=>10, 'max'=>19),
+            '192.168.175.131' => array('min'=>20, 'max'=>29)
+        ) 
+    );
+
+$dbconfig['lookup_comment'] =
+	array (
+		'total_shards' => 1,
+		'shards_digit' => 1,
+		'username' => 'lotusyuser',
+		'password' => 'password',
+		'server_list' => array (
+			'192.168.175.131' => array('min'=>0, 'max'=>0)
+		) 
+	);
+
+$dbconfig['comment_admin'] = 
+	array (
+		'total_shards' => 1,
+		'shards_digit' => 1,
+		'username' => 'lotusyuser',
+		'password' => 'password',
+		'server_list' => array (
+			'192.168.175.131' => array('min'=>0, 'max'=>0)
+		) 
+	);
+?>

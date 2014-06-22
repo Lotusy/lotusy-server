@@ -1,0 +1,31 @@
+Listen 83
+
+<VirtualHost *:83>
+	ServerAdmin webmaster@localhost
+
+	DocumentRoot /opt/lotusy/comment/current
+	<Directory />
+        RewriteEngine On
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+        Options +FollowSymLinks
+	</Directory>
+	<Directory /opt/lotusy/comment/current>
+        RewriteEngine On
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+        Options +FollowSymLinks
+	</Directory>
+
+	ErrorLog /opt/lotusy/comment/logs/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>

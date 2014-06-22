@@ -1,0 +1,69 @@
+<?php
+
+// Database sharding configuration 
+//
+if (!isset($dbconfig)) {
+	$dbconfig = array();
+}
+
+$dbconfig['user'] =
+	array (
+        'total_shards' => 20,
+        'shards_digit' => 100,
+        'username' => 'lotusyuser',
+        'password' => 'password',
+        'server_list' => array (
+            '192.168.175.233' => array('min'=>0, 'max'=>6),
+            '192.168.175.123' => array('min'=>7, 'max'=>13),
+            '192.168.175.131' => array('min'=>14, 'max'=>19)
+        ) 
+    );
+
+$dbconfig['lookup_account'] =
+	array (
+		'total_shards' => 1,
+		'shards_digit' => 1,
+		'username' => 'lotusyuser',
+		'password' => 'password',
+		'server_list' => array (
+			'192.168.175.233' => array('min'=>0, 'max'=>0)
+		) 
+	);
+
+$dbconfig['token'] =
+	 array (
+		'total_shards' => 6,
+		'shards_digit' => 10,
+		'username' => 'lotusyuser',
+		'password' => 'password',
+		'server_list' => array (
+			'192.168.175.233' => array('min'=>0, 'max'=>1),
+			'192.168.175.123' => array('min'=>2, 'max'=>3),
+			'192.168.175.131' => array('min'=>4, 'max'=>5)
+		) 
+	);
+
+$dbconfig['lookup_token'] =
+	array (
+		'total_shards' => 3,
+		'shards_digit' => 10,
+		'username' => 'lotusyuser',
+		'password' => 'password',
+		'server_list' => array (
+			'192.168.175.233' => array('min'=>0, 'max'=>0),
+			'192.168.175.123' => array('min'=>1, 'max'=>1),
+			'192.168.175.131' => array('min'=>2, 'max'=>2)
+		) 
+	);
+
+$dbconfig['account_admin'] = 
+	array (
+		'total_shards' => 1,
+		'shards_digit' => 1,
+		'username' => 'lotusyuser',
+		'password' => 'password',
+		'server_list' => array (
+			'192.168.175.123' => array('min'=>0, 'max'=>0)
+		) 
+	);
+?>

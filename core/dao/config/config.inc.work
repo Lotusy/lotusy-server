@@ -1,0 +1,28 @@
+<?php
+
+// Database sharding configuration 
+//
+if (!isset($dbconfig)) {
+	$dbconfig = array();
+}
+
+$dbconfig['client'] =
+	array (
+        'total_shards' => 3,
+        'shards_digit' => 10,
+        'username' => 'lotusyuser',
+        'password' => 'password',
+        'server_list' => array (
+            '192.168.175.233' => array('min'=>0, 'max'=>0),
+            '192.168.175.123' => array('min'=>1, 'max'=>1),
+            '192.168.175.131' => array('min'=>2, 'max'=>2)
+        ) 
+    );
+
+
+// Memcache server configuration
+//
+$cache_servers = array (
+'192.168.175.197' => 11211
+);
+?>

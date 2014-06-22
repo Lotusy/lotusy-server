@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !=/portal/config/config.inc
+RewriteRule ^ ../index.php

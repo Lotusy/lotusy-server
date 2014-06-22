@@ -1,0 +1,5 @@
+AddHandler application/x-httpd-php .inc
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/rest
+RewriteCond %{REQUEST_URI} !^/portal
+RewriteRule ^ /portal/index.php

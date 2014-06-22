@@ -1,0 +1,17 @@
+upstream businessbackend {
+    server 192.168.175.40:82;
+    server 192.168.175.46:82;
+    server 192.168.175.48:82;
+}
+
+server {
+    listen 80;
+    server_name staging.business.lotusy.com;
+    location / {
+        proxy_pass http://businessbackend;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host businessbackend;
+        proxy_redirect http://businessbackend/ $scheme://$host/;
+        proxy_redirect http://businessbackend:82/ $scheme://$host/;
+    } 
+}

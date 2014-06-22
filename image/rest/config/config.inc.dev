@@ -1,0 +1,60 @@
+<?php
+include '../dao/config/config.inc';
+include '../../core/dao/config/config.inc';
+
+$component_name = 'image';
+
+$base_host = 'http://local.image.lotusy.com';
+$base_uri = '/rest';
+
+$app_key = '78805A221A988E79EF3F42D7C5BFD418';
+$base_account_host = 'http://local.account.lotusy.com';
+$base_business_host = 'http://local.business.lotusy.com';
+$base_comment_host = 'http://local.comment.lotusy.com';
+
+
+//=======================================================================================
+// image storage directory
+$comment_image_dir = '/mnt/images/';
+$comment_image_default = '/portal/img/default.jpg';
+
+$user_image_dir = '/mnt/images/';
+$user_image_default = '/portal/img/default.jpg';
+
+$business_image_dir = '/mnt/images/';
+$business_image_default = '/portal/img/default/jpg';
+
+
+//=======================================================================================
+// auto include directory information
+$autoload_dirs = array (
+'handler', 
+'request', 
+'validator', 
+'../util', 
+'../dao',
+'../../core/dao',
+'../../core/util',
+'../../core/rest/handler',
+'../../core/rest/request',
+'../../core/rest/validator'
+);
+
+
+//=======================================================================================
+// logging information
+// INFO=4, WARN=3, ERROR=2, FATAL=1, NOTHING=0
+$log_level = 4;
+$log_file = '/opt/lotusy/image/logs/rest.log';
+
+$access_on = 1;
+$access_log = '/opt/lotusy/image/logs/rest_access.log';
+
+
+//=======================================================================================
+// ip block list
+$ip_block_list = array (
+'000.000.000.000' => 1,
+'127.0.0.1' => 0
+);
+?>

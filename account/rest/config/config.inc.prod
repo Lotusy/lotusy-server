@@ -1,0 +1,45 @@
+<?php
+include '/opt/lotusy/account/current/dao/config/config.inc';
+include '/opt/lotusy/core/current/dao/config/config.inc';
+
+$component_name = 'account';
+
+$base_host = 'https://account.lotusy.com';
+$base_uri = '/rest';
+
+$app_key = 'E268443E43D93DAB7EBEF303BBE9642F';
+$base_account_host = 'http://account.lotusy.com';
+
+//=======================================================================================
+// auto include directory information
+$autoload_dirs = array (
+'/opt/lotusy/account/current/rest/handler', 
+'/opt/lotusy/account/current/rest/request', 
+'/opt/lotusy/account/current/rest/validator', 
+'/opt/lotusy/account/current/util', 
+'/opt/lotusy/account/current/dao',
+'/opt/lotusy/core/current/dao',
+'/opt/lotusy/core/current/util',
+'/opt/lotusy/core/current/rest/handler',
+'/opt/lotusy/core/current/rest/request',
+'/opt/lotusy/core/current/rest/validator'
+);
+
+
+//=======================================================================================
+// logging information
+// INFO=4, WARN=3, ERROR=2, FATAL=1, NOTHING=0
+$log_level = 4;
+$log_file = '/opt/lotusy/account/logs/rest.log';
+
+$access_on = 1;
+$access_log = '/opt/lotusy/account/logs/rest_access.log';
+
+
+//=======================================================================================
+// ip block list
+$ip_block_list = array (
+'000.000.000.000' => 1,
+'127.0.0.1' => 0
+);
+?>

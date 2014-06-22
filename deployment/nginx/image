@@ -1,0 +1,17 @@
+upstream imagebackend {
+    server 192.168.175.40:84;
+    server 192.168.175.46:84;
+    server 192.168.175.48:84;
+}
+
+server {
+    listen 80;
+    server_name staging.image.lotusy.com;
+    location / {
+        proxy_pass http://imagebackend;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host imagebackend;
+        proxy_redirect http://imagebackend/ $scheme://$host/;
+        proxy_redirect http://imagebackend:84/ $scheme://$host/;
+    } 
+}

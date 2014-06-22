@@ -1,0 +1,17 @@
+upstream commentbackend {
+    server 192.168.175.40:83;
+    server 192.168.175.46:83;
+    server 192.168.175.48:83;
+}
+
+server {
+    listen 80;
+    server_name staging.comment.lotusy.com;
+    location / {
+        proxy_pass http://commentbackend;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host commentbackend;
+        proxy_redirect http://commentbackend/ $scheme://$host/;
+        proxy_redirect http://commentbackend:83/ $scheme://$host/;
+    } 
+}

@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+td.first {
+	text-align:right;
+	width:150px;
+}
+div#body {
+	width:960px;
+	margin: 0 auto;
+}
+input.button {
+	border:1px solid #AAA;
+	background-color:#EEE;
+	padding:5px 10px 5px 10px;
+	width:80px;
+	outline:none;
+}
+input.button:active {
+	background-color:#CCC;
+}
+table#business_detail {
+	width:100%;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	font-size:.8em;
+}
+table#business_detail td {
+	text-align:center;
+	padding:10px 20px 10px 20px;
+}
+table#business_detail thead td {
+	font-weight:bold;
+	background-color:#DDD;
+}
+table#business_detail tbody tr.odd {
+	background-color:#FFF;
+}
+table#business_detail tbody tr.even {
+	background-color:#EEE;
+}

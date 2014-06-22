@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+div#body {
+	width:960px;
+	margin: 0 auto;
+}
+div#body input.button {
+	margin:10px 20px 0 0;
+	border: 1px solid #AAA;
+	background-color: #EEE;
+	padding: 5px 10px 5px 10px;
+	width: 80px;
+	outline: none;
+}
+div#body input.button:active {
+	background-color:#CCC;
+}
