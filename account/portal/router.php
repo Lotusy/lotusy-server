@@ -4,13 +4,12 @@ include 'config/config.inc';
 $services = array();
 blockIp();
 include 'config/mapping.php';
-include '../dao/config/config.inc';
 
 global $_URI;
 $_URI = rtrim($_SERVER['REQUEST_URI'], '/');
 
-global $_ASESSION;
-$_ASESSION = ASession::instance();
+global $_LSESSION;
+$_LSESSION = LSession::instance();
 
 date_default_timezone_set('America/Vancouver');
 header('X-Powered-By: Confone Inc.');

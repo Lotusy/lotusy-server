@@ -28,8 +28,8 @@ abstract class ViewController {
 		$this->cookieLogin();
 
 		if ($this->checkLogin()) {
-			global $_ASESSION, $_URI;
-			if (!$_ASESSION->exist(ASession::$AUTHINDEX)) {
+			global $_LSESSION, $_URI;
+			if (!$_LSESSION->exist(LSession::$AUTHINDEX)) {
 				$this->redirect('login?redirect_uri='.$_URI);
 			}
 		}
@@ -38,9 +38,9 @@ abstract class ViewController {
 	}
 
 	protected function loginRedirect($message=null) {
-		global $_ASESSION;
+		global $_LSESSION;
 
-		if ($_ASESSION->exist(ASession::$AUTHINDEX)) {
+		if ($_LSESSION->exist(LSession::$AUTHINDEX)) {
 			$redirect_uri = param('redirect_uri');
 
 			if (empty($redirect_uri)) {
@@ -60,18 +60,18 @@ abstract class ViewController {
 	}
 
 	private function cookieLogin() {
-		if (isset($_COOKIE[ASession::$COOKIE_TOKEN])) {
-			$cookieToken = $_COOKIE[ASession::$COOKIE_TOKEN];
+		if (isset($_COOKIE[LSession::$COOKIE_TOKEN])) {
+			$cookieToken = $_COOKIE[LSession::$COOKIE_TOKEN];
 			$userId = User::cookieLogin($cookieToken);
 
 			if ($userId>0) {
 				$user = new User($userId);
 				if ($user->isActive()) {
-					global $_ASESSION;
-					$_ASESSION->set(ASession::$AUTHINDEX, $userId);
-					$_ASESSION->set(ASession::$PROFILEIMG, $user->getProfilePic());
-					$_ASESSION->set(ASession::$PROFILENAME, $user->getName());
-					setcookie(ASession::$COOKIE_TOKEN, $cookieToken, time()+2628000 , '/', 'account.confone.com', false, true);
+					global $_LSESSION;
+					$_LSESSION->set(LSession::$AUTHINDEX, $userId);
+					$_LSESSION->set(LSession::$PROFILEIMG, $user->getProfilePic());
+					$_LSESSION->set(LSession::$PROFILENAME, $user->getName());
+					setcookie(LSession::$COOKIE_TOKEN, $cookieToken, time()+2628000 , '/', 'account.confone.com', false, true);
 				}
 			}
 		}

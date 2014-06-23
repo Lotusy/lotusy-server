@@ -5,7 +5,7 @@ class LoginController extends ViewController {
 		$this->loginRedirect();
 
 		include '../util/recaptchalib.php';
-		global $_ASESSION, $recaptcha_private_key;
+		global $_LSESSION, $recaptcha_private_key;
 
 		$loginCount = $this->initLoginCount();
 
@@ -43,36 +43,36 @@ class LoginController extends ViewController {
 	}
 
 	private function initLoginCount() {
-		global $_ASESSION;
+		global $_LSESSION;
 
-		if (!$_ASESSION->exist('login_count')) {
-		    $_ASESSION->set('login_count', 0);
+		if (!$_LSESSION->exist('login_count')) {
+		    $_LSESSION->set('login_count', 0);
 		    $loginCount = 0;
 		} else {
-			$loginCount = $_ASESSION->get('login_count');
+			$loginCount = $_LSESSION->get('login_count');
 		}
 
 		return $loginCount;
 	}
 
 	private function login($username, $password, $loginCount) {
-		global $_ASESSION;
+		global $_LSESSION;
 
         $user = User::authenticate($username, $password);
 
         if (isset($user)) {
 	        if (!$user->isActive()) {
-	            $_ASESSION->set(ASession::$ACTIVATION, $user->getId());
+	            $_LSESSION->set(ASession::$ACTIVATION, $user->getId());
 				$activationToken = $user->generateAccountActivationToken();
 				EmailUtil::sendActivationEmail($user->getEmail(), $user->getName(), $user->getId(), $activationToken);
 	            $this->redirect('/pending');
 	        }
 
          	$userId = $user->getId();
-            $_ASESSION->set('login_count', 0);
-            $_ASESSION->set(ASession::$AUTHINDEX, $userId);
-			$_ASESSION->set(ASession::$PROFILEIMG, $user->getProfilePic());
-			$_ASESSION->set(ASession::$PROFILENAME, $user->getName());
+            $_LSESSION->set('login_count', 0);
+            $_LSESSION->set(ASession::$AUTHINDEX, $userId);
+			$_LSESSION->set(ASession::$PROFILEIMG, $user->getProfilePic());
+			$_LSESSION->set(ASession::$PROFILENAME, $user->getName());
             if (param('keep_login')) {
             	$token = $user->generateRememberMeToken();
             	if (isset($token)) {
@@ -81,7 +81,7 @@ class LoginController extends ViewController {
             }
             $this->redirect(param('redirect_uri'));
         } else {
-            $_ASESSION->set('login_count', $loginCount+1);
+            $_LSESSION->set('login_count', $loginCount+1);
             Logger::warn('Login attemp: '.$username.':'.$password.' failed!');
             return 'Invalid Email/Password combination.';
         }
