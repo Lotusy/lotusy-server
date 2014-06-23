@@ -3,9 +3,13 @@ abstract class LotusyObject {
 
 	const SEQUENCE = '_shard_sequence';
 
-	public $var = array();
+	protected $var = array();
+
+	protected $update = array();
 
 	protected $fromdb = false;
+
+	protected $asyncInsert = false;
 
 	private $shardId = -1;
 
@@ -60,6 +64,15 @@ abstract class LotusyObject {
 	}
 
 	/**
+	 * Delete the object form database
+	 */
+	public function delete() {
+		$this->doDelete();
+		$this->fromdb = false;
+		$this->var[$this->getIdColumnName()] = 0;
+	}
+
+	/**
 	 * 
 	 * Retrive an object from database based on id
 	 * @param $id - the database primary key id
@@ -67,20 +80,17 @@ abstract class LotusyObject {
 	protected function retrive() {
 		$idColumn = $this->getIdColumnName();
 
-		// table name and primary key column name from abstract implementation of each sub class
-		//
-		$sql = 'SELECT * FROM ' . $this->getTableName() . ' WHERE '. $this->getIdColumnName() . '=' . $this->var[$idColumn];
+		$query = new QueryBuilder($this);
+		$res = $query->select('*', $this->getTableName())
+					 ->where($this->getIdColumnName(), $this->var[$idColumn])
+					 ->find();
 
-		$db_conn = DBUtil::getConn($this);
-		$res = DBUtil::selectData($db_conn, $sql);
-	
-		$atReturn = false;
-		if (isset($res) && $res) {
+		$this->init();
+		$atReturn = isset($res) && $res; 
+		if ($atReturn) {
 			$this->var = $res;
-			$atReturn = true;
 		} else {
 			$id = $this->var[$idColumn];
-			$this->init();
 			$this->var[$idColumn] = $id;
 		}
 
@@ -91,36 +101,17 @@ abstract class LotusyObject {
 	 * 
 	 * Insert an object to database
 	 */
-	private function insert()
-	{
-		// primary key id columnd name from abstract implementation of sub class
-		//
+	private function insert() {
 		$idColumn = $this->getIdColumnName();
 
-		$db_conn = DBUtil::getConn($this);
+		$query = new QueryBuilder($this, $this->asyncInsert);
+		$res = $query->insert($this->var, $this->getTableName())
+					 ->query();
 
-		$fileds = '(';
-		$values = '(';
-		foreach ($this->var as $key=>$val)
-		{
-			if ( isset($val) )
-			{
-				$fileds .= $key . ',';
-				$values .= DBUtil::checkNull($db_conn, $val) . ',';
-			}
+		if (!$this->asyncInsert) {
+			$sql = $query->getQuery();
+			if ($res==-1) { Logger::error($sql); }
 		}
-		$fileds = rtrim($fileds, ',') . ')';
-		$values = rtrim($values, ',') . ')';
-
-		// table name from abstract implementation of sub class
-		//
-		$table = $this->getTableName();
-
-		$sql = "INSERT INTO $table $fileds VALUES $values";
-
-		$res = DBUtil::insertData($db_conn, $sql);
-
-		if ($res==-1) { Logger::error($sql); }
 
 		return $res!=-1;
 	}
@@ -130,25 +121,21 @@ abstract class LotusyObject {
 	 * update the database row of the object
 	 */
 	private function update() {
-		// primary key id columnd name from abstract implementation of sub class
-		//
 		$idColumn = $this->getIdColumnName();
 
-		$db_conn = DBUtil::getConn($this);
-
-		$setter = ' SET ';
-		foreach ($this->var as $key=>$val) {
-			if ( isset($val) && $key!=$idColumn ) {
-				$setter .= $key.'='.DBUtil::checkNull($db_conn, $val).',';
+		$set = array();
+		foreach ($this->update as $key=>$val) {
+			if ($val) {
+				$set[$key] = $this->var[$key];
 			}
 		}
-		$setter = rtrim($setter, ',');
 
-		// the primary key value from abstract implementation of sub class - getObjId()
-		//
-		$sql = 'UPDATE ' . $this->getTableName() . $setter . ' WHERE ' . $idColumn . '=' . $this->var[$idColumn];
+		$builder = new QueryBuilder($this);
+		$result = $builder->update($set, $this->getTableName())
+						  ->where($idColumn, $this->var[$idColumn])
+						  ->query();
 
-		return DBUtil::updateData($db_conn, $sql);
+		return $result;
 	}
 
 	public function setShardId($shardSequence=0) {
@@ -160,7 +147,8 @@ abstract class LotusyObject {
 			$shardSequence = $this->getNextShardSequence();
 		}
 
-		$this->shardId = $shardSequence%$dbconfig[$domain]['total_shards'];
+		$digitOff = $shardSequence%$dbconfig[$domain]['shards_digit'];
+		$this->shardId = $digitOff%$dbconfig[$domain]['total_shards'];
 
 		$this->serverAddress = $this->getConfigServerAddress($domain, $this->shardId);
 
@@ -176,12 +164,13 @@ abstract class LotusyObject {
 	public function setServerAddress($shardSequence) {
 		global $dbconfig;
 		$domain = $this->getShardDomain();
-		$this->shardId = $shardSequence%$dbconfig[$domain]['total_shards'];
+		$digitOff = $shardSequence%$dbconfig[$domain]['shards_digit'];
+		$this->shardId = $digitOff%$dbconfig[$domain]['total_shards'];
 		$this->serverAddress = $this->getConfigServerAddress($domain, $this->shardId);
 	}
 
 	public function getShardedDatabaseName() {
-		return $this->getOriginalDatabaseName().'_'.$this->shardId;
+		return $this->getShardDomain().'_'.$this->shardId;
 	}
 
 	public function getServerAddress() {
@@ -192,7 +181,7 @@ abstract class LotusyObject {
 		return $this->fromdb;
 	}
 
-    protected function makeObjectFromSelectResult($res, $class) {
+    public static function makeObjectFromSelectResult($res, $class) {
 		$object = null;
 		if ($res) {
 			$object = new $class;
@@ -203,7 +192,7 @@ abstract class LotusyObject {
 		return $object;
 	}
 
-	protected function makeObjectsFromSelectListResult($rows, $class) {
+	public static function makeObjectsFromSelectListResult($rows, $class) {
 		$objects = array();
 		if (isset($rows)) {
 			foreach ($rows as $row) {
@@ -221,10 +210,9 @@ abstract class LotusyObject {
 		$dbName = $this->getShardedDatabaseName();
 		$tableName = $this->getTableName();
 
-		$sequenceKey = $dbName.'.'.$tableName.LotusyObject::SEQUENCE;
+		$sequenceKey = $dbName.'.'.$tableName.self::SEQUENCE;
 
-		$cache = new CacheUtil();
-		$mem = $cache->getCacheObj();
+		$mem = CacheUtil::getInstance();
 
 		$sequence = $mem->increment($sequenceKey);
 
@@ -237,10 +225,9 @@ abstract class LotusyObject {
 	}
 
 	private function getNextShardSequence() {
-		$sequenceKey = $this->getOriginalDatabaseName().LotusyObject::SEQUENCE;
+		$sequenceKey = $this->getShardDomain().self::SEQUENCE;
 
-		$cache = new CacheUtil();
-		$mem = $cache->getCacheObj();
+		$mem = CacheUtil::getInstance();
 
 		$sequence = $mem->increment($sequenceKey);
 
@@ -266,12 +253,12 @@ abstract class LotusyObject {
 
     private function getCurrentSequence() {
     	global $dbconfig;
-		$db_connect = DBUtil::getConn($this);
+
 		$idColumn = $this->getIdColumnName();
 		$table = $this->getTableName();
 
-		$sql = "SELECT MAX($idColumn) AS max FROM $table";
-		$result = DBUtil::selectData($db_connect, $sql);
+		$query = new QueryBuilder($this);
+		$result = $query->select("MAX($idColumn) AS max", $table)->find();
 
 		$shards_digit = $dbconfig[$this->getShardDomain()]['shards_digit'];
 
@@ -286,15 +273,15 @@ abstract class LotusyObject {
 
     protected function beforeInsert() {}
 
+    protected function doDelete() {}
+
 //========================================================= abstract functions =============================================================
 
 	abstract public function getShardDomain();
 
+	abstract public function getTableName();
+
 	abstract protected function init();
-
-	abstract protected function getOriginalDatabaseName();
-
-	abstract protected function getTableName();
 
 	abstract protected function getIdColumnName(); 
 
