@@ -1,5 +1,5 @@
 <?php
-class LookupBusinessLocationDao extends LotusyObject {
+class LookupBusinessLocationDao extends LotusyDaoBase {
 
 	const BUSINESSID = 'business_id';
 	const LAT = 'lat';
@@ -23,7 +23,7 @@ class LookupBusinessLocationDao extends LotusyObject {
 		$connect = DBUtil::getConn($lookup);
 		$res = DBUtil::selectData($connect, $sql);
 
-		return $lookup->makeObjectFromSelectResult($res, 'LookupBusinessLocationDao');
+		return self::makeObjectFromSelectResult($res, 'LookupBusinessLocationDao');
 	}
 
 

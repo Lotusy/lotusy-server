@@ -14,6 +14,7 @@ $autoload_dirs = array (
 '/opt/lotusy/www/current/utils', 
 '/opt/lotusy/www/current/dao',
 '/opt/lotusy/core/current/dao',
+'/opt/lotusy/core/current/dao/generated',
 '/opt/lotusy/core/current/util',
 '/opt/lotusy/core/current/rest/handler',
 '/opt/lotusy/core/current/rest/request',

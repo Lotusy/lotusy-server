@@ -1,5 +1,5 @@
 <?php
-class LookupBusinessUserDao extends LotusyObject {
+class LookupBusinessUserDao extends LotusyDaoBase {
 
 	const BUSINESSID = 'business_id';
 	const USERID = 'user_id';

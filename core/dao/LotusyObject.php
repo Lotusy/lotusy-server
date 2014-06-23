@@ -1,5 +1,5 @@
 <?php
-abstract class LotusyObject {
+abstract class LotusyDaoBase {
 
 	const SEQUENCE = '_shard_sequence';
 

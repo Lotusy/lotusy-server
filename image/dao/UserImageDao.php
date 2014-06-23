@@ -1,5 +1,5 @@
 <?php
-class UserImageDao extends LotusyObject {
+class UserImageDao extends LotusyDaoBase {
 
 	const USERID = 'user_id';
 	const NAME = 'name';
@@ -96,7 +96,7 @@ class UserImageDao extends LotusyObject {
 		return UserImageDao::IDCOLUMN;
 	}
 
-	protected function actionBeforeUpdate() {
+	protected function beforeUpdate() {
 		$this->var[UserImageDao::MODIFIEDTIME] = date('Y-m-d H:i:s');
 	}
 

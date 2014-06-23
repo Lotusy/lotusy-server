@@ -1,5 +1,5 @@
 <?php
-class CommentDao extends LotusyObject {
+class CommentDao extends LotusyDaoBase {
 
 	const BUSINESSID = 'business_id';
 	const USERID = 'user_id';
@@ -131,7 +131,7 @@ class CommentDao extends LotusyObject {
 		return CommentDao::IDCOLUMN;
 	}
 
-	protected function actionBeforeUpdate() {
+	protected function beforeUpdate() {
 		$this->var[CommentDao::MODIFIEDTIME] = date('Y-m-d H:i:s');
 	}
 

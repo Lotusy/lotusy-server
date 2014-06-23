@@ -14,6 +14,7 @@ $autoload_dirs = array (
 '../utils', 
 '../request',
 '../../core/dao',
+'../../core/dao/generated',
 '../../core/util',
 '../../core/rest/handler',
 '../../core/rest/request',

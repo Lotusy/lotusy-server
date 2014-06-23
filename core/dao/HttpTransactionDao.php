@@ -1,5 +1,5 @@
 <?php
-class HttpTransactionDao extends LotusyObject {
+class HttpTransactionDao extends LotusyDaoBase {
 
 	const TYPE = 'type';
 	const CODE = 'code';
@@ -45,7 +45,7 @@ class HttpTransactionDao extends LotusyObject {
 		return HttpTransactionDao::IDCOLUMN;
 	}
 
-	protected function actionBeforeUpdate() {
+	protected function beforeUpdate() {
 		$this->var[HttpTransactionDao::MODIFIEDTIME] = date('Y-m-d H:i:s');
 	}
 

@@ -1,5 +1,5 @@
 <?php
-class ImageAdminDao extends LotusyObject {
+class ImageAdminDao extends LotusyDaoBase {
 
 	const EMAIL = 'email';
 	const PASSWORD = 'password';
@@ -25,7 +25,7 @@ class ImageAdminDao extends LotusyObject {
 		$connect = DBUtil::getConn($admin);
 		$res = DBUtil::selectData($connect, $sql);
 
-		return $admin->makeObjectFromSelectResult($res, 'ImageAdminDao');
+		return self::makeObjectFromSelectResult($res, 'ImageAdminDao');
 	}
 
 // ============================================ override functions ==================================================

@@ -1,5 +1,5 @@
 <?php
-class CommentImageDao extends LotusyObject {
+class CommentImageDao extends LotusyDaoBase {
 
 	const COMMENTID = 'comment_id';
 	const NAME = 'name';
@@ -40,7 +40,7 @@ class CommentImageDao extends LotusyObject {
 		return CommentImageDao::IDCOLUMN;
 	}
 
-	protected function actionBeforeUpdate() {
+	protected function beforeUpdate() {
 		$this->var[CommentImageDao::MODIFIEDTIME] = date('Y-m-d H:i:s');
 	}
 

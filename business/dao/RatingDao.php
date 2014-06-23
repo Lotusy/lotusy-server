@@ -1,5 +1,5 @@
 <?php
-class RatingDao extends LotusyObject {
+class RatingDao extends LotusyDaoBase {
 
 	const BUSINESSID = 'business_id';
 	const USERID = 'user_id';
@@ -57,7 +57,7 @@ class RatingDao extends LotusyObject {
 		$connect = DBUtil::getConn($rating);
 		$res = DBUtil::selectData($connect, $sql);
 
-		return $rating->makeObjectFromSelectResult($res, 'RatingDao');
+		return self::makeObjectFromSelectResult($res, 'RatingDao');
 	}
 
 // ============================================ override functions ==================================================

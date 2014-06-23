@@ -3,7 +3,7 @@ $db_host = "localhost";
 $db_user = "root";
 $db_pass = $argv[1];
 $db_sche = $argv[2];
-$base_class = 'AccountDaoBase';
+$base_class = 'LotusyDaoBase';
 
 $conn = mysqli_connect("p:".$db_host, $db_user, $db_pass, $db_sche.'_0');
 $sql = "SHOW TABLES";
@@ -25,13 +25,13 @@ while ($tableRow = $tableResult->fetch_array(MYSQLI_ASSOC)) {
     $primaryKeyArr = $primaryResult->fetch_array(MYSQLI_ASSOC);
 
     $content = genClass($table, $fields, $primaryKeyArr['Column_name']);
-    file_put_contents('generated/'.to_camel_case("_".$table."DaoParent.php"), $content);
+    file_put_contents(to_camel_case("_".$table."DaoGenerated.php"), $content);
 }
 
 function genClass($table, $fields, $primaryKey) {
 	global $base_class, $db_sche;
     $rv = "<?php".PHP_EOL;
-    $class = to_camel_case("_".$table."DaoParent");
+    $class = to_camel_case("_".$table."DaoGenerated");
     $rv.= "abstract class $class extends $base_class {".PHP_EOL.PHP_EOL;
     $rv.= "    protected function init() {".PHP_EOL;
     foreach ($fields as $field) {

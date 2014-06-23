@@ -1,5 +1,5 @@
 <?php
-class BusinessImageDao extends LotusyObject {
+class BusinessImageDao extends LotusyDaoBase {
 
 	const BUSINESSID = 'business_id';
 	const NAME = 'name';
@@ -52,7 +52,7 @@ class BusinessImageDao extends LotusyObject {
 		return BusinessImageDao::IDCOLUMN;
 	}
 
-	protected function actionBeforeUpdate() {
+	protected function beforeUpdate() {
 		$this->var[BusinessImageDao::MODIFIEDTIME] = date('Y-m-d H:i:s');
 	}
 

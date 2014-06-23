@@ -1,5 +1,5 @@
 <?php
-class LookupUserImageDao extends LotusyObject {
+class LookupUserImageDao extends LotusyDaoBase {
 
 	const USERID = 'user_id';
 	const IMAGEID = 'image_id';

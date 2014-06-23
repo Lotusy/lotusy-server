@@ -1,5 +1,5 @@
 <?php
-class AccessTokenDao extends LotusyObject {
+class AccessTokenDao extends LotusyDaoBase {
 
 	const USERID = 'user_id';
 	const ACCESSTOKEN = 'access_token';
@@ -23,7 +23,7 @@ class AccessTokenDao extends LotusyObject {
 		$connect = DBUtil::getConn($token);
 		$res = DBUtil::selectData($connect, $sql);
 
-		return $token->makeObjectFromSelectResult($res, 'AccessTokenDao');
+		return self::makeObjectFromSelectResult($res, 'AccessTokenDao');
 	}
 
 	public function expired() {

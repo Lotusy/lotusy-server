@@ -1,5 +1,5 @@
 <?php
-class ReplyDao extends LotusyObject {
+class ReplyDao extends LotusyDaoBase {
 
 	const COMMENTID = 'comment_id';
 	const USERID = 'user_id';
@@ -62,7 +62,7 @@ class ReplyDao extends LotusyObject {
 		return ReplyDao::IDCOLUMN;
 	}
 
-	protected function actionBeforeUpdate() {
+	protected function beforeUpdate() {
 		$this->var[ReplyDao::MODIFIEDTIME] = date('Y-m-d H:i:s');
 	}
 

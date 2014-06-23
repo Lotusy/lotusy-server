@@ -1,5 +1,5 @@
 <?php
-class LookupCommentUserDao extends LotusyObject {
+class LookupCommentUserDao extends LotusyDaoBase {
 
 	const COMMENTID = 'comment_id';
 	const USERID = 'user_id';
