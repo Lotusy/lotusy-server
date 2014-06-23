@@ -13,7 +13,7 @@ $dbconfig['user'] =
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.123' => array('min'=>0, 'max'=>0)
+			'192.168.0.117' => array('min'=>0, 'max'=>0)
 		) 
 	);
 
@@ -24,7 +24,7 @@ $dbconfig['lookup_account'] =
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.123' => array('min'=>0, 'max'=>0)
+			'192.168.0.117' => array('min'=>0, 'max'=>0)
 		) 
 	);
 
@@ -35,7 +35,7 @@ $dbconfig['token'] =
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.123' => array('min'=>0, 'max'=>0)
+			'192.168.0.117' => array('min'=>0, 'max'=>0)
 		) 
 	);
 
@@ -46,7 +46,7 @@ $dbconfig['lookup_token'] =
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.123' => array('min'=>0, 'max'=>0)
+			'192.168.0.117' => array('min'=>0, 'max'=>0)
 		) 
 	);
 
@@ -57,7 +57,7 @@ $dbconfig['account_admin'] =
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.123' => array('min'=>0, 'max'=>0)
+			'192.168.0.117' => array('min'=>0, 'max'=>0)
 		) 
 	);
 ?>

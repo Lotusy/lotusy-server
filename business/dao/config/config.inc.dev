@@ -13,7 +13,7 @@ $dbconfig['business'] =
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.123' => array('min'=>0, 'max'=>0)
+			'192.168.0.117' => array('min'=>0, 'max'=>0)
 		) 
 	);
 
@@ -25,7 +25,7 @@ $dbconfig['lookup_business'] =
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.123' => array('min'=>0, 'max'=>0)
+			'192.168.0.117' => array('min'=>0, 'max'=>0)
 		) 
 	);
 
@@ -36,7 +36,7 @@ $dbconfig['business_admin'] =
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.123' => array('min'=>0, 'max'=>0)
+			'192.168.0.117' => array('min'=>0, 'max'=>0)
 		) 
 	);
 ?>

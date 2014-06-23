@@ -2,7 +2,7 @@
 include '/opt/lotusy/core/util/CacheUtil.php';
 
 $cache_servers = array (
-'192.168.0.123' => 11211
+'192.168.0.117' => 11211
 );
 
 $cacheUtil = new CacheUtil();
