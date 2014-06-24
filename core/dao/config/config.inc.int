@@ -6,7 +6,7 @@ if (!isset($dbconfig)) {
 	$dbconfig = array();
 }
 
-$dbconfig['client'] =
+$dbconfig['l_core_client'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
