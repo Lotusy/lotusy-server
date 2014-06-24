@@ -6,7 +6,7 @@ if (!isset($dbconfig)) {
 	$dbconfig = array();
 }
 
-$dbconfig['user'] =
+$dbconfig['l_acct_user'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
@@ -17,7 +17,7 @@ $dbconfig['user'] =
 		) 
 	);
 
-$dbconfig['lookup_account'] =
+$dbconfig['l_acct_lookup_user'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
@@ -28,7 +28,7 @@ $dbconfig['lookup_account'] =
 		) 
 	);
 
-$dbconfig['token'] =
+$dbconfig['l_acct_token'] =
 	 array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
@@ -39,7 +39,7 @@ $dbconfig['token'] =
 		) 
 	);
 
-$dbconfig['lookup_token'] =
+$dbconfig['l_acct_lookup_token'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
@@ -50,7 +50,7 @@ $dbconfig['lookup_token'] =
 		) 
 	);
 
-$dbconfig['account_admin'] = 
+$dbconfig['l_acct_admin'] = 
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,

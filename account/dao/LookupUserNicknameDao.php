@@ -1,5 +1,5 @@
 <?php
-class LookupUserNickNameDao extends LotusyDaoBase {
+class LookupUserNicknameDao extends LookupUserNicknameDaoGenerated {
 
 	const NICKNAME = 'nickname';
 	const USERID = 'user_id';

@@ -1,5 +1,5 @@
 <?php
-class UserDao extends LotusyDaoBase {
+class UserDao extends UserDaoGenerated {
 
 	const EXTERNALTYPE = 'external_type';
 	const EXTERNALREF = 'external_ref';

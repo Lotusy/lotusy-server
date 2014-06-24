@@ -1,5 +1,5 @@
 <?php
-class LookupUserExternalRefDao extends LotusyDaoBase {
+class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 
 	const EXTERNALTYPE = 'external_type';
 	const EXTERNALREF = 'external_ref';

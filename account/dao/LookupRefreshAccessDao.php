@@ -1,5 +1,5 @@
 <?php
-class LookupRefreshAccessDao extends LotusyDaoBase {
+class LookupRefreshAccessDao extends LookupRefreshAccessDaoGenerated {
 
 	const ACCESSTOKEN = 'access_token';
 	const REFRESHTOKEN = 'refresh_token';

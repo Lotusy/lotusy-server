@@ -14,11 +14,11 @@ CREATE TABLE {$dbName}.user
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE INDEX {$dbName}_user_external_type_index ON {$dbName}.user (external_type);
-CREATE INDEX {$dbName}_user_external_ref_index ON {$dbName}.user (external_ref(15));
-CREATE INDEX {$dbName}_user_nickname_index ON {$dbName}.user (nickname(40));
-CREATE INDEX {$dbName}_user_super_user_index ON {$dbName}.user (superuser(1));
-CREATE INDEX {$dbName}_user_blocked_index ON {$dbName}.user (blocked(1));
+CREATE INDEX {$dbName}_user_external_type ON {$dbName}.user (external_type);
+CREATE INDEX {$dbName}_user_external_ref ON {$dbName}.user (external_ref(15));
+CREATE INDEX {$dbName}_user_nickname ON {$dbName}.user (nickname(40));
+CREATE INDEX {$dbName}_user_super_user ON {$dbName}.user (superuser(1));
+CREATE INDEX {$dbName}_user_blocked ON {$dbName}.user (blocked(1));
 
 
 GRANT ALL ON {$dbName}.* TO '{$uname}'@'%' IDENTIFIED BY '{$passwd}';

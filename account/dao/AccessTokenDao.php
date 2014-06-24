@@ -1,5 +1,5 @@
 <?php
-class AccessTokenDao extends LotusyDaoBase {
+class AccessTokenDao extends AccessTokenDaoGenerated {
 
 	const USERID = 'user_id';
 	const ACCESSTOKEN = 'access_token';

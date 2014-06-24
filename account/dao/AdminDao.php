@@ -1,5 +1,5 @@
 <?php
-class AccountAdminDao extends LotusyDaoBase {
+class AdminDao extends AdminDaoGenerated {
 
 	const EMAIL = 'email';
 	const PASSWORD = 'password';
