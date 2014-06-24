@@ -1,7 +1,7 @@
 <?php
 class ClientDao extends ClientDaoGenerated {
 
-//========================================================================================== public
+// ========================================================================================== public
 
     public static function getClientByAppKey($appKey) {
     	$client = new ClientDao();
@@ -14,7 +14,7 @@ class ClientDao extends ClientDaoGenerated {
         return self::makeObjectFromSelectResult($res, 'ClientDao');
 	}
 
-// ======================================================================================= override
+// ======================================================================================== override
 
 	protected function beforeInsert() {
 		$sequence = Utility::hashString($this->getAppKey());

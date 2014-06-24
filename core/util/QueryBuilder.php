@@ -88,7 +88,7 @@ class QueryBuilder {
 	public function where($field, $value, $operator='=') {
 		$where = $this->and ? ' AND' : ' WHERE';
 
-		$where.=" $field".$operator."'".mysqli_real_escape_string($this->connection, $value)."'";
+		$where.=" $field ".$operator." '".mysqli_real_escape_string($this->connection, $value)."'";
 
 		$this->and = true;
 

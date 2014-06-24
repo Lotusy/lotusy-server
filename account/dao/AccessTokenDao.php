@@ -1,69 +1,34 @@
 <?php
 class AccessTokenDao extends AccessTokenDaoGenerated {
 
-	const USERID = 'user_id';
-	const ACCESSTOKEN = 'access_token';
-	const REFRESHTOKEN = 'refresh_token';
-	const EXPIRESTIME = 'expires_time';
-
-	const IDCOLUMN = 'id';
-	const SHARDDOMAIN = 'token';
-	const TABLE = 'access_token';
-	const ODBNAME = 'token';
-
-
-//========================================================================================== public
+// ========================================================================================== public
 
 	public static function retriveDaoByAccessToken($accessToken) {
 		$token = new AccessTokenDao();
-		$token->setServerAddress( Utility::hashString($accessToken) );
+		$sequence = Utility::hashString($accessToken);
+		$token->setServerAddress( $sequence );
 
-		$sql = "SELECT * FROM ".AccessTokenDao::TABLE." WHERE ".AccessTokenDao::ACCESSTOKEN."='$accessToken'";
-
-		$connect = DBUtil::getConn($token);
-		$res = DBUtil::selectData($connect, $sql);
+		$builder = new QueryBuilder($token);
+		$res = $builder->select('*')->where('access_token', $accessToken)->find();
 
 		return self::makeObjectFromSelectResult($res, 'AccessTokenDao');
 	}
 
 	public function expired() {
-		return time() > $this->var[AccessTokenDao::EXPIRESTIME];
+		return time() > $this->getExpiresTime();
 	}
 
-// ============================================ override functions ==================================================
-
-	protected function init() {
-		$this->var[AccessTokenDao::USERID] = 0;
-		$this->var[AccessTokenDao::ACCESSTOKEN] = Utility::generateToken();
-		$this->var[AccessTokenDao::REFRESHTOKEN] = Utility::generateToken();
-		$this->var[AccessTokenDao::EXPIRESTIME] = 0;
-	}
+// ======================================================================================== override
 
 	protected function beforeInsert() {
 		$lookup = new LookupRefreshAccessDao();
-		$lookup->var[LookupRefreshAccessDao::ACCESSTOKEN] = $this->var[AccessTokenDao::ACCESSTOKEN];
-		$lookup->var[LookupRefreshAccessDao::REFRESHTOKEN] = $this->var[AccessTokenDao::REFRESHTOKEN];
+		$lookup->setAccessToken($this->getAccessToken());
+		$lookup->setRefreshToken($this->getRefreshToken());
 		$lookup->save();
 
-		$sequence = Utility::hashString($this->var[AccessTokenDao::ACCESSTOKEN]);
+		$sequence = Utility::hashString($this->getAccessToken());
 		$this->setShardId($sequence);
-		$this->var[AccessTokenDao::EXPIRESTIME] = 15552000 + time();
-	}
-
-	protected function getTableName() {
-		return AccessTokenDao::TABLE;
-	}
-
-	protected function getIdColumnName() {
-		return AccessTokenDao::IDCOLUMN;
-	}
-
-	public function getShardDomain() {
-		return AccessTokenDao::SHARDDOMAIN;
-	}
-
-	protected function getOriginalDatabaseName() {
-		return AccessTokenDao::ODBNAME;
+		$this->setExpiresTime(15552000+time());
 	}
 
 	protected function isShardBaseObject() {
