@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="docs.css" media="all" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="title">Upload Comment Image</div><br>
+<span class="title">Description</span>
+<div class="sep"></div>
+Upload a Image to a comment
+<br><br><br>
+<span class="title">Method</span>
+<div class="sep"></div>
+POST
+<br><br><br>
+<span class="title">URL</span>
+<div class="sep"></div>
+/comment/{commentid}
+<br><br><br>
+<span class="title">Header</span>
+<div class="sep"></div>
+<table cellspacing="1">
+<thead><tr><th class="hfirst">Name</th><th class="second">Value</th></tr></thead>
+<tbody><tr><td class="hfirst">Content-Type</td><td>image/jpeg</td></tr>
+<tr><td class="hfirst">app-key</td><td>{your_unique_application_key}</td></tr>
+<tr><td class="hfirst">Authorization</td><td>Bearer {access_token}</td></tr>
+</tbody></table>
+<br><br><br>
+<span class="title">Request Body</span>
+<div class="sep"></div>
+curl "http://image.lotusy.com/comment/123512" <br>
+-X POST <br>
+-H "Content-Type: image/jpeg" <br>
+-H "app-key: {your_app_key}" <br>
+-H "Authorization: Bearer {your_access_token}" <br> 
+-T "image_file.jpg"
+<br><br><br>
+<span class="title">Response</span>
+<div class="sep"></div>
+<table cellspacing="1">
+<thead><tr><th class="hfirst">Case</th><th class="second">Body</th></tr></thead>
+<tbody><tr><td class="hfirst">SUCCESS</td><td>
+200 OK<br><br>
+<div class="tab0">{</div>
+<div class="tab1">"status":"success",</div>
+<div class="tab1">"image_id":235123</div>
+<div class="tab0">}</div>
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+404 Not Found<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"comment_not_found"</div>
+}
+</td></tr>
+</tbody></table>
+<br><br>
+</body>
+</html>

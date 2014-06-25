@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="docs.css" media="all" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="title">Get Current User Profile</div><br>
+<span class="title">Description</span>
+<div class="sep"></div>
+Get current user profile with an access token.
+<br><br><br>
+<span class="title">Method</span>
+<div class="sep"></div>
+GET
+<br><br><br>
+<span class="title">URL</span>
+<div class="sep"></div>
+/profile
+<br><br><br>
+<span class="title">Header</span>
+<div class="sep"></div>
+<table cellspacing="1">
+<thead><tr><th class="hfirst">Name</th><th class="second">Value</th></tr></thead>
+<tbody><tr><td class="hfirst">Content-Type</td><td>application/json</td></tr>
+<tr><td class="hfirst">app-key</td><td>{your_unique_application_key}</td></tr>
+<tr><td class="hfirst">Authorization</td><td>Bearer {access_token}</td></tr>
+</tbody></table>
+<br><br><br>
+<span class="title">Request Body</span>
+<div class="sep"></div>
+NONE
+<br><br><br>
+<span class="title">Response</span>
+<div class="sep"></div>
+<table cellspacing="1">
+<thead><tr><th class="hfirst">Case</th><th class="second">Body</th></tr></thead>
+<tbody><tr><td class="hfirst">SUCCESS</td><td>
+200 OK<br><br>
+<div class="tab0">{</div>
+<div class="tab1">"status":"success",</div>
+<div class="tab1">"id":12512,</div>
+<div class="tab1">"external_ref":"facebook1351231512312",</div>
+<div class="tab1">"username":"John Bob",</div>
+<div class="tab1">"nickname":"帅的被人砍",</div>
+<div class="tab1">"profile_pic":"http://graph.facebook.com/someone/profile.jpg",</div>
+<div class="tab1">"description":"",</div>
+<div class="tab1">"superuser":"N",</div>
+<div class="tab1">"last_login":"2013-11-20 23:10:12"</div>
+<div class="tab0">}</div>
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"missing_access_token"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"invalid_token_type"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"invalid_access_token"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"access_token_expired"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+401 Unauthorized<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"unauthorized_request"</div>
+}
+</td></tr>
+</tbody></table>
+<br><br>
+</body>
+</html>
