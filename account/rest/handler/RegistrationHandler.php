@@ -19,12 +19,14 @@ class RegistrationHandler extends UnauthorizedRequestHandler {
 
 		$atReturn = array();
 		if ($account->save()) {
-			Logger::info('Create User '.json_encode($account->var));
+			Logger::info('Create User '.json_encode($account->toArray()));
 
 			$accessToken = new AccessTokenDao();
 			$accessToken->setUserId($account->getId());
+			$accessToken->setAccessToken(Utility::generateToken());
+			$accessToken->setRefreshToken(Utility::generateToken());
 			$accessToken->save();
-			Logger::info('Create Token '.json_encode($accessToken->var));
+			Logger::info('Create Token '.json_encode($accessToken->toArray()));
 
 			$atReturn['status'] = 'success';
 			$atReturn['user_id'] = $account->getId();

@@ -37,7 +37,7 @@ class Utility {
 	public static function generateToken() {
 		$token1 = md5(microtime());
 		$token2 = md5(rand());
-		$token2 = substr($token2, 0, 10);
+		$token2 = substr($token2, rand(0, 20), 10);
 
 		return strtoupper($token1.'.'.$token2);
 	}

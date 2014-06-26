@@ -16,7 +16,7 @@ if (!empty($_POST['nickname'])) {
 }
 
 if (!empty($_POST['ref_type']) && !empty($_POST['ref_id'])) {
-	$ids = LookupUserExternalRefDao::getUserIdsFromExternalRef(trim($_POST['ref_type']), trim($_POST['ref_id']));
+	$ids = LookupUserExternalDao::getUserIdsFromExternalRef(trim($_POST['ref_type']), trim($_POST['ref_id']));
 	foreach ($ids as $id) {
 		$users[$id] = new UserDao($id);
 	}

@@ -4,7 +4,7 @@ class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 // ========================================================================================== public
 
 	public static function getUserIdsFromExternalRef($externalType, $externalRef) {
-		$lookup = new LookupUserExternalRefDao();
+		$lookup = new LookupUserExternalDao();
 		$lookup->setServerAddress( Utility::hashString($externalType.$externalRef) );
 
 		$builder = new QueryBuilder($lookup);
@@ -24,7 +24,7 @@ class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 	public function isExternalRefExist($externalType, $externalRef) {
 		$this->setServerAddress( Utility::hashString($externalType.$externalRef) );
 
-		$builder = new QueryBuilder($lookup);
+		$builder = new QueryBuilder($this);
 		$rows = $builder->select('COUNT(*) as count')
 						->where('reference', $externalRef)
 						->where('type', $externalType.'%', 'LIKE')

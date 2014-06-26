@@ -72,7 +72,7 @@ abstract class ClientDaoGenerated extends LotusyDaoBase {
     }
 
     public function getShardDomain() {
-        return 'client';
+        return 'l_core_client';
     }
 }
 ?>
