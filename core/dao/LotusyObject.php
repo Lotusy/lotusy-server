@@ -206,6 +206,17 @@ abstract class LotusyDaoBase {
 		return $objects;
 	}
 
+	public function toArray($skip=array()) {
+		$array = $this->var;
+		foreach ($skip as $key) {
+			if (isset($array[$key])) {
+				unset($array[$key]);
+			}
+		}
+
+		return $array;
+	}
+
 	private function getNextObjectSequence() {
 		$dbName = $this->getShardedDatabaseName();
 		$tableName = $this->getTableName();

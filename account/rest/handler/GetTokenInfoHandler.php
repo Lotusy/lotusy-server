@@ -21,10 +21,10 @@ class GetTokenInfoHandler extends UnauthorizedRequestHandler {
 		}
 
 		$atReturn['status'] = 'success';
-		$atReturn['user_id'] = $token->var[AccessTokenDao::USERID];
-		$atReturn['refresh_token'] = $token->var[AccessTokenDao::REFRESHTOKEN];
+		$atReturn['user_id'] = $token->getUserId();
+		$atReturn['refresh_token'] = $token->getRefreshToken();
 		$atReturn['token_type'] = 'Bearer';
-		$atReturn['expires_in'] = $token->var[AccessTokenDao::EXPIRESTIME] - time();
+		$atReturn['expires_in'] = $token->getExpiresTime() - time();
 
 		return $atReturn;
 	}

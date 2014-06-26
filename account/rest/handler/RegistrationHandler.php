@@ -11,27 +11,27 @@ class RegistrationHandler extends UnauthorizedRequestHandler {
 		}
 
 		$account = new UserDao();
-		$account->var[UserDao::EXTERNALTYPE] = UserDao::$TYPEARRAY[$params['type']];
-		$account->var[UserDao::EXTERNALREF] = $json['id'];
-		$account->var[UserDao::USERNAME] = $json['username'];
-		$account->var[UserDao::NICKNAME] = $json['nickname'];
-		$account->var[UserDao::PROFILEPIC] = $json['profile_pic'];
+		$account->setExternalType(UserDao::$TYPEARRAY[$params['type']]);
+		$account->setExternalRef($json['id']);
+		$account->setUsername($json['username']);
+		$account->setNickname($json['nickname']);
+		$account->setProfilePic($json['profile_pic']);
 
 		$atReturn = array();
 		if ($account->save()) {
 			Logger::info('Create User '.json_encode($account->var));
-	
+
 			$accessToken = new AccessTokenDao();
-			$accessToken->var[AccessTokenDao::USERID] = $account->var[UserDao::IDCOLUMN];
+			$accessToken->setUserId($account->getId());
 			$accessToken->save();
 			Logger::info('Create Token '.json_encode($accessToken->var));
-	
+
 			$atReturn['status'] = 'success';
-			$atReturn['user_id'] = $account->var[UserDao::IDCOLUMN];
-			$atReturn['access_token'] = $accessToken->var[AccessTokenDao::ACCESSTOKEN];
-			$atReturn['refresh_token'] = $accessToken->var[AccessTokenDao::REFRESHTOKEN];
+			$atReturn['user_id'] = $account->getId();
+			$atReturn['access_token'] = $accessToken->getAccessToken();
+			$atReturn['refresh_token'] = $accessToken->getRefreshToken();
 			$atReturn['token_type'] = 'Bearer';
-			$atReturn['extires_in'] = $accessToken->var[AccessTokenDao::EXPIRESTIME] - time();
+			$atReturn['extires_in'] = $accessToken->getExpiresTime() - time();
 		} else {
 			header('HTTP/1.0 500 Internal Server Error');
 			$atReturn['status'] = 'error';

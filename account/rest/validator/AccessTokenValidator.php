@@ -41,7 +41,7 @@ abstract class AccessTokenValidator extends Validator {
 		}
 
 		if ($valid) {
-			$this->userId = $accessTokenDao->var[AccessTokenDao::USERID];
+			$this->userId = $accessTokenDao->getUserId();
 		} else {
 			header('HTTP/1.0 401 Unauthorized');
 			$this->setErrorMessage('unauthorized_request');

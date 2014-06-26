@@ -10,7 +10,7 @@ class GetUserProfileHandler extends UnauthorizedRequestHandler {
 
 		$user = $validator->getUser();
 
-		$response = $user->var;
+		$response = $user->toArray();
 		$response['status'] = 'success';
 
 		return $response;

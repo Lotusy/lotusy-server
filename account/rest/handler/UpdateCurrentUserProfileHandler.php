@@ -14,19 +14,19 @@ class UpdateCurrentUserProfileHandler extends UnauthorizedRequestHandler {
 		$updated = false;
 
 		if (isset($json['nick_name'])) {
-			$user->var[UserDao::NICKNAME] = $json['nick_name']; 
+			$user->setNickname($json['nick_name']); 
 			$updated = true;
 		}
 		if (isset($json['username'])) {
-			$user->var[UserDao::USERNAME] = $json['username']; 
+			$user->setUsername($json['username']); 
 			$updated = true;
 		}
 		if (isset($json['profile_pic'])) {
-			$user->var[UserDao::PROFILEPIC] = $json['profile_pic']; 
+			$user->setProfilePic($json['profile_pic']); 
 			$updated = true;
 		}
 		if (isset($json['description'])) {
-			$user->var[UserDao::DESCRIPTION] = $json['description']; 
+			$user->setDescription($json['description']); 
 			$updated = true;
 		}
 
@@ -42,7 +42,7 @@ class UpdateCurrentUserProfileHandler extends UnauthorizedRequestHandler {
 		}
 
 		if ($response['status']=='success') {
-			$response['user'] = $user->var;
+			$response['user'] = $user->toArray();
 		}
 
 		return $response;

@@ -13,20 +13,19 @@ class AuthenticationHandler extends UnauthorizedRequestHandler {
 		$user = $validator->getUser();
 
 		$accessToken = new AccessTokenDao();
-		$accessToken->var[AccessTokenDao::USERID] = $user->var[UserDao::IDCOLUMN];
+		$accessToken->setUserId($user->getId());
 		$accessToken->save();
 		Logger::info('Create Token '.json_encode($accessToken->var));
 
 		$atReturn = array();
 		$atReturn['status'] = 'success';
-		$atReturn['user_id'] = $user->var[UserDao::IDCOLUMN];
-		$atReturn['access_token'] = $accessToken->var[AccessTokenDao::ACCESSTOKEN];
-		$atReturn['refresh_token'] = $accessToken->var[AccessTokenDao::REFRESHTOKEN];
+		$atReturn['user_id'] = $user->getId();
+		$atReturn['access_token'] = $accessToken->getAccessToken();
+		$atReturn['refresh_token'] = $accessToken->getRefreshToken();
 		$atReturn['token_type'] = 'Bearer';
-		$atReturn['extires_in'] = $accessToken->var[AccessTokenDao::EXPIRESTIME] - time();
+		$atReturn['extires_in'] = $accessToken->getExpiresTime() - time();
 
 		return $atReturn;
-		
 	}
 }
 ?>
