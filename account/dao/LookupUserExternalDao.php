@@ -4,13 +4,19 @@ class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 // ========================================================================================== public
 
 	public static function getUserIdsFromExternalRef($externalType, $externalRef) {
+		if (!isset(UserDao::$TYPEARRAY[$externalType])) {
+			return false;
+		}
+
+		$type = UserDao::$TYPEARRAY[$externalType];
+
 		$lookup = new LookupUserExternalDao();
 		$lookup->setServerAddress( Utility::hashString($externalType.$externalRef) );
 
 		$builder = new QueryBuilder($lookup);
 		$rows = $builder->select('user_id')
 						->where('reference', $externalRef)
-						->where('type', $externalType.'%')
+						->where('type', $type)
 						->findList();
 
 		$atReturn = array();
@@ -22,12 +28,18 @@ class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 	}
 
 	public function isExternalRefExist($externalType, $externalRef) {
+		if (!isset(UserDao::$TYPEARRAY[$externalType])) {
+			return false;
+		}
+
+		$type = UserDao::$TYPEARRAY[$externalType];
+
 		$this->setServerAddress( Utility::hashString($externalType.$externalRef) );
 
 		$builder = new QueryBuilder($this);
-		$rows = $builder->select('COUNT(*) as count')
+		$res = $builder->select('COUNT(*) as count')
 						->where('reference', $externalRef)
-						->where('type', $externalType.'%', 'LIKE')
+						->where('type', $type)
 						->find();
 
 		return isset($res) && isset($res['count']) && $res['count']>0;

@@ -1,7 +1,7 @@
 CREATE TABLE {$dbName}.lookup_user_external
 (
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-	type INT(2) UNSIGNED,
+	type TINYINT(2) UNSIGNED,
 	reference VARCHAR(16),
 	user_id INT(10) UNSIGNED,
 
