@@ -13,7 +13,7 @@ class GetTokenInfoHandler extends UnauthorizedRequestHandler {
 
 		$token = AccessTokenDao::retriveDaoByAccessToken($_GET['access_token']);
 
-		if (!$token->isFromDatabase()) {
+		if (!isset($token) || !$token->isFromDatabase()) {
 			header('HTTP/1.0 404 Not Found');
 			$atReturn['status'] = 'error';
 			$atReturn['description'] = 'access_token_not_found';

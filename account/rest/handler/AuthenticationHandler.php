@@ -14,8 +14,10 @@ class AuthenticationHandler extends UnauthorizedRequestHandler {
 
 		$accessToken = new AccessTokenDao();
 		$accessToken->setUserId($user->getId());
+		$accessToken->setAccessToken(Utility::generateToken());
+		$accessToken->setRefreshToken(Utility::generateToken());
 		$accessToken->save();
-		Logger::info('Create Token '.json_encode($accessToken->var));
+		Logger::info('Create Token '.json_encode($accessToken->toArray()));
 
 		$atReturn = array();
 		$atReturn['status'] = 'success';
