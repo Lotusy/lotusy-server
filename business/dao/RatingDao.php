@@ -1,19 +1,5 @@
 <?php
-class RatingDao extends LotusyDaoBase {
-
-	const BUSINESSID = 'business_id';
-	const USERID = 'user_id';
-	const FOOD = 'food';
-	const SERV = 'serv';
-	const ENV = 'env';
-	const OVERALL = 'overall';
-	const CREATETIME = 'create_time';
-
-	const IDCOLUMN = 'id';
-	const SHARDDOMAIN = 'business';
-	const TABLE = 'rating';
-	const ODBNAME = 'business';
-
+class RatingDao extends RatingDaoGenerated {
 
 // =========================================================================================================== public
 
@@ -62,35 +48,9 @@ class RatingDao extends LotusyDaoBase {
 
 // ============================================ override functions ==================================================
 
-	protected function init() {
-		$this->var[RatingDao::BUSINESSID] = 0;
-		$this->var[RatingDao::USERID] = 0;
-		$this->var[RatingDao::FOOD] = 0;
-		$this->var[RatingDao::SERV] = 0;
-		$this->var[RatingDao::ENV] = 0;
-		$this->var[RatingDao::OVERALL] = 0;
-		$this->var[RatingDao::CREATETIME] = gmdate('Y-m-d H:i:s');
-	}
-
 	protected function beforeInsert() {
 		$sequence = $this->var[RatingDao::BUSINESSID];
 		$this->setShardId($sequence);
-	}
-
-	public function getShardDomain() {
-		return RatingDao::SHARDDOMAIN;
-	}
-
-	protected function getOriginalDatabaseName() {
-		return RatingDao::ODBNAME;
-	}
-
-	public function getTableName() {
-		return RatingDao::TABLE;
-	}
-
-	public function getIdColumnName() {
-		return RatingDao::IDCOLUMN;
 	}
 
 	protected function isShardBaseObject() {

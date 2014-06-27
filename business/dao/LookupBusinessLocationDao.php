@@ -1,15 +1,5 @@
 <?php
-class LookupBusinessLocationDao extends LotusyDaoBase {
-
-	const BUSINESSID = 'business_id';
-	const LAT = 'lat';
-	const LNG = 'lng';
-	const VERIFIED = 'verified';
-
-	const IDCOLUMN = 'id';
-	const SHARDDOMAIN = 'lookup_business';
-	const TABLE = 'business_location';
-	const ODBNAME = 'lookup_business';
+class LookupBusinessLocationDao extends LookupBusinessLocationDaoGenerated {
 
 // =========================================================================================================== public
 
@@ -48,32 +38,9 @@ class LookupBusinessLocationDao extends LotusyDaoBase {
 
 // ============================================ override functions ==================================================
 
-	protected function init() {
-		$this->var[LookupBusinessLocationDao::BUSINESSID] = 0;
-		$this->var[LookupBusinessLocationDao::LAT] = 0;
-		$this->var[LookupBusinessLocationDao::LNG] = 0;
-		$this->var[LookupBusinessLocationDao::VERIFIED] = 'N';
-	}
-
 	protected function beforeInsert() {
 		$sequence = Utility::hashLatLng($this->var[LookupBusinessLocationDao::LAT], $this->var[LookupBusinessLocationDao::LNG]);
 		$this->setShardId($sequence);
-	}
-
-	public function getShardDomain() {
-		return LookupBusinessLocationDao::SHARDDOMAIN;
-	}
-
-	protected function getOriginalDatabaseName() {
-		return LookupBusinessLocationDao::ODBNAME;
-	}
-
-	public function getTableName() {
-		return LookupBusinessLocationDao::TABLE;
-	}
-
-	public function getIdColumnName() {
-		return LookupBusinessLocationDao::IDCOLUMN;
 	}
 
 	protected function isShardBaseObject() {

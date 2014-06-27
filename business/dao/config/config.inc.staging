@@ -6,7 +6,7 @@ if (!isset($dbconfig)) {
 	$dbconfig = array();
 }
 
-$dbconfig['business'] =
+$dbconfig['l_busi_business'] =
 	array (
 		'total_shards' => 9,
 		'shards_digit' => 10,
@@ -19,7 +19,7 @@ $dbconfig['business'] =
 		) 
 	);
 
-$dbconfig['lookup_business'] =
+$dbconfig['l_busi_lookup_business'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
@@ -30,7 +30,7 @@ $dbconfig['lookup_business'] =
 		) 
 	);
 
-$dbconfig['business_admin'] = 
+$dbconfig['l_busi_admin'] = 
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
