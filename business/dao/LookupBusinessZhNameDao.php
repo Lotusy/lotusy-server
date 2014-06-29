@@ -4,7 +4,7 @@ class LookupBusinessZhNameDao extends LookupBusinessZhNameDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = Utility::hashString($this->var[LookupBusinessZhNameDao::ZHNAME]);
+		$sequence = Utility::hashString($this->getZhName());
 		$this->setShardId($sequence);
 	}
 

@@ -5,13 +5,10 @@ class LookupBusinessLocationDao extends LookupBusinessLocationDaoGenerated {
 
 	public static function getLookupWithBusiness($business) {
 		$lookup = new LookupBusinessLocationDao();
-		$lookup->setServerAddress(Utility::hashLatLng($business->var[BusinessDao::LAT], $business->var[BusinessDao::LNG]));
+		$lookup->setServerAddress(Utility::hashLatLng($business->getLat(), $business->getLng()));
 
-		$sql = "select * FROM ".LookupBusinessLocationDao::TABLE." WHERE "
-				.LookupBusinessLocationDao::BUSINESSID."=".$business->var[BusinessDao::IDCOLUMN];
-
-		$connect = DBUtil::getConn($lookup);
-		$res = DBUtil::selectData($connect, $sql);
+		$builder = new QueryBuilder($lookup);
+		$res = $builder->select('*')->where('business_id', $business->getId())->find();
 
 		return self::makeObjectFromSelectResult($res, 'LookupBusinessLocationDao');
 	}
@@ -28,18 +25,20 @@ class LookupBusinessLocationDao extends LookupBusinessLocationDaoGenerated {
 		$p1 = "cos( $latRadius ) * cos( radians(lat) ) * cos( radians(lng) - $lngRadius )";
 		$p2 = "sin( $latRadius ) * sin( radians(lat) )";
 
-		$sql = "SELECT ".LookupBusinessLocationDao::BUSINESSID.", ( $earthRadius * acos( $p1 + $p2 ) ) AS distance FROM ".
-				LookupBusinessLocationDao::TABLE." HAVING distance < $radius ORDER BY distance LIMIT $start, $size";
+		$builder = new QueryBuilder($lookup);
+		$rows = $builder->select("business_id, ( $earthRadius * acos( $p1 + $p2 ) ) AS distance")
+						->having('distance', $radius, '<')
+						->order('distance')
+						->limit($start, $size)
+						->findList();
 
-		$connect = DBUtil::getConn($lookup);
-
-		return DBUtil::selectDataList($connect, $sql);
+		return $rows;
 	}
 
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = Utility::hashLatLng($this->var[LookupBusinessLocationDao::LAT], $this->var[LookupBusinessLocationDao::LNG]);
+		$sequence = Utility::hashLatLng($this->getLat(), $this->getLng());
 		$this->setShardId($sequence);
 	}
 

@@ -97,6 +97,16 @@ class QueryBuilder {
 		return $this;
 	}
 
+	public function having($field, $value, $operator='=') {
+		$having = ' HAVING';
+
+		$having.=" $field ".$operator." '".mysqli_real_escape_string($this->connection, $value)."'";
+
+		$this->query.= $having;
+
+		return $this;
+	}
+
 	public function in($field, $range) {
 		$in = $this->and ? ' AND' : ' WHERE';
 

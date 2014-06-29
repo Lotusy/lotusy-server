@@ -4,7 +4,7 @@ class LookupBusinessEnNameDao extends LookupBusinessEnNameDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = Utility::hashString($this->var[LookupBusinessEnNameDao::ENNAME]);
+		$sequence = Utility::hashString($this->getEnName());
 		$this->setShardId($sequence);
 	}
 
