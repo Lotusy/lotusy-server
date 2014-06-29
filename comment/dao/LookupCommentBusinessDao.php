@@ -1,15 +1,5 @@
 <?php
-class LookupCommentBusinessDao extends LotusyDaoBase {
-
-	const COMMENTID = 'comment_id';
-	const BUSINESSID = 'business_id';
-	const CREATETIME = 'create_time';
-
-	const IDCOLUMN = 'id';
-	const SHARDDOMAIN = 'lookup_comment';
-	const TABLE = 'comment_business';
-	const ODBNAME = 'lookup_comment';
-
+class LookupCommentBusinessDao extends LookupCommentBusinessDaoGenerated {
 
 //========================================================================================== public
 
@@ -37,31 +27,9 @@ class LookupCommentBusinessDao extends LotusyDaoBase {
 
 // ============================================ override functions ==================================================
 
-	protected function init() {
-		$this->var[LookupCommentBusinessDao::COMMENTID] = 0;
-		$this->var[LookupCommentBusinessDao::BUSINESSID] = 0;
-		$this->var[LookupCommentBusinessDao::CREATETIME] = gmdate('Y-m-d H:i:s');
-	}
-
 	protected function beforeInsert() {
 		$sequence = $this->var[LookupCommentBusinessDao::BUSINESSID];
 		$this->setShardId($sequence);
-	}
-
-	public function getShardDomain() {
-		return LookupCommentBusinessDao::SHARDDOMAIN;
-	}
-
-	protected function getOriginalDatabaseName() {
-		return LookupCommentBusinessDao::ODBNAME;
-	}
-
-	public function getTableName() {
-		return LookupCommentBusinessDao::TABLE;
-	}
-
-	public function getIdColumnName() {
-		return LookupCommentBusinessDao::IDCOLUMN;
 	}
 
 	protected function isShardBaseObject() {

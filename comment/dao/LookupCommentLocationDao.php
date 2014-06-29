@@ -1,15 +1,5 @@
 <?php
-class LookupCommentLocationDao extends LotusyDaoBase {
-
-	const COMMENTID = 'comment_id';
-	const LAT = 'lat';
-	const LNG = 'lng';
-	const CREATETIME = 'create_time';
-
-	const IDCOLUMN = 'id';
-	const SHARDDOMAIN = 'lookup_comment';
-	const TABLE = 'comment_location';
-	const ODBNAME = 'lookup_comment';
+class LookupCommentLocationDao extends LookupCommentLocationDaoGenerated {
 
 //========================================================================================== public
 
@@ -45,32 +35,9 @@ class LookupCommentLocationDao extends LotusyDaoBase {
 
 // ============================================ override functions ==================================================
 
-	protected function init() {
-		$this->var[LookupCommentLocationDao::COMMENTID] = 0;
-		$this->var[LookupCommentLocationDao::LAT] = 0;
-		$this->var[LookupCommentLocationDao::LNG] = 0;
-		$this->var[LookupCommentLocationDao::CREATETIME] = gmdate('Y-m-d H:i:s');
-	}
-
 	protected function beforeInsert() {
 		$sequence = Utility::hashLatLng($this->var[LookupCommentBusinessDao::LAT], $this->var[LookupCommentBusinessDao::LNG]);
 		$this->setShardId($sequence);
-	}
-
-	public function getShardDomain() {
-		return LookupCommentLocationDao::SHARDDOMAIN;
-	}
-
-	protected function getOriginalDatabaseName() {
-		return LookupCommentLocationDao::ODBNAME;
-	}
-
-	public function getTableName() {
-		return LookupCommentLocationDao::TABLE;
-	}
-
-	public function getIdColumnName() {
-		return LookupCommentLocationDao::IDCOLUMN;
 	}
 
 	protected function isShardBaseObject() {

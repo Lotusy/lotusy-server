@@ -1,20 +1,5 @@
 <?php
-class CommentDao extends LotusyDaoBase {
-
-	const BUSINESSID = 'business_id';
-	const USERID = 'user_id';
-	const LAT = 'lat';
-	const LNG = 'lng';
-	const MESSAGE = 'message';
-	const LIKECOUNT = 'like_count';
-	const ISDELETED = 'is_deleted';
-	const CREATETIME = 'create_time';
-
-	const IDCOLUMN = 'id';
-	const SHARDDOMAIN = 'comment';
-	const TABLE = 'comment';
-	const ODBNAME = 'comment';
-
+class CommentDao extends CommentDaoGenerated {
 
 //========================================================================================== public
 
@@ -94,17 +79,6 @@ class CommentDao extends LotusyDaoBase {
 
 // ============================================ override functions ==================================================
 
-	protected function init() {
-		$this->var[CommentDao::BUSINESSID] = 0;
-		$this->var[CommentDao::USERID] = 0;
-		$this->var[CommentDao::LAT] = 0;
-		$this->var[CommentDao::LNG] = 0;
-		$this->var[CommentDao::MESSAGE] = '';
-		$this->var[CommentDao::LIKECOUNT] = 0;
-		$this->var[CommentDao::ISDELETED] = 'N';
-		$this->var[CommentDao::CREATETIME] = date('Y-m-d H:i:s');
-	}
-
 	protected function beforeInsert() {
 		$lookup = new LookupCommentLocationDao();
 		$lookup->var[LookupCommentLocationDao::LAT] = $this->var[CommentDao::LAT];
@@ -121,26 +95,6 @@ class CommentDao extends LotusyDaoBase {
 		$lookup->var[LookupCommentBusinessDao::BUSINESSID] = $this->var[CommentDao::BUSINESSID];
 		$lookup->var[LookupCommentBusinessDao::COMMENTID] = $this->var[CommentDao::IDCOLUMN];
 		$lookup->save();
-	}
-
-	protected function getTableName() {
-		return CommentDao::TABLE;
-	}
-
-	protected function getIdColumnName() {
-		return CommentDao::IDCOLUMN;
-	}
-
-	protected function beforeUpdate() {
-		$this->var[CommentDao::MODIFIEDTIME] = date('Y-m-d H:i:s');
-	}
-
-	public function getShardDomain() {
-		return CommentDao::SHARDDOMAIN;
-	}
-
-	protected function getOriginalDatabaseName() {
-		return CommentDao::ODBNAME;
 	}
 
 	protected function isShardBaseObject() {
