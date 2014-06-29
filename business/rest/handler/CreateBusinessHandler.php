@@ -19,12 +19,12 @@ class CreateBusinessHandler extends AuthorizedRequestHandler {
 				$business->var[$key] = $json[$key];
 			}
 		}
-		$business->var[BusinessDao::USERID] = $this->getUserId();
-		$business->var[BusinessDao::VERRFIED] = $verified;
+		$business->setUserId($this->getUserId());
+		$business->setVerified($verified);
 
 		$atReturn = array();
 		if ($business->save()) {
-			$atReturn = $business->var;
+			$atReturn = $business->toArray();
 			$atReturn['status'] = 'success';
 		} else {
 			header('HTTP/1.0 500 Internal Server Error');

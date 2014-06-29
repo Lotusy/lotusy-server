@@ -14,7 +14,7 @@ class GetBusinessUserRatingHandler extends AuthorizedRequestHandler {
 			$response['description'] = 'rating_not_found';
 		} else {
 			$response['status'] = 'success';
-			$response['rating'] = $response->var;
+			$response['rating'] = $rating->toArray();
 		}
 
 		return $response;

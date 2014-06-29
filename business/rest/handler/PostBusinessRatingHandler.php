@@ -13,12 +13,12 @@ class PostBusinessRatingHandler extends AuthorizedRequestHandler {
 		$userId = $this->getUserId();
 
 		$rating = new RatingDao();
-		$rating->var[RatingDao::BUSINESSID] = $json['business_id'];
-		$rating->var[RatingDao::USERID] = $userId;
-		$rating->var[RatingDao::FOOD] = $json['food'];
-		$rating->var[RatingDao::SERV] = $json['serv'];
-		$rating->var[RatingDao::ENV] = $json['env'];
-		$rating->var[RatingDao::OVERALL] = $json['overall'];
+		$rating->setBusinessId($json['business_id']);
+		$rating->setUserId($userId);
+		$rating->setFood($json['food']);
+		$rating->setServ($json['serv']);
+		$rating->setEnv($json['env']);
+		$rating->setOverall($json['overall']);
 
 		$response = array();
 		if (!$rating->save()) {
@@ -27,7 +27,7 @@ class PostBusinessRatingHandler extends AuthorizedRequestHandler {
 			$response['description'] = 'internal_server_error';
 		} else {
 			$response['status'] = 'success';
-			$response['rating'] = $rating->var;
+			$response['rating'] = $rating->toArray();
 		}
 
 		return $response;
