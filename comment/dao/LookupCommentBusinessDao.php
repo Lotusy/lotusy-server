@@ -7,28 +7,29 @@ class LookupCommentBusinessDao extends LookupCommentBusinessDaoGenerated {
 		$lookup = new LookupCommentBusinessDao();
 		$lookup->setServerAddress($businessId);
 
-		$sql = "SELECT ".LookupCommentBusinessDao::COMMENTID." FROM ".LookupCommentBusinessDao::TABLE." WHERE ".
-				LookupCommentBusinessDao::BUSINESSID."=$businessId LIMIT $start, $size";
-
-		$connect = DBUtil::getConn($lookup);
-		return DBUtil::selectDataList($connect, $sql);
+		$builder = new QueryBuilder($lookup);
+		$rows = $builder->select('comment_id')
+						->where('business_id', $businessId)
+						->limit($start, $size)
+						->findList();
+		return $rows;
 	}
 
 	public static function deleteLookupDao($businessId, $commentId) {
 		$lookup = new LookupCommentBusinessDao();
 		$lookup->setServerAddress($businessId);
 
-		$sql = "DELETE FROM ".LookupCommentBusinessDao::TABLE." WHERE ".LookupCommentBusinessDao::COMMENTID."=$commentId";
-
-		$connect = DBUtil::getConn($lookup);
-
-		return DBUtil::deleteData($connect, $sql);
+		$builder = new QueryBuilder($lookup);
+		$res = $builder->delete()
+					   ->where('comment_id', $commentId)
+					   ->query();
+		return $res;
 	}
 
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = $this->var[LookupCommentBusinessDao::BUSINESSID];
+		$sequence = $this->getBusinessId();
 		$this->setShardId($sequence);
 	}
 

@@ -7,28 +7,29 @@ class LookupCommentUserDao extends LookupCommentUserDaoGenerated {
 		$lookup = new LookupCommentUserDao();
 		$lookup->setServerAddress($userId);
 
-		$sql = "SELECT ".LookupCommentUserDao::COMMENTID." FROM ".LookupCommentUserDao::TABLE." WHERE ".
-				LookupCommentUserDao::USERID."=$userId LIMIT $start, $size";
-
-		$connect = DBUtil::getConn($lookup);
-		return DBUtil::selectDataList($connect, $sql);
+		$builder = new QueryBuilder($lookup);
+		$rows = $builder->select('comment_id')
+						->where('user_id', $userId)
+						->limit($start, $size)
+						->findList();
+		return $rows;
 	}
 
 	public static function deleteLookupDao($userId, $commentId) {
 		$lookup = new LookupCommentUserDao();
 		$lookup->setServerAddress($userId);
 
-		$sql = "DELETE FROM ".LookupCommentUserDao::TABLE." WHERE ".LookupCommentUserDao::COMMENTID."=$commentId";
-
-		$connect = DBUtil::getConn($lookup);
-
-		return DBUtil::deleteData($connect, $sql);
+		$builder = new QueryBuilder($lookup);
+		$res = $builder->delete()
+					   ->where('comment_id', $commentId)
+					   ->query();
+		return $res;
 	}
 
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = $this->var[LookupCommentUserDao::USERID];
+		$sequence = $this->getUserId();
 		$this->setShardId($sequence);
 	}
 

@@ -7,22 +7,23 @@ class ReplyDao extends ReplyDaoGenerated {
 		$comment = new ReplyDao();
 		$comment->setServerAddress($commentId);
 
-		$sql = "SELECT * FROM ".ReplyDao::TABLE." WHERE ".ReplyDao::COMMENTID."=$commentId LIMIT $start, $size";
+		$builder = new QueryBuilder($comment);
+		$rows = $builder->select('*')
+						->where('comment_id', $commentId)
+						->limit($start, $size)
+						->findList();
 
-		$connect = DBUtil::getConn($comment);
-		$rows = DBUtil::selectDataList($connect, $sql);
-
-		return $comment->makeObjectsFromSelectListResult($rows, 'ReplyDao');
+		return self::makeObjectsFromSelectListResult($rows, 'ReplyDao');
 	}
 
 	public static function getReplyCountByCommentId($commentId) {
 		$comment = new ReplyDao();
 		$comment->setServerAddress($commentId);
 
-		$sql = "SELECT COUNT(*) as count FROM ".ReplyDao::TABLE." WHERE ".ReplyDao::COMMENTID."=$commentId";
-
-		$connect = DBUtil::getConn($comment);
-		$res = DBUtil::selectData($connect, $sql);
+		$builder = new QueryBuilder($comment);
+		$res = $builder->select('COUN(*) as count')
+					   ->where('comment_id', $commentId)
+					   ->find();
 
 		return $res['count'];
 	}
@@ -30,12 +31,11 @@ class ReplyDao extends ReplyDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = $this->var[ReplyDao::COMMENTID];
+		$sequence = $this->getCommentId();
 		$this->setShardId($sequence);
-	}
 
-	protected function beforeUpdate() {
-		$this->var[ReplyDao::MODIFIEDTIME] = date('Y-m-d H:i:s');
+		$date = gmdate('Y-m-d H:i:s');
+		$this->setCreateTime($date);
 	}
 
 	protected function isShardBaseObject() {

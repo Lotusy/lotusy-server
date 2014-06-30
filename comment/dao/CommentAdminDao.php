@@ -9,12 +9,11 @@ class CommentAdminDao extends CommentAdminDaoGenerated {
 
 		$password = md5($password);
 
-		$sql = "SELECT * FROM ".CommentAdminDao::TABLE." WHERE "
-				.CommentAdminDao::EMAIL."='$email' AND "
-				.CommentAdminDao::PASSWORD."='$password'";
-
-		$connect = DBUtil::getConn($admin);
-		$res = DBUtil::selectData($connect, $sql);
+		$builder = new QueryBuilder($admin);
+		$res = $builder->select('*')
+					   ->where('email', $email)
+					   ->where('password', $password)
+					   ->find();
 
 		return self::makeObjectFromSelectResult($res, 'CommentAdminDao');
 	}
@@ -22,8 +21,8 @@ class CommentAdminDao extends CommentAdminDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$this->var[CommentAdminDao::PASSWORD] = md5($this->var[CommentAdminDao::PASSWORD]);
-		$sequence = Utility::hashString($this->var[CommentAdminDao::EMAIL]);
+		$this->setPassword(md5($this->getPassword()));
+		$sequence = Utility::hashString($this->getEmail());
 		$this->setShardId($sequence);
 	}
 
