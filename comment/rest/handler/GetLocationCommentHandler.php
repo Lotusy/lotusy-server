@@ -19,7 +19,7 @@ class GetLocationCommentHandler extends AuthorizedRequestHandler {
 		$response['comments'] = array();
 
 		foreach ($comments as $comment) {
-			array_push($response['comments'], $comment->var);
+			array_push($response['comments'], $comment->toArray());
 		}
 
 		return $response;

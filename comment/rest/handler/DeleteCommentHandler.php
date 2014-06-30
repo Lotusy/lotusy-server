@@ -6,18 +6,11 @@ class DeleteCommentHandler extends AuthorizedRequestHandler {
 
 		$response = array();
 		if ($comment->isFromDatabase()) {
-			if ($comment->var[CommentDao::USERID]==$this->getUserId()) {
+			if ($comment->getUserId()==$this->getUserId()) {
 				$comment->delete();
-				LookupCommentBusinessDao::deleteLookupDao ( 
-					$comment->var[CommentDao::BUSINESSID], $params['commentid'] );
-
-				LookupCommentUserDao::deleteLookupDao ( 
-					$comment->var[CommentDao::USERID], $params['commentid'] );
-
-				LookupCommentLocationDao::deleteLookupDao ( 
-					$comment->var[CommentDao::LAT], 
-					$comment->var[CommentDao::LNG], 
-					$params['commentid'] );
+				LookupCommentBusinessDao::deleteLookupDao($comment->getBusinessId(), $params['commentid']);
+				LookupCommentUserDao::deleteLookupDao($comment->getUserId(), $params['commentid']);
+				LookupCommentLocationDao::deleteLookupDao($comment->getLat(), $comment->getLng(), $params['commentid']);
 
 				$response['status'] = 'success';
 			} else {

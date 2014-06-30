@@ -11,10 +11,10 @@ class CreateReplyHandler extends AuthorizedRequestHandler {
 		}
 
 		$reply = new ReplyDao();
-		$reply->var[ReplyDao::USERID] = $this->getUserId();
-		$reply->var[ReplyDao::COMMENTID] = $json['comment_id'];
-		$reply->var[ReplyDao::NICKNAME] = $json['nickname'];
-		$reply->var[ReplyDao::MESSAGE] = $json['message'];
+		$reply->setUserId($this->getUserId());
+		$reply->setCommentId($json['comment_id']);
+		$reply->setNickname($json['nickname']);
+		$reply->setMessage($json['message']);
 
 		$response = array();
 		if ($reply->save()) {
