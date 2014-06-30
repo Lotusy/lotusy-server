@@ -1,15 +1,5 @@
 <?php
-class LookupBusinessImageDao extends LotusyDaoBase {
-
-	const BUSINESSID = 'business_id';
-	const IMAGEID = 'image_id';
-	const CREATETIME = 'create_time';
-
-	const IDCOLUMN = 'id';
-	const SHARDDOMAIN = 'lookup_comment_image';
-	const TABLE = 'business_image';
-	const ODBNAME = 'lookup_comment_image';
-
+class LookupBusinessImageDao extends LookupBusinessImageDaoGenerated {
 
 //========================================================================================== public
 
@@ -17,42 +7,20 @@ class LookupBusinessImageDao extends LotusyDaoBase {
 		$business = new LookupBusinessImageDao();
 		$business->setServerAddress($businessId);
 
-		$sql = "SELECT * FROM ".LookupBusinessImageDao::TABLE." WHERE ".
-				LookupBusinessImageDao::BUSINESSID."=$businessId LIMIT $start, $size";
+		$builder = new QueryBuilder($business);
+		$rows = $builder->select('*')
+						->where('business_id', $businessId)
+						->limit($start, $size)
+						->findList();
 
-		$connect = DBUtil::getConn($business);
-		$rows = DBUtil::selectDataList($connect, $sql);
-
-		return $business->makeObjectsFromSelectListResult($rows, 'LookupBusinessImageDao');
+		return self::makeObjectsFromSelectListResult($rows, 'LookupBusinessImageDao');
 	}
 
 // ============================================ override functions ==================================================
 
-	protected function init() {
-		$this->var[LookupBusinessImageDao::BUSINESSID] = 0;
-		$this->var[LookupBusinessImageDao::IMAGEID] = 0;
-		$this->var[LookupBusinessImageDao::CREATETIME] = gmdate('Y-m-d H:i:s');
-	}
-
 	protected function beforeInsert() {
-		$sequence = $this->var[LookupBusinessImageDao::BUSINESSID];
+		$sequence = $this->getBusinessId();
 		$this->setShardId($sequence);
-	}
-
-	public function getShardDomain() {
-		return LookupBusinessImageDao::SHARDDOMAIN;
-	}
-
-	protected function getOriginalDatabaseName() {
-		return LookupBusinessImageDao::ODBNAME;
-	}
-
-	public function getTableName() {
-		return LookupBusinessImageDao::TABLE;
-	}
-
-	public function getIdColumnName() {
-		return LookupBusinessImageDao::IDCOLUMN;
 	}
 
 	protected function isShardBaseObject() {
