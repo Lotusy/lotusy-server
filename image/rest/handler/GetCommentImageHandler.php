@@ -9,8 +9,8 @@ class GetCommentImageHandler extends UnauthorizedRequestHandler {
 			header('HTTP/1.0 404 Not Found');
 			$filename = $base_host.$comment_image_default;
 		} else {
-			$path = $commentImage->var[CommentImageDao::PATH];
-			$name = $commentImage->var[CommentImageDao::NAME];
+			$path = $commentImage->getPath();
+			$name = $commentImage->getName();
 			$filename = $path.$name;
 		}
 

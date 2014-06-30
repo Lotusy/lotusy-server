@@ -1,3 +1,17 @@
+CREATE TABLE {$dbName}.comment_image
+(
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	comment_id INT(10) UNSIGNED,
+	name VARCHAR(61),
+	path VARCHAR(41),
+	create_time DATETIME,
+
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE INDEX {$dbName}_image_comment_comment_id_index ON {$dbName}.comment_image (comment_id);
+
+
 CREATE TABLE {$dbName}.user_image
 (
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -12,20 +26,6 @@ CREATE TABLE {$dbName}.user_image
 
 CREATE INDEX {$dbName}_image_user_user_id_index ON {$dbName}.user_image (user_id);
 CREATE INDEX {$dbName}_image_user_is_deleted_index ON {$dbName}.user_image (is_deleted(1));
-
-
-CREATE TABLE {$dbName}.comment_image
-(
-	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-	comment_id INT(10) UNSIGNED,
-	name VARCHAR(61),
-	path VARCHAR(41),
-	create_time DATETIME,
-
-	PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
-CREATE INDEX {$dbName}_image_comment_comment_id_index ON {$dbName}.comment_image (comment_id);
 
 
 CREATE TABLE {$dbName}.business_image

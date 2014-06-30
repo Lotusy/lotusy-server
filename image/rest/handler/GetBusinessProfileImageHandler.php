@@ -9,8 +9,8 @@ class GetBusinessProfileImageHandler extends UnauthorizedRequestHandler {
 			header('HTTP/1.0 404 Not Found');
 			$filename = $base_host.$business_image_default;
 		} else {
-			$path = $businessImage->var[BusinessImageDao::PATH];
-			$name = $businessImage->var[BusinessImageDao::NAME];
+			$path = $businessImage->getPath();
+			$name = $businessImage->getName();
 			$filename = $path.$name;
 		}
 

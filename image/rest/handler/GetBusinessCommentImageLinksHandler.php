@@ -10,7 +10,7 @@ class GetBusinessCommentImageLinksHandler extends AuthorizedRequestHandler {
 
 		$links = array();
 		foreach ($lookupDaos as $lookupDao) {
-			$link = $base_host.$base_uri.'/display/comment/'.$lookupDao->var[LookupBusinessImageDao::IMAGEID];
+			$link = $base_host.$base_uri.'/display/comment/'.$lookupDao->getImageId();
 			array_push($links, $link);
 		}
 

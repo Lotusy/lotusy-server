@@ -43,9 +43,9 @@ class PutUserImageHandler extends AuthorizedRequestHandler {
 
 	private function saveUserImageDao($userId, $path, $name) {
 		$userImage = new UserImageDao();
-		$userImage->var[UserImageDao::USERID] = $userId;
-		$userImage->var[UserImageDao::NAME] = $name;
-		$userImage->var[UserImageDao::PATH] = $path;
+		$userImage->setUserId($userId);
+		$userImage->setName($name);
+		$userImage->setPath($path);
 		$userImage->save();
 	}
 }

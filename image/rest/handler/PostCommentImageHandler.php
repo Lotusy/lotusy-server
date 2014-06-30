@@ -44,29 +44,29 @@ class PostCommentImageHandler extends AuthorizedRequestHandler {
 
 	private function saveCommentImageDao($commentId, $path, $name) {
 		$commentImage = new CommentImageDao();
-		$commentImage->var[CommentImageDao::COMMENTID] = $commentId;
-		$commentImage->var[CommentImageDao::NAME] = $name;
-		$commentImage->var[CommentImageDao::PATH] = $path;
+		$commentImage->setCommentId($commentId);
+		$commentImage->setName($name);
+		$commentImage->setPath($path);
 		$commentImage->save();
 
-		return $commentImage->var[CommentImageDao::IDCOLUMN];
+		return $commentImage->getId();
 	}
 
 	private function saveLookupDaos($userId, $businessId, $commentId, $imageId) {
-		$lookupUser = new LookupUserImageDao();
-		$lookupUser->var[LookupUserImageDao::IMAGEID] = $imageId;
-		$lookupUser->var[LookupUserImageDao::USERID] = $userId;
-		$lookupUser->save();
+		$lookupComment = new LookupCommentImageDao();
+		$lookupComment->setImageId($imageId);
+		$lookupComment->setCommentId($commentId);
+		$lookupComment->save();
 
 		$lookupBusiness = new LookupBusinessImageDao();
-		$lookupBusiness->var[LookupBusinessImageDao::IMAGEID] = $imageId;
-		$lookupBusiness->var[LookupBusinessImageDao::BUSINESSID] = $businessId;
+		$lookupBusiness->setImageId($imageId);
+		$lookupBusiness->setBusinessId($businessId);
 		$lookupBusiness->save();
 
-		$lookupComment = new LookupCommentImageDao();
-		$lookupComment->var[LookupCommentImageDao::IMAGEID] = $imageId;
-		$lookupComment->var[LookupCommentImageDao::COMMENTID] = $commentId;
-		$lookupComment->save();
+		$lookupUser = new LookupUserImageDao();
+		$lookupUser->setImageId($imageId);
+		$lookupUser->setUserId($userId);
+		$lookupUser->save();
 	}
 }
 ?>
