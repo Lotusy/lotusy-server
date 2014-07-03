@@ -9,8 +9,8 @@ class GetUserCurrentProfileImageHandler extends UnauthorizedRequestHandler {
 			header('HTTP/1.0 404 Not Found');
 			$filename = $base_host.$user_image_default;
 		} else {
-			$path = $userImage->var[UserImageDao::PATH];
-			$name = $userImage->var[UserImageDao::NAME];
+			$path = $userImage->getPath();
+			$name = $userImage->getName();
 			$filename = $path.$name;
 		}
 

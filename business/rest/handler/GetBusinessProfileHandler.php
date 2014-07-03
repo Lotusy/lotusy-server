@@ -19,7 +19,7 @@ class GetBusinessProfileHandler extends AuthorizedRequestHandler {
 			return $response;
 		}
 
-		$response = $business->var;
+		$response = $business->toArray();
 		unset($response[BusinessDao::IDCOLUMN]);
 
 		Logger::info(json_encode($response));

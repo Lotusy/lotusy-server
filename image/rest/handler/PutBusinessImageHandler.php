@@ -35,10 +35,10 @@ class PutBusinessImageHandler extends AuthorizedRequestHandler {
 		$businessImage = BusinessImageDao::getImagesByBusinessId($businessId);
 		if (!isset($businessImage)) { 
 			$businessImage = new BusinessImageDao();
-			$businessImage->var[BusinessImageDao::BUSINESSID] = $businessId;
+			$businessImage->setBusinessId($businessId);
 		}
-		$businessImage->var[BusinessImageDao::NAME] = $name;
-		$businessImage->var[BusinessImageDao::PATH] = $path;
+		$businessImage->setName($name);
+		$businessImage->setPath($path);
 		$businessImage->save();
 	}
 }

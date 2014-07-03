@@ -1,20 +1,5 @@
 <?php
-class CommentDao extends LotusyDaoBase {
-
-	const BUSINESSID = 'business_id';
-	const USERID = 'user_id';
-	const LAT = 'lat';
-	const LNG = 'lng';
-	const MESSAGE = 'message';
-	const LIKECOUNT = 'like_count';
-	const ISDELETED = 'is_deleted';
-	const CREATETIME = 'create_time';
-
-	const IDCOLUMN = 'id';
-	const SHARDDOMAIN = 'comment';
-	const TABLE = 'comment';
-	const ODBNAME = 'comment';
-
+class CommentDao extends CommentDaoGenerated {
 
 //========================================================================================== public
 
@@ -55,92 +40,55 @@ class CommentDao extends LotusyDaoBase {
 	}
 
 	public function like() {
-		$sql = "UPDATE ".CommentDao::TABLE." SET ".CommentDao::LIKECOUNT."=".CommentDao::LIKECOUNT."+1 WHERE ".
-				CommentDao::IDCOLUMN."=".$this->var[CommentDao::IDCOLUMN];
-
-		$connect = DBUtil::getConn($this);
-		$res = DBUtil::updateData($connect, $sql);
+		$builder = new QueryBuilder($this);
+		$set = array('like_count' => 'like_count+1');
+		$res = $builder->update($set)->where('id', $this->getId())->query();
 
 		if ($res) {
-			$this->var[CommentDao::LIKECOUNT] = $this->var[CommentDao::LIKECOUNT]+1;
+			$this->setLikeCount($this->getLikeCount()+1);
 		}
 
 		return $res;
 	}
 
 	public function dislike() {
-		$sql = "UPDATE ".CommentDao::TABLE." SET ".CommentDao::LIKECOUNT."=".CommentDao::LIKECOUNT."-1 WHERE ".
-				CommentDao::IDCOLUMN."=".$this->var[CommentDao::IDCOLUMN];
-
-		$connect = DBUtil::getConn($this);
-		$res = DBUtil::updateData($connect, $sql);
+		$builder = new QueryBuilder($this);
+		$set = array('like_count' => 'like_count-1');
+		$res = $builder->update($set)->where('id', $this->getId())->query();
 
 		if ($res) {
-			$this->var[CommentDao::LIKECOUNT] = $this->var[CommentDao::LIKECOUNT]-1;
+			$this->setLikeCount($this->getLikeCount()-1);
 		}
 
 		return $res;
 	}
 
 	public function delete() {
-		$sql = "UPDATE ".CommentDao::TABLE." SET ".CommentDao::ISDELETED."='Y' WHERE ".
-				CommentDao::IDCOLUMN."=".$this->var[CommentDao::IDCOLUMN];
-
-		$connect = DBUtil::getConn($this);
-		$res = DBUtil::updateData($connect, $sql);
+		$builder = new QueryBuilder($this);
+		$set = array('is_deleted' => 'Y');
+		$res = $builder->update($set)->where('id', $this->getId())->query();
 
 		return $res;
 	}
 
 // ============================================ override functions ==================================================
 
-	protected function init() {
-		$this->var[CommentDao::BUSINESSID] = 0;
-		$this->var[CommentDao::USERID] = 0;
-		$this->var[CommentDao::LAT] = 0;
-		$this->var[CommentDao::LNG] = 0;
-		$this->var[CommentDao::MESSAGE] = '';
-		$this->var[CommentDao::LIKECOUNT] = 0;
-		$this->var[CommentDao::ISDELETED] = 'N';
-		$this->var[CommentDao::CREATETIME] = date('Y-m-d H:i:s');
-	}
-
 	protected function beforeInsert() {
 		$lookup = new LookupCommentLocationDao();
-		$lookup->var[LookupCommentLocationDao::LAT] = $this->var[CommentDao::LAT];
-		$lookup->var[LookupCommentLocationDao::LNG] = $this->var[CommentDao::LNG];
-		$lookup->var[LookupCommentLocationDao::COMMENTID] = $this->var[CommentDao::IDCOLUMN];
+		$lookup->setLat($this->getLat());
+		$lookup->setLng($this->getLng());
+		$lookup->setCommentId($this->getId());
 		$lookup->save();
 
 		$lookup = new LookupCommentUserDao();
-		$lookup->var[LookupCommentUserDao::USERID] = $this->var[CommentDao::USERID];
-		$lookup->var[LookupCommentUserDao::COMMENTID] = $this->var[CommentDao::IDCOLUMN];
+		$lookup->setUserId($this->getUserId());
+		$lookup->setCommentId($this->getId());
 		$lookup->save();
 
 		$lookup = new LookupCommentBusinessDao();
-		$lookup->var[LookupCommentBusinessDao::BUSINESSID] = $this->var[CommentDao::BUSINESSID];
-		$lookup->var[LookupCommentBusinessDao::COMMENTID] = $this->var[CommentDao::IDCOLUMN];
+		$lookup->setBusinessId($this->getBusinessId());
+		$lookup->setCommentId($this->getId());
 		$lookup->save();
-	}
-
-	protected function getTableName() {
-		return CommentDao::TABLE;
-	}
-
-	protected function getIdColumnName() {
-		return CommentDao::IDCOLUMN;
-	}
-
-	protected function beforeUpdate() {
-		$this->var[CommentDao::MODIFIEDTIME] = date('Y-m-d H:i:s');
-	}
-
-	public function getShardDomain() {
-		return CommentDao::SHARDDOMAIN;
-	}
-
-	protected function getOriginalDatabaseName() {
-		return CommentDao::ODBNAME;
 	}
 
 	protected function isShardBaseObject() {

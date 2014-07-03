@@ -4,7 +4,7 @@ class LookupBusinessUserDao extends LookupBusinessUserDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = $this->var[LookupBusinessUserDao::USERID];
+		$sequence = $this->getUserId();
 		$this->setShardId($sequence);
 	}
 

@@ -1,16 +1,5 @@
 <?php
-class BusinessImageDao extends LotusyDaoBase {
-
-	const BUSINESSID = 'business_id';
-	const NAME = 'name';
-	const PATH = 'path';
-	const CREATETIME = 'create_time';
-
-	const IDCOLUMN = 'id';
-	const SHARDDOMAIN = 'image_business';
-	const TABLE = 'image_business';
-	const ODBNAME = 'image_business';
-
+class BusinessImageDao extends BusinessImageDaoGenerated {
 
 //========================================================================================== public
 
@@ -18,50 +7,27 @@ class BusinessImageDao extends LotusyDaoBase {
 		$business = new BusinessImageDao();
 		$business->setServerAddress($businessId);
 
-		$sql = "SELECT * FROM ".BusinessImageDao::TABLE." WHERE ".
-				BusinessImageDao::BUSINESSID."=$businessId";
+		$builder = new QueryBuilder($business);
+		$res = $builder->select('*')
+					   ->where('business_id', $businessId)
+					   ->find();
 
-		$connect = DBUtil::getConn($business);
-		$res = DBUtil::selectData($connect, $sql);
-
-		if ($res) { $business->var = $res; }
-		else { $business = null; }
-
-		return $business;
+		return self::makeObjectFromSelectResult($res, 'BusinessImageDao');
 	}
 
 // ============================================ override functions ==================================================
 
-	protected function init() {
-		$this->var[BusinessImageDao::BUSINESSID] = 0;
-		$this->var[BusinessImageDao::NAME] = '';
-		$this->var[BusinessImageDao::PATH] = '';
-		$this->var[BusinessImageDao::CREATETIME] = date('Y-m-d H:i:s');
-	}
-
 	protected function beforeInsert() {
-		$sequence = $this->var[BusinessImageDao::BUSINESSID];
+		$sequence = $this->getBusinessId();
 		$this->setShardId($sequence);
-	}
 
-	protected function getTableName() {
-		return BusinessImageDao::TABLE;
-	}
-
-	protected function getIdColumnName() {
-		return BusinessImageDao::IDCOLUMN;
+		$date = gmdate('Y-m-d H:i:s');
+		$this->setCreateTime($date);
 	}
 
 	protected function beforeUpdate() {
-		$this->var[BusinessImageDao::MODIFIEDTIME] = date('Y-m-d H:i:s');
-	}
-
-	public function getShardDomain() {
-		return BusinessImageDao::SHARDDOMAIN;
-	}
-
-	protected function getOriginalDatabaseName() {
-		return BusinessImageDao::ODBNAME;
+		$sequence = $this->getBusinessId();
+		$this->setServerAddress($sequence);
 	}
 
 	protected function isShardBaseObject() {

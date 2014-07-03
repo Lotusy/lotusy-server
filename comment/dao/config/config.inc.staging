@@ -6,7 +6,7 @@ if (!isset($dbconfig)) {
 	$dbconfig = array();
 }
 
-$dbconfig['comment'] =
+$dbconfig['l_comm_comment'] =
 	array (
 		'total_shards' => 9,
 		'shards_digit' => 10,
@@ -19,7 +19,7 @@ $dbconfig['comment'] =
 		) 
 	);
 
-$dbconfig['lookup_comment'] =
+$dbconfig['l_comm_lookup_comment'] =
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,
@@ -30,7 +30,7 @@ $dbconfig['lookup_comment'] =
 		) 
 	);
 
-$dbconfig['comment_admin'] = 
+$dbconfig['l_comm_comment_admin'] = 
 	array (
 		'total_shards' => 1,
 		'shards_digit' => 1,

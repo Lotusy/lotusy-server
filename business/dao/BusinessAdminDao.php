@@ -18,8 +18,8 @@ class BusinessAdminDao extends BusinessAdminDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$this->var[BusinessAdminDao::PASSWORD] = md5($this->var[BusinessAdminDao::PASSWORD]);
-		$sequence = Utility::hashString($this->var[BusinessAdminDao::EMAIL]);
+		$this->setPassword(md5($this->getPassword()));
+		$sequence = Utility::hashString($this->getEmail());
 		$this->setShardId($sequence);
 	}
 

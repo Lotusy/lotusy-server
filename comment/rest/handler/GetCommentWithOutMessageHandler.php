@@ -5,9 +5,8 @@ class GetCommentWithOutMessageHandler extends AuthorizedRequestHandler {
 		$comment = new CommentDao($params['commentid']);
 
 		if ($comment->isFromDatabase()) {
-			$response = $comment->var;
+			$response = $comment->toArray(array('message'));
 			$response['status'] = 'success';
-			unset($response[CommentDao::MESSAGE]);
 		} else {
 			header('HTTP/1.0 404 Not Found');
 			$response = array();

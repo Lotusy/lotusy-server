@@ -18,7 +18,7 @@ class GetCommentReplyHandler extends AuthorizedRequestHandler {
 
 		$response['replies'] = array();
 		foreach ($replies as $reply) {
-			array_push($response['replies'], $reply->var);
+			array_push($response['replies'], $reply->toArray());
 		}
 
 		return $response;

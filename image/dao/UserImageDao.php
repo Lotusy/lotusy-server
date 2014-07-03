@@ -1,17 +1,5 @@
 <?php
-class UserImageDao extends LotusyDaoBase {
-
-	const USERID = 'user_id';
-	const NAME = 'name';
-	const PATH = 'path';
-	const ISDELETED = 'is_deleted';
-	const CREATETIME = 'create_time';
-
-	const IDCOLUMN = 'id';
-	const SHARDDOMAIN = 'image_user';
-	const TABLE = 'image_user';
-	const ODBNAME = 'image_user';
-
+class UserImageDao extends UserImageDaoGenerated {
 
 //========================================================================================== public
 
@@ -19,49 +7,40 @@ class UserImageDao extends LotusyDaoBase {
 		$user = new UserImageDao();
 		$user->setServerAddress($userId);
 
-		$sql = "SELECT * FROM ".UserImageDao::TABLE." WHERE ".
-				UserImageDao::USERID."=$userId AND ".
-				UserImageDao::ISDELETED."='N'";
+		$builder = new QueryBuilder($user);
+		$res = $builder->select('*')
+					   ->where('user_id', $userId)
+					   ->where('is_deleted', 'N')
+					   ->find();
 
-		$connect = DBUtil::getConn($user);
-		$res = DBUtil::selectData($connect, $sql);
-
-		if ($res) { $user->var = $res; }
-		else { $user = null; }
-
-		return $user;
+		return self::makeObjectFromSelectResult($res, 'UserImageDao');
 	}
 
 	public static function getImageDaoByUserIdAndImageId($userId, $imageId) {
 		$user = new UserImageDao();
 		$user->setServerAddress($userId);
 
-		$sql = "SELECT * FROM ".UserImageDao::TABLE." WHERE ".
-				UserImageDao::USERID."=$userId AND ".
-				UserImageDao::IDCOLUMN."=$imageId";
+		$builder = new QueryBuilder($user);
+		$res = $builder->select('*')
+					   ->where('user_id', $userId)
+					   ->where('id', $imageId)
+					   ->find();
 
-		$connect = DBUtil::getConn($user);
-		$res = DBUtil::selectData($connect, $sql);
-
-		if ($res) { $user->var = $res; }
-		else { $user = null; }
-
-		return $user;
+		return self::makeObjectFromSelectResult($res, 'UserImageDao');
 	}
 
 	public static function getImageDaoIdsByUserId($userId) {
 		$user = new UserImageDao();
 		$user->setServerAddress($userId);
 
-		$sql = "SELECT ".UserImageDao::IDCOLUMN." FROM ".UserImageDao::TABLE." WHERE ".
-				UserImageDao::USERID."=$userId";
-
-		$connect = DBUtil::getConn($user);
-		$rows = DBUtil::selectDataList($connect, $sql);
+		$builder = new QueryBuilder($user);
+		$rows = $builder->select('id')
+						->where('user_id', $userId)
+						->findList();
 
 		$ids = array();
 		foreach ($rows as $row) {
-			array_push($ids, $row[UserImageDao::IDCOLUMN]);
+			array_push($ids, $row['id']);
 		}
 
 		return $ids;
@@ -69,44 +48,22 @@ class UserImageDao extends LotusyDaoBase {
 
 // ============================================ override functions ==================================================
 
-	protected function init() {
-		$this->var[UserImageDao::USERID] = 0;
-		$this->var[UserImageDao::NAME] = '';
-		$this->var[UserImageDao::PATH] = '';
-		$this->var[UserImageDao::ISDELETED] = 'N';
-		$this->var[UserImageDao::CREATETIME] = date('Y-m-d H:i:s');
-	}
-
 	protected function beforeInsert() {
-		$sequence = $this->var[UserImageDao::USERID];
+		$sequence = $this->getUserId();
 		$this->setShardId($sequence);
 
-		$sql = "UPDATE ".UserImageDao::TABLE." SET ".UserImageDao::ISDELETED."='Y' WHERE ".
-				UserImageDao::USERID."=".$this->var[UserImageDao::USERID]." AND ".
-				UserImageDao::ISDELETED."='N'";
-		$connect = DBUtil::getConn($this);
-		DBUtil::updateData($connect, $sql);
+		$builder = new QueryBuilder($this);
+		$set = array('is_deleted' => 'Y');
+		$builder->update($set)
+				->where('user_id', $this->getUserId())
+				->where('is_deleted', 'N')
+				->query();
+
+		$date = gmdate('Y-m-d H:i:s');
+		$this->setCreateTime($date);
 	}
 
-	protected function getTableName() {
-		return UserImageDao::TABLE;
-	}
-
-	protected function getIdColumnName() {
-		return UserImageDao::IDCOLUMN;
-	}
-
-	protected function beforeUpdate() {
-		$this->var[UserImageDao::MODIFIEDTIME] = date('Y-m-d H:i:s');
-	}
-
-	public function getShardDomain() {
-		return UserImageDao::SHARDDOMAIN;
-	}
-
-	protected function getOriginalDatabaseName() {
-		return UserImageDao::ODBNAME;
-	}
+	protected function beforeUpdate() {}
 
 	protected function isShardBaseObject() {
 		return false;

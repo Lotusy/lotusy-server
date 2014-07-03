@@ -16,14 +16,14 @@ class GetLocationBusinessHandler extends AuthorizedRequestHandler {
 																$json['start'], 
 																$json['size'], 
 																$isMiles );
-
 		$response = array();
 		$response['status'] = 'success';
 		$response['businesses'] = array();
 		foreach ($ids as $id) {
 			$business = new BusinessDao($id['business_id']);
-			$business->var['distance'] = number_format($id['distance'], 3, '.', '');
-			array_push($response['businesses'], $business->var);
+			$businessArr = $business->toArray();
+			$businessArr['distance'] = number_format($id['distance'], 3, '.', '');
+			array_push($response['businesses'], $businessArr);
 		}
 
 		return $response;
