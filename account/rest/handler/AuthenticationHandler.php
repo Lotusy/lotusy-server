@@ -25,7 +25,7 @@ class AuthenticationHandler extends UnauthorizedRequestHandler {
 		$atReturn['access_token'] = $accessToken->getAccessToken();
 		$atReturn['refresh_token'] = $accessToken->getRefreshToken();
 		$atReturn['token_type'] = 'Bearer';
-		$atReturn['extires_in'] = $accessToken->getExpiresTime() - time();
+		$atReturn['expires_in'] = $accessToken->getExpiresTime() - time();
 
 		return $atReturn;
 	}

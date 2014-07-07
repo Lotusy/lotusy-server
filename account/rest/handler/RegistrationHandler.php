@@ -33,7 +33,7 @@ class RegistrationHandler extends UnauthorizedRequestHandler {
 			$atReturn['access_token'] = $accessToken->getAccessToken();
 			$atReturn['refresh_token'] = $accessToken->getRefreshToken();
 			$atReturn['token_type'] = 'Bearer';
-			$atReturn['extires_in'] = $accessToken->getExpiresTime() - time();
+			$atReturn['expires_in'] = $accessToken->getExpiresTime() - time();
 		} else {
 			header('HTTP/1.0 500 Internal Server Error');
 			$atReturn['status'] = 'error';
