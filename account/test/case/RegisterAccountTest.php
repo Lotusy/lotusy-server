@@ -1,23 +1,26 @@
 <?php
-class LoginAccount extends TestCase {
+class RegisterAccountTest extends TestCase {
 
-	const PATH = '/auth/:type/:id';
+	const PATH = '/register/:type';
 
 	public function run($input) {
-		$userId = $input['user_id'];
+		$body = $input;
 		$type = $input['type'];
 
-		$path = str_replace(':type', $type, self::PATH);
-		$path = str_replace(':id', $userId, $path);
+		$body['id'] = $body['external_ref'];
+		unset($body['type']);
 
-		$response = TestRequestor::sendPaymentRequest($path, 'GET');
+		$path = str_replace(':type', $type, self::PATH);
+
+		$response = TestRequestor::sendPaymentRequest($path, 'POST', $body);
 
 		return $response;
 	}
 
 	public function validate($result) {
 		$valid = $result['status'] == 'success';
-		$valid = $valid && !empty($result['access_token']);
+		$valid = $valid && isset($result['user_id']);
+		$valid = $valid && isset($result['access_token']);
 		$valid = $valid && isset($result['refresh_token']);
 		$valid = $valid && isset($result['token_type']);
 		$valid = $valid && isset($result['expires_in']);
@@ -26,7 +29,8 @@ class LoginAccount extends TestCase {
 	}
 
 	public function failedAction() {
-		echo 'Fails on test case - LoginAccount ('.json_encode($this->getResult()).')'.PHP_EOL;
+		echo 'Fails on test case - RegisterAccount ('.json_encode($this->getResult()).')'.PHP_EOL;
+		exit;
 	}
 }
 ?>

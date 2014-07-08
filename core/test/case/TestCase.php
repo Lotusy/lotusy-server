@@ -9,7 +9,6 @@ abstract class TestCase {
 
 	public function execute($input) {
 		$this->result = $this->run($input);
-		return $this->result;
 	}
 
 	public function getResult() {
