@@ -5,7 +5,7 @@ class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 
 	public static function getUserIdsFromExternalRef($externalType, $externalRef) {
 		if (!isset(UserDao::$TYPEARRAY[$externalType])) {
-			return false;
+			return array();
 		}
 
 		$type = UserDao::$TYPEARRAY[$externalType];

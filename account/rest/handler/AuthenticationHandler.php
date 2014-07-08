@@ -3,7 +3,6 @@ class AuthenticationHandler extends UnauthorizedRequestHandler {
 
 	public function handle($params) {
 		$json = $params;
-		$json['type'] = UserDao::$TYPEARRAY[$json['type']];
 
 		$validator = new AuthenticationValidator($json);
 		if (!$validator->validate()) {

@@ -18,7 +18,7 @@ class UserDao extends UserDaoGenerated {
 
 		$user = null;
 		if (sizeof($userIds)==1) {
-			$user =  new UserDao($userIds[0]);
+			$user = new UserDao($userIds[0]);
 		}
 
 		return $user;
