@@ -26,7 +26,7 @@ class LoginAccountTest extends TestCase {
 	}
 
 	public function failedAction() {
-		echo 'Fails on test case - LoginAccount ('.json_encode($this->getResult()).')'.PHP_EOL;
+		echo 'Fails on test case - LoginAccountTest ('.json_encode($this->getResult()).')'.PHP_EOL;
 		exit;
 	}
 }

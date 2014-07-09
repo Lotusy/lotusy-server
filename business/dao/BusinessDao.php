@@ -46,6 +46,8 @@ class BusinessDao extends BusinessDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
+		$this->setVerified('N');
+
 		$lookup = new LookupBusinessLocationDao();
 		$lookup->setLat($this->getLat());
 		$lookup->setLng($this->getLng());

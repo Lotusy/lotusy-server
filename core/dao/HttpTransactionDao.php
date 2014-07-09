@@ -37,7 +37,7 @@ class HttpTransactionDao extends LotusyDaoBase {
 		$this->var[HttpTransactionDao::DURATION] = '';
 	}
 
-	protected function getTableName() {
+	public function getTableName() {
 		return HttpTransactionDao::TABLE;
 	}
 

@@ -30,7 +30,7 @@ class GetUserProfileTest extends TestCase {
 	}
 
 	public function failedAction() {
-		echo 'Fails on test case - GetCurrentUserProfile ('.json_encode($this->getResult()).')'.PHP_EOL;
+		echo 'Fails on test case - GetUserProfileTest ('.json_encode($this->getResult()).')'.PHP_EOL;
 		exit;
 	}
 }

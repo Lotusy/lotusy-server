@@ -29,7 +29,7 @@ class RegisterAccountTest extends TestCase {
 	}
 
 	public function failedAction() {
-		echo 'Fails on test case - RegisterAccount ('.json_encode($this->getResult()).')'.PHP_EOL;
+		echo 'Fails on test case - RegisterAccountTest ('.json_encode($this->getResult()).')'.PHP_EOL;
 		exit;
 	}
 }

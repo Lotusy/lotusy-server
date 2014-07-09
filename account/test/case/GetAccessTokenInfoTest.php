@@ -24,7 +24,7 @@ class GetAccessTokenInfoTest extends TestCase {
 	}
 
 	public function failedAction() {
-		echo 'Fails on test case - AccessTokenInfo ('.json_encode($this->getResult()).')'.PHP_EOL;
+		echo 'Fails on test case - GetAccessTokenInfoTest ('.json_encode($this->getResult()).')'.PHP_EOL;
 		exit;
 	}
 }

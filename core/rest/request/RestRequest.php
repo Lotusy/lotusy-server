@@ -9,7 +9,7 @@ abstract class RestRequest {
 
 	public function __construct() {
 		$this->curl = curl_init();
-		$this->transactionDao = new HttpTransactionDao();
+//		$this->transactionDao = new HttpTransactionDao();
 	}
 
 	public function setUri($uri) {
@@ -25,7 +25,7 @@ abstract class RestRequest {
 			$body = http_build_query($body);
 		}
 
-		$this->transactionDao->var[HttpTransactionDao::REQUEST] = $body;
+//		$this->transactionDao->var[HttpTransactionDao::REQUEST] = $body;
 
 		curl_setopt($this->curl, CURLOPT_POSTFIELDS,  $body);
 	}
@@ -67,22 +67,22 @@ abstract class RestRequest {
 		curl_setopt($this->curl, CURLOPT_TIMEOUT, 30);
 
 		$this->preExecute();
-		$this->transactionDao->var[HttpTransactionDao::URL] = $this->url;
-		$this->transactionDao->var[HttpTransactionDao::METHOD] = $method;
+//		$this->transactionDao->var[HttpTransactionDao::URL] = $this->url;
+//		$this->transactionDao->var[HttpTransactionDao::METHOD] = $method;
 
 		$start = microtime(TRUE)*1000;
 		$response = curl_exec($this->curl);
-		$this->transactionDao->var[HttpTransactionDao::DURATION] = microtime(TRUE)*1000-$start;
-		$this->transactionDao->var[HttpTransactionDao::RESPONSE] = $response;
+//		$this->transactionDao->var[HttpTransactionDao::DURATION] = microtime(TRUE)*1000-$start;
+//		$this->transactionDao->var[HttpTransactionDao::RESPONSE] = $response;
 
 		$this->code = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
-		$this->transactionDao->var[HttpTransactionDao::CODE] = $this->code;
+//		$this->transactionDao->var[HttpTransactionDao::CODE] = $this->code;
 
 		curl_close($this->curl);
 
 		$response = $this->parseResponse($response);
 
-//		$this->transactionDao->save();
+////		$this->transactionDao->save();
 
 		return $response;
 	}
@@ -96,11 +96,11 @@ abstract class RestRequest {
 	}
 
 	protected function setTransactionDaoType($type) {
-		$this->transactionDao->var[HttpTransactionDao::TYPE] = $type;
+//		$this->transactionDao->var[HttpTransactionDao::TYPE] = $type;
 	}
 
 	protected function setTransactionDaoCode($code) {
-		$this->transactionDao->var[HttpTransactionDao::CODE] = $code;
+//		$this->transactionDao->var[HttpTransactionDao::CODE] = $code;
 	}
 
 //====================================================================== method could be overrided.
