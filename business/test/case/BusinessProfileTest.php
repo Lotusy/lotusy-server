@@ -1,5 +1,5 @@
 <?php
-class GetBusinessProfileTest extends TestCase {
+class BusinessProfileTest extends TestCase {
 
 	const PATH = '/:businessid/profile';
 
@@ -24,7 +24,7 @@ class GetBusinessProfileTest extends TestCase {
 	}
 
 	public function failedAction() {
-		echo 'Fails on test case - GetBusinessProfileTest ('.json_encode($this->getResult()).')'.PHP_EOL;
+		echo 'Fails on test case - BusinessProfileTest ('.json_encode($this->getResult()).')'.PHP_EOL;
 		exit;
 	}
 }

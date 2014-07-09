@@ -4,19 +4,23 @@ include_once '../../core/test/helper/TestRequestor.php';
 include_once '../../core/test/helper/TestRunner.php';
 
 include_once 'case/CreateBusinessTest.php';
-include_once 'case/GetBusinessProfileTest.php';
+include_once 'case/BusinessProfileTest.php';
+include_once 'case/LocationBusinessTest.php';
 
 $baseUri = 'http://local.business.lotusy.com/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 $testCases = array(
 	0 => new CreateBusinessTest(),
-	1 => new GetBusinessProfileTest()
+	1 => new BusinessProfileTest(),
+	2 => new LocationBusinessTest()
 );
+
+$accessToken = 'AF66F04AD2292308DBE8DD91FEDBFE53.A2F82F928D';
 
 $inputs = array(
 	0 => array(
-		'access_token' => 'AF66F04AD2292308DBE8DD91FEDBFE53.A2F82F928D',
+		'access_token' => $accessToken,
 		'lat' => 49.249232,
 		'lng' => -123.101069,
 		'name_en' => 'No. 1 Beef Noodel',
@@ -36,6 +40,14 @@ $inputs = array(
 		'website' => 'http => //www.jynoodle.com/vancouver/1_topic/cvancouver.html',
 		'social' => 'http => //www.facebook.com/no1beefnoodle'
 	),
-	1 => 'aggregate'
+	1 => array(
+		'access_token' => $accessToken,
+		'id' => 1
+	),
+	2 => array(
+		'access_token' => $accessToken,
+		'lat' => 49.249232,
+		'lng' => -123.101069
+	)
 );
 ?>

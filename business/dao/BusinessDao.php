@@ -60,20 +60,29 @@ class BusinessDao extends BusinessDaoGenerated {
 		$lookup->setBusinessId($this->getId());
 		$lookup->save();
 
-		$lookup = new LookupBusinessZhNameDao();
-		$lookup->setZhName($this->getNameZh());
-		$lookup->setBusinessId($this->getId());
-		$lookup->save();
+		$name = $this->getNameZh();
+		if (!empty($name)) {
+			$lookup = new LookupBusinessZhNameDao();
+			$lookup->setZhName($this->getNameZh());
+			$lookup->setBusinessId($this->getId());
+			$lookup->save();
+		}
 
-		$lookup = new LookupBusinessTwNameDao();
-		$lookup->setTwName($this->getNameTw());
-		$lookup->setBusinessId($this->getId());
-		$lookup->save();
+		$name = $this->getNameTw();
+		if (!empty($name)) {
+			$lookup = new LookupBusinessTwNameDao();
+			$lookup->setTwName($this->getNameTw());
+			$lookup->setBusinessId($this->getId());
+			$lookup->save();
+		}
 
-		$lookup = new LookupBusinessEnNameDao();
-		$lookup->setEnName($this->getNameEn());
-		$lookup->setBusinessId($this->getId());
-		$lookup->save();
+		$name = $this->getNameEn();
+		if (!empty($name)) {
+			$lookup = new LookupBusinessEnNameDao();
+			$lookup->setEnName($this->getNameEn());
+			$lookup->setBusinessId($this->getId());
+			$lookup->save();
+		}
 	}
 
     protected function beforeUpdate() {
