@@ -8,9 +8,10 @@ class RatingDao extends RatingDaoGenerated {
 		$rating->setServerAddress($businessId);
 
 		$builder = new QueryBuilder($rating);
-		$res = $builder->select('AVG(food) as food, AVG(serv) as serv, AVG(evn) as evn, AVG(overall) as overall')
+		$res = $builder->select('AVG(food) as food, AVG(serv) as serv, AVG(env) as env, AVG(overall) as overall')
 					   ->where('business_id', $businessId)
 					   ->find();
+
 		return $res;
 	}
 
