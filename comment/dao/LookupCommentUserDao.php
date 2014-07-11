@@ -31,6 +31,9 @@ class LookupCommentUserDao extends LookupCommentUserDaoGenerated {
 	protected function beforeInsert() {
 		$sequence = $this->getUserId();
 		$this->setShardId($sequence);
+
+		$date = gmdate('Y-m-d H:i:s');
+		$this->setCreateTime($date);
 	}
 
 	protected function isShardBaseObject() {

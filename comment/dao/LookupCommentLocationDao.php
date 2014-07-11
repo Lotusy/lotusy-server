@@ -38,6 +38,9 @@ class LookupCommentLocationDao extends LookupCommentLocationDaoGenerated {
 	protected function beforeInsert() {
 		$sequence = Utility::hashLatLng($this->getLat(), $this->getLng());
 		$this->setShardId($sequence);
+
+		$date = gmdate('Y-m-d H:i:s');
+		$this->setCreateTime($date);
 	}
 
 	protected function isShardBaseObject() {

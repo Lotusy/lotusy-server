@@ -89,6 +89,9 @@ class CommentDao extends CommentDaoGenerated {
 		$lookup->setBusinessId($this->getBusinessId());
 		$lookup->setCommentId($this->getId());
 		$lookup->save();
+
+		$date = gmdate('Y-m-d H:i:s');
+		$this->setCreateTime($date);
 	}
 
 	protected function isShardBaseObject() {

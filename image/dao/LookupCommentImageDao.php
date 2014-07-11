@@ -21,6 +21,9 @@ class LookupCommentImageDao extends LookupCommentImageDaoGenerated {
 	protected function beforeInsert() {
 		$sequence = $this->getCommentId();
 		$this->setShardId($sequence);
+
+		$date = gmdate('Y-m-d H:i:s');
+		$this->setCreateTime($date);
 	}
 
 	protected function isShardBaseObject() {
