@@ -22,7 +22,7 @@ class TestRunner {
 			$time = $time_end - $time_start;
 
 			$result = $case->getResult();
-			echo json_encode($result).PHP_EOL;
+//			echo json_encode($result).PHP_EOL;
 
 			$currentResult = array_merge($result, $currentResult);
 

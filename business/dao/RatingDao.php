@@ -35,6 +35,7 @@ class RatingDao extends RatingDaoGenerated {
 		$res = $builder->select('*')
 					   ->where('business_id', $businessId)
 					   ->where('user_id', $userId)
+					   ->order('id', true)
 					   ->find();
 
 		return self::makeObjectFromSelectResult($res, 'RatingDao');

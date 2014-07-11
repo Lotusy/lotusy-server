@@ -8,7 +8,7 @@ class GetBusinessUserRatingHandler extends AuthorizedRequestHandler {
 		$rating = RatingDao::getRatingWithBusinessAndUserIds($businessId, $userId);
 
 		$response = array();
-		if (isset($rating)) {
+		if (!isset($rating)) {
 			header('HTTP/1.0 404 Not Found');
 			$response['status'] = 'error';
 			$response['description'] = 'rating_not_found';

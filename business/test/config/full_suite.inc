@@ -8,6 +8,8 @@ include_once 'case/BusinessProfileTest.php';
 include_once 'case/LocationBusinessTest.php';
 include_once 'case/RateBusinessTest.php';
 include_once 'case/GetBusinessRatingTest.php';
+include_once 'case/CountBusinessRatingTest.php';
+include_once 'case/CountUserBusinessRatingTest.php';
 
 $baseUri = 'http://local.business.lotusy.com/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
@@ -17,7 +19,9 @@ $testCases = array(
 	1 => new BusinessProfileTest(),
 	2 => new LocationBusinessTest(),
 	3 => new RateBusinessTest(),
-	4 => new GetBusinessRatingTest()
+	4 => new GetBusinessRatingTest(),
+	5 => new CountBusinessRatingTest(),
+	6 => new CountUserBusinessRatingTest()
 );
 
 $accessToken = 'AF66F04AD2292308DBE8DD91FEDBFE53.A2F82F928D';
@@ -64,6 +68,15 @@ $inputs = array(
 	4 => array(
 		'access_token' => $accessToken,
 		'id' => 1
+	),
+	5 => array(
+		'access_token' => $accessToken,
+		'id' => 1
+	),
+	6 => array(
+		'access_token' => $accessToken,
+		'bid' => 1,
+		'uid' => 1
 	)
 );
 ?>
