@@ -6,8 +6,6 @@ class TestRunner {
 
 		$currentResult = array();
 
-		echo PHP_EOL;
-
 		foreach ($testCases as $key=>$case) {
 			$input = $inputs[$key];
 			if ($input=='aggregate') {
@@ -31,8 +29,6 @@ class TestRunner {
 			} else {
 				$case->failedAction();
 			}
-
-			echo PHP_EOL;
 		}
 	}
 }

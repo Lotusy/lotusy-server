@@ -16,10 +16,10 @@ $inputs = array(
 	0 => array(
 		'access_token' => 'AF66F04AD2292308DBE8DD91FEDBFE53.A2F82F928D',
 		'id' => 1,
-		"overall" => 7,
-		"food" => 8,
-		"serv" => 5,
-		"env" => 9
+		"overall" => floor(rand(1,5)),
+		"food" => floor(rand(1,5)),
+		"serv" => floor(rand(1,5)),
+		"env" => floor(rand(1,5)),
 	)
 );
 ?>
