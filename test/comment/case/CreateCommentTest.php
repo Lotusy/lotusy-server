@@ -12,6 +12,9 @@ class CreateCommentTest extends TestCase {
 		$response = TestRequestor::sendPaymentRequest ( 
 						$path, 'POST', $body, array('Authorization: Bearer '.$accessToken) );
 
+		global $comment_id;
+		$comment_id = $response['comment_id'];
+
 		return $response;
 	}
 

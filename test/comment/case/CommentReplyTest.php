@@ -4,7 +4,11 @@ class CommentReplyTest extends TestCase {
 	const PATH = '/:commentid/replies?start=0&size=10';
 
 	public function run($input) {
-		$path = str_replace(':commentid', $input['comment_id'], self::PATH);
+		global $comment_id;
+		if (empty($comment_id)) {
+			$comment_id = $input['commentid'];
+		}
+		$path = str_replace(':commentid', $comment_id, self::PATH);
 
 		$accessToken = $input['access_token'];
 
@@ -16,7 +20,7 @@ class CommentReplyTest extends TestCase {
 
 	public function validate($result) {
 		$valid = $result['status'] == 'success';
-		$valid = $valid && !empty($replies);
+		$valid = $valid && !empty($result['replies']);
 
 		return $valid;
 	}

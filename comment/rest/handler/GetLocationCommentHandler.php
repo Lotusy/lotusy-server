@@ -9,7 +9,7 @@ class GetLocationCommentHandler extends AuthorizedRequestHandler {
 			return $validator->getMessage();
 		}
 
-		$isMiles = isset($json['is_miles']) ? $json['is_miles'] : false;
+		$isMiles = isset($json['is_miles']) ? $json['is_miles']=='true' : false;
 
 		$comments = CommentDao::getCommentsByLocation ( 
 			$json['lat'], $json['lng'], $json['radius'], $json['start'], $json['size'], $isMiles );

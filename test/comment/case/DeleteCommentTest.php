@@ -1,7 +1,7 @@
 <?php
-class CreateReplyTest extends TestCase {
+class DeleteCommentTest extends TestCase {
 
-	const PATH = '/:commentid/reply';
+	const PATH = '/comment/:commentid';
 
 	public function run($input) {
 		global $comment_id;
@@ -9,25 +9,23 @@ class CreateReplyTest extends TestCase {
 			$comment_id = $input['commentid'];
 		}
 		$path = str_replace(':commentid', $comment_id, self::PATH);
-		$body = $input;
 
 		$accessToken = $input['access_token'];
 
 		$response = TestRequestor::sendPaymentRequest ( 
-						$path, 'POST', $body, array('Authorization: Bearer '.$accessToken) );
+						$path, 'DELETE', null, array('Authorization: Bearer '.$accessToken) );
 
 		return $response;
 	}
 
 	public function validate($result) {
 		$valid = $result['status'] == 'success';
-		$valid = $valid && !empty($result['reply']);
 
 		return $valid;
 	}
 
 	public function failedAction() {
-		echo 'Fails on test case - CreateReplyTest ('.json_encode($this->getResult()).')'.PHP_EOL;
+		echo 'Fails on test case - DeleteCommentTest ('.json_encode($this->getResult()).')'.PHP_EOL;
 		exit;
 	}
 }

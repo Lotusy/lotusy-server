@@ -1,7 +1,7 @@
 <?php
 class LocationCommentTest extends TestCase {
 
-	const PATH = '/location?lat=:lat&lng=:lng&radius=10&is_miles=true&start=0&size=10';
+	const PATH = '/location?lat=:lat&lng=:lng&radius=10&is_miles=false&start=0&size=10';
 
 	public function run($input) {
 		$path = str_replace(':lat', $input['lat'], self::PATH);

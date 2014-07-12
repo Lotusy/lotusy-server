@@ -15,7 +15,7 @@ class LookupCommentLocationDao extends LookupCommentLocationDaoGenerated {
 		$p2 = "sin( $latRadius ) * sin( radians(lat) )";
 
 		$builder = new QueryBuilder($lookup);
-		$rows = $builder->select("comment_id, , ( $earthRadius * acos( $p1 + $p2 ) ) AS distance")
+		$rows = $builder->select("comment_id, ( $earthRadius * acos( $p1 + $p2 ) ) AS distance")
 						->having('distance', $radius, '<')
 						->order('distance')
 						->limit($start, $size)

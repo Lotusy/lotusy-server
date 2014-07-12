@@ -140,7 +140,7 @@ class QueryBuilder {
 	}
 
 	public function query() {
-//		Logger::info($this->query);
+		Logger::info($this->query);
 		if ($this->isInsert) {
 			if ($this->async) {
 				$this->result = $this->connection->query($this->query, MYSQLI_ASYNC);

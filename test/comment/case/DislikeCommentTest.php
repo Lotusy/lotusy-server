@@ -4,7 +4,11 @@ class DislikeCommentTest extends TestCase {
 	const PATH = '/comment/:commentid/dislike';
 
 	public function run($input) {
-		$path = str_replace(':commentid', $input['comment_id'], self::PATH);
+		global $comment_id;
+		if (empty($comment_id)) {
+			$comment_id = $input['commentid'];
+		}
+		$path = str_replace(':commentid', $comment_id, self::PATH);
 
 		$accessToken = $input['access_token'];
 

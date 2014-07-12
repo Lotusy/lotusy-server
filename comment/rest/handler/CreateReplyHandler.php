@@ -19,7 +19,7 @@ class CreateReplyHandler extends AuthorizedRequestHandler {
 		$response = array();
 		if ($reply->save()) {
 			$response['status'] = 'success';
-			$response['reply'] = $reply->var;
+			$response['reply'] = $reply->toArray();
 		} else {
 			header('HTTP/1.0 500 Internal Server Error');
 			$response['status'] = 'error';
