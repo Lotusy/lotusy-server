@@ -53,11 +53,11 @@ class CommentDao extends CommentDaoGenerated {
 
 	public function dislike() {
 		$builder = new QueryBuilder($this);
-		$set = array('like_count' => 'like_count-1');
+		$set = array('dislike_count' => 'dislike_count+1');
 		$res = $builder->update($set)->where('id', $this->getId())->query();
 
 		if ($res) {
-			$this->setLikeCount($this->getLikeCount()-1);
+			$this->setDislikeCount($this->getDislikeCount()+1);
 		}
 
 		return $res;

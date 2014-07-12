@@ -9,6 +9,7 @@ abstract class CommentDaoGenerated extends LotusyDaoBase {
         $this->var['lng'] = '';
         $this->var['message'] = '';
         $this->var['like_count'] = '';
+        $this->var['dislike_count'] = '';
         $this->var['is_deleted'] = '';
         $this->var['create_time'] = '';
 
@@ -19,6 +20,7 @@ abstract class CommentDaoGenerated extends LotusyDaoBase {
         $this->update['lng'] = false;
         $this->update['message'] = false;
         $this->update['like_count'] = false;
+        $this->update['dislike_count'] = false;
         $this->update['is_deleted'] = false;
         $this->update['create_time'] = false;
     }
@@ -73,6 +75,14 @@ abstract class CommentDaoGenerated extends LotusyDaoBase {
     }
     public function getLikeCount() {
         return $this->var['like_count'];
+    }
+
+    public function setDislikeCount($dislikeCount) {
+        $this->var['dislike_count'] = $dislikeCount;
+        $this->update['dislike_count'] = true;
+    }
+    public function getDislikeCount() {
+        return $this->var['dislike_count'];
     }
 
     public function setIsDeleted($isDeleted) {

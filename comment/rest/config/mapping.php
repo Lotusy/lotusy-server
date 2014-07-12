@@ -16,7 +16,6 @@ register('PUT',    '/comment/:commentid/dislike', new CommentDislikeHandler());
 //
 register('POST', '/:commentid/reply',       new CreateReplyHandler());
 register('GET',  '/:commentid/replies',     new GetCommentReplyHandler());
-register('GET',  '/:commentid/reply/count', new GetCommentReplyCountHandler());
 
 
 // location comment end points

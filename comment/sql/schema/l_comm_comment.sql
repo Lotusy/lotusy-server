@@ -6,7 +6,8 @@ CREATE TABLE {$dbName}.comment
 	lat DOUBLE,
 	lng DOUBLE,
 	message VARCHAR(513),
-	like_count INT,
+	like_count INT UNSIGNED,
+	dislike_count INT UNSIGNED,
 	is_deleted VARCHAR(2),
 	create_time DATETIME,
 
