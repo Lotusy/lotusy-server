@@ -13,7 +13,7 @@ $dbconfig['l_comm_comment'] =
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.117' => array('min'=>0, 'max'=>0)
+			'127.0.0.1' => array('min'=>0, 'max'=>0)
 		) 
 	);
 
@@ -24,7 +24,7 @@ $dbconfig['l_comm_lookup_comment'] =
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.117' => array('min'=>0, 'max'=>0)
+			'127.0.0.1' => array('min'=>0, 'max'=>0)
 		) 
 	);
 
@@ -35,7 +35,7 @@ $dbconfig['l_comm_comment_admin'] =
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.117' => array('min'=>0, 'max'=>0)
+			'127.0.0.1' => array('min'=>0, 'max'=>0)
 		) 
 	);
 ?>
