@@ -20,9 +20,10 @@ class TestRunner {
 			$time = $time_end - $time_start;
 
 			$result = $case->getResult();
-//			echo json_encode($result).PHP_EOL;
 
-			$currentResult = array_merge($result, $currentResult);
+			if (is_array($result)) {
+				$currentResult = array_merge($result, $currentResult);
+			}
 
 			if ($case->validate($result)) {
 				echo 'Test case - '.get_class($case).' PASSED {'.$time.'}'.PHP_EOL;

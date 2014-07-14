@@ -14,7 +14,7 @@ class GetUserCommentImageLinksHandler extends AuthorizedRequestHandler {
 			array_push($links, $link);
 		}
 
-		return $links;
+		return array('status'=>'success', 'links'=>$links);
 	}
 }
 ?>

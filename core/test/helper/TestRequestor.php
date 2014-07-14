@@ -24,7 +24,8 @@ class TestRequestor {
 		curl_setopt($curl, CURLOPT_TIMEOUT, 30);
 
 		if (isset($body)) {
-			curl_setopt($curl, CURLOPT_POSTFIELDS,  json_encode($body));
+			if (is_array($body)) { $body = json_encode($body); }
+			curl_setopt($curl, CURLOPT_POSTFIELDS,  $body);
 		}
 
 		if (empty($header)) {
@@ -41,7 +42,10 @@ class TestRequestor {
 
 		curl_close($curl);
 
-		$response = json_decode($response, TRUE);
+		$tmpResponse = json_decode($response, TRUE);
+		if (json_last_error() == JSON_ERROR_NONE) {
+			$response = $tmpResponse;
+		}
 		$response['status_code'] = $code;
 
 		if (!isset($response['status'])) { $response['status'] = 'error'; }

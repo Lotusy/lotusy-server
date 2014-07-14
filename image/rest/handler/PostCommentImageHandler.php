@@ -39,6 +39,7 @@ class PostCommentImageHandler extends AuthorizedRequestHandler {
 
 	private function saveFile($path, $name) {
 		$imageDate = Utility::getRawRequestData();
+
 		file_put_contents($path.$name, $imageDate);
 	}
 
