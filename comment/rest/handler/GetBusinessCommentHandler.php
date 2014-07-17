@@ -18,7 +18,10 @@ class GetBusinessCommentHandler extends AuthorizedRequestHandler {
 		$response['comments'] = array();
 
 		foreach ($comments as $comment) {
-			array_push($response['comments'], $comment->toArray());
+			$commentArr = $comment->toArray();
+			$count = ReplyDao::getReplyCountByCommentId($comment->getId());
+			$commentArr['reply_count'] = $count;
+			array_push($response['comments'], $commentArr);
 		}
 
 		return $response;

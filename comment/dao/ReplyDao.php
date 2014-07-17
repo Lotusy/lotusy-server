@@ -21,7 +21,7 @@ class ReplyDao extends ReplyDaoGenerated {
 		$comment->setServerAddress($commentId);
 
 		$builder = new QueryBuilder($comment);
-		$res = $builder->select('COUN(*) as count')
+		$res = $builder->select('COUNT(*) as count')
 					   ->where('comment_id', $commentId)
 					   ->find();
 

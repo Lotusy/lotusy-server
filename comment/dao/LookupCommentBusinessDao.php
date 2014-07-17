@@ -12,7 +12,12 @@ class LookupCommentBusinessDao extends LookupCommentBusinessDaoGenerated {
 						->where('business_id', $businessId)
 						->limit($start, $size)
 						->findList();
-		return $rows;
+		$ids = array();
+		foreach ($rows as $row) {
+			array_push($ids, $row['comment_id']);
+		}
+
+		return $ids;
 	}
 
 	public static function deleteLookupDao($businessId, $commentId) {
