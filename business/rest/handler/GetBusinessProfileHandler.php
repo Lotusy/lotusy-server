@@ -21,6 +21,11 @@ class GetBusinessProfileHandler extends AuthorizedRequestHandler {
 
 		$response = $business->toArray();
 
+		$request = new GetBusinessCommentCountRequest($businessId);
+		$count = $request->execute();
+
+		$response['comment_count'] = $count;
+
 		Logger::info(json_encode($response));
 
 		$response['status'] = 'success';

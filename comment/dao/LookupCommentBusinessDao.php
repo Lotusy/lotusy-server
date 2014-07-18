@@ -20,6 +20,18 @@ class LookupCommentBusinessDao extends LookupCommentBusinessDaoGenerated {
 		return $ids;
 	}
 
+	public static function getCommentCountByBusinessId($businessId) {
+		$lookup = new LookupCommentBusinessDao();
+		$lookup->setServerAddress($businessId);
+
+		$builder = new QueryBuilder($lookup);
+		$res = $builder->select('COUNT(*) as count')
+					   ->where('business_id', $businessId)
+					   ->find();
+
+		return $res['count'];
+	}
+
 	public static function deleteLookupDao($businessId, $commentId) {
 		$lookup = new LookupCommentBusinessDao();
 		$lookup->setServerAddress($businessId);

@@ -9,6 +9,7 @@ $base_uri = '/rest';
 
 $app_key = 'F5D7E2532CC9AD16BC2A41222D76F269';
 $base_account_host = 'http://account.lotusy.com';
+$base_comment_host = 'http://comment.lotusy.com';
 $base_image_host = 'http://image.lotusy.com';
 
 //=======================================================================================
