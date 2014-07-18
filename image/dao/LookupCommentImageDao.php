@@ -3,14 +3,13 @@ class LookupCommentImageDao extends LookupCommentImageDaoGenerated {
 
 //========================================================================================== public
 
-	public static function getLookupDaosByCommentId($commentId, $start, $size) {
+	public static function getLookupDaosByCommentId($commentId) {
 		$comment = new LookupCommentImageDao();
 		$comment->setServerAddress($commentId);
 
 		$builder = new QueryBuilder($comment);
 		$rows = $builder->select('*')
 						->where('comment_id', $commentId)
-						->limit($start, $size)
 						->findList();
 
 		return $comment->makeObjectsFromSelectListResult($rows, 'LookupCommentImageDao');

@@ -18,10 +18,20 @@ class GetLocationCommentHandler extends AuthorizedRequestHandler {
 		$response['status'] = 'success';
 		$response['comments'] = array();
 
+		$commentIds = array();
+		foreach ($comments as $comment) {
+			array_push($commentIds, $comment->getId());
+		}
+
+		$request = new GetCommentsImageLinksRequest($commentIds, $this->getAccessToken());
+		$links = $request->execute();
+
 		foreach ($comments as $comment) {
 			$commentArr = $comment->toArray();
 			$count = ReplyDao::getReplyCountByCommentId($comment->getId());
+
 			$commentArr['reply_count'] = $count;
+			$commentArr['image_links'] = $links[$comment->getId()];
 			array_push($response['comments'], $commentArr);
 		}
 

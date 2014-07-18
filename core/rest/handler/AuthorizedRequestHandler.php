@@ -2,6 +2,7 @@
 abstract class AuthorizedRequestHandler implements RequestHandler {
 
 	private $userId = null;
+	private $accessToken = null;
 
 	public function execute($params) {
 
@@ -32,7 +33,8 @@ abstract class AuthorizedRequestHandler implements RequestHandler {
 		}
 
 		if ($valid) {
-			$request = new GetAccessTokenInfoRequest($accessToken[1]);
+			$this->accessToken = $accessToken[1];
+			$request = new GetAccessTokenInfoRequest($this->accessToken);
 			$response = $request->execute();
 
 			if ($response['status']=='success') {
@@ -47,6 +49,10 @@ abstract class AuthorizedRequestHandler implements RequestHandler {
 		}
 
 		return $valid;
+	}
+
+	protected function getAccessToken() {
+		return $this->accessToken;
 	}
 
 	abstract public function handle($params);

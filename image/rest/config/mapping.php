@@ -1,9 +1,10 @@
 <?php
 // comment end points
 //
-register('GET',  '/display/comment/:imageid', new GetCommentImageHandler());
-register('GET',  '/comment/:commentid/links', new GetCommentImageLinksHandler());
-register('POST', '/comment/:commentid',       new PostCommentImageHandler());
+register('GET',  '/display/comment/:imageid',   new GetCommentImageHandler());
+register('GET',  '/comment/:commentid/links',   new GetCommentImageLinksHandler());
+register('GET',  '/comments/:commentids/links', new GetCommentsImageLinksHandler());
+register('POST', '/comment/:commentid',         new PostCommentImageHandler());
 
 // user end points
 //

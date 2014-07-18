@@ -4,9 +4,7 @@ class GetCommentImageLinksHandler extends AuthorizedRequestHandler {
 	public function handle($params) {
 		global $base_host, $base_uri;
 
-		$start = isset($_GET['start']) ? $_GET['start'] : 0;
-		$size = isset($_GET['size']) ? $_GET['size'] : 10;
-		$lookupDaos = LookupCommentImageDao::getLookupDaosByCommentId($params['commentid'], $start, $size);
+		$lookupDaos = LookupCommentImageDao::getLookupDaosByCommentId($params['commentid']);
 
 		$links = array();
 		foreach ($lookupDaos as $lookupDao) {

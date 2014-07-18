@@ -7,7 +7,12 @@ class GetCommentWithOutMessageHandler extends AuthorizedRequestHandler {
 		if ($comment->isFromDatabase()) {
 			$response = $comment->toArray(array('message'));
 			$count = ReplyDao::getReplyCountByCommentId($params['commentid']);
+
+			$request = new GetCommentImageLinksRequest($params['commentid']);
+			$links = $request->execute();
+
 			$response['reply_count'] = $count;
+			$response['image_links'] = $links;
 			$response['status'] = 'success';
 		} else {
 			header('HTTP/1.0 404 Not Found');
