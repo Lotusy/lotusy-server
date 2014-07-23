@@ -1,30 +1,30 @@
 <?php
-include '../dao/config/config.inc';
-include '../../core/dao/config/config.inc';
+include '/opt/lotusy/account/current/dao/config/config.inc';
+include '/opt/lotusy/core/current/dao/config/config.inc';
 
 $component_name = 'account';
 
-$base_host = 'https://local.account.lotusy.com';
+$base_host = 'http://account.lotusy.com';
 $base_uri = '/rest';
 
 $app_key = 'E268443E43D93DAB7EBEF303BBE9642F';
-$base_account_host = 'http://local.account.lotusy.com';
+$base_account_host = 'http://account.lotusy.com';
 
 //=======================================================================================
 // auto include directory information
 $autoload_dirs = array (
-'handler', 
-'request', 
-'validator', 
-'../util', 
-'../dao',
-'../dao/generated',
-'../../core/dao',
-'../../core/dao/generated',
-'../../core/util',
-'../../core/rest/handler',
-'../../core/rest/request',
-'../../core/rest/validator'
+'/opt/lotusy/account/current/rest/handler', 
+'/opt/lotusy/account/current/rest/request', 
+'/opt/lotusy/account/current/rest/validator', 
+'/opt/lotusy/account/current/util', 
+'/opt/lotusy/account/current/dao',
+'/opt/lotusy/account/current/dao/generated',
+'/opt/lotusy/core/current/dao',
+'/opt/lotusy/core/current/dao/generated',
+'/opt/lotusy/core/current/util',
+'/opt/lotusy/core/current/rest/handler',
+'/opt/lotusy/core/current/rest/request',
+'/opt/lotusy/core/current/rest/validator'
 );
 
 
