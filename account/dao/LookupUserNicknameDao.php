@@ -4,7 +4,7 @@ class LookupUserNicknameDao extends LookupUserNicknameDaoGenerated {
 // ========================================================================================== public
 
 	public static function getUserIdsFromNickName($nickname) {
-		$lookup = new LookupUserNickNameDao();
+		$lookup = new LookupUserNicknameDao();
 		$lookup->setServerAddress( Utility::hashString($nickname) );
 
 		$builder = new QueryBuilder($lookup);

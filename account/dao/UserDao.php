@@ -33,7 +33,7 @@ class UserDao extends UserDaoGenerated {
 		$lookupExternalRef->setUserId($this->getId());
 		$lookupExternalRef->save();
 
-		$lookupUsername = new LookupUserNickNameDao();
+		$lookupUsername = new LookupUserNicknameDao();
 		$lookupUsername->setNickname($this->getNickname());
 		$lookupUsername->setUserId($this->getId());
 		$lookupUsername->save();

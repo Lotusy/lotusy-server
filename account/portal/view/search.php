@@ -9,7 +9,7 @@ if (!$session->get('admin_id')) {
 $users = array();
 
 if (!empty($_POST['nickname'])) {
-	$ids = LookupUserNickNameDao::getUserIdsFromNickName(trim($_POST['nickname']));
+	$ids = LookupUserNicknameDao::getUserIdsFromNickName(trim($_POST['nickname']));
 	foreach ($ids as $id) {
 		$users[$id] = new UserDao($id);
 	}
