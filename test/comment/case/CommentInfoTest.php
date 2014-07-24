@@ -6,7 +6,7 @@ class CommentInfoTest extends TestCase {
 	public function run($input) {
 		global $comment_id;
 		if (empty($comment_id)) {
-			$comment_id = $input['commentid'];
+			$comment_id = $input['comment_id'];
 		}
 		$path = str_replace(':commentid', $comment_id, self::PATH);
 

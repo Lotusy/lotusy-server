@@ -13,14 +13,14 @@ class CreateCommentTest extends TestCase {
 						$path, 'POST', $body, array('Authorization: Bearer '.$accessToken) );
 
 		global $comment_id;
-		$comment_id = $response['comment_id'];
+		$comment_id = $response['id'];
 
 		return $response;
 	}
 
 	public function validate($result) {
 		$valid = $result['status'] == 'success';
-		$valid = $valid && is_numeric($result['comment_id']);
+		$valid = $valid && is_numeric($result['id']);
 
 		return $valid;
 	}
