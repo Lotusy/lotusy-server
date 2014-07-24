@@ -2,7 +2,7 @@
 // comment end points
 //
 register('POST',   '/comment',            new CreateCommentHandler());
-register('GET',    '/comment/:commentid', new GetCommentWithOutMessageHandler());
+register('GET',    '/comment/:commentid', new GetCommentInfoHandler());
 register('DELETE', '/comment/:commentid', new DeleteCommentHandler());
 
 

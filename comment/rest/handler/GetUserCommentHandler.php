@@ -25,9 +25,14 @@ class GetUserCommentHandler extends AuthorizedRequestHandler {
 		$request = new GetCommentsImageLinksRequest($commentIds, $this->getAccessToken());
 		$links = $request->execute();
 
+		$now = strtotime('now');
+
 		foreach ($comments as $comment) {
 			$commentArr = $comment->toArray();
 			$count = ReplyDao::getReplyCountByCommentId($comment->getId());
+
+			$last = strtotime($commentArr['create_time']);
+			$commentArr['create_time'] = $now - $last;
 
 			$commentArr['reply_count'] = $count;
 			$commentArr['image_links'] = $links[$comment->getId()];
