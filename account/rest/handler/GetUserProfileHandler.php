@@ -11,6 +11,11 @@ class GetUserProfileHandler extends UnauthorizedRequestHandler {
 		$user = $validator->getUser();
 
 		$response = $user->toArray();
+
+		$now = strtotime('now');
+		$last = strtotime($response['last_login']);
+		$response['last_login'] = $now - $last;
+
 		$response['status'] = 'success';
 
 		return $response;

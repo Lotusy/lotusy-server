@@ -13,6 +13,8 @@ class GetCurrentUserProfileHandler extends UnauthorizedRequestHandler {
 		$user->save();
 
 		$response = $user->toArray();
+		$response['last_login'] = 0;
+
 		$response['status'] = 'success';
 
 		return $response;
