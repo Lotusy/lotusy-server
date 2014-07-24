@@ -9,6 +9,10 @@ class GetBusinessRatingHandler extends AuthorizedRequestHandler {
 
 		$rating = RatingDao::getBusinessRating($params['businessid']);
 
+		$now = strtotime('now');
+		$last = strtotime($rating['create_time']);
+		$rating['create_time'] = $now - $last;
+
 		$response = array();
 		$response['status'] = 'success';
 		$response['rating'] = $rating;
