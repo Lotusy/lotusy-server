@@ -20,8 +20,8 @@ class CreateCommentHandler extends AuthorizedRequestHandler {
 
 		$response = array();
 		if ($comment->save()) {
+			$response = $comment->toArray();
 			$response['status'] = 'success';
-			$response['comment_id'] = $comment->getId();
 		} else {
 			header('HTTP/1.0 500 Internal Server Error');
 			$response['status'] = 'error';
