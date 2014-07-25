@@ -11,7 +11,7 @@ class GetCommentInfoHandler extends AuthorizedRequestHandler {
 			$request = new GetCommentImageLinksRequest($params['commentid']);
 			$links = $request->execute();
 
-			$response['reply_count'] = $count;
+			$response['reply_count'] = (int)$count;
 			$response['image_links'] = $links;
 
 			$now = strtotime('now');

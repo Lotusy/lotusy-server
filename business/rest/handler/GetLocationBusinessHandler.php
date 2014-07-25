@@ -25,15 +25,15 @@ class GetLocationBusinessHandler extends AuthorizedRequestHandler {
 
 			$businessArr['distance'] = round($id['distance'], 1);
 
-			$request = new GetBusinessCommentCountRequest($businessId);
+			$request = new GetBusinessCommentCountRequest($id['business_id']);
 			$count = $request->execute();
-			$response['comment_count'] = $count;
+			$businessArr['comment_count'] = (int)$count;
 
 			$rating = RatingDao::getBusinessRating($id['business_id']);
 			$businessArr['rating'] = $rating;
 	
 			$ratingCount = RatingDao::getBusinessRatingCount($id['business_id']);
-			$businessArr['rating_count'] = $ratingCount;
+			$businessArr['rating_count'] = (int)$ratingCount;
 
 			array_push($response['businesses'], $businessArr);
 		}

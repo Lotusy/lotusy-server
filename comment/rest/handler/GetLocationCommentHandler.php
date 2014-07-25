@@ -37,7 +37,7 @@ class GetLocationCommentHandler extends AuthorizedRequestHandler {
 			$last = strtotime($commentArr['create_time']);
 			$commentArr['create_time'] = $now - $last;
 
-			$commentArr['reply_count'] = $count;
+			$commentArr['reply_count'] = (int)$count;
 			$commentArr['image_links'] = $links[$comment->getId()];
 			array_push($response['comments'], $commentArr);
 		}

@@ -23,13 +23,13 @@ class GetBusinessProfileHandler extends AuthorizedRequestHandler {
 
 		$request = new GetBusinessCommentCountRequest($businessId);
 		$count = $request->execute();
-		$response['comment_count'] = $count;
+		$response['comment_count'] = (int)$count;
 
 		$rating = RatingDao::getBusinessRating($businessId);
 		$response['rating'] = $rating;
 
 		$ratingCount = RatingDao::getBusinessRatingCount($businessId);
-		$response['rating_count'] = $ratingCount;
+		$response['rating_count'] = (int)$ratingCount;
 
 		Logger::info(json_encode($response));
 
