@@ -7,9 +7,9 @@ class CommentDao extends CommentDaoGenerated {
 		$commentIds = LookupCommentLocationDao::getCommentIdsByLocation ( 
 														$lat, $lng, $radius, $start, $size, $isMiles );
 		$comments = array();
-		foreach ($commentIds as $commentId) {
+		foreach ($commentIds as $commentId => $distance) {
 			$comment = new CommentDao($commentId);
-			array_push($comments, $comment);
+			$comments[$distance] = $comment;
 		}
 
 		return $comments;

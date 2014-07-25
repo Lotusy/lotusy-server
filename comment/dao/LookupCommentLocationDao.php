@@ -22,7 +22,7 @@ class LookupCommentLocationDao extends LookupCommentLocationDaoGenerated {
 						->findList();
 		$ids = array();
 		foreach ($rows as $row) {
-			array_push($ids, $row['comment_id']);
+			$ids[$row['comment_id']] = $row['distance'];
 		}
 
 		return $ids;
