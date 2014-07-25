@@ -21,7 +21,6 @@ class CreateReplyTest extends TestCase {
 
 	public function validate($result) {
 		$valid = $result['status'] == 'success';
-		$valid = $valid && !empty($result['reply']);
 
 		return $valid;
 	}
