@@ -18,7 +18,13 @@ class GetCommentReplyHandler extends AuthorizedRequestHandler {
 
 		$response['replies'] = array();
 		foreach ($replies as $reply) {
-			array_push($response['replies'], $reply->toArray());
+			$replyArr = $reply->toArray();
+
+			$now = strtotime('now');
+			$last = strtotime($replyArr['create_time']);
+			$replyArr['create_time'] = $now - $last;
+
+			array_push($response['replies'], $replyArr);
 		}
 
 		return $response;

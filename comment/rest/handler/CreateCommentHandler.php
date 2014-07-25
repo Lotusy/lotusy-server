@@ -21,6 +21,7 @@ class CreateCommentHandler extends AuthorizedRequestHandler {
 		$response = array();
 		if ($comment->save()) {
 			$response = $comment->toArray();
+			$response['create_time'] = 0;
 			$response['status'] = 'success';
 		} else {
 			header('HTTP/1.0 500 Internal Server Error');
