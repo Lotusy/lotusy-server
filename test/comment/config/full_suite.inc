@@ -61,8 +61,8 @@ $inputs = array(
 	7 => 'aggregate',
 	8 => array(
 		'access_token' => $accessToken,
-		'lat' => 49.249232,
-		'lng' => -123.101069
+		'lat' => 49.049232,
+		'lng' => -123.001069
 	),
 	9 => array(
 		'access_token' => $accessToken,

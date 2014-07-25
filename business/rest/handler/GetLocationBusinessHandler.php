@@ -23,7 +23,7 @@ class GetLocationBusinessHandler extends AuthorizedRequestHandler {
 			$business = new BusinessDao($id['business_id']);
 			$businessArr = $business->toArray();
 
-			$businessArr['distance'] = number_format($id['distance'], 3, '.', '');
+			$businessArr['distance'] = round($id['distance'], 1);
 
 			$request = new GetBusinessCommentCountRequest($businessId);
 			$count = $request->execute();

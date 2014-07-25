@@ -1,7 +1,7 @@
 <?php
 class LocationBusinessTest extends TestCase {
 
-	const PATH = '/location?lat=:lat&lng=:lng&radius=50&is_miles=false&start=0&size=10';
+	const PATH = '/location?lat=:lat&lng=:lng&radius=1000&is_miles=false&start=0&size=10';
 
 	public function run($input) {
 		$path = str_replace(':lat', $input['lat'], self::PATH);
@@ -18,6 +18,10 @@ class LocationBusinessTest extends TestCase {
 	public function validate($result) {
 		$valid = $result['status'] == 'success';
 		$valid = $valid && !empty($result['businesses']);
+
+		foreach ($result['businesses'] as $business) {
+		$valid = $valid && is_numeric($business['distance']);
+		}
 
 		return $valid;
 	}

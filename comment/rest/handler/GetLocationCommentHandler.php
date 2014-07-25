@@ -32,7 +32,7 @@ class GetLocationCommentHandler extends AuthorizedRequestHandler {
 			$commentArr = $comment->toArray();
 			$count = ReplyDao::getReplyCountByCommentId($comment->getId());
 
-			$commentArr['distance'] = $distance;
+			$commentArr['distance'] = round($distance, 1);
 
 			$last = strtotime($commentArr['create_time']);
 			$commentArr['create_time'] = $now - $last;

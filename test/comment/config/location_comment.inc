@@ -15,8 +15,8 @@ $testCases = array(
 $inputs = array(
 	0 => array(
 		'access_token' => 'AF66F04AD2292308DBE8DD91FEDBFE53.A2F82F928D',
-		'lat' => 49.249232,
-		'lng' => -123.101069
+		'lat' => 48.949232,
+		'lng' => -123.001069
 	)
 );
 ?>

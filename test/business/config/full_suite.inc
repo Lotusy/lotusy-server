@@ -54,8 +54,8 @@ $inputs = array(
 	),
 	2 => array(
 		'access_token' => $accessToken,
-		'lat' => 49.249232,
-		'lng' => -123.101069
+		'lat' => 49.149232,
+		'lng' => -123.001069
 	),
 	3 => array(
 		'access_token' => $accessToken,
