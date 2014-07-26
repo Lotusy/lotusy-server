@@ -37,6 +37,9 @@ class UserDao extends UserDaoGenerated {
 		$lookupUsername->setNickname($this->getNickname());
 		$lookupUsername->setUserId($this->getId());
 		$lookupUsername->save();
+
+		$this->setSuperuser('N');
+		$this->setBlocked('N');
 	}
 
 	protected function isShardBaseObject() {

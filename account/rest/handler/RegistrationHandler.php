@@ -15,6 +15,7 @@ class RegistrationHandler extends UnauthorizedRequestHandler {
 		$account->setExternalRef($json['id']);
 		$account->setUsername($json['username']);
 		$account->setNickname($json['nickname']);
+		$account->setDescription($json['description']);
 		$account->setProfilePic($json['profile_pic']);
 
 		$atReturn = array();
