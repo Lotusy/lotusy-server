@@ -13,8 +13,8 @@ class UpdateCurrentUserProfileHandler extends UnauthorizedRequestHandler {
 
 		$updated = false;
 
-		if (isset($json['nick_name'])) {
-			$user->setNickname($json['nick_name']); 
+		if (isset($json['nickname'])) {
+			$user->setNickname($json['nickname']); 
 			$updated = true;
 		}
 		if (isset($json['username'])) {
