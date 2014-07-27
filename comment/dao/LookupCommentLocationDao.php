@@ -11,7 +11,7 @@ class LookupCommentLocationDao extends LookupCommentLocationDaoGenerated {
 		$latRadius = deg2rad($lat);
 		$lngRadius = deg2rad($lng);
 
-		$p1 = "cos( $latRadius ) * cos( radians(lat) ) * cos( radians(lng) - $lngRadius )";
+		$p1 = "cos( $latRadius ) * cos( radians(lat) ) * cos( radians(lng - $lngRadius) )";
 		$p2 = "sin( $latRadius ) * sin( radians(lat) )";
 
 		$builder = new QueryBuilder($lookup);
