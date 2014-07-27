@@ -17,7 +17,7 @@ class CreateBusinessHandler extends AuthorizedRequestHandler {
 		$business->setCashOnly(isset($json['cash_only']) ? $json['cash_only'] : '');
 		$business->setCity($json['city']);
 		$business->setCountry($json['country']);
-		$business->setHours(isset($json['hours']) ? json_encode($json['cash_only']) : '');
+		$business->setHours(isset($json['hours']) ? json_encode($json['hours']) : '');
 		$business->setLat($json['lat']);
 		$business->setLng($json['lng']);
 		$business->setNameEn(isset($json['name_en']) ? $json['name_en'] : '');
