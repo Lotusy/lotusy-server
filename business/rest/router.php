@@ -43,7 +43,7 @@ foreach ($services[$method] as $key=>$val) {
 		if ($match) {
 			$handler = $services[$method][$key];
 			Logger::info(get_class($handler).' - start =============================');
-			Logger::info(Utility::getJsonRequestData());
+			Logger::info('Request - '.Utility::getRawRequestData());
 			$response = $handler->execute($params);
 			Logger::info($response);
 			Logger::info(get_class($handler).' - end'.PHP_EOL);
