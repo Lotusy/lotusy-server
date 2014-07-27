@@ -49,7 +49,7 @@ class LookupCommentBusinessDao extends LookupCommentBusinessDaoGenerated {
 		$sequence = $this->getBusinessId();
 		$this->setShardId($sequence);
 
-		$date = gmdate('Y-m-d H:i:s');
+		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
 	}
 

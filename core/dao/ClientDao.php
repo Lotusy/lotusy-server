@@ -20,7 +20,7 @@ class ClientDao extends ClientDaoGenerated {
 		$sequence = Utility::hashString($this->getAppKey());
 		$this->setShardId($sequence);
 
-		$date = gmdate('Y-m-d H:i:s');
+		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
 		$this->setModifiedTime($date);
 	}

@@ -9,7 +9,7 @@ class GetCurrentUserProfileHandler extends UnauthorizedRequestHandler {
 
 		$user = new UserDao($validator->getUserId());
 
-		$user->setLastLogin(gmdate('Y-m-d H:i:s'));
+		$user->setLastLogin(date('Y-m-d H:i:s'));
 		$user->save();
 
 		$response = $user->toArray();

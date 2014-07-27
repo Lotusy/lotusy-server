@@ -90,7 +90,7 @@ class CommentDao extends CommentDaoGenerated {
 		$lookup->setCommentId($this->getId());
 		$lookup->save();
 
-		$date = gmdate('Y-m-d H:i:s');
+		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
 	}
 

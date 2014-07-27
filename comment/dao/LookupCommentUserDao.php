@@ -37,7 +37,7 @@ class LookupCommentUserDao extends LookupCommentUserDaoGenerated {
 		$sequence = $this->getUserId();
 		$this->setShardId($sequence);
 
-		$date = gmdate('Y-m-d H:i:s');
+		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
 	}
 

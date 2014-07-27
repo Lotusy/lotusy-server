@@ -26,7 +26,7 @@ class User extends Model {
 			$dbPass = $user->dao->getPassword();
 			$inPass = Utility::saltString(md5($passwd));
 			if (Utility::compareSaltedString($dbPass, $inPass, 5)) {
-				$date = gmdate('Y-m-d H:i:s');
+				$date = date('Y-m-d H:i:s');
 				$user->dao->setLastLogin($date);
 				$user->dao->save();
 			} else {
