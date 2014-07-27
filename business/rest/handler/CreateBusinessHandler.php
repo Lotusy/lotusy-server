@@ -35,8 +35,7 @@ class CreateBusinessHandler extends AuthorizedRequestHandler {
 
 		$atReturn = array();
 		if ($business->save()) {
-			$atReturn = $business->toArray(array('hours'));
-			$atReturn['hours'] = json_decode($business->getHours(), true);
+			$atReturn = $business->toArray();
 			$atReturn['status'] = 'success';
 		} else {
 			header('HTTP/1.0 500 Internal Server Error');

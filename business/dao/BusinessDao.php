@@ -85,6 +85,12 @@ class BusinessDao extends BusinessDaoGenerated {
 		}
 	}
 
+	public function toArray() {
+		$atReturn = parent::toArray(array('hours'));
+		$atReturn['hours'] = json_decode($this->getHours(), true);
+		return $atReturn;
+	}
+
     protected function beforeUpdate() {
     	$lookup = LookupBusinessLocationDao::getLookupWithBusiness($this);
     	if ($this->getVerified()!=$lookup->getVerified()) {
