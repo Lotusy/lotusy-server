@@ -14,8 +14,8 @@ class GetBusinessRatingHandler extends AuthorizedRequestHandler {
 		$rating['create_time'] = $now - $last;
 
 		$response = array();
+		$response = $rating;
 		$response['status'] = 'success';
-		$response['rating'] = $rating;
 
 		return $response;
 	}

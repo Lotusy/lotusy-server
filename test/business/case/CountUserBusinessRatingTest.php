@@ -17,7 +17,7 @@ class CountUserBusinessRatingTest extends TestCase {
 
 	public function validate($result) {
 		$valid = $result['status'] == 'success';
-		$valid = $valid && !empty($result['rating']);
+		$valid = $valid && !empty($result['overall']);
 
 		return $valid;
 	}
