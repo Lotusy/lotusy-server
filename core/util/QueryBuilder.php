@@ -47,7 +47,7 @@ class QueryBuilder {
 
 		$update = "UPDATE $table SET ";
 		foreach ($set as $key=>$val) {
-			$update.= $key.'='.$this->checkNull($val).',';
+			$update.= $key.'='.$this->connection->real_escape_string($val).',';
 		}
 
 		$this->query.= rtrim($update, ',');
