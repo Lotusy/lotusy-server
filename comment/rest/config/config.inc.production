@@ -19,6 +19,7 @@ $autoload_dirs = array (
 '/opt/lotusy/comment/current/rest/validator', 
 '/opt/lotusy/comment/current/util', 
 '/opt/lotusy/comment/current/dao',
+'/opt/lotusy/comment/current/dao/generated',
 '/opt/lotusy/core/current/dao',
 '/opt/lotusy/core/current/dao/generated',
 '/opt/lotusy/core/current/util',
