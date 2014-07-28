@@ -90,6 +90,9 @@ class CommentDao extends CommentDaoGenerated {
 		$lookup->setCommentId($this->getId());
 		$lookup->save();
 
+		$this->setLikeCount(0);
+		$this->setDislikeCount(0);
+		$this->setIsDeleted('N');
 		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
 	}
