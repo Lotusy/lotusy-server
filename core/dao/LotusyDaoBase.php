@@ -126,7 +126,7 @@ abstract class LotusyDaoBase {
 		$set = array();
 		foreach ($this->update as $key=>$val) {
 			if ($val) {
-				$set[$key] = $this->var[$key];
+				$set[$key] = array('quote'=>true, 'value'=>$this->var[$key]);
 			}
 		}
 

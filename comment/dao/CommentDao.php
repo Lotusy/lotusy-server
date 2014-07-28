@@ -41,7 +41,7 @@ class CommentDao extends CommentDaoGenerated {
 
 	public function like() {
 		$builder = new QueryBuilder($this);
-		$set = array('like_count' => 'like_count+1');
+		$set = array('like_count' => array('quote'=>false, 'value'=>'like_count+1'));
 		$res = $builder->update($set)->where('id', $this->getId())->query();
 
 		if ($res) {
@@ -53,7 +53,7 @@ class CommentDao extends CommentDaoGenerated {
 
 	public function dislike() {
 		$builder = new QueryBuilder($this);
-		$set = array('dislike_count' => 'dislike_count+1');
+		$set = array('dislike_count' => array('quote'=>false, 'value'=>'dislike_count+1'));
 		$res = $builder->update($set)->where('id', $this->getId())->query();
 
 		if ($res) {
@@ -65,7 +65,7 @@ class CommentDao extends CommentDaoGenerated {
 
 	public function delete() {
 		$builder = new QueryBuilder($this);
-		$set = array('is_deleted' => '`Y`');
+		$set = array('is_deleted' => array('quote'=>true, 'value'=>'Y'));
 		$res = $builder->update($set)->where('id', $this->getId())->query();
 
 		return $res;
