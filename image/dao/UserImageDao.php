@@ -53,7 +53,7 @@ class UserImageDao extends UserImageDaoGenerated {
 		$this->setShardId($sequence);
 
 		$builder = new QueryBuilder($this);
-		$set = array('is_deleted' => 'Y');
+		$set = array('is_deleted' => '`Y`');
 		$builder->update($set)
 				->where('user_id', $this->getUserId())
 				->where('is_deleted', 'N')

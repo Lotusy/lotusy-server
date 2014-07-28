@@ -65,7 +65,7 @@ class CommentDao extends CommentDaoGenerated {
 
 	public function delete() {
 		$builder = new QueryBuilder($this);
-		$set = array('is_deleted' => 'Y');
+		$set = array('is_deleted' => '`Y`');
 		$res = $builder->update($set)->where('id', $this->getId())->query();
 
 		return $res;
