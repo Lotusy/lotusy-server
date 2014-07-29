@@ -8,7 +8,7 @@ class GetCommentInfoHandler extends AuthorizedRequestHandler {
 			$response = $comment->toArray();
 			$count = ReplyDao::getReplyCountByCommentId($params['commentid']);
 
-			$request = new GetCommentImageLinksRequest($params['commentid']);
+			$request = new GetCommentImageLinksRequest($params['commentid'], $this->getAccessToken());
 			$links = $request->execute();
 
 			$response['reply_count'] = (int)$count;
