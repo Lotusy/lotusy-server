@@ -14,7 +14,7 @@ class GetUserProfileImageHandler extends UnauthorizedRequestHandler {
 			$filename = $path.$name;
 		}
 
-    	header('Content-Type: image/jpeg');
+    	header('Content-Type: image/png');
 		readfile($filename);
 	}
 }

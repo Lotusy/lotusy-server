@@ -16,7 +16,7 @@ class PutBusinessImageHandler extends AuthorizedRequestHandler {
 			return $atReturn;
 		}
 
-		$fileName = 'business_'.$params['businessid'].'_profile.jpg';
+		$fileName = 'business_'.$params['businessid'].'_profile.png';
 
 		$this->saveFile($business_image_dir, $fileName);
 		$this->saveBusinessImageDao($params['businessid'], $business_image_dir, $fileName);

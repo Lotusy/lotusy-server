@@ -162,7 +162,7 @@ function validateHeaders() {
 	}
 
 	if ( !isset($headers['Content-Type']) || 
-		 ($headers['Content-Type']!='image/jpeg' && $headers['Content-Type']!='application/json') ) {
+		 ($headers['Content-Type']!='image/png' && $headers['Content-Type']!='application/json') ) {
 		header('HTTP/1.0 406 Not Acceptable');
 		echo '{"error":"406 Not Acceptable"}';
 		exit;

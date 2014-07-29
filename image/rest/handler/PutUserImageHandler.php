@@ -17,7 +17,7 @@ class PutUserImageHandler extends AuthorizedRequestHandler {
 
 		$userId = $this->getUserId();
 
-		$fileName = 'user_'.date('YmdHis').'_'.$userId.'_'.rand (0, 10000).'.jpg';
+		$fileName = 'user_'.date('YmdHis').'_'.$userId.'_'.rand (0, 10000).'.png';
 
 		$this->saveFile($comment_image_dir, $fileName);
 		$this->saveUserImageDao($userId, $comment_image_dir, $fileName);

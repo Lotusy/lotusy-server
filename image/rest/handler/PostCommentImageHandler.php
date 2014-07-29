@@ -25,7 +25,7 @@ class PostCommentImageHandler extends AuthorizedRequestHandler {
 
 		$userId = $this->getUserId();
 
-		$fileName = 'comment_'.date('YmdHis').'_'.$userId.'_'.$params['commentid'].'_'.rand (0, 10000).'.jpg';
+		$fileName = 'comment_'.date('YmdHis').'_'.$userId.'_'.$params['commentid'].'_'.rand (0, 10000).'.png';
 
 		$this->saveFile($comment_image_dir, $fileName);
 		$imageId = $this->saveCommentImageDao($params['commentid'], $comment_image_dir, $fileName);
