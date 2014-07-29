@@ -33,6 +33,7 @@ $autoload_dirs = array (
 '/opt/lotusy/image/current/rest/validator', 
 '/opt/lotusy/image/current/util', 
 '/opt/lotusy/image/current/dao',
+'/opt/lotusy/image/current/dao/generated',
 '/opt/lotusy/core/current/dao',
 '/opt/lotusy/core/current/dao/generated',
 '/opt/lotusy/core/current/util',
