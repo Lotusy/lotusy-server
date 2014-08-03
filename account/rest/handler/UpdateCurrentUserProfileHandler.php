@@ -43,6 +43,9 @@ class UpdateCurrentUserProfileHandler extends AuthorizedRequestHandler {
 
 		if ($response['status']=='success') {
 			$response = $user->toArray();
+			$now = strtotime('now');
+			$last = strtotime($response['last_login']);
+			$response['last_login'] = $now - $last;
 			$response['status'] = 'success';
 		}
 
