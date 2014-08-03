@@ -31,6 +31,7 @@ class UpdateCurrentUserProfileHandler extends AuthorizedRequestHandler {
 		}
 
 		$response = array();
+		$response['status'] = 'success';
 
 		if ($updated) {
 			if (!$user->save()) {
