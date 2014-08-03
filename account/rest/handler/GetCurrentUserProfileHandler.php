@@ -10,9 +10,11 @@ class GetCurrentUserProfileHandler extends UnauthorizedRequestHandler {
 		$user = new UserDao($validator->getUserId());
 
 		$response = $user->toArray();
+
 		$now = strtotime('now');
 		$last = strtotime($response['last_login']);
 		$response['last_login'] = $now - $last;
+
 		$response['status'] = 'success';
 
 		return $response;
