@@ -31,7 +31,6 @@ class UpdateCurrentUserProfileHandler extends UnauthorizedRequestHandler {
 		}
 
 		$response = array();
-		$response['status'] = 'success';
 
 		if ($updated) {
 			if (!$user->save()) {
@@ -42,7 +41,8 @@ class UpdateCurrentUserProfileHandler extends UnauthorizedRequestHandler {
 		}
 
 		if ($response['status']=='success') {
-			$response['user'] = $user->toArray();
+			$response = $user->toArray();
+			$response['status'] = 'success';
 		}
 
 		return $response;
