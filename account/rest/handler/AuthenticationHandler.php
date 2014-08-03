@@ -10,6 +10,8 @@ class AuthenticationHandler extends UnauthorizedRequestHandler {
 		}
 
 		$user = $validator->getUser();
+		$user->setLastLogin(date('Y-m-d H:i:s'));
+		$user->save();
 
 		$accessToken = new AccessTokenDao();
 		$accessToken->setUserId($user->getId());

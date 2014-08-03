@@ -40,6 +40,7 @@ class UserDao extends UserDaoGenerated {
 
 		$this->setSuperuser('N');
 		$this->setBlocked('N');
+		$this->setLastLogin(date('Y-m-d H:i:s'));
 	}
 
 	protected function isShardBaseObject() {
