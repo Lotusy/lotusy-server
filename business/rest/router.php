@@ -46,6 +46,7 @@ foreach ($services[$method] as $key=>$val) {
 			Logger::info('Request uri - "'.$_SERVER['REQUEST_URI']);
 			Logger::info('Request - '.Utility::getRawRequestData());
 			$response = $handler->execute($params);
+			header('Content-length: '.strlen($response));
 			Logger::info($response);
 			Logger::info(get_class($handler).' - end'.PHP_EOL);
 			if (!empty($response)) { echo $response; }

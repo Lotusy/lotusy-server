@@ -44,6 +44,7 @@ foreach ($services[$method] as $key=>$val) {
 			$handler = $services[$method][$key];
 			Logger::info(get_class($handler).' - start =============================');
 			$response = $handler->execute($params);
+			header('Content-length: '.strlen($response));
 			Logger::info($response);
 			Logger::info(get_class($handler).' - end'.PHP_EOL);
 			if (!empty($response)) { echo $response; }
