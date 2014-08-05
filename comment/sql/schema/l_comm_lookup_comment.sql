@@ -5,6 +5,7 @@ CREATE TABLE {$dbName}.lookup_user_collect
 	comment_id INT(10) UNSIGNED,
 	create_time DATETIME,
 
+	CONSTRAINT user_comment UNIQUE (user_id, comment_id),
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 

@@ -8,6 +8,7 @@ class QueryBuilder {
 	private $isInsert = false;
 	private $connection = null;
 	private $result = null;
+	private $errors = array();
 
 	public function __construct($object, $async=false) {
 		$this->object = $object;
@@ -148,15 +149,25 @@ class QueryBuilder {
 		if ($this->isInsert) {
 			if ($this->async) {
 				$this->result = $this->connection->query($this->query, MYSQLI_ASYNC);
+				if (!$this->result) {
+					$this->errors[$this->connection->errno] = $this->connection->error;
+					Logger::error($this->errors[$this->connection->errno]);
+				}
 			} else {
 				if ($this->connection->query($this->query)) {
 					$this->result = $this->connection->insert_id;
 				} else {
 					$this->result = -1;
+					$this->errors[$this->connection->errno] = $this->connection->error;
+					Logger::error($this->errors[$this->connection->errno]);
 				}
 			}
 		} else {
 			$this->result = $this->connection->query($this->query); 
+			if (!$this->result) {
+				$this->errors[$this->connection->errno] = $this->connection->error;
+				Logger::error($this->errors[$this->connection->errno]);
+			}
 		}
 
 		return $this->result;
@@ -190,6 +201,10 @@ class QueryBuilder {
 
 	public function getQuery() {
 		return $this->query;
+	}
+
+	public function getErrors() {
+		return $this->errors;
 	}
 
 // =========================================================================================== private
