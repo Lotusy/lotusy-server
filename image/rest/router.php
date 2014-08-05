@@ -43,6 +43,8 @@ foreach ($services[$method] as $key=>$val) {
 		if ($match) {
 			$handler = $services[$method][$key];
 			Logger::info(get_class($handler).' - start =============================');
+			Logger::info('Request uri - "'.$_SERVER['REQUEST_URI']);
+			Logger::info('Request body - '.Utility::getRawRequestData());
 			$response = $handler->execute($params);
 			header('Content-length: '.strlen($response));
 			Logger::info($response);
