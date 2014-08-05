@@ -8,8 +8,8 @@ CREATE TABLE {$dbName}.lookup_user_collect
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE INDEX {$dbName}_comment_user_user_id_index ON {$dbName}.lookup_user_collect (user_id);
-CREATE INDEX {$dbName}_comment_user_create_time_index ON {$dbName}.lookup_user_collect (create_time);
+CREATE INDEX {$dbName}_comment_user_user_id ON {$dbName}.lookup_user_collect (user_id);
+CREATE INDEX {$dbName}_comment_user_create_time ON {$dbName}.lookup_user_collect (create_time);
 
 
 CREATE TABLE {$dbName}.lookup_comment_user
