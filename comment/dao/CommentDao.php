@@ -39,6 +39,18 @@ class CommentDao extends CommentDaoGenerated {
 		return $comments;
 	}
 
+	public static function getCommentCollectionByUserId($userId, $start, $size) {
+		$commentIds = LookupUserCollectDao::getUserCollectionCommentIds($userId, $start, $size);
+
+		$comments = array();
+		foreach ($commentIds as $commentId) {
+			$comment = new CommentDao($commentId);
+			array_push($comments, $comment);
+		}
+
+		return $comments;
+	}
+
 	public function like() {
 		$builder = new QueryBuilder($this);
 		$set = array('like_count' => array('quote'=>false, 'value'=>'like_count+1'));

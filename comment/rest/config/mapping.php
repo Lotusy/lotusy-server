@@ -1,9 +1,9 @@
 <?php
 // comment end points
 //
-register('POST',   '/comment',            new CreateCommentHandler());
-register('GET',    '/comment/:commentid', new GetCommentInfoHandler());
-register('DELETE', '/comment/:commentid', new DeleteCommentHandler());
+register('POST',   '/comment',                    new CreateCommentHandler());
+register('GET',    '/comment/:commentid',         new GetCommentInfoHandler());
+register('DELETE', '/comment/:commentid',         new DeleteCommentHandler());
 
 
 // like end points
@@ -25,11 +25,13 @@ register('GET', '/location', new GetLocationCommentHandler());
 
 // user comment end points
 //
-register('GET', '/user/:userid/comments', new GetUserCommentHandler());
+register('GET',  '/user/:userid/comments',      new GetUserCommentHandler());
+register('POST', '/collect/comment/:commentid', new CollectCommentHandler());
+register('GET',  '/user/:userid/collect',       new GetUserCommentCollectionHandler());
 
 
 // business comment end points
 //
-register('GET', '/business/:businessid/comment/count', new GetBusinessCommentCountHandler());
-register('GET', '/business/:businessid/comments',      new GetBusinessCommentHandler());
+register('GET',  '/business/:businessid/comment/count', new GetBusinessCommentCountHandler());
+register('GET',  '/business/:businessid/comments',      new GetBusinessCommentHandler());
 ?>

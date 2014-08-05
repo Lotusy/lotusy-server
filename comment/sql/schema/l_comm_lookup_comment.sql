@@ -1,3 +1,17 @@
+CREATE TABLE {$dbName}.lookup_user_collect
+(
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	user_id INT(10) UNSIGNED,
+	comment_id INT(10) UNSIGNED,
+	create_time DATETIME,
+
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE INDEX {$dbName}_comment_user_user_id_index ON {$dbName}.lookup_user_collect (user_id);
+CREATE INDEX {$dbName}_comment_user_create_time_index ON {$dbName}.lookup_user_collect (create_time);
+
+
 CREATE TABLE {$dbName}.lookup_comment_user
 (
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
