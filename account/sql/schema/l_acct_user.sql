@@ -3,6 +3,8 @@ CREATE TABLE {$dbName}.user
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	external_type INT(2) UNSIGNED,
 	external_ref VARCHAR(16),
+	email VARCHAR(128),
+	password VARCHAR(41),
 	username VARCHAR(41),
 	nickname VARCHAR(41),
 	profile_pic VARCHAR(121),

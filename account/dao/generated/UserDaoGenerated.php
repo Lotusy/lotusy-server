@@ -5,6 +5,8 @@ abstract class UserDaoGenerated extends LotusyDaoBase {
         $this->var['id'] = '';
         $this->var['external_type'] = '';
         $this->var['external_ref'] = '';
+        $this->var['email'] = '';
+        $this->var['password'] = '';
         $this->var['username'] = '';
         $this->var['nickname'] = '';
         $this->var['profile_pic'] = '';
@@ -16,6 +18,8 @@ abstract class UserDaoGenerated extends LotusyDaoBase {
         $this->update['id'] = false;
         $this->update['external_type'] = false;
         $this->update['external_ref'] = false;
+        $this->update['email'] = false;
+        $this->update['password'] = false;
         $this->update['username'] = false;
         $this->update['nickname'] = false;
         $this->update['profile_pic'] = false;
@@ -43,6 +47,22 @@ abstract class UserDaoGenerated extends LotusyDaoBase {
     }
     public function getExternalRef() {
         return $this->var['external_ref'];
+    }
+
+    public function setEmail($email) {
+        $this->var['email'] = $email;
+        $this->update['email'] = true;
+    }
+    public function getEmail() {
+        return $this->var['email'];
+    }
+
+    public function setPassword($password) {
+        $this->var['password'] = $password;
+        $this->update['password'] = true;
+    }
+    public function getPassword() {
+        return $this->var['password'];
     }
 
     public function setUsername($username) {
