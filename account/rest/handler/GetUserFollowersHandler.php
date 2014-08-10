@@ -2,12 +2,15 @@
 class GetUserFollowersHandler extends UnauthorizedRequestHandler {
 
 	public function handle($params) {
-		$validator = new GetUserFollowersValidator($params);
+		$json = $_GET;
+		$json['userid'] = $params['userid'];
+
+		$validator = new GetUserFollowersValidator($json);
 		if (!$validator->validate()) {
 			return $validator->getMessage();
 		} 
 
-		$userIds = FollowerDao::getFollowerIds($params['userid']);
+		$userIds = FollowerDao::getFollowerIds($params['userid'], $json['start'], $json['size']);
 
 		$response = array();
 		$response['status'] = 'success';

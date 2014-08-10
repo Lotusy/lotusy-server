@@ -3,13 +3,14 @@ class FollowerDao extends FollowerDaoGenerated {
 
 // ========================================================================================== public
 
-	public static function getFollowerIds($userId) {
+	public static function getFollowerIds($userId, $start, $size) {
 		$follower = new FollowerDao();
 		$follower->setServerAddress($userId);
 
 		$builder = new QueryBuilder($follower);
 		$rows = $builder->select('follower_id')
 						->where('user_id', $userId)
+						->limit($start, $size)
 						->findList();
 
 		$ids = array();
