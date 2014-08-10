@@ -21,6 +21,18 @@ class FollowerDao extends FollowerDaoGenerated {
 		return $ids;
 	}
 
+	public static function getUserFollowerCount($user) {
+		$follower = new FollowerDao();
+		$follower->setServerAddress($userId);
+
+		$builder = new QueryBuilder($follower);
+		$res = $builder->select('COUNT(*) as count')
+					   ->where('user_id', $userId)
+					   ->find();
+
+		return $res['count'];
+	}
+
 
 // ======================================================================================== override
 

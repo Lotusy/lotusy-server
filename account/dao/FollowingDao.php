@@ -4,10 +4,10 @@ class FollowingDao extends FollowingDaoGenerated {
 // ========================================================================================== public
 
 	public static function getFollowingIds($userId, $start, $size) {
-		$follower = new FollowingDao();
-		$follower->setServerAddress($userId);
+		$following = new FollowingDao();
+		$following->setServerAddress($userId);
 
-		$builder = new QueryBuilder($follower);
+		$builder = new QueryBuilder($following);
 		$rows = $builder->select('following_id')
 						->where('user_id', $userId)
 						->limit($start, $size)
@@ -19,6 +19,18 @@ class FollowingDao extends FollowingDaoGenerated {
 		}
 
 		return $ids;
+	}
+
+	public static function getUserFollowingCount($user) {
+		$following = new FollowingDao();
+		$following->setServerAddress($userId);
+
+		$builder = new QueryBuilder($following);
+		$res = $builder->select('COUNT(*) as count')
+					   ->where('user_id', $userId)
+					   ->find();
+
+		return $res['count'];
 	}
 
 
