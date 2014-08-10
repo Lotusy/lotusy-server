@@ -11,6 +11,11 @@ class RatingDao extends RatingDaoGenerated {
 		$res = $builder->select('AVG(food) as food, AVG(serv) as serv, AVG(env) as env, AVG(overall) as overall')
 					   ->where('business_id', $businessId)
 					   ->find();
+	
+		if (empty($res['food'])) { $res['food'] = 0; }
+		if (empty($res['serv'])) { $res['serv'] = 0; }
+		if (empty($res['env'])) { $res['env'] = 0; }
+		if (empty($res['overall'])) { $res['overall'] = 0; }
 
 		return $res;
 	}
