@@ -21,7 +21,14 @@ class GetLocationBusinessHandler extends AuthorizedRequestHandler {
 		$response['businesses'] = array();
 		foreach ($ids as $id) {
 			$business = new BusinessDao($id['business_id']);
-			$businessArr = $business->toArray();
+			$businessArr = array();
+			$businessArr['id'] = $id['business_id'];
+			$businessArr['name_zh'] = $business->getNameZh();
+			$businessArr['name_tw'] = $business->getNameTw();
+			$businessArr['name_en'] = $business->getNameEn();
+			$businessArr['price'] = $business->getPrice();
+			$businessArr['cash_only'] = $business->getCashOnly();
+			$businessArr['image'] = $business->getImage();
 
 			$businessArr['distance'] = round($id['distance'], 1);
 
@@ -31,9 +38,6 @@ class GetLocationBusinessHandler extends AuthorizedRequestHandler {
 
 			$rating = RatingDao::getBusinessRating($id['business_id']);
 			$businessArr['rating'] = $rating;
-	
-			$ratingCount = RatingDao::getBusinessRatingCount($id['business_id']);
-			$businessArr['rating_count'] = (int)$ratingCount;
 
 			array_push($response['businesses'], $businessArr);
 		}
