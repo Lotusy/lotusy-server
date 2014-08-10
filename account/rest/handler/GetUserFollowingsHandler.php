@@ -18,14 +18,15 @@ class GetUserFollowingsHandler extends UnauthorizedRequestHandler {
 
 		foreach ($userIds as $userId) {
 			$user = new UserDao($userId);
+			if ($user->isFromDatabase()) {
+				$userArr = $user->toArray();
 
-			$userArr = $user->toArray();
+				$now = strtotime('now');
+				$last = strtotime($userArr['last_login']);
+				$userArr['last_login'] = $now - $last;
 
-			$now = strtotime('now');
-			$last = strtotime($userArr['last_login']);
-			$userArr['last_login'] = $now - $last;
-
-			array_push($response['users'], $userArr);
+				array_push($response['users'], $userArr);
+			}
 		}
 
 		return $response;
