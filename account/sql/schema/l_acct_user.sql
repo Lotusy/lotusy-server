@@ -23,4 +23,31 @@ CREATE INDEX {$dbName}_user_super_user ON {$dbName}.user (superuser(1));
 CREATE INDEX {$dbName}_user_blocked ON {$dbName}.user (blocked(1));
 
 
+CREATE TABLE {$dbName}.following
+(
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	user_id INT(10) UNSIGNED,
+	following_id INT(10) UNSIGNED,
+
+	CONSTRAINT user_following UNIQUE (user_id, following_id),
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE INDEX {$dbName}_following_user_id ON {$dbName}.following (user_id);
+
+
+CREATE TABLE {$dbName}.follower
+(
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	user_id INT(10) UNSIGNED,
+	follower_id INT(10) UNSIGNED,
+
+	CONSTRAINT user_follower UNIQUE (user_id, follower_id),
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE INDEX {$dbName}_follower_user_id ON {$dbName}.follower (user_id);
+
+
+
 GRANT ALL ON {$dbName}.* TO '{$uname}'@'%' IDENTIFIED BY '{$passwd}';
