@@ -19,11 +19,9 @@ class GetUserFollowingsHandler extends UnauthorizedRequestHandler {
 		foreach ($userIds as $userId) {
 			$user = new UserDao($userId);
 			if ($user->isFromDatabase()) {
-				$userArr = $user->toArray();
-
-				$now = strtotime('now');
-				$last = strtotime($userArr['last_login']);
-				$userArr['last_login'] = $now - $last;
+				$userArr = array();
+				$userArr['nickname'] = $user->getNickname();
+				$userArr['profile_pic'] = $user->getProfilePic();
 
 				array_push($response['users'], $userArr);
 			}
