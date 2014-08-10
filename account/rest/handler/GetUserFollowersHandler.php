@@ -20,6 +20,7 @@ class GetUserFollowersHandler extends UnauthorizedRequestHandler {
 			$user = new UserDao($userId);
 			if ($user->isFromDatabase()) {
 				$userArr = array();
+				$userArr['id'] = $userId;
 				$userArr['nickname'] = $user->getNickname();
 				$userArr['profile_pic'] = $user->getProfilePic();
 
