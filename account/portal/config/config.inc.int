@@ -14,20 +14,20 @@ $base_account_host = 'http://int.account.lotusy.com';
 //=======================================================================================
 // auto include directory information
 $autoload_dirs = array (
-'controller',
-'controller/account',
-'model',
-'../util', 
-'../dao',
-'../dao/generated',
-'../../core/dao',
-'../../core/dao/generated',
-'../../core/portal/controller',
-'../../core/portal/model',
-'../../core/util',
-'../../core/rest/handler',
-'../../core/rest/request',
-'../../core/rest/validator'
+'/opt/lotusy/account/current/util', 
+'/opt/lotusy/account/current/dao',
+'/opt/lotusy/account/current/dao/generated',
+'/opt/lotusy/account/current/portal/controller',
+'/opt/lotusy/account/current/portal/controller/account',
+'/opt/lotusy/account/current/portal/model',
+'/opt/lotusy/core/current/dao',
+'/opt/lotusy/core/current/dao/generated',
+'/opt/lotusy/core/current/portal/controller',
+'/opt/lotusy/core/current/portal/model',
+'/opt/lotusy/core/current/util',
+'/opt/lotusy/core/current/rest/handler',
+'/opt/lotusy/core/current/rest/request',
+'/opt/lotusy/core/current/rest/validator'
 );
 
 

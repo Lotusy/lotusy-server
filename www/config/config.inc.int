@@ -11,14 +11,14 @@ $base_image_host = 'http://int.image.lotusy.com/rest';
 //=======================================================================================
 // auto include directory information
 $autoload_dirs = array (
-'../utils', 
-'../request',
-'../../core/dao',
-'../../core/dao/generated',
-'../../core/util',
-'../../core/rest/handler',
-'../../core/rest/request',
-'../../core/rest/validator'
+'/opt/lotusy/www/current/utils', 
+'/opt/lotusy/www/current/dao',
+'/opt/lotusy/core/current/dao',
+'/opt/lotusy/core/current/dao/generated',
+'/opt/lotusy/core/current/util',
+'/opt/lotusy/core/current/rest/handler',
+'/opt/lotusy/core/current/rest/request',
+'/opt/lotusy/core/current/rest/validator'
 );
 
 

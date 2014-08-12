@@ -15,6 +15,7 @@ $base_account_host = 'http://account.lotusy.com';
 $autoload_dirs = array (
 '/opt/lotusy/business/current/util', 
 '/opt/lotusy/business/current/dao',
+'/opt/lotusy/business/current/dao/generated',
 '/opt/lotusy/core/current/dao',
 '/opt/lotusy/core/current/dao/generated',
 '/opt/lotusy/core/current/util',
