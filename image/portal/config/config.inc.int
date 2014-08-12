@@ -4,11 +4,11 @@ include '/opt/lotusy/core/dao/config/config.inc';
 
 $component_name = 'wo98i';
 
-$base_host = 'http://dev.image.lotusy.com';
+$base_host = 'http://int.image.lotusy.com';
 $base_uri = '/portal';
 
 $app_key = '78805A221A988E79EF3F42D7C5BFD418';
-$base_account_host = 'http://dev.account.lotusy.com';
+$base_account_host = 'http://int.account.lotusy.com';
 
 
 //=======================================================================================

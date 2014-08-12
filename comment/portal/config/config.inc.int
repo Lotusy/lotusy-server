@@ -4,11 +4,11 @@ include '/opt/lotusy/core/dao/config/config.inc';
 
 $component_name = 'r8et0';
 
-$base_host = 'http://dev.comment.lotusy.com';
+$base_host = 'http://int.comment.lotusy.com';
 $base_uri = '/portal';
 
 $app_key = '06D4CD63BDE972FC66A0AED41D2F5C51';
-$base_account_host = 'http://dev.account.lotusy.com';
+$base_account_host = 'http://int.account.lotusy.com';
 
 //=======================================================================================
 // auto include directory information

@@ -4,12 +4,12 @@ include '../../core/dao/config/config.inc';
 
 $component_name = 'comment';
 
-$base_host = 'https://dev.comment.lotusy.com';
+$base_host = 'https://int.comment.lotusy.com';
 $base_uri = '/rest';
 
 $app_key = '06D4CD63BDE972FC66A0AED41D2F5C51';
-$base_account_host = 'http://dev.account.lotusy.com';
-$base_image_host = 'http://dev.image.lotusy.com';
+$base_account_host = 'http://int.account.lotusy.com';
+$base_image_host = 'http://int.image.lotusy.com';
 
 //=======================================================================================
 // auto include directory information

@@ -4,11 +4,11 @@ include '../../core/dao/config/config.inc';
 
 $component_name = 'account';
 
-$base_host = 'http://dev.account.lotusy.com';
+$base_host = 'http://int.account.lotusy.com';
 $base_uri = '/rest';
 
 $app_key = 'E268443E43D93DAB7EBEF303BBE9642F';
-$base_account_host = 'http://dev.account.lotusy.com';
+$base_account_host = 'http://int.account.lotusy.com';
 
 //=======================================================================================
 // auto include directory information
