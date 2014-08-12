@@ -1,6 +1,6 @@
 <?php
-include '../dao/config/config.inc';
-include '../../core/dao/config/config.inc';
+include '/opt/lotusy/business/current/dao/config/config.inc';
+include '/opt/lotusy/core/current/dao/config/config.inc';
 
 $component_name = 'business';
 
