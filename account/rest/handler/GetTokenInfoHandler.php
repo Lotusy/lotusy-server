@@ -22,6 +22,7 @@ class GetTokenInfoHandler extends UnauthorizedRequestHandler {
 
 		$atReturn['status'] = 'success';
 		$atReturn['user_id'] = $token->getUserId();
+		$atReturn['access_token'] = $token->getAccessToken();
 		$atReturn['refresh_token'] = $token->getRefreshToken();
 		$atReturn['token_type'] = 'Bearer';
 		$atReturn['expires_in'] = $token->getExpiresTime() - time();
