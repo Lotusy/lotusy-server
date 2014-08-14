@@ -8,25 +8,23 @@ if (!isset($dbconfig)) {
 
 $dbconfig['l_imag_image'] =
 	array (
-		'total_shards' => 6,
+		'total_shards' => 10,
 		'shards_digit' => 10,
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.114' => array('min'=>0, 'max'=>1),
-			'192.168.0.115' => array('min'=>2, 'max'=>3),
-			'192.168.0.116' => array('min'=>4, 'max'=>5)
+			'127.0.0.1' => array('min'=>0, 'max'=>9)
 		) 
 	);
 
 $dbconfig['l_imag_lookup_image'] =
 	array (
-		'total_shards' => 1,
-		'shards_digit' => 1,
+		'total_shards' => 9,
+		'shards_digit' => 9,
 		'username' => 'lotusyuser',
 		'password' => 'password',
 		'server_list' => array (
-			'192.168.0.115' => array('min'=>0, 'max'=>0)
+			'127.0.0.1' => array('min'=>0, 'max'=>9)
 		) 
 	);
 
