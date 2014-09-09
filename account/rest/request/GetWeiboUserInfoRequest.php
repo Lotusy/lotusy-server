@@ -5,6 +5,7 @@ class GetWeiboUserInfoRequest extends RestRequest {
 	private $uid = '';
 
 	public function GetWeiboUserInfoRequest($token, $uid) {
+		parent::__construct();
 		$this->accessToken = $token;
 		$this->uid = $uid;
 	}
@@ -25,10 +26,10 @@ class GetWeiboUserInfoRequest extends RestRequest {
 			return $rv;
 		} else {
 			$rv['status'] = 'success';
-			$rv['username'] = $response['name'];
-			$rv['gender'] = $response['gender'];
-			$rv['nickname'] = $response['screen_name'];
-			$rv['profile_pic'] = $response['profile_image_url'];
+			$rv['username'] = $json['name'];
+			$rv['gender'] = $json['gender'];
+			$rv['nickname'] = $json['screen_name'];
+			$rv['profile_pic'] = $json['profile_image_url'];
 		}
 
 		return $rv;

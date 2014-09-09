@@ -4,6 +4,7 @@ class GetFacebookTokenInfoRequest extends RestRequest {
 	private $accessToken = '';
 
 	public function GetFacebookTokenInfoRequest($token) {
+		parent::__construct();
 		$this->accessToken = $token;
 	}
 
@@ -23,9 +24,9 @@ class GetFacebookTokenInfoRequest extends RestRequest {
 			return $rv;
 		} else {
 			$rv['status'] = 'success';
-			$rv['id'] = $response['id'];
-			$rv['username'] = $response['first_name'].' '.$response['last_name'];
-			$rv['gender'] = $response['gender'];
+			$rv['id'] = $json['id'];
+			$rv['username'] = $json['first_name'].' '.$json['last_name'];
+			$rv['gender'] = $json['gender'];
 			$rv['nickname'] = $rv['username'];
 			$rv['profile_pic'] = 'https://graph.facebook.com/'.$rv['id'].'/picture?width=300&height=300';
 		}

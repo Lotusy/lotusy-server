@@ -4,6 +4,7 @@ class GetWeiboTokenInfoRequest extends RestRequest {
 	private $accessToken = '';
 
 	public function GetWeiboTokenInfoRequest($token) {
+		parent::__construct();
 		$this->accessToken = $token;
 	}
 
@@ -22,7 +23,7 @@ class GetWeiboTokenInfoRequest extends RestRequest {
 			$rv['status'] = 'error';
 			return $rv;
 		} else {
-			$rv['id'] = $response['id'];
+			$rv['id'] = $json['id'];
 
 			$userId = LookupUserExternalDao::getUniqueUserIdFromExternalRef(UserDao::$TYPEARRAYREV[2], $rv['id']);
 			if ($userId == -1) {
