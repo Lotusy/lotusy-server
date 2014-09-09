@@ -27,6 +27,29 @@ class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 		return $atReturn;
 	}
 
+	public static function getUniqueUserIdFromExternalRef($externalType, $externalRef) {
+		if (!isset(UserDao::$TYPEARRAY[$externalType])) {
+			return array();
+		}
+
+		$type = UserDao::$TYPEARRAY[$externalType];
+
+		$lookup = new LookupUserExternalDao();
+		$lookup->setServerAddress( Utility::hashString($externalType.$externalRef) );
+
+		$builder = new QueryBuilder($lookup);
+		$res = $builder->select('user_id')
+					   ->where('reference', $externalRef)
+					   ->where('type', $type)
+					   ->find();
+
+		if (isset($res) && $res) {
+			return $res['user_id'];
+		}
+
+		return -1;
+	}
+
 	public function isExternalRefExist($externalType, $externalRef) {
 		if (!isset(UserDao::$TYPEARRAY[$externalType])) {
 			return false;

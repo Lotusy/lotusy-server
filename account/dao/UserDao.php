@@ -3,12 +3,12 @@ class UserDao extends UserDaoGenerated {
 
 	public static $TYPEARRAY = array(
 		'facebook' => 1,
-		'wechat' => 2
+		'weibo' => 2
 	);
 
 	public static $TYPEARRAYREV = array(
 		1 => 'facebook',
-		2 => 'wechat'
+		2 => 'weibo'
 	);
 
 // ========================================================================================== public
