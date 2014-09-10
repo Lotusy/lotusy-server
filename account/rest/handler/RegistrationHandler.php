@@ -11,7 +11,8 @@ class RegistrationHandler extends UnauthorizedRequestHandler {
 		}
 
 		$account = new UserDao();
-		$account->setExternalType(UserDao::$TYPEARRAY[$params['type']]);
+		$type = UserDao::$TYPEARRAY[$params['type']];
+		$account->setExternalType($type);
 		$account->setExternalRef($json['id']);
 		$account->setUsername($json['username']);
 		$account->setNickname($json['nickname']);

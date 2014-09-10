@@ -11,7 +11,7 @@ class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 		$type = UserDao::$TYPEARRAY[$externalType];
 
 		$lookup = new LookupUserExternalDao();
-		$lookup->setServerAddress( Utility::hashString($externalType.$externalRef) );
+		$lookup->setServerAddress( Utility::hashString($type.$externalRef) );
 
 		$builder = new QueryBuilder($lookup);
 		$rows = $builder->select('user_id')
@@ -29,13 +29,13 @@ class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 
 	public static function getUniqueUserIdFromExternalRef($externalType, $externalRef) {
 		if (!isset(UserDao::$TYPEARRAY[$externalType])) {
-			return array();
+			return 0;
 		}
 
 		$type = UserDao::$TYPEARRAY[$externalType];
 
 		$lookup = new LookupUserExternalDao();
-		$lookup->setServerAddress( Utility::hashString($externalType.$externalRef) );
+		$lookup->setServerAddress( Utility::hashString($type.$externalRef) );
 
 		$builder = new QueryBuilder($lookup);
 		$res = $builder->select('user_id')
@@ -47,7 +47,7 @@ class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 			return $res['user_id'];
 		}
 
-		return -1;
+		return 0;
 	}
 
 	public function isExternalRefExist($externalType, $externalRef) {
@@ -57,7 +57,7 @@ class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 
 		$type = UserDao::$TYPEARRAY[$externalType];
 
-		$this->setServerAddress( Utility::hashString($externalType.$externalRef) );
+		$this->setServerAddress( Utility::hashString($type.$externalRef) );
 
 		$builder = new QueryBuilder($this);
 		$res = $builder->select('COUNT(*) as count')

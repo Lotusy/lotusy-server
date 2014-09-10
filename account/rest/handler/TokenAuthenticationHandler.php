@@ -21,7 +21,9 @@ class TokenAuthenticationHandler extends UnauthorizedRequestHandler {
 
 		if ($info['status']=='success') {
 			$userId = LookupUserExternalDao::getUniqueUserIdFromExternalRef($params['type'], $info['id']);
-			if ($userId == -1) {
+			if ($userId>0) {
+				$user = new UserDao($userId);
+			} else {
 				$type = UserDao::$TYPEARRAY[$params['type']];
 
 				$user = new UserDao();
@@ -31,8 +33,6 @@ class TokenAuthenticationHandler extends UnauthorizedRequestHandler {
 				$user->setUsername($info['username']);
 				$user->setProfilePic($info['profile_pic']);
 				$user->save();
-			} else {
-				$user = new UserDao($info['id']);
 			}
 
 			$accessToken = new AccessTokenDao();

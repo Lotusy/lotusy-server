@@ -14,11 +14,11 @@ class UserDao extends UserDaoGenerated {
 // ========================================================================================== public
 
 	public static function getUserDaoByExternalRef($externalType, $externalRef) {
-		$userIds = LookupUserExternalDao::getUserIdsFromExternalRef($externalType, $externalRef);
+		$userId = LookupUserExternalDao::getUniqueUserIdFromExternalRef($externalType, $externalRef);
 
 		$user = null;
-		if (sizeof($userIds)==1) {
-			$user = new UserDao($userIds[0]);
+		if ($userId>0) {
+			$user = new UserDao($userId);
 		}
 
 		return $user;
