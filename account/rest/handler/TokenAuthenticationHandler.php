@@ -31,6 +31,7 @@ class TokenAuthenticationHandler extends UnauthorizedRequestHandler {
 				$user->setExternalRef($info['id']);
 				$user->setNickname($info['nickname']);
 				$user->setUsername($info['username']);
+				$user->setGender($info['gender']);
 				$user->setProfilePic($info['profile_pic']);
 				$user->save();
 			}

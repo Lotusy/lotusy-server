@@ -7,6 +7,7 @@ CREATE TABLE {$dbName}.user
 	password VARCHAR(41),
 	username VARCHAR(41),
 	nickname VARCHAR(41),
+	gender VARCHAR(1),
 	profile_pic VARCHAR(121),
 	description VARCHAR(256),
 	last_login DATETIME,

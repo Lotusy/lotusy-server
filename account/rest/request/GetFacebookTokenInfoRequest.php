@@ -26,7 +26,7 @@ class GetFacebookTokenInfoRequest extends RestRequest {
 			$rv['status'] = 'success';
 			$rv['id'] = $json['id'];
 			$rv['username'] = $json['first_name'].' '.$json['last_name'];
-			$rv['gender'] = $json['gender'];
+			$rv['gender'] = strtoupper($json['gender']);
 			$rv['nickname'] = $rv['username'];
 			$rv['profile_pic'] = 'https://graph.facebook.com/'.$rv['id'].'/picture?width=300&height=300';
 		}

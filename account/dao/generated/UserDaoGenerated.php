@@ -9,6 +9,7 @@ abstract class UserDaoGenerated extends LotusyDaoBase {
         $this->var['password'] = '';
         $this->var['username'] = '';
         $this->var['nickname'] = '';
+        $this->var['gender'] = '';
         $this->var['profile_pic'] = '';
         $this->var['description'] = '';
         $this->var['last_login'] = '';
@@ -22,6 +23,7 @@ abstract class UserDaoGenerated extends LotusyDaoBase {
         $this->update['password'] = false;
         $this->update['username'] = false;
         $this->update['nickname'] = false;
+        $this->update['gender'] = false;
         $this->update['profile_pic'] = false;
         $this->update['description'] = false;
         $this->update['last_login'] = false;
@@ -79,6 +81,14 @@ abstract class UserDaoGenerated extends LotusyDaoBase {
     }
     public function getNickname() {
         return $this->var['nickname'];
+    }
+
+    public function setGender($gender) {
+        $this->var['gender'] = $gender;
+        $this->update['gender'] = true;
+    }
+    public function getGender() {
+        return $this->var['gender'];
     }
 
     public function setProfilePic($profilePic) {

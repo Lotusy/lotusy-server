@@ -23,15 +23,15 @@ class GetWeiboTokenInfoRequest extends RestRequest {
 			$rv['status'] = 'error';
 			return $rv;
 		} else {
-			$rv['id'] = $json['id'];
+			$rv['id'] = $json['uid'];
 
 			$userId = LookupUserExternalDao::getUniqueUserIdFromExternalRef(UserDao::$TYPEARRAYREV[2], $rv['id']);
-			if ($userId == -1) {
+			if ($userId>0) {
+				$rv['status'] = 'success';
+			} else {
 				$request = new GetWeiboUserInfoRequest($this->accessToken, $rv['id']);
 				$response = $request->execute();
 				$rv = array_merge($rv, $response);
-			} else {
-				$rv['status'] = 'success';
 			}
 		}
 

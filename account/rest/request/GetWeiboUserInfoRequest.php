@@ -27,7 +27,7 @@ class GetWeiboUserInfoRequest extends RestRequest {
 		} else {
 			$rv['status'] = 'success';
 			$rv['username'] = $json['name'];
-			$rv['gender'] = $json['gender'];
+			$rv['gender'] = strtoupper($json['gender']);
 			$rv['nickname'] = $json['screen_name'];
 			$rv['profile_pic'] = $json['profile_image_url'];
 		}
