@@ -2,7 +2,7 @@ CREATE TABLE {$dbName}.user
 (
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	external_type INT(2) UNSIGNED,
-	external_ref VARCHAR(16),
+	external_ref VARCHAR(33),
 	email VARCHAR(128),
 	password VARCHAR(41),
 	username VARCHAR(41),
@@ -15,12 +15,6 @@ CREATE TABLE {$dbName}.user
 
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
-CREATE INDEX {$dbName}_user_external_type ON {$dbName}.user (external_type);
-CREATE INDEX {$dbName}_user_external_ref ON {$dbName}.user (external_ref(15));
-CREATE INDEX {$dbName}_user_nickname ON {$dbName}.user (nickname(40));
-CREATE INDEX {$dbName}_user_super_user ON {$dbName}.user (superuser(1));
-CREATE INDEX {$dbName}_user_blocked ON {$dbName}.user (blocked(1));
 
 
 CREATE TABLE {$dbName}.following
