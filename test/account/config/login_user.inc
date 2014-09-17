@@ -14,7 +14,7 @@ $testCases = array(
 
 $inputs = array(
 	0 => array(
-		'type' => 'wechat',
+		'type' => 'facebook',
 		'external_ref' => '140480004078'
 	)
 );

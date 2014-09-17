@@ -14,7 +14,7 @@ $testCases = array(
 
 $inputs = array(
 	0 => array(
-		'type' => 'wechat',
+		'type' => 'facebook',
 		'external_ref' => rand(1, 9).time().rand(100, 999),
 		'username' => 'John Bob',
 		'nickname' => 'jbob',

@@ -22,7 +22,7 @@ $testCases = array(
 
 $inputs = array(
 	0 => array(
-		'type' => 'wechat',
+		'type' => 'facebook',
 		'external_ref' => time().rand(10, 99),
 		'username' => 'John Bob',
 		'nickname' => 'jbob',

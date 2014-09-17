@@ -1,6 +1,8 @@
 CREATE TABLE {$dbName}.business
 (
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	external_id VARCHAR(16),
+	external_type SMALLINT,
 	user_id INT(10) UNSIGNED,
 	name_zh VARCHAR(61),
 	name_tw VARCHAR(61),
@@ -24,12 +26,6 @@ CREATE TABLE {$dbName}.business
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE INDEX {$dbName}_business_name_zh_index ON {$dbName}.business (name_zh(60));
-CREATE INDEX {$dbName}_business_name_tw_index ON {$dbName}.business (name_tw(60));
-CREATE INDEX {$dbName}_business_name_en_index ON {$dbName}.business (name_en(60));
-CREATE INDEX {$dbName}_business_user_id_index ON {$dbName}.business (user_id);
-CREATE INDEX {$dbName}_business_lat_index ON {$dbName}.business (lat);
-CREATE INDEX {$dbName}_business_lng_index ON {$dbName}.business (lng);
 
 CREATE TABLE {$dbName}.rating
 (

@@ -1,0 +1,17 @@
+<?php
+class CreateExternalBusinessValidator extends Validator {
+
+	public function validate() {
+		$json = $this->getObjectToBeValidated();
+
+		$valid = $this->nonEmpty($json, 'missing request body');
+
+		if ($valid) {
+			$indexes = array('external_id', 'external_type', 'name', 'lat', 'lng');
+			$valid = $this->nonEmptyArrayIndex($indexes, $json);
+		}
+
+		return $valid;
+	}
+}
+?>

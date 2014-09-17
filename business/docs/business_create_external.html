@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="docs.css" media="all" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="title">Create Business</div><br>
+<span class="title">Description</span>
+<div class="sep"></div>
+Creates a business, if the user is a superuser, business is immidiately seachable; otherwise, it will be reviewd.
+<br><br><br>
+<span class="title">Method</span>
+<div class="sep"></div>
+POST
+<br><br><br>
+<span class="title">URL</span>
+<div class="sep"></div>
+/business/external
+<br><br><br>
+<span class="title">Header</span>
+<div class="sep"></div>
+<table cellspacing="1">
+<thead><tr><th class="hfirst">Name</th><th class="second">Value</th></tr></thead>
+<tbody><tr><td class="hfirst">Content-Type</td><td>application/json</td></tr>
+<tr><td class="hfirst">app-key</td><td>{your_unique_application_key}</td></tr>
+<tr><td class="hfirst">Authorization</td><td>Bearer {access_token}</td></tr>
+</tbody></table>
+<br><br><br>
+<span class="title">Request Body</span>
+<div class="sep"></div>
+<div class="tab0">{</div>
+<div class="tab1">"external_id":"1587120370123",</div>
+<div class="tab1">"external_type":1,</div>
+<div class="tab1">"lat":49.249232,</div>
+<div class="tab1">"lng":-123.101069,</div>
+<div class="tab1">"name":"No. 1 Beef Noodel",</div>
+<div class="tab0">}</div>
+<br><br><br>
+<span class="title">Response</span>
+<div class="sep"></div>
+<table cellspacing="1">
+<thead><tr><th class="hfirst">Case</th><th class="second">Body</th></tr></thead>
+<tbody><tr><td class="hfirst">SUCCESS</td><td>
+200 OK<br><br>
+<div class="tab0">{</div>
+<div class="tab1">"status":"success",</div>
+<div class="tab1">"id":15123151,</div>
+<div class="tab1">"external_id":"1587120370123",</div>
+<div class="tab1">"external_type":1,</div>
+<div class="tab1">"lat":49.249232,</div>
+<div class="tab1">"lng":-123.101069,</div>
+<div class="tab1">"name_zh":"",</div>
+<div class="tab1">"name_tw":"",</div>
+<div class="tab1">"name_en":"No. 1 Beef Noodel",</div>
+<div class="tab1">"street":"",</div>
+<div class="tab1">"city":"",</div>
+<div class="tab1">"state":"",</div>
+<div class="tab1">"country":"",</div>
+<div class="tab1">"zip":"",</div>
+<div class="tab1">"price":"",</div>
+<div class="tab1">"hours":null,</div>
+<div class="tab1">"cash_only":"",</div>
+<div class="tab1">"verified":"N",</div>
+<div class="tab1">"tel":"",</div>
+<div class="tab1">"website":"",</div>
+<div class="tab1">"social":""</div>
+<div class="tab0">}</div>
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"missing request body"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"missing_access_token"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"invalid_token_type"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"invalid_access_token"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"access_token_expired"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+401 Unauthorized<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"unauthorized_request"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+500 Internal Server Error<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"internal_server_error"</div>
+}
+</td></tr>
+</tbody></table>
+<br><br>
+</body>
+</html>

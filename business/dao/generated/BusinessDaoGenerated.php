@@ -3,6 +3,8 @@ abstract class BusinessDaoGenerated extends LotusyDaoBase {
 
     protected function init() {
         $this->var['id'] = '';
+        $this->var['external_id'] = '';
+        $this->var['external_type'] = '';
         $this->var['user_id'] = '';
         $this->var['name_zh'] = '';
         $this->var['name_tw'] = '';
@@ -24,6 +26,8 @@ abstract class BusinessDaoGenerated extends LotusyDaoBase {
         $this->var['social'] = '';
 
         $this->update['id'] = false;
+        $this->update['external_id'] = false;
+        $this->update['external_type'] = false;
         $this->update['user_id'] = false;
         $this->update['name_zh'] = false;
         $this->update['name_tw'] = false;
@@ -47,6 +51,22 @@ abstract class BusinessDaoGenerated extends LotusyDaoBase {
 
     public function getId() {
         return $this->var['id'];
+    }
+
+    public function setExternalId($externalId) {
+        $this->var['external_id'] = $externalId;
+        $this->update['external_id'] = true;
+    }
+    public function getExternalId() {
+        return $this->var['external_id'];
+    }
+
+    public function setExternalType($externalType) {
+        $this->var['external_type'] = $externalType;
+        $this->update['external_type'] = true;
+    }
+    public function getExternalType() {
+        return $this->var['external_type'];
     }
 
     public function setUserId($userId) {
