@@ -9,8 +9,8 @@ class DishDao extends DishDaoGenerated {
 
 		$builder = new QueryBuilder($dish);
 		$rows = $builder->select('*')
-					   ->where('business_id', $businessId)
-					   ->find();
+					    ->where('business_id', $businessId)
+					    ->findList();
 
 		return self::makeObjectsFromSelectListResult($rows, 'DishDao');
 	}

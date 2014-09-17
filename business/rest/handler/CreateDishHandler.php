@@ -1,5 +1,5 @@
 <?php
-class CreateBusinessHandler extends AuthorizedRequestHandler {
+class CreateDishHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
 		$json = Utility::getJsonRequestData();
@@ -15,11 +15,11 @@ class CreateBusinessHandler extends AuthorizedRequestHandler {
 
 		$dish = new DishDao();
 		$dish->setBusinessId($json['business_id']);
-		$dish->setNameEn($json['name_en']);
-		$dish->setNameZh($json['name_zh']);
-		$dish->setNameTw($json['name_tw']);
+		$dish->setNameEn(isset($json['name_en']) ? $json['name_en'] : '');
+		$dish->setNameTw(isset($json['name_tw']) ? $json['name_tw'] : '');
+		$dish->setNameZh(isset($json['name_zh']) ? $json['name_zh'] : '');
 		$dish->setUserId($this->getUserId());
-		$business->setVerified($verified);
+		$dish->setVerified($verified);
 
 		$atReturn = array();
 		if ($dish->save()) {

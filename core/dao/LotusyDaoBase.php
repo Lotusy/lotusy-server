@@ -213,7 +213,6 @@ abstract class LotusyDaoBase {
 				unset($array[$key]);
 			}
 		}
-
 		return $array;
 	}
 

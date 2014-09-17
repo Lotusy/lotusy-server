@@ -9,7 +9,7 @@ class GetBusinessDishesHandler extends UnauthorizedRequestHandler {
 		$response['status'] = 'success';
 		$response['dishes'] = array();
 		foreach ($dishes as $dish) {
-			$dishArr = $dish->toArray('create_time');
+			$dishArr = $dish->toArray(array('create_time'));
 			$dishArr['image'] = $base_image_host.'/rest/dish/'.$dishArr['id'].'/default';
 			array_push($response['dishes'], $dishArr);
 		}
