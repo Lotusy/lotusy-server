@@ -1,7 +1,7 @@
 CREATE TABLE {$dbName}.business
 (
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-	external_id VARCHAR(16),
+	external_id VARCHAR(20),
 	external_type SMALLINT,
 	user_id INT(10) UNSIGNED,
 	name_zh VARCHAR(61),

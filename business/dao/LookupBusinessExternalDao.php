@@ -1,22 +1,28 @@
 <?php
-class LookupBusinessEnNameDao extends LookupBusinessEnNameDaoGenerated {
+class LookupBusinessExternalDao extends LookupBusinessExternalDaoGenerated {
 
 // =========================================================================================================== public
 
-	public static function isEnNameExist($name) {
+	public static function externalIdExist($externalId, $externalType) {
 		$lookup = new LookupBusinessLocationDao();
-		$lookup->setServerAddress(Utility::hashString($name));
+		$lookup->setServerAddress($externalId);
 
 		$builder = new QueryBuilder($lookup);
-		$res = $builder->select('COUNT(*) as count')->where('en_name', $name)->find();
+		$rows = $builder->select('external_type')->where('external_id', $externalId)->findList();
 
-		return $res['count']>0;
+		foreach ($rows as $row) {
+			if ($row['external_type']==$externalType) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = Utility::hashString($this->getEnName());
+		$sequence = $this->getExternalId();
 		$this->setShardId($sequence);
 	}
 

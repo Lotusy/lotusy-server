@@ -67,4 +67,17 @@ CREATE INDEX {$dbName}_business_location_business_id_index ON {$dbName}.lookup_b
 CREATE INDEX {$dbName}_business_location_verified_index ON {$dbName}.lookup_business_location (verified(1));
 
 
+CREATE TABLE {$dbName}.lookup_business_external
+(
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	business_id INT(10) UNSIGNED,
+	external_id VARCHAR(21),
+	external_type SMALLINT,
+
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE INDEX {$dbName}_lookup_business_external_id ON {$dbName}.lookup_business_external (external_id(20));
+
+
 GRANT ALL ON {$dbName}.* TO '{$uname}'@'%' IDENTIFIED BY '{$passwd}';

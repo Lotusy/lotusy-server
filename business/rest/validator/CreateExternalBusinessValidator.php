@@ -11,6 +11,14 @@ class CreateExternalBusinessValidator extends Validator {
 			$valid = $this->nonEmptyArrayIndex($indexes, $json);
 		}
 
+		if ($valid) {
+			$valid = LookupBusinessExternalDao::externalIdExist($json['external_id'], $json['external_type']);
+			if (!$valid) {
+				header('HTTP/1.0 409 Conflict');
+				$this->setErrorMessage('external_business_already_exist');
+			}
+		}
+
 		return $valid;
 	}
 }
