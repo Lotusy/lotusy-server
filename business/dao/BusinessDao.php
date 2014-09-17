@@ -83,6 +83,15 @@ class BusinessDao extends BusinessDaoGenerated {
 			$lookup->setBusinessId($this->getId());
 			$lookup->save();
 		}
+
+		$externalId = $this->getExternalId();
+		if (!empty($externalId)) {
+			$lookup = new LookupBusinessExternalDao();
+			$lookup->setBusinessId($this->getId());
+			$lookup->setExternalId($externalId);
+			$lookup->setExternalType($this->getExternalType());
+			$lookup->save();
+		}
 	}
 
 	public function toArray() {
