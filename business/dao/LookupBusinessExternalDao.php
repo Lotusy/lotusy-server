@@ -3,7 +3,7 @@ class LookupBusinessExternalDao extends LookupBusinessExternalDaoGenerated {
 
 // =========================================================================================================== public
 
-	public static function externalIdExist($externalId, $externalType) {
+	public static function isExternalIdExist($externalId, $externalType) {
 		$lookup = new LookupBusinessLocationDao();
 		$lookup->setServerAddress($externalId);
 
