@@ -1,26 +1,26 @@
 <?php
-class LookupCommentImageDao extends LookupCommentImageDaoGenerated {
+class LookupDishImageDao extends LookupDishImageDaoGenerated {
 
 //========================================================================================== public
 
-	public static function getLookupDaosByCommentId($commentId) {
-		$comment = new LookupCommentImageDao();
-		$comment->setServerAddress($commentId);
+	public static function getLookupDaosByDishId($dishId) {
+		$lookup = new LookupDishImageDao();
+		$lookup->setServerAddress($dishId);
 
-		$builder = new QueryBuilder($comment);
+		$builder = new QueryBuilder($lookup);
 		$rows = $builder->select('*')
-						->where('comment_id', $commentId)
+						->where('dish_id', $dishId)
 						->findList();
 
 		return $comment->makeObjectsFromSelectListResult($rows, 'LookupCommentImageDao');
 	}
 
-	public static function isCommentImageExist($commentId, $imageId) {
-		$lookup = new LookupCommentImageDao();
-		$lookup->setServerAddress($commentId);
+	public static function isDishImageExist($dishId, $imageId) {
+		$lookup = new LookupDishImageDao();
+		$lookup->setServerAddress($dishId);
 
 		$builder = new QueryBuilder($lookup);
-		$res = $builder->select('COUNT(*) as count')->where('comment_id', $commentId)->find();
+		$res = $builder->select('COUNT(*) as count')->where('dish_id', $dishId)->find();
 
 		return $res['count']>0;
 	}
@@ -28,7 +28,7 @@ class LookupCommentImageDao extends LookupCommentImageDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = $this->getCommentId();
+		$sequence = $this->getDishId();
 		$this->setShardId($sequence);
 
 		$date = date('Y-m-d H:i:s');

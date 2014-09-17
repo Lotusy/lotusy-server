@@ -16,6 +16,16 @@ class LookupBusinessImageDao extends LookupBusinessImageDaoGenerated {
 		return self::makeObjectsFromSelectListResult($rows, 'LookupBusinessImageDao');
 	}
 
+	public static function isBusinessImageExist($businessId, $imageId) {
+		$lookup = new LookupBusinessImageDao();
+		$lookup->setServerAddress($businessId);
+
+		$builder = new QueryBuilder($lookup);
+		$res = $builder->select('COUNT(*) as count')->where('business_id', $businessId)->find();
+
+		return $res['count']>0;
+	}
+
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {

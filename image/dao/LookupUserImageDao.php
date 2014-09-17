@@ -1,6 +1,11 @@
 <?php
 class LookupUserImageDao extends LookupUserImageDaoGenerated {
 
+	const TYPE_COMMENT = 1;
+	const TYPE_TROPHY = 2;
+	const TYPE_CHALLENGE = 3;
+	const TYPE_LEARNING = 4;
+
 //========================================================================================== public
 
 	public static function getLookupDaosByUserId($userId, $start, $size) {
@@ -14,6 +19,16 @@ class LookupUserImageDao extends LookupUserImageDaoGenerated {
 						->findList();
 
 		return $user->makeObjectsFromSelectListResult($rows, 'LookupUserImageDao');
+	}
+
+	public static function isUserImageExist($userId, $imageId) {
+		$lookup = new LookupUserImageDao();
+		$lookup->setServerAddress($userId);
+
+		$builder = new QueryBuilder($lookup);
+		$res = $builder->select('COUNT(*) as count')->where('user_id', $userId)->find();
+
+		return $res['count']>0;
 	}
 
 // ============================================ override functions ==================================================

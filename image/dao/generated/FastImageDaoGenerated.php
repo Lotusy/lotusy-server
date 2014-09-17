@@ -1,15 +1,13 @@
 <?php
-abstract class CommentImageDaoGenerated extends LotusyDaoBase {
+abstract class FastImageDaoGenerated extends LotusyDaoBase {
 
     protected function init() {
         $this->var['id'] = '';
-        $this->var['comment_id'] = '';
         $this->var['name'] = '';
         $this->var['path'] = '';
         $this->var['create_time'] = '';
 
         $this->update['id'] = false;
-        $this->update['comment_id'] = false;
         $this->update['name'] = false;
         $this->update['path'] = false;
         $this->update['create_time'] = false;
@@ -17,14 +15,6 @@ abstract class CommentImageDaoGenerated extends LotusyDaoBase {
 
     public function getId() {
         return $this->var['id'];
-    }
-
-    public function setCommentId($commentId) {
-        $this->var['comment_id'] = $commentId;
-        $this->update['comment_id'] = true;
-    }
-    public function getCommentId() {
-        return $this->var['comment_id'];
     }
 
     public function setName($name) {
@@ -54,7 +44,7 @@ abstract class CommentImageDaoGenerated extends LotusyDaoBase {
 // ======================================================================================== override
 
     public function getTableName() {
-        return 'comment_image';
+        return 'fast_image';
     }
 
     protected function getIdColumnName() {

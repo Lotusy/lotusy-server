@@ -1,5 +1,5 @@
 <?php
-class PostCommentImageHandler extends AuthorizedRequestHandler {
+class PostDishImageHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
 		global $comment_image_dir;
@@ -10,7 +10,7 @@ class PostCommentImageHandler extends AuthorizedRequestHandler {
 
 		$this->saveFile($comment_image_dir, $fileName);
 		$imageId = $this->saveFastImageDao($comment_image_dir, $fileName);
-		$this->saveLookupDaos($userId, $params['commentid'], $imageId);
+		$this->saveLookupDaos($userId, $params['dishid'], $imageId);
 
 		$atReturn['status'] = 'success';
 		$atReturn['image_id'] = $imageId;
@@ -33,16 +33,16 @@ class PostCommentImageHandler extends AuthorizedRequestHandler {
 		return $commentImage->getId();
 	}
 
-	private function saveLookupDaos($userId, $commentId, $imageId) {
-		$lookupComment = new LookupCommentImageDao();
+	private function saveLookupDaos($userId, $dishId, $imageId) {
+		$lookupComment = new LookupDishImageDao();
 		$lookupComment->setFastId($imageId);
-		$lookupComment->setCommentId($commentId);
+		$lookupComment->setDishId($dishId);
 		$lookupComment->save();
 
 		$lookupUser = new LookupUserImageDao();
 		$lookupUser->setFastId($imageId);
 		$lookupUser->setUserId($userId);
-		$lookupUser->setType(LookupUserImageDao::TYPE_COMMENT);
+		$lookupUser->setType(LookupUserImageDao::TYPE_TROPHY);
 		$lookupUser->save();
 	}
 }

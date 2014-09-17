@@ -1,5 +1,5 @@
 <?php
-class GetBusinessCommentImageLinksHandler extends AuthorizedRequestHandler {
+class GetBusinessFastImageLinksHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
 		global $base_host, $base_uri;
@@ -10,7 +10,7 @@ class GetBusinessCommentImageLinksHandler extends AuthorizedRequestHandler {
 
 		$links = array();
 		foreach ($lookupDaos as $lookupDao) {
-			$link = $base_host.$base_uri.'/display/comment/'.$lookupDao->getImageId();
+			$link = $base_host.$base_uri.'/display/business/'.$params['businessid'].'/fast/'.$lookupDao->getImageId();
 			array_push($links, $link);
 		}
 

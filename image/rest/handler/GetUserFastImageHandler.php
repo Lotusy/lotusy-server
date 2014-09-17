@@ -1,8 +1,8 @@
 <?php
-class GetCommentImageHandler extends UnauthorizedRequestHandler {
+class GetUserFastImageHandler extends UnauthorizedRequestHandler {
 
 	public function handle($params) {
-		if (LookupCommentImageDao::isCommentImageExist($params['dishid'], $params['imageid'])) {
+		if (LookupUserImageDao::isUserImageExist($params['dishid'], $params['imageid'])) {
 			$fastImage = new FastImageDao($params['imageid']);
 	
 			if (!$fastImage->isFromDatabase()) {

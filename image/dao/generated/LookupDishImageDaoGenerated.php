@@ -1,15 +1,15 @@
 <?php
-abstract class LookupBusinessImageDaoGenerated extends LotusyDaoBase {
+abstract class LookupDishImageDaoGenerated extends LotusyDaoBase {
 
     protected function init() {
         $this->var['id'] = '';
         $this->var['fast_id'] = '';
-        $this->var['business_id'] = '';
+        $this->var['dish_id'] = '';
         $this->var['create_time'] = '';
 
         $this->update['id'] = false;
         $this->update['fast_id'] = false;
-        $this->update['business_id'] = false;
+        $this->update['dish_id'] = false;
         $this->update['create_time'] = false;
     }
 
@@ -25,12 +25,12 @@ abstract class LookupBusinessImageDaoGenerated extends LotusyDaoBase {
         return $this->var['fast_id'];
     }
 
-    public function setBusinessId($businessId) {
-        $this->var['business_id'] = $businessId;
-        $this->update['business_id'] = true;
+    public function setDishId($dishId) {
+        $this->var['dish_id'] = $dishId;
+        $this->update['dish_id'] = true;
     }
-    public function getBusinessId() {
-        return $this->var['business_id'];
+    public function getDishId() {
+        return $this->var['dish_id'];
     }
 
     public function setCreateTime($createTime) {
@@ -44,7 +44,7 @@ abstract class LookupBusinessImageDaoGenerated extends LotusyDaoBase {
 // ======================================================================================== override
 
     public function getTableName() {
-        return 'lookup_business_image';
+        return 'lookup_dish_image';
     }
 
     protected function getIdColumnName() {

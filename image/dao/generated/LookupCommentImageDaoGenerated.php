@@ -3,12 +3,12 @@ abstract class LookupCommentImageDaoGenerated extends LotusyDaoBase {
 
     protected function init() {
         $this->var['id'] = '';
-        $this->var['image_id'] = '';
+        $this->var['fast_id'] = '';
         $this->var['comment_id'] = '';
         $this->var['create_time'] = '';
 
         $this->update['id'] = false;
-        $this->update['image_id'] = false;
+        $this->update['fast_id'] = false;
         $this->update['comment_id'] = false;
         $this->update['create_time'] = false;
     }
@@ -17,12 +17,12 @@ abstract class LookupCommentImageDaoGenerated extends LotusyDaoBase {
         return $this->var['id'];
     }
 
-    public function setImageId($imageId) {
-        $this->var['image_id'] = $imageId;
-        $this->update['image_id'] = true;
+    public function setFastId($fastId) {
+        $this->var['fast_id'] = $fastId;
+        $this->update['fast_id'] = true;
     }
-    public function getImageId() {
-        return $this->var['image_id'];
+    public function getFastId() {
+        return $this->var['fast_id'];
     }
 
     public function setCommentId($commentId) {
