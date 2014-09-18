@@ -12,8 +12,9 @@ class CreateCommentHandler extends AuthorizedRequestHandler {
 		$json['user_id'] = $this->getUserId();
 
 		$comment = new CommentDao();
-        $comment->setBusinessId($json['business_id']);
-        $comment->setUserId($json['user_id']);
+        $comment->setBusinessId(!empty($json['business_id']) ? $json['business_id'] : '');
+        $comment->setDishId(!empty($json['dish_id']) ? $json['dish_id'] : '');
+        $comment->setUserId($this->getUserId());
         $comment->setLat($json['lat']);
         $comment->setLng($json['lng']);
         $comment->setMessage($json['message']);

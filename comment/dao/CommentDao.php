@@ -39,6 +39,18 @@ class CommentDao extends CommentDaoGenerated {
 		return $comments;
 	}
 
+	public static function getCommentsByDishId($dishId, $start, $size) {
+		$commentIds = LookupCommentDishDao::getCommentIdsByDishId($dishId, $start, $size);
+
+		$comments = array();
+		foreach ($commentIds as $commentId) {
+			$comment = new CommentDao($commentId);
+			array_push($comments, $comment);
+		}
+
+		return $comments;
+	}
+
 	public static function getCommentCollectionByUserId($userId, $start, $size) {
 		$commentIds = LookupUserCollectDao::getUserCollectionCommentIds($userId, $start, $size);
 
@@ -97,10 +109,21 @@ class CommentDao extends CommentDaoGenerated {
 		$lookup->setCommentId($this->getId());
 		$lookup->save();
 
-		$lookup = new LookupCommentBusinessDao();
-		$lookup->setBusinessId($this->getBusinessId());
-		$lookup->setCommentId($this->getId());
-		$lookup->save();
+		$business_id = $this->getBusinessId();
+		if (!empty($business_id)) {
+			$lookup = new LookupCommentBusinessDao();
+			$lookup->setBusinessId($business_id);
+			$lookup->setCommentId($this->getId());
+			$lookup->save();
+		}
+
+		$dish_id = $this->getDishId();
+		if (!empty($business_id)) {
+			$lookup = new LookupCommentDishDao();
+			$lookup->setDishId($dish_id);
+			$lookup->setCommentId($this->getId());
+			$lookup->save();
+		}
 
 		$this->setLikeCount(0);
 		$this->setDislikeCount(0);

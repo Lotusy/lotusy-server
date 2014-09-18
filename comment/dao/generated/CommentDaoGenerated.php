@@ -5,6 +5,7 @@ abstract class CommentDaoGenerated extends LotusyDaoBase {
         $this->var['id'] = '';
         $this->var['business_id'] = '';
         $this->var['user_id'] = '';
+        $this->var['dish_id'] = '';
         $this->var['lat'] = '';
         $this->var['lng'] = '';
         $this->var['message'] = '';
@@ -16,6 +17,7 @@ abstract class CommentDaoGenerated extends LotusyDaoBase {
         $this->update['id'] = false;
         $this->update['business_id'] = false;
         $this->update['user_id'] = false;
+        $this->update['dish_id'] = false;
         $this->update['lat'] = false;
         $this->update['lng'] = false;
         $this->update['message'] = false;
@@ -43,6 +45,14 @@ abstract class CommentDaoGenerated extends LotusyDaoBase {
     }
     public function getUserId() {
         return $this->var['user_id'];
+    }
+
+    public function setDishId($dishId) {
+        $this->var['dish_id'] = $dishId;
+        $this->update['dish_id'] = true;
+    }
+    public function getDishId() {
+        return $this->var['dish_id'];
     }
 
     public function setLat($lat) {

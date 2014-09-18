@@ -3,6 +3,7 @@ CREATE TABLE {$dbName}.comment
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	business_id INT(10) UNSIGNED,
 	user_id INT(10) UNSIGNED,
+	dish_id INT(10) UNSIGNED,
 	lat DOUBLE,
 	lng DOUBLE,
 	message VARCHAR(513),
@@ -13,12 +14,6 @@ CREATE TABLE {$dbName}.comment
 
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
-CREATE INDEX {$dbName}_comment_business_id_index ON {$dbName}.comment (business_id);
-CREATE INDEX {$dbName}_comment_user_id_index ON {$dbName}.comment (user_id);
-CREATE INDEX {$dbName}_comment_lat_index ON {$dbName}.comment (lat);
-CREATE INDEX {$dbName}_comment_lng_index ON {$dbName}.comment (lng);
-CREATE INDEX {$dbName}_comment_is_deleted_index ON {$dbName}.comment (is_deleted(1));
 
 
 CREATE TABLE {$dbName}.reply
