@@ -118,7 +118,7 @@ class CommentDao extends CommentDaoGenerated {
 		}
 
 		$dish_id = $this->getDishId();
-		if (!empty($business_id)) {
+		if (!empty($dish_id)) {
 			$lookup = new LookupCommentDishDao();
 			$lookup->setDishId($dish_id);
 			$lookup->setCommentId($this->getId());
