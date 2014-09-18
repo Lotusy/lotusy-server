@@ -1,5 +1,5 @@
 <?php
-class GetBusinessCommentImageHandler extends UnauthorizedRequestHandler {
+class GetBusinessFastImageHandler extends UnauthorizedRequestHandler {
 
 	public function handle($params) {
 		if (LookupBusinessImageDao::isBusinessImageExist($params['businessid'], $params['imageid'])) {

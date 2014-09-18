@@ -24,7 +24,7 @@ register('POST', '/user',                               new PutUserImageHandler(
 
 // business end points
 //
-register('GET',  '/display/business/:businessid/fast/:imageid', new GetBusinessCommentImageHandler());
+register('GET',  '/display/business/:businessid/fast/:imageid', new GetBusinessFastImageHandler());
 register('GET',  '/display/business/:businessid',               new GetBusinessProfileImageHandler());
 register('GET',  '/business/:businessid/links',                 new GetBusinessFastImageLinksHandler());
 register('POST', '/business/:businessid',                       new PutBusinessImageHandler());
