@@ -1,6 +1,16 @@
 <?php
 class BusinessDao extends BusinessDaoGenerated {
 
+	public static $TYPEARRAY = array(
+		'yelp' => 1,
+		'dianping' => 2
+	);
+
+	public static $TYPEARRAYREV = array(
+		1 => 'yelp',
+		2 => 'dianping'
+	);
+
 // =========================================================================================================== public
 
 	public static function getBusinessIdsByName($name, $field) {

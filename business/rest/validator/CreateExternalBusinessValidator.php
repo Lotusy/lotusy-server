@@ -12,6 +12,14 @@ class CreateExternalBusinessValidator extends Validator {
 		}
 
 		if ($valid) {
+			$valid = isset(BusinessDao::$TYPEARRAY[$json['external_type']]);
+			if (!$valid) {
+				header('HTTP/1.0 400 Bad Request');
+				$this->setErrorMessage('invalid_external_type'); 
+			}
+		}
+
+		if ($valid) {
 			$valid = !LookupBusinessExternalDao::isExternalIdExist($json['external_id'], $json['external_type']);
 			if (!$valid) {
 				header('HTTP/1.0 409 Conflict');

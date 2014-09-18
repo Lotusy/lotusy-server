@@ -13,9 +13,11 @@ class CreateExternalBusinessHandler extends AuthorizedRequestHandler {
 
 		$verified = ($profile['status']=='success') ? $profile['superuser'] : 'N';
 
+		$type = BusinessDao::$TYPEARRAY[$json['external_type']];
+
 		$business = new BusinessDao();
 		$business->setExternalId($json['external_id']);
-		$business->setExternalType($json['external_type']);
+		$business->setExternalType($type);
 		$business->setLat($json['lat']);
 		$business->setLng($json['lng']);
 		$business->setNameEn($json['name']);
