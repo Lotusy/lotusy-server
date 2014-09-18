@@ -1,5 +1,5 @@
 <?php
-class GetBusinessCommentValidator extends Validator {
+class GetDishCommentValidator extends Validator {
 
 	public function validate() {
 		$json = $this->getObjectToBeValidated();
