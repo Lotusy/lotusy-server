@@ -1,16 +1,15 @@
 <?php
+register('POST', '/dish/:dishid/comment/:commentid', new PostCommentDishImageHandler());
+
 // comment end points
 //
 register('GET',  '/display/comment/:commentid/:imageid', new GetCommentImageHandler());
-register('POST', '/comment/:commentid',                  new PostCommentImageHandler());
 register('GET',  '/comment/:commentid/links',            new GetCommentImageLinksHandler());
 register('GET',  '/comments/:commentids/links',          new GetCommentsImageLinksHandler());
 
 // dish end points
 //
 register('GET',  '/display/dish/:dishid/:imageid',	 new GetDishImageHandler());
-register('POST', '/dish/:dishid',                    new PostDishImageHandler());
-register('POST', '/dish/:dishid/comment/:commentid', new PostCommentDishImageHandler());
 register('GET',  '/dish/:dishid/links',              new GetDishImageLinksHandler());
 
 // user end points

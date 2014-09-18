@@ -34,15 +34,19 @@ class PostCommentDishImageHandler extends AuthorizedRequestHandler {
 	}
 
 	private function saveLookupDaos($userId, $commentId, $dishId, $imageId) {
-		$lookupComment = new LookupDishImageDao();
-		$lookupComment->setFastId($imageId);
-		$lookupComment->setDishId($dishId);
-		$lookupComment->save();
+		if ($dishId>0) {
+			$lookupComment = new LookupDishImageDao();
+			$lookupComment->setFastId($imageId);
+			$lookupComment->setDishId($dishId);
+			$lookupComment->save();
+		}
 
-		$lookupComment = new LookupCommentImageDao();
-		$lookupComment->setFastId($imageId);
-		$lookupComment->setCommentId($commentId);
-		$lookupComment->save();
+		if ($commentId>0) {
+			$lookupComment = new LookupCommentImageDao();
+			$lookupComment->setFastId($imageId);
+			$lookupComment->setCommentId($commentId);
+			$lookupComment->save();
+		}
 
 		$lookupUser = new LookupUserImageDao();
 		$lookupUser->setFastId($imageId);
