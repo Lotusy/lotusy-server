@@ -12,7 +12,7 @@ class GetCommentsImageLinksHandler extends AuthorizedRequestHandler {
 
 			$commentLinks = array();
 			foreach ($lookupDaos as $lookupDao) {
-				$commentLink = $base_host.$base_uri.'/display/comment/'.$params['commentid'].'/'.$lookupDao->getImageId();
+				$commentLink = $base_host.$base_uri.'/display/comment/'.$params['commentid'].'/'.$lookupDao->getFastId();
 				array_push($commentLinks, $commentLink);
 			}
 

@@ -10,7 +10,7 @@ class GetBusinessFastImageLinksHandler extends AuthorizedRequestHandler {
 
 		$links = array();
 		foreach ($lookupDaos as $lookupDao) {
-			$link = $base_host.$base_uri.'/display/business/'.$params['businessid'].'/fast/'.$lookupDao->getImageId();
+			$link = $base_host.$base_uri.'/display/business/'.$params['businessid'].'/fast/'.$lookupDao->getFastId();
 			array_push($links, $link);
 		}
 

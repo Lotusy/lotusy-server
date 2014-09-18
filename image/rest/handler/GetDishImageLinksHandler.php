@@ -8,7 +8,7 @@ class GetDishImageLinksHandler extends AuthorizedRequestHandler {
 
 		$links = array();
 		foreach ($lookupDaos as $lookupDao) {
-			$link = $base_host.$base_uri.'/display/dish/'.$params['dishid'].'/'.$lookupDao->getImageId();
+			$link = $base_host.$base_uri.'/display/dish/'.$params['dishid'].'/'.$lookupDao->getFastId();
 			array_push($links, $link);
 		}
 
