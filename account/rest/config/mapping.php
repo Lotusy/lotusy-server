@@ -11,7 +11,7 @@ register('GET',  '/tokeninfo',        new GetTokenInfoHandler());
 //
 register('GET',  '/profile',            new GetCurrentUserProfileHandler());
 register('GET',  '/:userid/profile',    new GetUserProfileHandler());
-register('PUT',  '/profile',            new UpdateCurrentUserProfileHandler());
+register('POST', '/profile',            new UpdateCurrentUserProfileHandler());
 register('POST', '/follow/:userid',     new FollowUserHandler());
 register('GET',  '/:userid/followers',  new GetUserFollowersHandler());
 register('GET',  '/:userid/followings', new GetUserFollowingsHandler());
