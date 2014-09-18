@@ -12,7 +12,7 @@ class LookupDishImageDao extends LookupDishImageDaoGenerated {
 						->where('dish_id', $dishId)
 						->findList();
 
-		return $comment->makeObjectsFromSelectListResult($rows, 'LookupCommentImageDao');
+		return $lookup->makeObjectsFromSelectListResult($rows, 'LookupCommentImageDao');
 	}
 
 	public static function isDishImageExist($dishId, $imageId) {
