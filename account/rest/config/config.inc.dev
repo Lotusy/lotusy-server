@@ -9,6 +9,7 @@ $base_uri = '/rest';
 
 $app_key = 'E268443E43D93DAB7EBEF303BBE9642F';
 $base_account_host = 'http://local.account.lotusy.com';
+$base_business_host = 'http://local.business.lotusy.com';
 
 //=======================================================================================
 // auto include directory information

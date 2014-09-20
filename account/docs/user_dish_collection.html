@@ -5,10 +5,10 @@
 <link href="docs.css" media="all" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div id="title">Get Dishes based on dish ids</div><br>
+<div id="title">Get user collected Dishes</div><br>
 <span class="title">Description</span>
 <div class="sep"></div>
-Get dishes by ids
+Get user collected Dishes
 <br><br><br>
 <span class="title">Method</span>
 <div class="sep"></div>
@@ -16,7 +16,7 @@ GET
 <br><br><br>
 <span class="title">URL</span>
 <div class="sep"></div>
-/dishes/{dishids} (e.g. /dishes/1,2,51,23)
+/{userid}/dishes
 <br><br><br>
 <span class="title">Header</span>
 <div class="sep"></div>
@@ -27,7 +27,6 @@ GET
 </tbody></table>
 <br><br><br>
 <span class="title">Request Body</span>
-<div class="sep"></div>
 NONE
 <br><br><br>
 <span class="title">Response</span>
@@ -102,6 +101,13 @@ NONE
 {<br>
 <div class="tab1">"status":"error",</div>
 <div class="tab1">"description":"unauthorized_request"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+500 Internal Server Error<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"internal_server_error"</div>
 }
 </td></tr>
 </tbody></table>

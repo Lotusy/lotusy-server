@@ -2,6 +2,7 @@
 class GetUserDishCollectionValidator extends AccessTokenValidator {
 
 	public function validate() {
+		$json = $this->getObjectToBeValidated();
 		$valid = $this->nonEmpty($json, 'missing request body');
 
 		if ($valid) {
