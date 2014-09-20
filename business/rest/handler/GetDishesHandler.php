@@ -1,17 +1,15 @@
 <?php
-class GetBusinessDishesHandler extends UnauthorizedRequestHandler {
+class GetDishesHandler extends UnauthorizedRequestHandler {
 
 	public function handle($params) {
 		global $base_image_host;
 
-		$json = $_GET;
-
-		$validator = new GetBusinessDishesValidator($json);
+		$validator = new GetDishesValidator($params);
 		if (!$validator->validate()) {
 			return $validator->getMessage();
 		}
 
-		$dishes = DishDao::getBusinessDishes($params['businessid'], $json['start'], $json['size']);
+		$dishes = DishDao::getDishes($validator->getDishIds());
 
 		$response = array();
 		$response['status'] = 'success';

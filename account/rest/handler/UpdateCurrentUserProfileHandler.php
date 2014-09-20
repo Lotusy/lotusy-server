@@ -1,5 +1,5 @@
 <?php
-class UpdateCurrentUserProfileHandler extends AuthorizedRequestHandler {
+class UpdateCurrentUserProfileHandler extends UnauthorizedRequestHandler {
 
 	public function handle($params) {
 		$json = Utility::getJsonRequestData();

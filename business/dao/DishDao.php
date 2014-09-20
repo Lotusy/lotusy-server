@@ -3,30 +3,39 @@ class DishDao extends DishDaoGenerated {
 
 // =========================================================================================================== public
 
-	public static function getBusinessDishes($businessId) {
-		$dish = new DishDao();
-		$dish->setServerAddress($businessId);
+	public static function getDishes($dishIds) {
+		$dishes = array();
+		foreach ($dishIds as $dishId) {
+			$dish = new DishDao($dishId);
+			array_push($dishes, $dish);
+		}
 
-		$builder = new QueryBuilder($dish);
-		$rows = $builder->select('*')
-					    ->where('business_id', $businessId)
-					    ->findList();
+		return $dishes;
+	}
 
-		return self::makeObjectsFromSelectListResult($rows, 'DishDao');
+	public static function getBusinessDishes($businessId, $start, $size) {
+		$dishIds = LookupDishBusinessDao::getBusinessDishes($businessId, $start, $size);
+
+		$dishes = array();
+		foreach ($dishIds as $dishId) {
+			$dish = new DishDao($dishId);
+			array_push($dishes, $dish);
+		}
+
+		return $dishes;
 	}
 
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = $this->getBusinessId();
-		$this->setShardId($sequence);
-
-		$date = date('Y-m-d H:i:s');
-		$this->setCreateTime($date);
+		$lookup = new LookupDishBusinessDao();
+		$lookup->setDishId($this->getId());
+		$lookup->setBusinessId($this->getBusinessId());
+		$lookup->save();
 	}
 
 	protected function isShardBaseObject() {
-		return false;
+		return true;
 	}
 }
 ?>

@@ -15,4 +15,9 @@ register('POST', '/profile',            new UpdateCurrentUserProfileHandler());
 register('POST', '/follow/:userid',     new FollowUserHandler());
 register('GET',  '/:userid/followers',  new GetUserFollowersHandler());
 register('GET',  '/:userid/followings', new GetUserFollowingsHandler());
+
+// dish collection end points
+//
+register('POST', '/dish/:dishid/collect', new CollectDishHandler());
+register('GET',  '/:userid/dishes',       new GetUserDishCollectionHandler());
 ?>

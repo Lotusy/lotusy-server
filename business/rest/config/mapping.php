@@ -18,4 +18,5 @@ register('GET',  '/business/:businessid/user/:userid/rating', new GetBusinessUse
 //
 register('POST', '/:businessid/dish',   new CreateDishHandler());
 register('GET',  '/:businessid/dishes', new GetBusinessDishesHandler());
+register('GET',  '/dishes/:dishids',    new GetDishesHandler());
 ?>

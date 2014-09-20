@@ -92,7 +92,7 @@ abstract class DishDaoGenerated extends LotusyDaoBase {
     }
 
     public function getShardDomain() {
-        return 'l_busi_business';
+        return 'l_busi_dish';
     }
 }
 ?>
