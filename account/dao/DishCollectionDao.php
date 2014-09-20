@@ -20,6 +20,18 @@ class DishCollectionDao extends DishCollectionDaoGenerated {
 		return $ids;
 	}
 
+	public static function getDishCount($userId) {
+		$dishCollection = new DishCollectionDao();
+		$dishCollection->setServerAddress($userId);
+
+		$builder = new QueryBuilder($dishCollection);
+		$res = $builder->select('COUNT(*) as count')
+					   ->where('user_id', $userId)
+					   ->find();
+
+		return $res['count'];
+	}
+
 // ======================================================================================== override
 
 	protected function beforeInsert() {
