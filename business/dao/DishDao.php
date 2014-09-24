@@ -25,6 +25,32 @@ class DishDao extends DishDaoGenerated {
 		return $dishes;
 	}
 
+	public function like($increment=true) {
+		$sign = $increment ? '+' : '-';
+		$builder = new QueryBuilder($this);
+		$set = array('like_count' => array('quote'=>false, 'value'=>'like_count'.$sign.'1'));
+		$res = $builder->update($set)->where('id', $this->getId())->query();
+
+		if ($res) {
+			$this->setLikeCount($this->getLikeCount()+1);
+		}
+
+		return $res;
+	}
+
+	public function dislike($increment=true) {
+		$sign = $increment ? '+' : '-';
+		$builder = new QueryBuilder($this);
+		$set = array('dislike_count' => array('quote'=>false, 'value'=>'dislike_count'.$sign.'1'));
+		$res = $builder->update($set)->where('id', $this->getId())->query();
+
+		if ($res) {
+			$this->setDislikeCount($this->getDislikeCount()+1);
+		}
+
+		return $res;
+	}
+
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
@@ -32,6 +58,9 @@ class DishDao extends DishDaoGenerated {
 		$lookup->setDishId($this->getId());
 		$lookup->setBusinessId($this->getBusinessId());
 		$lookup->save();
+
+		$this->setLikeCount(0);
+		$this->setDislikeCount(0);
 	}
 
 	protected function isShardBaseObject() {

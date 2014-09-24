@@ -8,6 +8,11 @@ class LookupBusinessUserDao extends LookupBusinessUserDaoGenerated {
 		$this->setShardId($sequence);
 	}
 
+	protected function beforeUpdate() {
+		$sequence = $this->getUserId();
+		$this->setServerAddress($sequence);
+	}
+
 	protected function isShardBaseObject() {
 		return false;
 	}

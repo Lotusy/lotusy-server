@@ -1,27 +1,30 @@
 <?php
-class LookupBusinessEnNameDao extends LookupBusinessEnNameDaoGenerated {
+class LookupDishLikeUserDao extends LookupDishLikeUserDaoGenerated {
 
 // =========================================================================================================== public
 
-	public static function isEnNameExist($name) {
-		$lookup = new LookupBusinessLocationDao();
-		$lookup->setServerAddress(Utility::hashString($name));
+	public static function getUserResponseOnDish($userId, $dishId) {
+		$lookup = new LookupDishLikeUserDao();
+		$lookup->setServerAddress($userId);
 
 		$builder = new QueryBuilder($lookup);
-		$res = $builder->select('COUNT(*) as count')->where('en_name', $name)->find();
+		$res = $builder->select('*')
+					   ->where('user_id', $userId)
+					   ->where('dish_id', $dishId)
+					   ->find();
 
-		return $res['count']>0;
+		return self::makeObjectFromSelectResult($res, 'LookupDishLikeUserDao');
 	}
 
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = Utility::hashString($this->getEnName());
+		$sequence = $this->getUserId();
 		$this->setShardId($sequence);
 	}
 
 	protected function beforeUpdate() {
-		$sequence = Utility::hashString($this->getEnName());
+		$sequence = $this->getUserId();
 		$this->setServerAddress($sequence);
 	}
 

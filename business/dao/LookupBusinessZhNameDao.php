@@ -8,6 +8,11 @@ class LookupBusinessZhNameDao extends LookupBusinessZhNameDaoGenerated {
 		$this->setShardId($sequence);
 	}
 
+	protected function beforeUpdate() {
+		$sequence = Utility::hashString($this->getZhName());
+		$this->setServerAddress($sequence);
+	}
+
 	protected function isShardBaseObject() {
 		return false;
 	}

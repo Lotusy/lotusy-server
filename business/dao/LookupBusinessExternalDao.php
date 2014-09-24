@@ -26,6 +26,11 @@ class LookupBusinessExternalDao extends LookupBusinessExternalDaoGenerated {
 		$this->setShardId($sequence);
 	}
 
+	protected function beforeUpdate() {
+		$sequence = $this->getExternalId();
+		$this->setServerAddress($sequence);
+	}
+
 	protected function isShardBaseObject() {
 		return false;
 	}

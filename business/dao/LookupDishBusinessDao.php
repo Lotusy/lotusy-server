@@ -28,6 +28,11 @@ class LookupDishBusinessDao extends LookupDishBusinessDaoGenerated {
 		$this->setShardId($sequence);
 	}
 
+	protected function beforeUpdate() {
+		$sequence = $this->getBusinessId();
+		$this->setServerAddress($sequence);
+	}
+
 	protected function isShardBaseObject() {
 		return false;
 	}

@@ -7,6 +7,8 @@ CREATE TABLE {$dbName}.dish
 	name_tw VARCHAR(32),
 	name_en VARCHAR(32),
 	verified VARCHAR(1),
+	like_count INT(10) UNSIGNED,
+	dislike_count INT(10) UNSIGNED,
 	create_time DATETIME,
 
 	PRIMARY KEY (id)

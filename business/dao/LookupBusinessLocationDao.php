@@ -41,6 +41,11 @@ class LookupBusinessLocationDao extends LookupBusinessLocationDaoGenerated {
 		$this->setShardId($sequence);
 	}
 
+	protected function beforeUpdate() {
+		$sequence = Utility::hashLatLng($this->getLat(), $this->getLng());
+		$this->setServerAddress($sequence);
+	}
+
 	protected function isShardBaseObject() {
 		return false;
 	}

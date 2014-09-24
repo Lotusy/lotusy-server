@@ -8,6 +8,11 @@ class LookupBusinessTwNameDao extends LookupBusinessTwNameDaoGenerated {
 		$this->setShardId($sequence);
 	}
 
+	protected function beforeUpdate() {
+		$sequence = Utility::hashString($this->getTwName());
+		$this->setServerAddress($sequence);
+	}
+
 	protected function isShardBaseObject() {
 		return false;
 	}

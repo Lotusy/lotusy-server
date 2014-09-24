@@ -9,6 +9,8 @@ abstract class DishDaoGenerated extends LotusyDaoBase {
         $this->var['name_tw'] = '';
         $this->var['name_en'] = '';
         $this->var['verified'] = '';
+        $this->var['like_count'] = '';
+        $this->var['dislike_count'] = '';
         $this->var['create_time'] = '';
 
         $this->update['id'] = false;
@@ -18,6 +20,8 @@ abstract class DishDaoGenerated extends LotusyDaoBase {
         $this->update['name_tw'] = false;
         $this->update['name_en'] = false;
         $this->update['verified'] = false;
+        $this->update['like_count'] = false;
+        $this->update['dislike_count'] = false;
         $this->update['create_time'] = false;
     }
 
@@ -71,6 +75,22 @@ abstract class DishDaoGenerated extends LotusyDaoBase {
     }
     public function getVerified() {
         return $this->var['verified'];
+    }
+
+    public function setLikeCount($likeCount) {
+        $this->var['like_count'] = $likeCount;
+        $this->update['like_count'] = true;
+    }
+    public function getLikeCount() {
+        return $this->var['like_count'];
+    }
+
+    public function setDislikeCount($dislikeCount) {
+        $this->var['dislike_count'] = $dislikeCount;
+        $this->update['dislike_count'] = true;
+    }
+    public function getDislikeCount() {
+        return $this->var['dislike_count'];
     }
 
     public function setCreateTime($createTime) {
