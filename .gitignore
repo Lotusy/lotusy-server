@@ -13,3 +13,8 @@ image/dao/config/config.inc
 image/portal/config/config.inc
 image/rest/config/config.inc
 www/config/config.inc
+core/dao/config/config.inc
+account/logs/
+business/logs/
+comment/logs/
+image/logs/

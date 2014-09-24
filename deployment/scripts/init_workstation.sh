@@ -1,4 +1,6 @@
-cd ../../account/dao/config/
+cd ../../core/dao/config/
+ln -s config.inc.dev config.inc
+cd ../../../account/dao/config/
 ln -s config.inc.dev config.inc
 cd ../../rest/config/
 ln -s config.inc.dev config.inc
