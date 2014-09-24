@@ -1,3 +1,5 @@
+.buildpath
+.settings/
 account/dao/config/config.inc
 account/portal/config/config.inc
 account/rest/config/config.inc
