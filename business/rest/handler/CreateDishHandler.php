@@ -14,7 +14,7 @@ class CreateDishHandler extends AuthorizedRequestHandler {
 		$verified = ($profile['status']=='success') ? $profile['superuser'] : 'N';
 
 		$dish = new DishDao();
-		$dish->setBusinessId($json['business_id']);
+		$dish->setBusinessId($params['businessid']);
 		$dish->setNameEn(isset($json['name_en']) ? $json['name_en'] : '');
 		$dish->setNameTw(isset($json['name_tw']) ? $json['name_tw'] : '');
 		$dish->setNameZh(isset($json['name_zh']) ? $json['name_zh'] : '');
