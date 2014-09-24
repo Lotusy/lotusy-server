@@ -7,11 +7,6 @@ class CreateDishValidator extends Validator {
 		$valid = $this->nonEmpty($json, 'missing request body');
 
 		if ($valid) {
-			$indexes = array('business_id');
-			$valid = $this->nonEmptyArrayIndex($indexes, $json);
-		}
-
-		if ($valid) {
 			$valid = (!empty($json['name_zh']) || !empty($json['name_tw']) || !empty($json['name_en']));
 			if (!$valid) {
 				header('HTTP/1.0 400 Bad Request');
