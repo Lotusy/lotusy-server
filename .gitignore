@@ -1,0 +1,13 @@
+account/dao/config/config.inc
+account/portal/config/config.inc
+account/rest/config/config.inc
+business/dao/config/config.inc
+business/portal/config/config.inc
+business/rest/config/config.inc
+comment/dao/config/config.inc
+comment/portal/config/config.inc
+comment/rest/config/config.inc
+image/dao/config/config.inc
+image/portal/config/config.inc
+image/rest/config/config.inc
+www/config/config.inc
