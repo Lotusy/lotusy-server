@@ -44,6 +44,7 @@ class GetFollowingRecentDishesHandler extends UnauthorizedRequestHandler {
 			$activity = array();
 			$activity['user'] = $users[$userDish['user_id']];
 			$activity['dish'] = $dishes[$userDish['dish_id']];
+			$activity['type'] = ($userDish['list']==LookupUserDishDao::LIST_COLLECTION) ? 'collection' : 'hitlist';
 
 			$request = new GetUserDishCommentRequest($userDish['user_id'], $userDish['dish_id']);
 			$commentResponse = $request->execute();

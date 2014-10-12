@@ -43,6 +43,7 @@ CREATE TABLE {$dbName}.lookup_user_dish
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	user_id INT(10) UNSIGNED,
 	dish_id INT(10) UNSIGNED,
+	list VARCHAR(1),
 	create_time DATETIME,
 
 	PRIMARY KEY (id)

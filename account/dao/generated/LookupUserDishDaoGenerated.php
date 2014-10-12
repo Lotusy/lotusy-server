@@ -6,11 +6,13 @@ abstract class LookupUserDishDaoGenerated extends LotusyDaoBase {
         $this->var['user_id'] = '';
         $this->var['dish_id'] = '';
         $this->var['create_time'] = '';
+        $this->var['list'] = '';
 
         $this->update['id'] = false;
         $this->update['user_id'] = false;
         $this->update['dish_id'] = false;
         $this->update['create_time'] = false;
+        $this->update['list'] = false;
     }
 
     public function getId() {
@@ -39,6 +41,14 @@ abstract class LookupUserDishDaoGenerated extends LotusyDaoBase {
     }
     public function getCreateTime() {
         return $this->var['create_time'];
+    }
+
+    public function setList($list) {
+        $this->var['list'] = $list;
+        $this->update['list'] = true;
+    }
+    public function getList() {
+        return $this->var['list'];
     }
 
 // ======================================================================================== override

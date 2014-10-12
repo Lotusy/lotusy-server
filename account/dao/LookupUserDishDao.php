@@ -1,6 +1,9 @@
 <?php
 class LookupUserDishDao extends LookupUserDishDaoGenerated {
 
+	const LIST_COLLECTION = '0';
+	const LIST_HITLIST = '1';
+
 // ========================================================================================== public
 
 	public static function getUsersRecentDishes($userIds, $start, $size) {
@@ -18,7 +21,7 @@ class LookupUserDishDao extends LookupUserDishDaoGenerated {
 		$atReturn['dish_ids'] = array();
 		foreach ($rows as $row) {
 			$atReturn[$row['create_time']] = array();
-			$atReturn[$row['create_time']] = array('user_id'=>$row['user_id'], 'dish_id'=>$row['dish_id']);
+			$atReturn[$row['create_time']] = array('user_id'=>$row['user_id'], 'dish_id'=>$row['dish_id'], 'list'=>$row['list']);
 
 			if (!isset($atReturn['dish_ids'][$row['dish_id']])) {
 				$atReturn['dish_ids'][$row['dish_id']] = 1;
