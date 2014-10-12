@@ -18,6 +18,7 @@ register('GET',  '/:userid/followings', new GetUserFollowingsHandler());
 
 // dish collection end points
 //
-register('POST', '/dish/:dishid/collect', new CollectDishHandler());
-register('GET',  '/:userid/dishes',       new GetUserDishCollectionHandler());
+register('POST', '/dish/:dishid/collect',     new CollectDishHandler());
+register('GET',  '/:userid/dishes',           new GetUserDishCollectionHandler());
+register('GET',  '/recent/followings/dishes', new GetFollowingRecentDishesHandler());
 ?>

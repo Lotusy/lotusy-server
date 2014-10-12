@@ -12,6 +12,12 @@ class CollectDishHandler extends UnauthorizedRequestHandler {
 		$dishCollection->setUserId($validator->getUserId());
 		$dishCollection->save();
 
+		$lookup = new LookupUserDishDao();
+		$lookup->setDishId($params['dishid']);
+		$lookup->setUserId($validator->getUserId());
+		$lookup->setCreateTime(date('Y-m-d H:i:s'));
+		$lookup->save();
+
 		$response = array();
 		$response['status'] = 'success';
 

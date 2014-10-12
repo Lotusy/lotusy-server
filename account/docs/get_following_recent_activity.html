@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="docs.css" media="all" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="title">Get following user recent activites</div><br>
+<span class="title">Description</span>
+<div class="sep"></div>
+Get following user recent activites
+<br><br><br>
+<span class="title">Method</span>
+<div class="sep"></div>
+GET
+<br><br><br>
+<span class="title">URL</span>
+<div class="sep"></div>
+/recent/followings/dishes?start=0&size=5
+<br><br><br>
+<span class="title">Header</span>
+<div class="sep"></div>
+<table cellspacing="1">
+<thead><tr><th class="hfirst">Name</th><th class="second">Value</th></tr></thead>
+<tbody><tr><td class="hfirst">Content-Type</td><td>application/json</td></tr>
+<tr><td class="hfirst">app-key</td><td>{your_unique_application_key}</td></tr>
+<tr><td class="hfirst">Authorization</td><td>Bearer {access_token}</td></tr>
+</tbody></table>
+<br><br><br>
+<span class="title">Request Body</span>
+GET Parameter start and size
+<br><br><br>
+<span class="title">Response</span>
+<div class="sep"></div>
+<table cellspacing="1">
+<thead><tr><th class="hfirst">Case</th><th class="second">Body</th></tr></thead>
+<tbody><tr><td class="hfirst">SUCCESS</td><td>
+200 OK<br><br>
+<div class="tab0">{</div>
+<div class="tab1">"status":"success",</div>
+<div class="tab1">"activities":{</div>
+<div class="tab2">"1786":{</div>
+<div class="tab3">"user":{</div>
+<div class="tab4">"id":"5",</div>
+<div class="tab4">"external_type":"1",</div>
+<div class="tab4">"external_ref":"87127850878",</div>
+<div class="tab4">"email":"",</div>
+<div class="tab4">"password":"",</div>
+<div class="tab4">"username":"username850878",</div>
+<div class="tab4">"nickname":"nickname850878",</div>
+<div class="tab4">"gender":"",</div>
+<div class="tab4">"profile_pic":"http:\/\/abajdpgoasd\/asgua",</div>
+<div class="tab4">"description":"",</div>
+<div class="tab4">"last_login":"2014-10-11 21:12:07",</div>
+<div class="tab4">"superuser":"N",</div>
+<div class="tab4">"blocked":"N"</div>
+<div class="tab3">},</div>
+<div class="tab3">"dish":{</div>
+<div class="tab4">"id":"30",</div>
+<div class="tab4">"business_id":"10",</div>
+<div class="tab4">"user_id":"1",</div>
+<div class="tab4">"name_zh":"",</div>
+<div class="tab4">"name_tw":"",</div>
+<div class="tab4">"name_en":"Kun Pao Chicken",</div>
+<div class="tab4">"verified":"N",</div>
+<div class="tab4">"like_count":"0",</div>
+<div class="tab4">"dislike_count":"0",</div>
+<div class="tab4">"image":"http:\/\/local.image.lotusy.com\/rest\/dish\/30\/default"</div>
+<div class="tab3">}</div>
+<div class="tab2">},</div>
+<div class="tab2">"1876":{</div>
+<div class="tab3">"user":{</div>
+<div class="tab4">"id":"5",</div>
+<div class="tab4">"external_type":"1",</div>
+<div class="tab4">"external_ref":"87127850878",</div>
+<div class="tab4">"email":"",</div>
+<div class="tab4">"password":"",</div>
+<div class="tab4">"username":"username850878",</div>
+<div class="tab4">"nickname":"nickname850878",</div>
+<div class="tab4">"gender":"",</div>
+<div class="tab4">"profile_pic":"http:\/\/abajdpgoasd\/asgua",</div>
+<div class="tab4">"description":"",</div>
+<div class="tab4">"last_login":"2014-10-11 21:12:07",</div>
+<div class="tab4">"superuser":"N",</div>
+<div class="tab4">"blocked":"N"</div>
+<div class="tab3">},</div>
+<div class="tab3">"dish":{</div>
+<div class="tab4">"id":"29",</div>
+<div class="tab4">"business_id":"10",</div>
+<div class="tab4">"user_id":"1",</div>
+<div class="tab4">"name_zh":"",</div>
+<div class="tab4">"name_tw":"",</div>
+<div class="tab4">"name_en":"Kun Pao Chicken",</div>
+<div class="tab4">"verified":"N",</div>
+<div class="tab4">"like_count":"0",</div>
+<div class="tab4">"dislike_count":"0",</div>
+<div class="tab4">"image":"http:\/\/local.image.lotusy.com\/rest\/dish\/29\/default"</div>
+<div class="tab3">}</div>
+<div class="tab2">}</div>
+<div class="tab1">}</div>
+<div class="tab0">}</div>
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"missing request body"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"missing_access_token"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"invalid_token_type"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"invalid_access_token"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+400 Bad Request<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"access_token_expired"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+401 Unauthorized<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"unauthorized_request"</div>
+}
+</td></tr>
+<tr><td class="hfirst">ERROR</td><td>
+500 Internal Server Error<br><br>
+{<br>
+<div class="tab1">"status":"error",</div>
+<div class="tab1">"description":"internal_server_error"</div>
+}
+</td></tr>
+</tbody></table>
+<br><br>
+</body>
+</html>
