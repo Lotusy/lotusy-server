@@ -38,6 +38,7 @@ register('GET',  '/business/:businessid/comments',      new GetBusinessCommentHa
 
 // dish comment end points
 //
-register('GET',  '/dish/:dishid/comment/count', new GetDishCommentCountHandler());
-register('GET',  '/dish/:dishid/comments',      new GetDishCommentHandler());
+register('GET', '/dish/:dishid/comment/count',        new GetDishCommentCountHandler());
+register('GET', '/dish/:dishid/comments',             new GetDishCommentHandler());
+register('GET', '/dish/:dishid/user/:userid/comment', new GetUserDishCommentHandler());
 ?>

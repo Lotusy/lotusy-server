@@ -46,15 +46,16 @@ CREATE INDEX {$dbName}_comment_business_create_time ON {$dbName}.lookup_comment_
 CREATE TABLE {$dbName}.lookup_comment_dish
 (
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-	dish_id INT(10) UNSIGNED,
 	comment_id INT(10) UNSIGNED,
+	dish_id INT(10) UNSIGNED,
+	user_id INT(10) UNSIGNED,
 	create_time DATETIME,
 
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE INDEX {$dbName}_comment_dish_id ON {$dbName}.lookup_comment_dish (dish_id);
-CREATE INDEX {$dbName}_comment_dish_comment_id ON {$dbName}.lookup_comment_dish (comment_id);
+CREATE INDEX {$dbName}_comment_dish_user_id ON {$dbName}.lookup_comment_dish (user_id);
 CREATE INDEX {$dbName}_comment_dish_create_time ON {$dbName}.lookup_comment_dish (create_time);
 
 

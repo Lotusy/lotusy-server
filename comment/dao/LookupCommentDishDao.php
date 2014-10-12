@@ -32,6 +32,20 @@ class LookupCommentDishDao extends LookupCommentDishDaoGenerated {
 		return $res['count'];
 	}
 
+	public static function getUserDishComment($dishId, $userId) {
+		$lookup = new LookupCommentDishDao();
+		$lookup->setServerAddress($dishId);
+
+		$builder = new QueryBuilder($lookup);
+		$res = $builder->select('comment_id')
+					   ->where('dish_id', $dishId)
+					   ->where('user_id', $userId)
+					   ->order('id', true)
+					   ->find();
+
+		return $res['comment_id'];
+	}
+
 	public static function deleteLookupDao($dishId, $commentId) {
 		$lookup = new LookupCommentDishDao();
 		$lookup->setServerAddress($dishId);
