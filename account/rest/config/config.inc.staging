@@ -10,6 +10,7 @@ $base_uri = '/rest';
 $app_key = 'E268443E43D93DAB7EBEF303BBE9642F';
 $base_account_host = 'http://staging.account.lotusy.com';
 $base_business_host = 'http://staging.business.lotusy.com';
+$base_comment_host = 'http://staging.comment.lotusy.com';
 
 //=======================================================================================
 // auto include directory information

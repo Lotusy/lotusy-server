@@ -45,6 +45,13 @@ class GetFollowingRecentDishesHandler extends UnauthorizedRequestHandler {
 			$activity['user'] = $users[$userDish['user_id']];
 			$activity['dish'] = $dishes[$userDish['dish_id']];
 
+			$request = new GetUserDishCommentRequest($userDish['user_id'], $userDish['dish_id']);
+			$commentResponse = $request->execute();
+			if ($commentResponse['status']=='success') {
+				unset($commentResponse['status']);
+				$activity['comment'] = $commentResponse;
+			}
+
 			$now = strtotime('now');
 			$activityTime = strtotime($time);
 			$time = $now - $activityTime;
