@@ -54,7 +54,20 @@ CREATE TABLE {$dbName}.dish_collection
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE INDEX {$dbName}_dish_user_id ON {$dbName}.dish_collection (user_id);
+CREATE INDEX {$dbName}_collection_user_id ON {$dbName}.dish_collection (user_id);
+
+
+CREATE TABLE {$dbName}.dish_hitlist
+(
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	user_id INT(10) UNSIGNED,
+	dish_id INT(10) UNSIGNED,
+
+	CONSTRAINT user_follower UNIQUE (user_id, dish_id),
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE INDEX {$dbName}_hitlist_dish_user_id ON {$dbName}.dish_hitlist (user_id);
 
 
 GRANT ALL ON {$dbName}.* TO '{$uname}'@'%' IDENTIFIED BY '{$passwd}';
