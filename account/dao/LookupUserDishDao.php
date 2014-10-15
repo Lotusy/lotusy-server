@@ -56,6 +56,29 @@ class LookupUserDishDao extends LookupUserDishDaoGenerated {
 		return $atReturn;
 	}
 
+	public static function getUserActivityCounts($userId, $start, $end) {
+		$lookup = new LookupUserDishDao();
+		$lookup->setServerAddress(1);
+
+		$builder = new QueryBuilder($lookup);
+		$rows = $builder->select('create_time')
+						->where('user_id', $userId)
+						->where('create_time', $start, '>=')
+						->where('create_time', $end, '<')
+						->findList();
+		$rv = array();
+		foreach ($rows as $row) {
+			$createTimes = substr($row['create_time'], 0, 10);
+			if (!isset($rv[$createTimes])) {
+				$rv[$createTimes] = 0;
+			} else {
+				$rv[$createTimes] = $rv[$createTimes]+1;
+			}
+		}
+
+		return $rv;
+	}
+
 // ======================================================================================== override
 
 	protected function beforeInsert() {
