@@ -46,6 +46,7 @@ CREATE TABLE {$dbName}.lookup_user_dish
 	list VARCHAR(1),
 	create_time DATETIME,
 
+	CONSTRAINT user_activity UNIQUE (user_id, dish_id, list),
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 

@@ -16,11 +16,13 @@ register('POST', '/follow/:userid',     new FollowUserHandler());
 register('GET',  '/:userid/followers',  new GetUserFollowersHandler());
 register('GET',  '/:userid/followings', new GetUserFollowingsHandler());
 
+
 // dish collection end points
 //
 register('POST', '/dish/:dishid/collect',     new CollectDishHandler());
 register('POST', '/dish/:dishid/hitlist',     new HitlistDishHandler());
 register('GET',  '/:userid/dishes',           new GetUserDishCollectionHandler());
 register('GET',  '/:userid/hitlist',          new GetUserDishHitlistHandler());
+register('GET',  '/recent/:userid/activites', new GetUserRecentActivitiesHandler());
 register('GET',  '/recent/followings/dishes', new GetFollowingRecentDishesHandler());
 ?>
