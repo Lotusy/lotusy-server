@@ -8,12 +8,12 @@ class LookupUserCollectDao extends LookupUserCollectDaoGenerated {
 		$userCollection->setServerAddress($userId);
 
 		$builder = new QueryBuilder($userCollection);
-		$rows = $builder->select('comment_id')
+		$res = $builder->select('comment_id')
 						->where('user_id', $userId)
 						->limit($start, $size)
 						->findList();
 		$ids = array();
-		foreach ($rows as $row) {
+		foreach ($res as $row) {
 			array_push($ids, $row['comment_id']);
 		}
 

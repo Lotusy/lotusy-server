@@ -1,5 +1,5 @@
 <?php
-abstract class BusinessRatingDaoGenerated extends LotusyDaoBase {
+abstract class BusinessRatingDaoGenerated extends LotusyDaoParent {
 
     protected static $table = 'business_rating';
 

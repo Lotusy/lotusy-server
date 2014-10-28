@@ -8,10 +8,10 @@ class LookupUserNicknameDao extends LookupUserNicknameDaoGenerated {
 		$lookup->setServerAddress( Utility::hashString($nickname) );
 
 		$builder = new QueryBuilder($lookup);
-		$rows = $builder->select('user_id')->where('nickname', '%'.$nickname.'%', 'LIKE')->findList();
+		$res = $builder->select('user_id')->where('nickname', '%'.$nickname.'%', 'LIKE')->findList();
 
 		$atReturn = array();
-		foreach ($rows as $row) {
+		foreach ($res as $row) {
 			array_push($atReturn, $row['user_id']);
 		}
 

@@ -4,11 +4,8 @@ class BusinessRatingDao extends BusinessRatingDaoGenerated {
 // =========================================================================================================== public
 
 	public static function getBusinessRating($businessId) {
-		$rating = new BusinessRatingDao();
-		$rating->setServerAddress($businessId);
-
-		$builder = new QueryBuilder($rating);
-		$res = $builder->select('AVG(food) as food, AVG(serv) as serv, AVG(env) as env, AVG(overall) as overall')
+		$builder = new QueryMaster();
+		$res = $builder->select('AVG(food) as food, AVG(serv) as serv, AVG(env) as env, AVG(overall) as overall', self::$table)
 					   ->where('business_id', $businessId)
 					   ->find();
 	
@@ -21,11 +18,8 @@ class BusinessRatingDao extends BusinessRatingDaoGenerated {
 	}
 
 	public static function getBusinessRatingCount($businessId) {
-		$rating = new BusinessRatingDao();
-		$rating->setServerAddress($businessId);
-
-		$builder = new QueryBuilder($rating);
-		$res = $builder->select('COUNT(*) as count')
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table)
 					   ->where('business_id', $businessId)
 					   ->find();
 
@@ -33,11 +27,8 @@ class BusinessRatingDao extends BusinessRatingDaoGenerated {
 	}
 
 	public static function getRatingWithBusinessAndUserIds($businessId, $userId) {
-		$rating = new BusinessRatingDao();
-		$rating->setServerAddress($businessId);
-
-		$builder = new QueryBuilder($rating);
-		$res = $builder->select('*')
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
 					   ->where('business_id', $businessId)
 					   ->where('user_id', $userId)
 					   ->order('id', true)

@@ -8,12 +8,12 @@ class LookupCommentDishDao extends LookupCommentDishDaoGenerated {
 		$lookup->setServerAddress($dishId);
 
 		$builder = new QueryBuilder($lookup);
-		$rows = $builder->select('comment_id')
+		$res = $builder->select('comment_id')
 						->where('dish_id', $dishId)
 						->limit($start, $size)
 						->findList();
 		$ids = array();
-		foreach ($rows as $row) {
+		foreach ($res as $row) {
 			array_push($ids, $row['comment_id']);
 		}
 

@@ -192,10 +192,10 @@ abstract class LotusyDaoBase {
 		return $object;
 	}
 
-	public static function makeObjectsFromSelectListResult($rows, $class) {
+	public static function makeObjectsFromSelectListResult($res, $class) {
 		$objects = array();
-		if (isset($rows)) {
-			foreach ($rows as $row) {
+		if (isset($res)) {
+			foreach ($res as $row) {
 				$object = new $class;
 				$object->fromdb = true;
 				$object->var = $row;

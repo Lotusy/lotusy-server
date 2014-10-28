@@ -9,7 +9,7 @@ class GetDishesHandler extends UnauthorizedRequestHandler {
 			return $validator->getMessage();
 		}
 
-		$dishes = DishDao::getDishes($validator->getDishIds());
+		$dishes = DishDao::getRange($validator->getDishIds());
 
 		$response = array();
 		$response['status'] = 'success';

@@ -34,12 +34,12 @@ class UserImageDao extends UserImageDaoGenerated {
 		$user->setServerAddress($userId);
 
 		$builder = new QueryBuilder($user);
-		$rows = $builder->select('id')
+		$res = $builder->select('id')
 						->where('user_id', $userId)
 						->findList();
 
 		$ids = array();
-		foreach ($rows as $row) {
+		foreach ($res as $row) {
 			array_push($ids, $row['id']);
 		}
 

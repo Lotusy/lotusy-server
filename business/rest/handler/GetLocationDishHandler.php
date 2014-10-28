@@ -11,12 +11,12 @@ class GetLocationDishHandler extends UnauthorizedRequestHandler {
 		}
 
 		$isMiles = $json['is_miles'] == 'true';
-		$ids = LookupBusinessLocationDao::getBusinessIdsWithin( $json['lat'], 
-																$json['lng'], 
-																$json['radius'], 
-																0,
-																10000,
-																$isMiles );
+		$ids = BusinessDao::getBusinessIdsWithin( $json['lat'], 
+												  $json['lng'], 
+												  $json['radius'], 
+												  0,
+												  10000,
+												  $isMiles );
 
 		$response = array();
 		$response['status'] = 'success';

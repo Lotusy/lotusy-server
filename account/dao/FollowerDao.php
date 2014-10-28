@@ -8,13 +8,13 @@ class FollowerDao extends FollowerDaoGenerated {
 		$follower->setServerAddress($userId);
 
 		$builder = new QueryBuilder($follower);
-		$rows = $builder->select('follower_id')
+		$res = $builder->select('follower_id')
 						->where('user_id', $userId)
 						->limit($start, $size)
 						->findList();
 
 		$ids = array();
-		foreach ($rows as $row) {
+		foreach ($res as $row) {
 			array_push($ids, $row['follower_id']);
 		}
 

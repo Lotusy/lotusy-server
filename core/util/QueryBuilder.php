@@ -189,11 +189,11 @@ class QueryBuilder {
     	$this->query();
 
 		if ($this->result) {
-			$rows = array();
+			$res = array();
 			while ($row = $this->result->fetch_array(MYSQLI_ASSOC)) {
-				array_push($rows, $row);
+				array_push($res, $row);
 			}
-			return $rows;
+			return $res;
 		}
 
 		return array();

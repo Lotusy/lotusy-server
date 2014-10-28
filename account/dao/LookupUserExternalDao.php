@@ -14,13 +14,13 @@ class LookupUserExternalDao extends LookupUserExternalDaoGenerated {
 		$lookup->setServerAddress( Utility::hashString($type.$externalRef) );
 
 		$builder = new QueryBuilder($lookup);
-		$rows = $builder->select('user_id')
+		$res = $builder->select('user_id')
 						->where('reference', $externalRef)
 						->where('type', $type)
 						->findList();
 
 		$atReturn = array();
-		foreach ($rows as $row) {
+		foreach ($res as $row) {
 			array_push($atReturn, $row['user_id']);
 		}
 

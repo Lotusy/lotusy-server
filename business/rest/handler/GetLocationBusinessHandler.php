@@ -10,12 +10,12 @@ class GetLocationBusinessHandler extends AuthorizedRequestHandler {
 		}
 
 		$isMiles = $json['is_miles'] == 'true';
-		$ids = LookupBusinessLocationDao::getBusinessIdsWithin( $json['lat'], 
-																$json['lng'], 
-																$json['radius'], 
-																$json['start'], 
-																$json['size'], 
-																$isMiles );
+		$ids = BusinessDao::getBusinessIdsWithin( $json['lat'], 
+												  $json['lng'], 
+												  $json['radius'], 
+												  $json['start'], 
+												  $json['size'], 
+												  $isMiles );
 		$response = array();
 		$response['status'] = 'success';
 		$response['businesses'] = array();

@@ -4,10 +4,10 @@ include 'config/config.inc';
 $session = LSession::instance();
 
 if (isset($_POST['business_admin_email']) && isset($_POST['business_admin_passwd'])) {
-	$admin = BusinessAdminDao::login($_POST['business_admin_email'], $_POST['business_admin_passwd']);
+	$admin = AdminDao::login($_POST['business_admin_email'], $_POST['business_admin_passwd']);
 	if (isset($admin)) {
-		$session->set('admin_id', $admin->var[BusinessAdminDao::IDCOLUMN]);
-		$session->set('admin_name', $admin->var[BusinessAdminDao::USERNAME]);
+		$session->set('admin_id', $admin->var[AdminDao::IDCOLUMN]);
+		$session->set('admin_name', $admin->var[AdminDao::USERNAME]);
 	}
 }
 

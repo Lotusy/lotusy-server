@@ -5,7 +5,7 @@ class DishDislikeHandler extends AuthorizedRequestHandler {
 		$userId = $this->getUserId();
 		$dishId = $params['dishid'];
 
-		$history = LookupDishLikeUserDao::getUserResponseOnDish($userId, $dishId);
+		$history = DishUserLikeDao::getUserResponseOnDish($userId, $dishId);
 
 		if (isset($history)) {
 			$like = $history->getIsLike()=='Y';
@@ -19,11 +19,11 @@ class DishDislikeHandler extends AuthorizedRequestHandler {
 				$dish->dislike();
 			}
 		} else {
-			$lookup = new LookupDishLikeUserDao();
-			$lookup->setDishId($dishId);
-			$lookup->setUserId($userId);
-			$lookup->setIsLike('N');
-			$lookup->save();
+			$history = new DishUserLikeDao();
+			$history->setDishId($dishId);
+			$history->setUserId($userId);
+			$history->setIsLike('N');
+			$history->save();
 
 			$dish = new DishDao($dishId);
 			$dish->dislike();

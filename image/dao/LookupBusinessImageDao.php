@@ -8,12 +8,12 @@ class LookupBusinessImageDao extends LookupBusinessImageDaoGenerated {
 		$business->setServerAddress($businessId);
 
 		$builder = new QueryBuilder($business);
-		$rows = $builder->select('*')
+		$res = $builder->select('*')
 						->where('business_id', $businessId)
 						->limit($start, $size)
 						->findList();
 
-		return self::makeObjectsFromSelectListResult($rows, 'LookupBusinessImageDao');
+		return self::makeObjectsFromSelectListResult($res, 'LookupBusinessImageDao');
 	}
 
 	public static function isBusinessImageExist($businessId, $imageId) {

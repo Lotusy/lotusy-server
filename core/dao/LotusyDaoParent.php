@@ -15,6 +15,22 @@ abstract class LotusyDaoParent {
     }
 
 
+    public static function getRange($ids) {
+        if (empty($ids)) return array();
+
+        $class = get_called_class();
+
+        $builder = new DAO_QueryMaster();
+        $res = $builder->select('*', $class::$table)
+                       ->in('id', $ids)
+                       ->find_all();
+    
+        $objs = self::makeObjectsFromSelectListResult($res, $class);
+
+        return $objs;
+    }
+
+
     protected function retrieve($id) {
 		$idColumn = $this->getIdColumnName();
 
@@ -142,10 +158,10 @@ abstract class LotusyDaoParent {
     }
 
 
-    protected static function makeObjectsFromSelectListResult($rows, $class) {
+    protected static function makeObjectsFromSelectListResult($res, $class) {
         $objects = array();
-        if (isset($rows)) {
-            foreach ($rows as $row) {
+        if (isset($res)) {
+            foreach ($res as $row) {
                 $object = new $class;
                 $object->var = $row;
                 $object->fromdb = TRUE;

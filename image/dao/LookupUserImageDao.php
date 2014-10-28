@@ -13,12 +13,12 @@ class LookupUserImageDao extends LookupUserImageDaoGenerated {
 		$user->setServerAddress($userId);
 
 		$builder = new QueryBuilder($user);
-		$rows = $builder->select('*')
+		$res = $builder->select('*')
 						->where('user_id', $userId)
 						->limit($start, $size)
 						->findList();
 
-		return $user->makeObjectsFromSelectListResult($rows, 'LookupUserImageDao');
+		return $user->makeObjectsFromSelectListResult($res, 'LookupUserImageDao');
 	}
 
 	public static function isUserImageExist($userId, $imageId) {

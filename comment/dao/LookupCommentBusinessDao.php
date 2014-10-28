@@ -8,12 +8,12 @@ class LookupCommentBusinessDao extends LookupCommentBusinessDaoGenerated {
 		$lookup->setServerAddress($businessId);
 
 		$builder = new QueryBuilder($lookup);
-		$rows = $builder->select('comment_id')
+		$res = $builder->select('comment_id')
 						->where('business_id', $businessId)
 						->limit($start, $size)
 						->findList();
 		$ids = array();
-		foreach ($rows as $row) {
+		foreach ($res as $row) {
 			array_push($ids, $row['comment_id']);
 		}
 

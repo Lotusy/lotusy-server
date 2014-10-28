@@ -8,11 +8,11 @@ class LookupCommentImageDao extends LookupCommentImageDaoGenerated {
 		$comment->setServerAddress($commentId);
 
 		$builder = new QueryBuilder($comment);
-		$rows = $builder->select('*')
+		$res = $builder->select('*')
 						->where('comment_id', $commentId)
 						->findList();
 
-		return $comment->makeObjectsFromSelectListResult($rows, 'LookupCommentImageDao');
+		return $comment->makeObjectsFromSelectListResult($res, 'LookupCommentImageDao');
 	}
 
 	public static function isCommentImageExist($commentId, $imageId) {

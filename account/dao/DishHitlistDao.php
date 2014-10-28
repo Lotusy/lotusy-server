@@ -8,12 +8,12 @@ class DishHitlistDao extends DishHitlistDaoGenerated {
 		$dishHitlist->setServerAddress($userId);
 
 		$builder = new QueryBuilder($dishHitlist);
-		$rows = $builder->select('dish_id')
+		$res = $builder->select('dish_id')
 						->where('user_id', $userId)
 						->limit($start, $size)
 						->findList();
 		$ids = array();
-		foreach ($rows as $row) {
+		foreach ($res as $row) {
 			array_push($ids, $row['dish_id']);
 		}
 

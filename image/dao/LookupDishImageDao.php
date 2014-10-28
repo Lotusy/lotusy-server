@@ -8,11 +8,11 @@ class LookupDishImageDao extends LookupDishImageDaoGenerated {
 		$lookup->setServerAddress($dishId);
 
 		$builder = new QueryBuilder($lookup);
-		$rows = $builder->select('*')
+		$res = $builder->select('*')
 						->where('dish_id', $dishId)
 						->findList();
 
-		return $lookup->makeObjectsFromSelectListResult($rows, 'LookupDishImageDao');
+		return $lookup->makeObjectsFromSelectListResult($res, 'LookupDishImageDao');
 	}
 
 	public static function isDishImageExist($dishId, $imageId) {

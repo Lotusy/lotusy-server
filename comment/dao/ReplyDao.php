@@ -8,12 +8,12 @@ class ReplyDao extends ReplyDaoGenerated {
 		$comment->setServerAddress($commentId);
 
 		$builder = new QueryBuilder($comment);
-		$rows = $builder->select('*')
+		$res = $builder->select('*')
 						->where('comment_id', $commentId)
 						->limit($start, $size)
 						->findList();
 
-		return self::makeObjectsFromSelectListResult($rows, 'ReplyDao');
+		return self::makeObjectsFromSelectListResult($res, 'ReplyDao');
 	}
 
 	public static function getReplyCountByCommentId($commentId) {

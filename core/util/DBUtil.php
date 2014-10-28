@@ -52,11 +52,11 @@ class DBUtil {
 		{
 			$select_result = $db_connection->query($query);
 			if ($select_result) {
-				$rows = array();
+				$res = array();
 				while ($row = $select_result->fetch_array(MYSQLI_ASSOC)) {
-					array_push($rows, $row);
+					array_push($res, $row);
 				}
-				return $rows;
+				return $res;
 			}
 		}
 

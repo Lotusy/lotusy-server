@@ -1,10 +1,10 @@
 <?php
-class BusinessAdminDao extends AdminDaoGenerated {
+class AdminDao extends AdminDaoGenerated {
 
 // =============================================== public function =================================================
 
 	public static function login($email, $password) {
-		$admin = new BusinessAdminDao();
+		$admin = new AdminDao();
 		$admin->setServerAddress( Utility::hashString($email) );
 
 		$password = md5($password);
@@ -12,7 +12,7 @@ class BusinessAdminDao extends AdminDaoGenerated {
 		$builder = new QueryBuilder($admin);
 		$res = $builder->select('*')->where('email', $email)->where('password', $password)->find();
 
-		return self::makeObjectFromSelectResult($res, 'BusinessAdminDao');
+		return self::makeObjectFromSelectResult($res, 'AdminDao');
 	}
 
 // ============================================ override functions ==================================================

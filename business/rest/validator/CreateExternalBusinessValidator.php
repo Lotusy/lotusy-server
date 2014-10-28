@@ -20,7 +20,7 @@ class CreateExternalBusinessValidator extends Validator {
 		}
 
 		if ($valid) {
-			$valid = !LookupBusinessExternalDao::isExternalIdExist($json['external_id'], $json['external_type']);
+			$valid = !BusinessDao::isExternalIdExist($json['external_id'], $json['external_type']);
 			if (!$valid) {
 				header('HTTP/1.0 409 Conflict');
 				$this->setErrorMessage('external_business_already_exist');
