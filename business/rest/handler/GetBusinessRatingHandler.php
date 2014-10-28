@@ -7,7 +7,7 @@ class GetBusinessRatingHandler extends AuthorizedRequestHandler {
 			return $validator->getMessage();
 		}
 
-		$rating = RatingDao::getBusinessRating($params['businessid']);
+		$rating = BusinessRatingDao::getBusinessRating($params['businessid']);
 
 		$now = strtotime('now');
 		$last = strtotime($rating['create_time']);

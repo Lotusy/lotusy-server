@@ -5,7 +5,7 @@ class GetBusinessUserRatingHandler extends AuthorizedRequestHandler {
 		$businessId = $params['businessid'];
 		$userId = $params['userid'];
 
-		$rating = RatingDao::getRatingWithBusinessAndUserIds($businessId, $userId);
+		$rating = BusinessRatingDao::getRatingWithBusinessAndUserIds($businessId, $userId);
 
 		$response = array();
 		if (!isset($rating)) {

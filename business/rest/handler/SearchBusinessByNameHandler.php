@@ -36,7 +36,7 @@ class SearchBusinessByNameHandler extends AuthorizedRequestHandler {
 			$count = $request->execute();
 			$businessArr['comment_count'] = (int)$count;
 
-			$rating = RatingDao::getBusinessRating($id['business_id']);
+			$rating = BusinessRatingDao::getBusinessRating($id['business_id']);
 			$businessArr['rating'] = $rating;
 
 			array_push($response['businesses'], $businessArr);

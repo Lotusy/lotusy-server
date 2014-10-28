@@ -1,4 +1,4 @@
-CREATE TABLE {$dbName}.dish
+CREATE TABLE l_business.dish
 (
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	business_id INT(10) UNSIGNED,
@@ -14,5 +14,6 @@ CREATE TABLE {$dbName}.dish
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-
-GRANT ALL ON {$dbName}.* TO '{$uname}'@'%' IDENTIFIED BY '{$passwd}';
+CREATE INDEX dish_business ON l_business.dish (business_id);
+CREATE INDEX dish_user ON l_business.dish (user_id);
+CREATE INDEX dish_verified ON l_business.dish (verified(1));

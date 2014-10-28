@@ -12,7 +12,7 @@ class PostBusinessRatingHandler extends AuthorizedRequestHandler {
 
 		$userId = $this->getUserId();
 
-		$rating = new RatingDao();
+		$rating = new BusinessRatingDao();
 		$rating->setBusinessId($json['business_id']);
 		$rating->setUserId($userId);
 		$rating->setFood($json['food']);

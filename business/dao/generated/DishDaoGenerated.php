@@ -1,17 +1,19 @@
 <?php
 abstract class DishDaoGenerated extends LotusyDaoBase {
 
+    protected static $table = 'dish';
+
     protected function init() {
-        $this->var['id'] = '';
-        $this->var['business_id'] = '';
-        $this->var['user_id'] = '';
-        $this->var['name_zh'] = '';
-        $this->var['name_tw'] = '';
-        $this->var['name_en'] = '';
-        $this->var['verified'] = '';
-        $this->var['like_count'] = '';
-        $this->var['dislike_count'] = '';
-        $this->var['create_time'] = '';
+        $this->var['id'] = 0;
+        $this->var['business_id'] = null;
+        $this->var['user_id'] = null;
+        $this->var['name_zh'] = null;
+        $this->var['name_tw'] = null;
+        $this->var['name_en'] = null;
+        $this->var['verified'] = null;
+        $this->var['like_count'] = null;
+        $this->var['dislike_count'] = null;
+        $this->var['create_time'] = null;
 
         $this->update['id'] = false;
         $this->update['business_id'] = false;
@@ -29,90 +31,101 @@ abstract class DishDaoGenerated extends LotusyDaoBase {
         return $this->var['id'];
     }
 
-    public function setBusinessId($businessId) {
-        $this->var['business_id'] = $businessId;
-        $this->update['business_id'] = true;
+    public function setBusinessId($business_id) {
+        if ($this->var['business_id'] != $business_id) {
+            $this->var['business_id'] = $business_id;
+            $this->update['business_id'] = true;
+        }
     }
     public function getBusinessId() {
         return $this->var['business_id'];
     }
 
-    public function setUserId($userId) {
-        $this->var['user_id'] = $userId;
-        $this->update['user_id'] = true;
+    public function setUserId($user_id) {
+        if ($this->var['user_id'] != $user_id) {
+            $this->var['user_id'] = $user_id;
+            $this->update['user_id'] = true;
+        }
     }
     public function getUserId() {
         return $this->var['user_id'];
     }
 
-    public function setNameZh($nameZh) {
-        $this->var['name_zh'] = $nameZh;
-        $this->update['name_zh'] = true;
+    public function setNameZh($name_zh) {
+        if ($this->var['name_zh'] != $name_zh) {
+            $this->var['name_zh'] = $name_zh;
+            $this->update['name_zh'] = true;
+        }
     }
     public function getNameZh() {
         return $this->var['name_zh'];
     }
 
-    public function setNameTw($nameTw) {
-        $this->var['name_tw'] = $nameTw;
-        $this->update['name_tw'] = true;
+    public function setNameTw($name_tw) {
+        if ($this->var['name_tw'] != $name_tw) {
+            $this->var['name_tw'] = $name_tw;
+            $this->update['name_tw'] = true;
+        }
     }
     public function getNameTw() {
         return $this->var['name_tw'];
     }
 
-    public function setNameEn($nameEn) {
-        $this->var['name_en'] = $nameEn;
-        $this->update['name_en'] = true;
+    public function setNameEn($name_en) {
+        if ($this->var['name_en'] != $name_en) {
+            $this->var['name_en'] = $name_en;
+            $this->update['name_en'] = true;
+        }
     }
     public function getNameEn() {
         return $this->var['name_en'];
     }
 
     public function setVerified($verified) {
-        $this->var['verified'] = $verified;
-        $this->update['verified'] = true;
+        if ($this->var['verified'] != $verified) {
+            $this->var['verified'] = $verified;
+            $this->update['verified'] = true;
+        }
     }
     public function getVerified() {
         return $this->var['verified'];
     }
 
-    public function setLikeCount($likeCount) {
-        $this->var['like_count'] = $likeCount;
-        $this->update['like_count'] = true;
+    public function setLikeCount($like_count) {
+        if ($this->var['like_count'] != $like_count) {
+            $this->var['like_count'] = $like_count;
+            $this->update['like_count'] = true;
+        }
     }
     public function getLikeCount() {
         return $this->var['like_count'];
     }
 
-    public function setDislikeCount($dislikeCount) {
-        $this->var['dislike_count'] = $dislikeCount;
-        $this->update['dislike_count'] = true;
+    public function setDislikeCount($dislike_count) {
+        if ($this->var['dislike_count'] != $dislike_count) {
+            $this->var['dislike_count'] = $dislike_count;
+            $this->update['dislike_count'] = true;
+        }
     }
     public function getDislikeCount() {
         return $this->var['dislike_count'];
     }
 
-    public function setCreateTime($createTime) {
-        $this->var['create_time'] = $createTime;
-        $this->update['create_time'] = true;
+    public function setCreateTime($create_time) {
+        if ($this->var['create_time'] != $create_time) {
+            $this->var['create_time'] = $create_time;
+            $this->update['create_time'] = true;
+        }
     }
     public function getCreateTime() {
         return $this->var['create_time'];
     }
 
-// ======================================================================================== override
-
     public function getTableName() {
-        return 'dish';
+        return self::$table;
     }
 
     protected function getIdColumnName() {
         return 'id';
     }
-
-    public function getShardDomain() {
-        return 'l_busi_dish';
-    }
 }
-?>

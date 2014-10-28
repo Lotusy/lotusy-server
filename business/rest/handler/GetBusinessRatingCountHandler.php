@@ -7,7 +7,7 @@ class GetBusinessRatingCountHandler extends AuthorizedRequestHandler {
 			return $validator->getMessage();
 		}
 
-		$count = RatingDao::getBusinessRatingCount($params['businessid']);
+		$count = BusinessRatingDao::getBusinessRatingCount($params['businessid']);
 
 		$response = array();
 		$response['status'] = 'success';

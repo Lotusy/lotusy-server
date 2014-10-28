@@ -1,11 +1,13 @@
 <?php
-abstract class BusinessAdminDaoGenerated extends LotusyDaoBase {
+abstract class AdminDaoGenerated extends LotusyDaoBase {
+
+    protected static $table = 'admin';
 
     protected function init() {
-        $this->var['id'] = '';
-        $this->var['email'] = '';
-        $this->var['password'] = '';
-        $this->var['username'] = '';
+        $this->var['id'] = 0;
+        $this->var['email'] = null;
+        $this->var['password'] = null;
+        $this->var['username'] = null;
 
         $this->update['id'] = false;
         $this->update['email'] = false;
@@ -18,41 +20,40 @@ abstract class BusinessAdminDaoGenerated extends LotusyDaoBase {
     }
 
     public function setEmail($email) {
-        $this->var['email'] = $email;
-        $this->update['email'] = true;
+        if ($this->var['email'] != $email) {
+            $this->var['email'] = $email;
+            $this->update['email'] = true;
+        }
     }
     public function getEmail() {
         return $this->var['email'];
     }
 
     public function setPassword($password) {
-        $this->var['password'] = $password;
-        $this->update['password'] = true;
+        if ($this->var['password'] != $password) {
+            $this->var['password'] = $password;
+            $this->update['password'] = true;
+        }
     }
     public function getPassword() {
         return $this->var['password'];
     }
 
     public function setUsername($username) {
-        $this->var['username'] = $username;
-        $this->update['username'] = true;
+        if ($this->var['username'] != $username) {
+            $this->var['username'] = $username;
+            $this->update['username'] = true;
+        }
     }
     public function getUsername() {
         return $this->var['username'];
     }
 
-// ======================================================================================== override
-
     public function getTableName() {
-        return 'business_admin';
+        return self::$table;
     }
 
     protected function getIdColumnName() {
         return 'id';
     }
-
-    public function getShardDomain() {
-        return 'l_busi_admin';
-    }
 }
-?>

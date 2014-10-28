@@ -1,5 +1,5 @@
 <?php
-class BusinessAdminDao extends BusinessAdminDaoGenerated {
+class BusinessAdminDao extends AdminDaoGenerated {
 
 // =============================================== public function =================================================
 
@@ -21,10 +21,6 @@ class BusinessAdminDao extends BusinessAdminDaoGenerated {
 		$this->setPassword(md5($this->getPassword()));
 		$sequence = Utility::hashString($this->getEmail());
 		$this->setShardId($sequence);
-	}
-
-	protected function isShardBaseObject() {
-		return false;
 	}
 }
 ?>

@@ -1,10 +1,10 @@
 <?php
-class RatingDao extends RatingDaoGenerated {
+class BusinessRatingDao extends BusinessRatingDaoGenerated {
 
 // =========================================================================================================== public
 
 	public static function getBusinessRating($businessId) {
-		$rating = new RatingDao();
+		$rating = new BusinessRatingDao();
 		$rating->setServerAddress($businessId);
 
 		$builder = new QueryBuilder($rating);
@@ -21,7 +21,7 @@ class RatingDao extends RatingDaoGenerated {
 	}
 
 	public static function getBusinessRatingCount($businessId) {
-		$rating = new RatingDao();
+		$rating = new BusinessRatingDao();
 		$rating->setServerAddress($businessId);
 
 		$builder = new QueryBuilder($rating);
@@ -33,7 +33,7 @@ class RatingDao extends RatingDaoGenerated {
 	}
 
 	public static function getRatingWithBusinessAndUserIds($businessId, $userId) {
-		$rating = new RatingDao();
+		$rating = new BusinessRatingDao();
 		$rating->setServerAddress($businessId);
 
 		$builder = new QueryBuilder($rating);
@@ -43,7 +43,7 @@ class RatingDao extends RatingDaoGenerated {
 					   ->order('id', true)
 					   ->find();
 
-		return self::makeObjectFromSelectResult($res, 'RatingDao');
+		return self::makeObjectFromSelectResult($res, 'BusinessRatingDao');
 	}
 
 // ============================================ override functions ==================================================
@@ -54,10 +54,6 @@ class RatingDao extends RatingDaoGenerated {
 
 		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
-	}
-
-	protected function isShardBaseObject() {
-		return false;
 	}
 }
 ?>
