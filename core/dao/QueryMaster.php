@@ -1,11 +1,4 @@
-<?php defined('SYSPATH') or die('No direct access allowed.');
-
-/**
- * 
- * Enter description here ...
- * @author indochino
- *
- */
+<?php
 class QueryMaster {
 
     private $errors = array();
@@ -20,7 +13,7 @@ class QueryMaster {
 
     public static function start_transaction() {
         if (!isset(self::$tran_connection)) {
-            self::$tran_connection = new DAO_QueryMaster(FALSE);
+            self::$tran_connection = new QueryMaster(FALSE);
             mysqli_autocommit(self::$tran_connection, FALSE);
         }
 
@@ -243,6 +236,16 @@ class QueryMaster {
 
         return $this;
     }
+
+	public function having($field, $value, $operator='=') {
+		$having = ' HAVING';
+
+		$having.=" $field ".$operator." '".mysqli_real_escape_string($this->connection, $value)."'";
+
+		$this->query.= $having;
+
+		return $this;
+	}
 
     public function limit($start, $size) {
         $this->query.= " LIMIT $start, $size";

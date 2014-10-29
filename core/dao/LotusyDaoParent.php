@@ -1,5 +1,4 @@
-<?php defined('SYSPATH') or die('No direct access allowed.');
-
+<?php
 abstract class LotusyDaoParent {
 
     protected $var = array();
@@ -20,10 +19,10 @@ abstract class LotusyDaoParent {
 
         $class = get_called_class();
 
-        $builder = new DAO_QueryMaster();
+        $builder = new QueryMaster();
         $res = $builder->select('*', $class::$table)
                        ->in('id', $ids)
-                       ->find_all();
+                       ->findList();
     
         $objs = self::makeObjectsFromSelectListResult($res, $class);
 
@@ -34,7 +33,7 @@ abstract class LotusyDaoParent {
     protected function retrieve($id) {
 		$idColumn = $this->getIdColumnName();
 
-		$query = new QueryBuilder();
+		$query = new QueryMaster();
 		$res = $query->select('*', $this->getTableName())
 					 ->where($idColumn, $id)
 					 ->find();
@@ -67,7 +66,7 @@ abstract class LotusyDaoParent {
 
 		$this->beforeInsert();
 
-        $builder = new QueryBuilder();
+        $builder = new QueryMaster();
         $res = $builder->delete($this->getTableName())
                        ->where($this->getIdColumnName(), $id)
                        ->query();
@@ -99,7 +98,7 @@ abstract class LotusyDaoParent {
 		$fields = $this->var;
 		unset($fields[$idColumn]);
 
-		$query = new QueryBuilder();
+		$query = new QueryMaster();
 		$res = $query->insert($fields, $this->getTableName())
 					 ->query();
 
@@ -131,7 +130,7 @@ abstract class LotusyDaoParent {
 		}
 
 		if (!empty($set)) {
-    		$builder = new QueryBuilder();
+    		$builder = new QueryMaster();
     		$res = $builder->update($set, $this->getTableName())
     				       ->where($idColumn, $this->var[$idColumn])
     					   ->query();

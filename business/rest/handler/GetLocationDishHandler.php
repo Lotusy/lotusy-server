@@ -24,7 +24,7 @@ class GetLocationDishHandler extends UnauthorizedRequestHandler {
 
 		$counter = -1;
 		foreach ($ids as $id) {
-			$dishes = DishDao::getBusinessDishes($id['business_id'], 0, 2000);
+			$dishes = DishDao::getBusinessDishes($id['id'], 0, 2000);
 
 			foreach ($dishes as $dish) {
 				$counter++;

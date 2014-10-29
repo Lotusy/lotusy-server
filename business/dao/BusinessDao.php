@@ -58,7 +58,7 @@ class BusinessDao extends BusinessDaoGenerated {
 		$p2 = "sin( $latRadius ) * sin( radians(lat) )";
 
 		$builder = new QueryMaster();
-		$res = $builder->select("business_id, ( $earthRadius * acos( $p1 + $p2 ) ) AS distance", self::$table)
+		$res = $builder->select("id, ( $earthRadius * acos( $p1 + $p2 ) ) AS distance", self::$table)
 						->having('distance', $radius, '<')
 						->order('distance')
 						->limit($start, $size)

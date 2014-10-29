@@ -1,7 +1,7 @@
 <?php
-	$DB_HOST = 'localhost';
-    $DB_USER = 'lotusyuser';
-    $DB_PASS = 'lotusypass';
+    $DB_HOST = 'localhost';
+    $DB_USER = 'lotusybusiness';
+    $DB_PASS = 'lotusypasswd';
     $DB_NAME = 'l_business';
 
     // 0 - OFF, 1 - ERROR, 2 - INFO

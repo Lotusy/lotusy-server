@@ -6,7 +6,7 @@ class DishDao extends DishDaoGenerated {
 	public function like($increment=true) {
 		$sign = $increment ? '+' : '-';
 		$builder = new QueryMaster();
-		$res = $builder->update(array('like_count' => 'like_count'.$sign.'1', TRUE), self::$table)
+		$res = $builder->update(array('like_count' => 'like_count'.$sign.'1'), self::$table, TRUE)
 					   ->where('id', $this->getId())
 					   ->query();
 		if ($res) {
@@ -19,7 +19,7 @@ class DishDao extends DishDaoGenerated {
 	public function dislike($increment=true) {
 		$sign = $increment ? '+' : '-';
 		$builder = new QueryMaster();
-		$res = $builder->update(array('dislike_count' => 'dislike_count'.$sign.'1'), TRUE)
+		$res = $builder->update(array('dislike_count' => 'dislike_count'.$sign.'1'), self::$table, TRUE)
 					   ->where('id', $this->getId())
 					   ->query();
 		if ($res) {
@@ -31,16 +31,12 @@ class DishDao extends DishDaoGenerated {
 
 	public static function getBusinessDishes($businessId, $start, $size) {
 		$builder = new QueryMaster();
-		$res = $builder->select('dish_id', self::$table)
+		$res = $builder->select('*', self::$table)
 						->where('business_id', $businessId)
 						->limit($start, $size)
 						->findList();
-		$ids = array();
-		foreach ($res as $row) {
-			array_push($ids, $row['dish_id']);
-		}
 
-		return $ids;
+		return self::makeObjectsFromSelectListResult($res, 'DishDao');
 	}
 
 // ============================================ override functions ==================================================

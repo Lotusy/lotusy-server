@@ -3,7 +3,7 @@ CREATE TABLE l_business.dish_user_like
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	user_id INT(10) UNSIGNED,
 	dish_id INT(10) UNSIGNED,
-	is_like VARCHAR(1)
+	is_like VARCHAR(1),
 
 	CONSTRAINT user_activity UNIQUE (user_id, dish_id),
 	PRIMARY KEY (id)

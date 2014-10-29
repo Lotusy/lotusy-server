@@ -40,9 +40,6 @@ class BusinessRatingDao extends BusinessRatingDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = $this->getBusinessId();
-		$this->setShardId($sequence);
-
 		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
 	}
