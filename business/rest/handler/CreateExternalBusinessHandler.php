@@ -21,6 +21,7 @@ class CreateExternalBusinessHandler extends AuthorizedRequestHandler {
 		$business->setLat($json['lat']);
 		$business->setLng($json['lng']);
 		$business->setNameEn($json['name']);
+		$business->setCategory(empty($json['category']) ? '' : $json['category']);
 		$business->setUserId($this->getUserId());
 		$business->setVerified($verified);
 

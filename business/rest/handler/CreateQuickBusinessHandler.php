@@ -18,6 +18,7 @@ class CreateQuickBusinessHandler extends AuthorizedRequestHandler {
 		$business->setLng($json['lng']);
 		$business->setNameEn($json['name']);
 		$business->setUserId($this->getUserId());
+		$business->setCategory(empty($json['category']) ? '' : $json['category']);
 		$business->setVerified($verified);
 
 		$atReturn = array();
