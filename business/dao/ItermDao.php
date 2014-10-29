@@ -1,9 +1,26 @@
 <?php
-class AdminDao extends AdminDaoGenerated {
+class ItermDao extends ItermDaoGenerated {
 
 	const TYPE_CUISINE = 'CUISINE';
 
 // =============================================== public function =================================================
+
+	public static function getTypeLanguageCodes($type, $language='en') {
+        $builder = new QueryMaster();
+        $rows = $builder->select('code, description', self::$table)
+                        ->where('language', $language)
+                        ->where('type', $type)
+                        ->findList();
+
+        $descriptions = array();
+        if ($rows) {
+            foreach ($rows as $row) {
+                $descriptions[$row['code']] = $row['description'];
+            }
+        }
+
+        return $descriptions;
+	}
 
     public static function getCodeDescriptionArray($codes, $type, $language='en') {
         $builder = new QueryMaster();

@@ -23,4 +23,8 @@ register('GET',  '/dishes/:dishids',      new GetDishesHandler());
 register('POST', '/dish/:dishid/like',    new DishLikeHandler());
 register('POST', '/dish/:dishid/dislike', new DishDislikeHandler());
 register('GET',  '/dish/location',        new GetLocationDishHandler());
+
+// iterm end points
+//
+register('GET', '/cuisine/:language/terms', new GetCuisineItermHandler());
 ?>
