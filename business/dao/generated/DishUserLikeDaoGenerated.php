@@ -11,7 +11,7 @@ abstract class DishUserLikeDaoGenerated extends LotusyDaoParent {
 
         $this->update['id'] = false;
         $this->update['user_id'] = false;
-        $this->update['password'] = false;
+        $this->update['dish_id'] = false;
         $this->update['is_like'] = false;
     }
 
@@ -19,9 +19,9 @@ abstract class DishUserLikeDaoGenerated extends LotusyDaoParent {
         return $this->var['id'];
     }
 
-    public function setUserId($userId) {
-        if ($this->var['user_id'] != $userId) {
-            $this->var['user_id'] = $userId;
+    public function setUserId($user_id) {
+        if ($this->var['user_id'] != $user_id) {
+            $this->var['user_id'] = $user_id;
             $this->update['user_id'] = true;
         }
     }
@@ -29,9 +29,9 @@ abstract class DishUserLikeDaoGenerated extends LotusyDaoParent {
         return $this->var['user_id'];
     }
 
-    public function setDishId($dishId) {
-        if ($this->var['dish_id'] != $dishId) {
-            $this->var['dish_id'] = $dishId;
+    public function setDishId($dish_id) {
+        if ($this->var['dish_id'] != $dish_id) {
+            $this->var['dish_id'] = $dish_id;
             $this->update['dish_id'] = true;
         }
     }
@@ -39,9 +39,9 @@ abstract class DishUserLikeDaoGenerated extends LotusyDaoParent {
         return $this->var['dish_id'];
     }
 
-    public function setIsLike($isLike) {
-        if ($this->var['is_like'] != $isLike) {
-            $this->var['is_like'] = $isLike;
+    public function setIsLike($is_like) {
+        if ($this->var['is_like'] != $is_like) {
+            $this->var['is_like'] = $is_like;
             $this->update['is_like'] = true;
         }
     }

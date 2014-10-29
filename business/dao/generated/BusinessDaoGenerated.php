@@ -11,6 +11,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
         $this->var['name_zh'] = null;
         $this->var['name_tw'] = null;
         $this->var['name_en'] = null;
+        $this->var['category'] = null;
         $this->var['image'] = null;
         $this->var['street'] = null;
         $this->var['city'] = null;
@@ -34,6 +35,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
         $this->update['name_zh'] = false;
         $this->update['name_tw'] = false;
         $this->update['name_en'] = false;
+        $this->update['category'] = false;
         $this->update['image'] = false;
         $this->update['street'] = false;
         $this->update['city'] = false;
@@ -113,6 +115,16 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
     public function getNameEn() {
         return $this->var['name_en'];
+    }
+
+    public function setCategory($category) {
+        if ($this->var['category'] != $category) {
+            $this->var['category'] = $category;
+            $this->update['category'] = true;
+        }
+    }
+    public function getCategory() {
+        return $this->var['category'];
     }
 
     public function setImage($image) {

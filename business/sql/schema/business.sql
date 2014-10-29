@@ -7,6 +7,7 @@ CREATE TABLE l_business.business
 	name_zh VARCHAR(61),
 	name_tw VARCHAR(61),
 	name_en VARCHAR(61),
+	category VARCHAR(21),
 	image VARCHAR(121),
 	street VARCHAR(21),
 	city VARCHAR(21),
@@ -29,6 +30,7 @@ CREATE TABLE l_business.business
 CREATE INDEX business_external_id ON l_business.business (external_id(20));
 CREATE INDEX business_external_type ON l_business.business (external_type);
 CREATE INDEX business_user ON l_business.business (user_id);
+CREATE INDEX business_category ON l_business.business (category(20));
 CREATE INDEX business_name_zh ON l_business.business (name_zh(60));
 CREATE INDEX business_name_tw ON l_business.business (name_tw(60));
 CREATE INDEX business_name_en ON l_business.business (name_en(60));
