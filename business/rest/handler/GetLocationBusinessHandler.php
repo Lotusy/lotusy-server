@@ -20,9 +20,9 @@ class GetLocationBusinessHandler extends AuthorizedRequestHandler {
 		$response['status'] = 'success';
 		$response['businesses'] = array();
 		foreach ($ids as $id) {
-			$business = new BusinessDao($id['business_id']);
+			$business = new BusinessDao($id['id']);
 			$businessArr = array();
-			$businessArr['id'] = $id['business_id'];
+			$businessArr['id'] = $id['id'];
 			$businessArr['name_zh'] = $business->getNameZh();
 			$businessArr['name_tw'] = $business->getNameTw();
 			$businessArr['name_en'] = $business->getNameEn();
@@ -32,11 +32,11 @@ class GetLocationBusinessHandler extends AuthorizedRequestHandler {
 
 			$businessArr['distance'] = round($id['distance'], 1);
 
-			$request = new GetBusinessCommentCountRequest($id['business_id']);
+			$request = new GetBusinessCommentCountRequest($id['id']);
 			$count = $request->execute();
 			$businessArr['comment_count'] = (int)$count;
 
-			$rating = BusinessRatingDao::getBusinessRating($id['business_id']);
+			$rating = BusinessRatingDao::getBusinessRating($id['id']);
 			$businessArr['rating'] = $rating;
 
 			array_push($response['businesses'], $businessArr);
