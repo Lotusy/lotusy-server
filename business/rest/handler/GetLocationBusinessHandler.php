@@ -26,6 +26,7 @@ class GetLocationBusinessHandler extends AuthorizedRequestHandler {
 			$businessArr['name_zh'] = $business->getNameZh();
 			$businessArr['name_tw'] = $business->getNameTw();
 			$businessArr['name_en'] = $business->getNameEn();
+			$businessArr['category'] = $business->getCategory();
 			$businessArr['price'] = $business->getPrice();
 			$businessArr['cash_only'] = $business->getCashOnly();
 			$businessArr['image'] = $business->getImage();
