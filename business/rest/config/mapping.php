@@ -24,7 +24,14 @@ register('POST', '/dish/:dishid/like',    new DishLikeHandler());
 register('POST', '/dish/:dishid/dislike', new DishDislikeHandler());
 register('GET',  '/dish/location',        new GetLocationDishHandler());
 
+// keywords end points
+//
+register('POST', '/user/:userid/dish/:dishid/keyword/:code',      new PostUserDishKeywordHandler());
+register('GET',  '/user/:userid/dish/:dishid/keywords/:language', new GetUserDishKeywordHandler());
+register('GET',  '/dish/:dishid/keyword/count/:language',         new GetDishKeywordCountHandler());
+
 // iterm end points
 //
 register('GET', '/cuisine/:language/terms', new GetCuisineItermHandler());
+register('GET', '/keyword/:langauge/terms', new GetKeywordItermHandler());
 ?>

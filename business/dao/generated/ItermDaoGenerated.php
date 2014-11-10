@@ -10,8 +10,7 @@ abstract class ItermDaoGenerated extends LotusyDaoParent {
         $this->var['language'] = null;
         $this->var['description'] = null;
         $this->var['active'] = null;
-        $this->var['admin_create'] = null;
-        $this->var['last_modify'] = null;
+        $this->var['modyfied_by'] = null;
         $this->var['ctime'] = null;
         $this->var['mtime'] = null;
 
@@ -21,8 +20,7 @@ abstract class ItermDaoGenerated extends LotusyDaoParent {
         $this->update['language'] = false;
         $this->update['description'] = false;
         $this->update['active'] = false;
-        $this->update['admin_create'] = false;
-        $this->update['last_modify'] = false;
+        $this->update['modyfied_by'] = false;
         $this->update['ctime'] = false;
         $this->update['mtime'] = false;
     }
@@ -81,24 +79,14 @@ abstract class ItermDaoGenerated extends LotusyDaoParent {
         return $this->var['active'];
     }
 
-    public function setAdminCreate($admin_create) {
-        if ($this->var['admin_create'] != $admin_create) {
-            $this->var['admin_create'] = $admin_create;
-            $this->update['admin_create'] = true;
+    public function setModyfiedBy($modyfied_by) {
+        if ($this->var['modyfied_by'] != $modyfied_by) {
+            $this->var['modyfied_by'] = $modyfied_by;
+            $this->update['modyfied_by'] = true;
         }
     }
-    public function getAdminCreate() {
-        return $this->var['admin_create'];
-    }
-
-    public function setLastModify($last_modify) {
-        if ($this->var['last_modify'] != $last_modify) {
-            $this->var['last_modify'] = $last_modify;
-            $this->update['last_modify'] = true;
-        }
-    }
-    public function getLastModify() {
-        return $this->var['last_modify'];
+    public function getModyfiedBy() {
+        return $this->var['modyfied_by'];
     }
 
     public function setCtime($ctime) {
