@@ -5,9 +5,9 @@ class GetDishKeywordCountHandler extends UnauthorizedRequestHandler {
 		$dishId = $params['dishid'];
 		$language = $params['language'];
 
-		$codes = DishUserKeywordDao::getDishKeywordsCount($result);
-	
-		$descriptions = ItermDao::getCodeDescriptionArray($codes, ItermDao::TYPE_KEYWORD, $language);
+		$codes = DishUserKeywordDao::getDishKeywordsCount($dishId);
+
+		$descriptions = ItermDao::getCodeDescriptionArray(array_keys($codes), ItermDao::TYPE_KEYWORD, $language);
 
 		$counts = array();
 		foreach ($codes as $code=>$count) {

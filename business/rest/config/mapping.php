@@ -26,7 +26,7 @@ register('GET',  '/dish/location',        new GetLocationDishHandler());
 
 // keywords end points
 //
-register('POST', '/user/:userid/dish/:dishid/keyword/:code',      new PostUserDishKeywordHandler());
+register('POST', '/dish/:dishid/keyword/:code',                   new PostUserDishKeywordHandler());
 register('GET',  '/user/:userid/dish/:dishid/keywords/:language', new GetUserDishKeywordHandler());
 register('GET',  '/dish/:dishid/keyword/count/:language',         new GetDishKeywordCountHandler());
 

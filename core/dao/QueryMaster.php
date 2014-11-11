@@ -181,40 +181,7 @@ class QueryMaster {
 
         return $this;
     }
-    
-    /**
-     * Appends a like sql clause to the query.
-     * If you need to search for strings that begin with a value, set $lead to TRUE.
-     * If you need to search for strings that end with a value, set $trail to TRUE.
-     * You can also combine the $lead and $trail to search for strings that contain a value anywhere.
-     * @author Ramesh, 9/16/2014
-     */
-    public function like($field, $value, $lead=TURE, $trail=TRUE, $is_like=TRUE, $or=FALSE) {
-        if ($this->and) {
-            $like = $or ? ' OR ' : ' AND '; 
-        } else {
-            $like = ' WHERE ';
-        }
 
-        $operator = $is_like ? 'LIKE' : 'NOT LIKE';
-
-        $like .= "$field $operator '";
-        if ($trail) {
-            $like .= "%";// need the % in front of the string to search for values that trail with value
-        }
-        $like .= $value;
-        if ($lead) {
-            $like .= "%";// need the % in end of the string to search for values that begin with value
-        }
-        $like .= "'";
-        
-        $this->and = true;
-
-        $this->query.= $like;
-        
-        return $this;
-    }
-    
     public function in($field, $range, $is_in=TRUE, $or=FALSE) {
         if ($this->and) {
             $in = $or ? ' OR ' : ' AND '; 
@@ -272,7 +239,7 @@ class QueryMaster {
     public function query() {
     	global $DB_LOG_LEVEL;
         if ($DB_LOG_LEVEL>=2) {
-            error_log($this->query);
+           	Logger::info('[DATABASE] '.$this->query);
         }
 
         if ($this->isInsert) {
@@ -290,10 +257,10 @@ class QueryMaster {
         }
 
         if ($DB_LOG_LEVEL>=1 && !empty($this->errors)) {
-        if ($DB_LOG_LEVEL<2) {
-                error_log($this->query);
+        	if ($DB_LOG_LEVEL<2) {
+            	Logger::info('[DATABASE] '.$this->query);
             }
-            error_log('[ERROR] - '.json_encode($this->errors));
+            Logger::error(json_encode($this->errors));
         }
 
         return $result;

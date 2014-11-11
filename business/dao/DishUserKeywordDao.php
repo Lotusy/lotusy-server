@@ -10,7 +10,7 @@ class DishUserKeywordDao extends DishUserKeywordDaoGenerated {
 
 		$codes = array();
 		foreach ($res as $row) {
-			$codes = $row['keyword_code'];
+			$codes[] = $row['keyword_code'];
 		}
 
 		return $codes;
@@ -25,7 +25,7 @@ class DishUserKeywordDao extends DishUserKeywordDaoGenerated {
 
 		$codes = array();
 		foreach ($res as $row) {
-			$codes = $row['keyword_code'];
+			$codes[$row['keyword_code']] = $row['count'];
 		}
 
 		return $codes;
