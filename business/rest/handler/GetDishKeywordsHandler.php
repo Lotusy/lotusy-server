@@ -10,7 +10,7 @@ class GetDishKeywordsHandler extends UnauthorizedRequestHandler {
 		if (empty($codes)) {
 			$descriptions = ItermDao::getTypeLanguageCodes(ItermDao::TYPE_KEYWORD, $language);
 		} else {
-			$descriptions = ItermDao::getCodeDescriptionArray(array_keys($codes), ItermDao::TYPE_KEYWORD, $language);
+			$descriptions = ItermDao::getCodeDescriptionArray($codes, ItermDao::TYPE_KEYWORD, $language);
 		}
 
 		$response = array();
