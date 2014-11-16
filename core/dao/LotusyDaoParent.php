@@ -30,6 +30,21 @@ abstract class LotusyDaoParent {
     }
 
 
+    public static function saveBatch($daos) {
+        if (empty($daos)) { return FALSE; }
+
+        $inserts = array();
+        foreach ($daos as $dao) {
+            $inserts[] = $dao->toArray(array($dao->getTableName()));
+        }
+
+        $builder = new QueryMaster();
+        $res = $builder->insertBatch($inserts, $dao->getTableName())
+                       ->query();
+        return $res;
+    }
+
+
     protected function retrieve($id) {
 		$idColumn = $this->getIdColumnName();
 

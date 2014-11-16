@@ -2,15 +2,19 @@
 class PostUserDishKeywordHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
-		$code = $params['code'];
-		$dishId = $params['dishid'];
+		$json = Utility::getJsonRequestData();
+		$codes = $json['keyword_codes'];
+		$dishId = $json['dish_id'];
 		$userId = $this->getUserId();
 
-		$dao = new DishUserKeywordDao();
-		$dao->setDishId($dishId);
-		$dao->setUserId($userId);
-		$dao->setKeywordCode($code);
-		$result = $dao->save();
+		$result = TRUE;
+		foreach ($codes as $code) {
+			$dao = new DishUserKeywordDao();
+			$dao->setDishId($dishId);
+			$dao->setUserId($userId);
+			$dao->setKeywordCode($code);
+			$result = $result && $dao->save();
+		}
 
 		$response = array();
 		$response['status'] = 'success';
