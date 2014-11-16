@@ -31,7 +31,7 @@ register('GET',  '/dish/location',        new GetLocationDishHandler());
 //
 register('POST', '/dish/keywords',                                new PostUserDishKeywordHandler());
 register('GET',  '/user/:userid/dish/:dishid/keywords/:language', new GetUserDishKeywordHandler());
-register('GET',  '/dish/:dishid/keyword/count/:language',         new GetDishKeywordCountHandler());
+register('GET',  '/dish/:dishid/keywords/count/:language',        new GetDishKeywordCountHandler());
 register('GET',  '/dish/:dishid/keywords/:language',              new GetDishKeywordsHandler());
 register('GET',  '/keyword/:langauge/terms',                      new GetKeywordItermHandler());
 
