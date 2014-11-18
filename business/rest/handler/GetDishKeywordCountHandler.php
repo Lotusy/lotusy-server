@@ -1,5 +1,5 @@
 <?php
-class GetDishKeywordCountHandler extends UnauthorizedRequestHandler {
+class GetDishKeywordCountHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
 		$dishId = $params['dishid'];
@@ -9,10 +9,15 @@ class GetDishKeywordCountHandler extends UnauthorizedRequestHandler {
 
 		$descriptions = ItermDao::getCodeDescriptionArray(array_keys($codes), ItermDao::TYPE_KEYWORD, $language);
 
+		$userCodes = DishUserKeywordDao::getUserDishKeywords($this->getUserId(), $dishId, $language);
+
 		$counts = array();
 		foreach ($codes as $code=>$count) {
-			$description = $descriptions[$code];
-			$counts[$description] = $count;
+			$element = array();
+			$element['code'] = $code;
+			$element['description'] = $descriptions[$code];
+			$element['count'] = $count;
+			$element['selected'] = in_array($code, $userCodes);
 		}
 
 		$response = array();
