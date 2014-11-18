@@ -11,6 +11,10 @@ class GetDishKeywordCountHandler extends AuthorizedRequestHandler {
 
 		$userCodes = DishUserKeywordDao::getUserDishKeywords($this->getUserId(), $dishId, $language);
 
+		$keywordUserCount = DishUserKeywordDao::getDishKeywordUserCount($dishId);
+
+		$totalUserCount = DishUserKeywordDao::getDishTotalUserCount($dishId);
+
 		$counts = array();
 		foreach ($codes as $code=>$count) {
 			$element = array();
@@ -18,6 +22,7 @@ class GetDishKeywordCountHandler extends AuthorizedRequestHandler {
 			$element['description'] = $descriptions[$code];
 			$element['count'] = $count;
 			$element['selected'] = in_array($code, $userCodes);
+			$element['percent'] = number_format(100*$keywordUserCount[$code]/$totalUserCount, 2);
 			$counts[] = $element;
 		}
 
