@@ -18,6 +18,7 @@ class GetDishKeywordCountHandler extends AuthorizedRequestHandler {
 			$element['description'] = $descriptions[$code];
 			$element['count'] = $count;
 			$element['selected'] = in_array($code, $userCodes);
+			$counts[] = $element;
 		}
 
 		$response = array();
