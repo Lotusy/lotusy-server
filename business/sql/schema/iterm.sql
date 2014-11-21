@@ -83,3 +83,11 @@ VALUES
 (2012, 'KEYWORD', 'en', '', 'Y', 1, NOW(), NOW()),
 (2012, 'KEYWORD', 'zh', '不再来了', 'Y', 1, NOW(), NOW()),
 (2012, 'KEYWORD', 'tw', '', 'Y', 1, NOW(), NOW());
+
+INSERT INTO 
+l_business.iterm (code, type, language, description, active, modyfied_by, ctime, mtime)
+VALUES 
+(3001, 'INFOGRAPH', 'en', 'Item Value', 'Y', 1, NOW(), NOW()),
+(3002, 'INFOGRAPH', 'en', 'Portion Size', 'Y', 1, NOW(), NOW()),
+(3003, 'INFOGRAPH', 'en', 'Presentation', 'Y', 1, NOW(), NOW()),
+(3004, 'INFOGRAPH', 'en', 'Uniqueness Factor', 'Y', 1, NOW(), NOW());

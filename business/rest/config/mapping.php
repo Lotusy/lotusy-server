@@ -36,6 +36,13 @@ register('GET',  '/dish/:dishid/keywords/:language',              new GetDishKey
 register('GET',  '/keyword/:langauge/terms',                      new GetKeywordItermHandler());
 
 
+// dish rating end points
+//
+register('GET',  '/dish/:dishid/infograph',              new GetDishInfoGraphHandler());
+register('POST', '/dish/:dishid/infograph',              new PostDishInfoGraphHandler());
+register('GET',  '/user/:userid/dish/:dishid/infograph', new GetUserDishInfoGraphHandler());
+
+
 // iterm end points
 //
 register('GET', '/cuisine/:language/terms', new GetCuisineItermHandler());
