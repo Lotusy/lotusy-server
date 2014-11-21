@@ -10,7 +10,7 @@ class DishInfographDao extends DishInfographDaoGenerated {
                                  AVG(presentation) as presentation, 
                                  AVG(uniqueness) as uniqueness', self::$table)
                        ->where('dish_id', $dishId)
-                       ->fine();
+                       ->find();
         return $res;
     }
 
@@ -19,7 +19,7 @@ class DishInfographDao extends DishInfographDaoGenerated {
         $res = $builder->select('item_value, portion_size, presentation, uniqueness', self::$table)
                        ->where('dish_id', $dishId)
                        ->where('user_id', $userId)
-                       ->fine();
+                       ->find();
         return $res;
     }
 
@@ -28,7 +28,7 @@ class DishInfographDao extends DishInfographDaoGenerated {
         $res = $builder->select('*', self::$table)
                        ->where('dish_id', $dishId)
                        ->where('user_id', $userId)
-                       ->fine();
+                       ->find();
 
 		$rv = self::makeObjectFromSelectResult($res, 'DishInfographDao');
         if (!isset($rv)) {

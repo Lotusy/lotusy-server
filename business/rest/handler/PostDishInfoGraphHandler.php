@@ -13,6 +13,9 @@ class PostDishInfoGraphHandler extends AuthorizedRequestHandler {
 
 		$dao = DishInfographDao::getUserDishInfographDao($dishId, $userId);
 
+		$dao->setUserId($userId);
+		$dao->setDishId($dishId);
+
 		if (!empty($json['item_value'])) {
 			$dao->setItemValue($json['item_value']);
 		}
