@@ -26,7 +26,7 @@ abstract class DishInfographDaoGenerated extends LotusyDaoParent {
     }
 
     public function setDishId($dish_id) {
-        if ($this->var['dish_id'] != $dish_id) {
+        if ($this->var['dish_id'] !== $dish_id) {
             $this->var['dish_id'] = $dish_id;
             $this->update['dish_id'] = true;
         }
@@ -36,7 +36,7 @@ abstract class DishInfographDaoGenerated extends LotusyDaoParent {
     }
 
     public function setUserId($user_id) {
-        if ($this->var['user_id'] != $user_id) {
+        if ($this->var['user_id'] !== $user_id) {
             $this->var['user_id'] = $user_id;
             $this->update['user_id'] = true;
         }
@@ -46,7 +46,7 @@ abstract class DishInfographDaoGenerated extends LotusyDaoParent {
     }
 
     public function setItemValue($item_value) {
-        if ($this->var['item_value'] != $item_value) {
+        if ($this->var['item_value'] !== $item_value) {
             $this->var['item_value'] = $item_value;
             $this->update['item_value'] = true;
         }
@@ -56,7 +56,7 @@ abstract class DishInfographDaoGenerated extends LotusyDaoParent {
     }
 
     public function setPortionSize($portion_size) {
-        if ($this->var['portion_size'] != $portion_size) {
+        if ($this->var['portion_size'] !== $portion_size) {
             $this->var['portion_size'] = $portion_size;
             $this->update['portion_size'] = true;
         }
@@ -66,7 +66,7 @@ abstract class DishInfographDaoGenerated extends LotusyDaoParent {
     }
 
     public function setPresentation($presentation) {
-        if ($this->var['presentation'] != $presentation) {
+        if ($this->var['presentation'] !== $presentation) {
             $this->var['presentation'] = $presentation;
             $this->update['presentation'] = true;
         }
@@ -76,7 +76,7 @@ abstract class DishInfographDaoGenerated extends LotusyDaoParent {
     }
 
     public function setUniqueness($uniqueness) {
-        if ($this->var['uniqueness'] != $uniqueness) {
+        if ($this->var['uniqueness'] !== $uniqueness) {
             $this->var['uniqueness'] = $uniqueness;
             $this->update['uniqueness'] = true;
         }

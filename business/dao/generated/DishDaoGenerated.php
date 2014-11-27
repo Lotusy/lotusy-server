@@ -32,7 +32,7 @@ abstract class DishDaoGenerated extends LotusyDaoParent {
     }
 
     public function setBusinessId($business_id) {
-        if ($this->var['business_id'] != $business_id) {
+        if ($this->var['business_id'] !== $business_id) {
             $this->var['business_id'] = $business_id;
             $this->update['business_id'] = true;
         }
@@ -42,7 +42,7 @@ abstract class DishDaoGenerated extends LotusyDaoParent {
     }
 
     public function setUserId($user_id) {
-        if ($this->var['user_id'] != $user_id) {
+        if ($this->var['user_id'] !== $user_id) {
             $this->var['user_id'] = $user_id;
             $this->update['user_id'] = true;
         }
@@ -52,7 +52,7 @@ abstract class DishDaoGenerated extends LotusyDaoParent {
     }
 
     public function setNameZh($name_zh) {
-        if ($this->var['name_zh'] != $name_zh) {
+        if ($this->var['name_zh'] !== $name_zh) {
             $this->var['name_zh'] = $name_zh;
             $this->update['name_zh'] = true;
         }
@@ -62,7 +62,7 @@ abstract class DishDaoGenerated extends LotusyDaoParent {
     }
 
     public function setNameTw($name_tw) {
-        if ($this->var['name_tw'] != $name_tw) {
+        if ($this->var['name_tw'] !== $name_tw) {
             $this->var['name_tw'] = $name_tw;
             $this->update['name_tw'] = true;
         }
@@ -72,7 +72,7 @@ abstract class DishDaoGenerated extends LotusyDaoParent {
     }
 
     public function setNameEn($name_en) {
-        if ($this->var['name_en'] != $name_en) {
+        if ($this->var['name_en'] !== $name_en) {
             $this->var['name_en'] = $name_en;
             $this->update['name_en'] = true;
         }
@@ -82,7 +82,7 @@ abstract class DishDaoGenerated extends LotusyDaoParent {
     }
 
     public function setVerified($verified) {
-        if ($this->var['verified'] != $verified) {
+        if ($this->var['verified'] !== $verified) {
             $this->var['verified'] = $verified;
             $this->update['verified'] = true;
         }
@@ -92,7 +92,7 @@ abstract class DishDaoGenerated extends LotusyDaoParent {
     }
 
     public function setLikeCount($like_count) {
-        if ($this->var['like_count'] != $like_count) {
+        if ($this->var['like_count'] !== $like_count) {
             $this->var['like_count'] = $like_count;
             $this->update['like_count'] = true;
         }
@@ -102,7 +102,7 @@ abstract class DishDaoGenerated extends LotusyDaoParent {
     }
 
     public function setDislikeCount($dislike_count) {
-        if ($this->var['dislike_count'] != $dislike_count) {
+        if ($this->var['dislike_count'] !== $dislike_count) {
             $this->var['dislike_count'] = $dislike_count;
             $this->update['dislike_count'] = true;
         }
@@ -112,7 +112,7 @@ abstract class DishDaoGenerated extends LotusyDaoParent {
     }
 
     public function setCreateTime($create_time) {
-        if ($this->var['create_time'] != $create_time) {
+        if ($this->var['create_time'] !== $create_time) {
             $this->var['create_time'] = $create_time;
             $this->update['create_time'] = true;
         }

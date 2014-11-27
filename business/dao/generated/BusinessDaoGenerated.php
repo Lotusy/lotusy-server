@@ -58,7 +58,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setExternalId($external_id) {
-        if ($this->var['external_id'] != $external_id) {
+        if ($this->var['external_id'] !== $external_id) {
             $this->var['external_id'] = $external_id;
             $this->update['external_id'] = true;
         }
@@ -68,7 +68,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setExternalType($external_type) {
-        if ($this->var['external_type'] != $external_type) {
+        if ($this->var['external_type'] !== $external_type) {
             $this->var['external_type'] = $external_type;
             $this->update['external_type'] = true;
         }
@@ -78,7 +78,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setUserId($user_id) {
-        if ($this->var['user_id'] != $user_id) {
+        if ($this->var['user_id'] !== $user_id) {
             $this->var['user_id'] = $user_id;
             $this->update['user_id'] = true;
         }
@@ -88,7 +88,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setNameZh($name_zh) {
-        if ($this->var['name_zh'] != $name_zh) {
+        if ($this->var['name_zh'] !== $name_zh) {
             $this->var['name_zh'] = $name_zh;
             $this->update['name_zh'] = true;
         }
@@ -98,7 +98,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setNameTw($name_tw) {
-        if ($this->var['name_tw'] != $name_tw) {
+        if ($this->var['name_tw'] !== $name_tw) {
             $this->var['name_tw'] = $name_tw;
             $this->update['name_tw'] = true;
         }
@@ -108,7 +108,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setNameEn($name_en) {
-        if ($this->var['name_en'] != $name_en) {
+        if ($this->var['name_en'] !== $name_en) {
             $this->var['name_en'] = $name_en;
             $this->update['name_en'] = true;
         }
@@ -118,7 +118,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setCategory($category) {
-        if ($this->var['category'] != $category) {
+        if ($this->var['category'] !== $category) {
             $this->var['category'] = $category;
             $this->update['category'] = true;
         }
@@ -128,7 +128,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setImage($image) {
-        if ($this->var['image'] != $image) {
+        if ($this->var['image'] !== $image) {
             $this->var['image'] = $image;
             $this->update['image'] = true;
         }
@@ -138,7 +138,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setStreet($street) {
-        if ($this->var['street'] != $street) {
+        if ($this->var['street'] !== $street) {
             $this->var['street'] = $street;
             $this->update['street'] = true;
         }
@@ -148,7 +148,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setCity($city) {
-        if ($this->var['city'] != $city) {
+        if ($this->var['city'] !== $city) {
             $this->var['city'] = $city;
             $this->update['city'] = true;
         }
@@ -158,7 +158,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setState($state) {
-        if ($this->var['state'] != $state) {
+        if ($this->var['state'] !== $state) {
             $this->var['state'] = $state;
             $this->update['state'] = true;
         }
@@ -168,7 +168,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setCountry($country) {
-        if ($this->var['country'] != $country) {
+        if ($this->var['country'] !== $country) {
             $this->var['country'] = $country;
             $this->update['country'] = true;
         }
@@ -178,7 +178,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setZip($zip) {
-        if ($this->var['zip'] != $zip) {
+        if ($this->var['zip'] !== $zip) {
             $this->var['zip'] = $zip;
             $this->update['zip'] = true;
         }
@@ -188,7 +188,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setLat($lat) {
-        if ($this->var['lat'] != $lat) {
+        if ($this->var['lat'] !== $lat) {
             $this->var['lat'] = $lat;
             $this->update['lat'] = true;
         }
@@ -198,7 +198,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setLng($lng) {
-        if ($this->var['lng'] != $lng) {
+        if ($this->var['lng'] !== $lng) {
             $this->var['lng'] = $lng;
             $this->update['lng'] = true;
         }
@@ -208,7 +208,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setPrice($price) {
-        if ($this->var['price'] != $price) {
+        if ($this->var['price'] !== $price) {
             $this->var['price'] = $price;
             $this->update['price'] = true;
         }
@@ -218,7 +218,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setHours($hours) {
-        if ($this->var['hours'] != $hours) {
+        if ($this->var['hours'] !== $hours) {
             $this->var['hours'] = $hours;
             $this->update['hours'] = true;
         }
@@ -228,7 +228,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setCashOnly($cash_only) {
-        if ($this->var['cash_only'] != $cash_only) {
+        if ($this->var['cash_only'] !== $cash_only) {
             $this->var['cash_only'] = $cash_only;
             $this->update['cash_only'] = true;
         }
@@ -238,7 +238,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setVerified($verified) {
-        if ($this->var['verified'] != $verified) {
+        if ($this->var['verified'] !== $verified) {
             $this->var['verified'] = $verified;
             $this->update['verified'] = true;
         }
@@ -248,7 +248,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setTel($tel) {
-        if ($this->var['tel'] != $tel) {
+        if ($this->var['tel'] !== $tel) {
             $this->var['tel'] = $tel;
             $this->update['tel'] = true;
         }
@@ -258,7 +258,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setWebsite($website) {
-        if ($this->var['website'] != $website) {
+        if ($this->var['website'] !== $website) {
             $this->var['website'] = $website;
             $this->update['website'] = true;
         }
@@ -268,7 +268,7 @@ abstract class BusinessDaoGenerated extends LotusyDaoParent {
     }
 
     public function setSocial($social) {
-        if ($this->var['social'] != $social) {
+        if ($this->var['social'] !== $social) {
             $this->var['social'] = $social;
             $this->update['social'] = true;
         }

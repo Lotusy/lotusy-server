@@ -20,7 +20,7 @@ abstract class AdminDaoGenerated extends LotusyDaoParent {
     }
 
     public function setEmail($email) {
-        if ($this->var['email'] != $email) {
+        if ($this->var['email'] !== $email) {
             $this->var['email'] = $email;
             $this->update['email'] = true;
         }
@@ -30,7 +30,7 @@ abstract class AdminDaoGenerated extends LotusyDaoParent {
     }
 
     public function setPassword($password) {
-        if ($this->var['password'] != $password) {
+        if ($this->var['password'] !== $password) {
             $this->var['password'] = $password;
             $this->update['password'] = true;
         }
@@ -40,7 +40,7 @@ abstract class AdminDaoGenerated extends LotusyDaoParent {
     }
 
     public function setUsername($username) {
-        if ($this->var['username'] != $username) {
+        if ($this->var['username'] !== $username) {
             $this->var['username'] = $username;
             $this->update['username'] = true;
         }

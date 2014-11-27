@@ -30,7 +30,7 @@ abstract class ItermDaoGenerated extends LotusyDaoParent {
     }
 
     public function setCode($code) {
-        if ($this->var['code'] != $code) {
+        if ($this->var['code'] !== $code) {
             $this->var['code'] = $code;
             $this->update['code'] = true;
         }
@@ -40,7 +40,7 @@ abstract class ItermDaoGenerated extends LotusyDaoParent {
     }
 
     public function setType($type) {
-        if ($this->var['type'] != $type) {
+        if ($this->var['type'] !== $type) {
             $this->var['type'] = $type;
             $this->update['type'] = true;
         }
@@ -50,7 +50,7 @@ abstract class ItermDaoGenerated extends LotusyDaoParent {
     }
 
     public function setLanguage($language) {
-        if ($this->var['language'] != $language) {
+        if ($this->var['language'] !== $language) {
             $this->var['language'] = $language;
             $this->update['language'] = true;
         }
@@ -60,7 +60,7 @@ abstract class ItermDaoGenerated extends LotusyDaoParent {
     }
 
     public function setDescription($description) {
-        if ($this->var['description'] != $description) {
+        if ($this->var['description'] !== $description) {
             $this->var['description'] = $description;
             $this->update['description'] = true;
         }
@@ -70,7 +70,7 @@ abstract class ItermDaoGenerated extends LotusyDaoParent {
     }
 
     public function setActive($active) {
-        if ($this->var['active'] != $active) {
+        if ($this->var['active'] !== $active) {
             $this->var['active'] = $active;
             $this->update['active'] = true;
         }
@@ -80,7 +80,7 @@ abstract class ItermDaoGenerated extends LotusyDaoParent {
     }
 
     public function setModyfiedBy($modyfied_by) {
-        if ($this->var['modyfied_by'] != $modyfied_by) {
+        if ($this->var['modyfied_by'] !== $modyfied_by) {
             $this->var['modyfied_by'] = $modyfied_by;
             $this->update['modyfied_by'] = true;
         }
@@ -90,7 +90,7 @@ abstract class ItermDaoGenerated extends LotusyDaoParent {
     }
 
     public function setCtime($ctime) {
-        if ($this->var['ctime'] != $ctime) {
+        if ($this->var['ctime'] !== $ctime) {
             $this->var['ctime'] = $ctime;
             $this->update['ctime'] = true;
         }
@@ -100,7 +100,7 @@ abstract class ItermDaoGenerated extends LotusyDaoParent {
     }
 
     public function setMtime($mtime) {
-        if ($this->var['mtime'] != $mtime) {
+        if ($this->var['mtime'] !== $mtime) {
             $this->var['mtime'] = $mtime;
             $this->update['mtime'] = true;
         }

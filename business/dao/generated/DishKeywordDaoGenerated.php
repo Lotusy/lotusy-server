@@ -18,7 +18,7 @@ abstract class DishKeywordDaoGenerated extends LotusyDaoParent {
     }
 
     public function setKeywordCode($keyword_code) {
-        if ($this->var['keyword_code'] != $keyword_code) {
+        if ($this->var['keyword_code'] !== $keyword_code) {
             $this->var['keyword_code'] = $keyword_code;
             $this->update['keyword_code'] = true;
         }
@@ -28,7 +28,7 @@ abstract class DishKeywordDaoGenerated extends LotusyDaoParent {
     }
 
     public function setDishId($dish_id) {
-        if ($this->var['dish_id'] != $dish_id) {
+        if ($this->var['dish_id'] !== $dish_id) {
             $this->var['dish_id'] = $dish_id;
             $this->update['dish_id'] = true;
         }

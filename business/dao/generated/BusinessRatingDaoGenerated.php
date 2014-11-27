@@ -28,7 +28,7 @@ abstract class BusinessRatingDaoGenerated extends LotusyDaoParent {
     }
 
     public function setBusinessId($business_id) {
-        if ($this->var['business_id'] != $business_id) {
+        if ($this->var['business_id'] !== $business_id) {
             $this->var['business_id'] = $business_id;
             $this->update['business_id'] = true;
         }
@@ -38,7 +38,7 @@ abstract class BusinessRatingDaoGenerated extends LotusyDaoParent {
     }
 
     public function setUserId($user_id) {
-        if ($this->var['user_id'] != $user_id) {
+        if ($this->var['user_id'] !== $user_id) {
             $this->var['user_id'] = $user_id;
             $this->update['user_id'] = true;
         }
@@ -48,7 +48,7 @@ abstract class BusinessRatingDaoGenerated extends LotusyDaoParent {
     }
 
     public function setFood($food) {
-        if ($this->var['food'] != $food) {
+        if ($this->var['food'] !== $food) {
             $this->var['food'] = $food;
             $this->update['food'] = true;
         }
@@ -58,7 +58,7 @@ abstract class BusinessRatingDaoGenerated extends LotusyDaoParent {
     }
 
     public function setServ($serv) {
-        if ($this->var['serv'] != $serv) {
+        if ($this->var['serv'] !== $serv) {
             $this->var['serv'] = $serv;
             $this->update['serv'] = true;
         }
@@ -68,7 +68,7 @@ abstract class BusinessRatingDaoGenerated extends LotusyDaoParent {
     }
 
     public function setEnv($env) {
-        if ($this->var['env'] != $env) {
+        if ($this->var['env'] !== $env) {
             $this->var['env'] = $env;
             $this->update['env'] = true;
         }
@@ -78,7 +78,7 @@ abstract class BusinessRatingDaoGenerated extends LotusyDaoParent {
     }
 
     public function setOverall($overall) {
-        if ($this->var['overall'] != $overall) {
+        if ($this->var['overall'] !== $overall) {
             $this->var['overall'] = $overall;
             $this->update['overall'] = true;
         }
@@ -88,7 +88,7 @@ abstract class BusinessRatingDaoGenerated extends LotusyDaoParent {
     }
 
     public function setCreateTime($create_time) {
-        if ($this->var['create_time'] != $create_time) {
+        if ($this->var['create_time'] !== $create_time) {
             $this->var['create_time'] = $create_time;
             $this->update['create_time'] = true;
         }
