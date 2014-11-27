@@ -40,5 +40,16 @@ class DishInfographDao extends DishInfographDaoGenerated {
 
 // ============================================== override function ================================================
 
+    protected function beforeInsert() {
+    	$itemValue = $this->getItemValue();
+    	$portionSize = $this->getPortionSize();
+    	$presentation = $this->getPresentation();
+    	$uniqueness = $this->getUniqueness();
+    
+    	if (!isset($itemValue)) { $this->setItemValue(0); }
+    	if (!isset($portionSize)) { $this->setPortionSize(0); }
+    	if (!isset($presentation)) { $this->setPresentation(0); }
+    	if (!isset($uniqueness)) { $this->setUniqueness(0); }
+    }
 }
 ?>
