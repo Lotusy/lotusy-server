@@ -6,6 +6,7 @@ class GetUserDishInfoGraphHandler extends UnauthorizedRequestHandler {
 		$userId = $params['userid'];
 
 		$infograph = DishInfographDao::getUserDishInfograph($dishId, $userId);
+		$infograph['dish_id'] = $dishId;
 
 		$response = array();
 		$response['status'] = 'success';

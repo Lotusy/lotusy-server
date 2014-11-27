@@ -6,7 +6,7 @@ class GetDishInfoGraphHandler extends UnauthorizedRequestHandler {
 
 		$infograph = DishInfographDao::getDishInfograph($dishId);
 
-		$result = array();
+		$result = array('dish_id' => $dishId);
 		foreach ($infograph as $key=>$value) {
 			$result[$key] = round($value);
 		}
