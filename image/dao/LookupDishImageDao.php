@@ -25,6 +25,18 @@ class LookupDishImageDao extends LookupDishImageDaoGenerated {
 		return $res['count']>0;
 	}
 
+	public static function getDefaultDishFastImage($dishId) {
+		$lookup = new LookupDishImageDao();
+		$lookup->setServerAddress($dishId);
+
+		$builder = new QueryBuilder($lookup);
+		$res = $builder->select('*')
+						->where('dish_id', $dishId)
+						->find();
+
+		return $lookup->makeObjectFromSelectResult($res, 'LookupDishImageDao');
+	}
+
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
