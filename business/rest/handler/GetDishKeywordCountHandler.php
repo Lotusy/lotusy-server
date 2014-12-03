@@ -15,10 +15,13 @@ class GetDishKeywordCountHandler extends AuthorizedRequestHandler {
 
 		$totalUserCount = DishUserKeywordDao::getDishTotalUserCount($dishId);
 
+		$colorArr = KeywordDao::getAllKeywordsColor();
+
 		$counts = array();
 		foreach ($codes as $code=>$count) {
 			$element = array();
 			$element['code'] = $code;
+			$element['color'] = $colorArr[$code];
 			$element['description'] = $descriptions[$code];
 			$element['count'] = $count;
 			$element['selected'] = in_array($code, $userCodes);
