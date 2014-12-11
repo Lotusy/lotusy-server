@@ -9,13 +9,13 @@ register('GET',  '/tokeninfo',        new GetTokenInfoHandler());
 
 // user end points
 //
-register('GET',  '/profile',             new GetCurrentUserProfileHandler());
-register('GET',  '/:userid/profile',     new GetUserProfileHandler());
-register('POST', '/profile',             new UpdateCurrentUserProfileHandler());
-register('POST', '/follow/:userid',      new FollowUserHandler());
-register('GET',  '/:userid/followers',   new GetUserFollowersHandler());
-register('GET',  '/:userid/followings',  new GetUserFollowingsHandler());
-register('GET',  '/:userid/isfollowing', new IsFollowingUserHandler());
+register('GET',  '/profile',              new GetCurrentUserProfileHandler());
+register('GET',  '/:userid/profile',      new GetUserProfileHandler());
+register('POST', '/profile',              new UpdateCurrentUserProfileHandler());
+register('POST', '/follow/:userid',       new FollowUserHandler());
+register('GET',  '/:userid/followers',    new GetUserFollowersHandler());
+register('GET',  '/:userid/followings',   new GetUserFollowingsHandler());
+register('GET',  '/:userids/isfollowing', new IsFollowingUsersHandler());
 
 
 // dish collection end points

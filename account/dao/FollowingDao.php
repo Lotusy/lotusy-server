@@ -33,17 +33,22 @@ class FollowingDao extends FollowingDaoGenerated {
 		return $res['count'];
 	}
 
-	public static function isUserFollowing($userId, $followingId) {
+	public static function isUserFollowings($userId, $followingIds) {
 		$following = new FollowingDao();
 		$following->setServerAddress($userId);
 
 		$builder = new QueryBuilder($following);
-		$res = $builder->select('COUNT(*) as count')
+		$res = $builder->select('*')
 					   ->where('user_id', $userId)
-					   ->where('following_id', $followingId)
-					   ->find();
+					   ->in('following_id', $followingIds)
+					   ->findList();
 
-		return $res['count']>0;
+		$ids = array();
+		foreach ($res as $row) {
+			array_push($ids, $row['following_id']);
+		}
+
+		return $ids;
 	}
 
 // ======================================================================================== override
