@@ -16,6 +16,7 @@ register('POST', '/follow/:userid',       new FollowUserHandler());
 register('GET',  '/:userid/followers',    new GetUserFollowersHandler());
 register('GET',  '/:userid/followings',   new GetUserFollowingsHandler());
 register('GET',  '/:userids/isfollowing', new IsFollowingUsersHandler());
+register('GET',  '/:userids/nicknames',   new GetUserNicknamesHandler());
 
 
 // dish collection end points
