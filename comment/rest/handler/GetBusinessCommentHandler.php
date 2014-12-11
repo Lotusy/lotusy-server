@@ -29,6 +29,7 @@ class GetBusinessCommentHandler extends AuthorizedRequestHandler {
 
 		foreach ($comments as $comment) {
 			$commentArr = $comment->toArray();
+			$commentArr['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
 			$count = ReplyDao::getReplyCountByCommentId($comment->getId());
 
 			$last = strtotime($commentArr['create_time']);

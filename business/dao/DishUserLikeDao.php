@@ -13,6 +13,16 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
 		return self::makeObjectFromSelectResult($res, 'DishUserLikeDao');
 	}
 
+	public static function getResponsesOnDish($dishId, $start, $size) {
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
+					   ->where('dish_id', $dishId)
+					   ->limit($start, $size)
+					   ->findList();
+
+		return self::makeObjectsFromSelectListResult($res, 'DishUserLikeDao');
+	}
+
 // ============================================ override functions ==================================================
 
 }

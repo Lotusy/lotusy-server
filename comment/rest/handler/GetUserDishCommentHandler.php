@@ -22,6 +22,7 @@ class GetUserDishCommentHandler extends UnauthorizedRequestHandler {
 		}
 
 		$response = $comment->toArray();
+		$response['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
 
 		$now = strtotime('now');
 		$last = strtotime($response['create_time']);

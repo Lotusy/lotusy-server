@@ -22,6 +22,7 @@ class CreateCommentHandler extends AuthorizedRequestHandler {
 		$response = array();
 		if ($comment->save()) {
 			$response = $comment->toArray();
+			$response['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
 			$response['create_time'] = 0;
 			$response['status'] = 'success';
 		} else {

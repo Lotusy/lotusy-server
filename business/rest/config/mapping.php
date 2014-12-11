@@ -19,12 +19,13 @@ register('GET',  '/business/:businessid/user/:userid/rating', new GetBusinessUse
 
 // dish end points
 //
-register('POST', '/:businessid/dish',     new CreateDishHandler());
-register('GET',  '/:businessid/dishes',   new GetBusinessDishesHandler());
-register('GET',  '/dishes/:dishids',      new GetDishesHandler());
-register('POST', '/dish/:dishid/like',    new DishLikeHandler());
-register('POST', '/dish/:dishid/dislike', new DishDislikeHandler());
-register('GET',  '/dish/location',        new GetLocationDishHandler());
+register('POST', '/:businessid/dish',        new CreateDishHandler());
+register('GET',  '/:businessid/dishes',      new GetBusinessDishesHandler());
+register('GET',  '/dishes/:dishids',         new GetDishesHandler());
+register('POST', '/dish/:dishid/like',       new DishLikeHandler());
+register('POST', '/dish/:dishid/dislike',    new DishDislikeHandler());
+register('GET',  '/dish/location',           new GetLocationDishHandler());
+register('GET',  '/dish/:dishid/preference', new GetDishPreferenceDetailHandler());
 
 
 // keywords end points
