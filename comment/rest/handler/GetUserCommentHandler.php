@@ -18,8 +18,10 @@ class GetUserCommentHandler extends AuthorizedRequestHandler {
 		$response['comments'] = array();
 	
 		$commentIds = array();
+		$userIds = array();
 		foreach ($comments as $comment) {
 			array_push($commentIds, $comment->getId());
+			array_push($userIds, $comment->getUserId());
 		}
 
 		$request = new GetCommentsImageLinksRequest($commentIds, $this->getAccessToken());
@@ -27,9 +29,14 @@ class GetUserCommentHandler extends AuthorizedRequestHandler {
 
 		$now = strtotime('now');
 
+		$accessToken = $this->getAccessToken();
+		$request = new GetUserNicknamesRequest($userIds, $accessToken);
+		$nicknames = $request->execute();
+
 		foreach ($comments as $comment) {
 			$commentArr = $comment->toArray();
 			$commentArr['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
+			$commentArr['user_nickname'] = $nicknames[$comment->getUserId()];
 			$count = ReplyDao::getReplyCountByCommentId($comment->getId());
 
 			$last = strtotime($commentArr['create_time']);

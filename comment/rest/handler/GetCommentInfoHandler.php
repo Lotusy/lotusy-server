@@ -7,6 +7,13 @@ class GetCommentInfoHandler extends AuthorizedRequestHandler {
 		if ($comment->isFromDatabase()) {
 			$response = $comment->toArray();
 			$response['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
+
+			$accessToken = $this->getAccessToken();
+			$request = new GetUserNicknamesRequest(array($comment->getUserId()), $accessToken);
+			$nicknames = $request->execute();
+
+			$response['user_nickname'] = $nicknames[$comment->getUserId()];
+
 			$count = ReplyDao::getReplyCountByCommentId($params['commentid']);
 
 			$request = new GetCommentImageLinksRequest($params['commentid'], $this->getAccessToken());

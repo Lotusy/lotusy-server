@@ -19,10 +19,15 @@ class CreateCommentHandler extends AuthorizedRequestHandler {
         $comment->setLng($json['lng']);
         $comment->setMessage($json['message']);
 
+		$accessToken = $this->getAccessToken();
+		$request = new GetUserNicknamesRequest(array($this->getUserId()), $accessToken);
+		$nicknames = $request->execute();
+
 		$response = array();
 		if ($comment->save()) {
 			$response = $comment->toArray();
 			$response['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
+			$response['user_nickname'] = $nicknames[$this->getUserId()];
 			$response['create_time'] = 0;
 			$response['status'] = 'success';
 		} else {
