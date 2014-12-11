@@ -4,6 +4,11 @@ class GetDishPreferenceDetailHandler extends AuthorizedRequestHandler {
 	public function handle($params) {
 		$json = $_GET;
 
+		$validator = new GetDishPreferenceDetailValidator($json);
+		if (!$validator->validate()) {
+			return $validator->getMessage();
+		}
+
 		$dishId = $params['dishid'];
 		$userId = $this->getUserId();
 
