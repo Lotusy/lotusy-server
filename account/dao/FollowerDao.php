@@ -4,15 +4,11 @@ class FollowerDao extends FollowerDaoGenerated {
 // ========================================================================================== public
 
 	public static function getFollowerIds($userId, $start, $size) {
-		$follower = new FollowerDao();
-		$follower->setServerAddress($userId);
-
-		$builder = new QueryBuilder($follower);
-		$res = $builder->select('follower_id')
+		$builder = new QueryMaster();
+		$res = $builder->select('follower_id', self::$table)
 						->where('user_id', $userId)
 						->limit($start, $size)
 						->findList();
-
 		$ids = array();
 		foreach ($res as $row) {
 			array_push($ids, $row['follower_id']);
@@ -22,11 +18,8 @@ class FollowerDao extends FollowerDaoGenerated {
 	}
 
 	public static function getUserFollowerCount($user) {
-		$follower = new FollowerDao();
-		$follower->setServerAddress($userId);
-
-		$builder = new QueryBuilder($follower);
-		$res = $builder->select('COUNT(*) as count')
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table)
 					   ->where('user_id', $userId)
 					   ->find();
 
@@ -36,14 +29,5 @@ class FollowerDao extends FollowerDaoGenerated {
 
 // ======================================================================================== override
 
-	protected function beforeInsert() {
-		$userId = $this->getUserId();
-		$sequence = Utility::hashString($userId);
-		$this->setShardId($sequence);
-	}
-
-	protected function isShardBaseObject() {
-		return false;
-	}
 }
 ?>

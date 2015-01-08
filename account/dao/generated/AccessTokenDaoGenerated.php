@@ -1,12 +1,14 @@
 <?php
-abstract class AccessTokenDaoGenerated extends LotusyDaoBase {
+abstract class AccessTokenDaoGenerated extends LotusyDaoParent {
+
+    protected static $table = 'access_token';
 
     protected function init() {
-        $this->var['id'] = '';
-        $this->var['user_id'] = '';
-        $this->var['access_token'] = '';
-        $this->var['refresh_token'] = '';
-        $this->var['expires_time'] = '';
+        $this->var['id'] = 0;
+        $this->var['user_id'] = null;
+        $this->var['access_token'] = null;
+        $this->var['refresh_token'] = null;
+        $this->var['expires_time'] = null;
 
         $this->update['id'] = false;
         $this->update['user_id'] = false;
@@ -19,50 +21,51 @@ abstract class AccessTokenDaoGenerated extends LotusyDaoBase {
         return $this->var['id'];
     }
 
-    public function setUserId($userId) {
-        $this->var['user_id'] = $userId;
-        $this->update['user_id'] = true;
+    public function setUserId($user_id) {
+        if ($this->var['user_id'] !== $user_id) {
+            $this->var['user_id'] = $user_id;
+            $this->update['user_id'] = true;
+        }
     }
     public function getUserId() {
         return $this->var['user_id'];
     }
 
-    public function setAccessToken($accessToken) {
-        $this->var['access_token'] = $accessToken;
-        $this->update['access_token'] = true;
+    public function setAccessToken($access_token) {
+        if ($this->var['access_token'] !== $access_token) {
+            $this->var['access_token'] = $access_token;
+            $this->update['access_token'] = true;
+        }
     }
     public function getAccessToken() {
         return $this->var['access_token'];
     }
 
-    public function setRefreshToken($refreshToken) {
-        $this->var['refresh_token'] = $refreshToken;
-        $this->update['refresh_token'] = true;
+    public function setRefreshToken($refresh_token) {
+        if ($this->var['refresh_token'] !== $refresh_token) {
+            $this->var['refresh_token'] = $refresh_token;
+            $this->update['refresh_token'] = true;
+        }
     }
     public function getRefreshToken() {
         return $this->var['refresh_token'];
     }
 
-    public function setExpiresTime($expiresTime) {
-        $this->var['expires_time'] = $expiresTime;
-        $this->update['expires_time'] = true;
+    public function setExpiresTime($expires_time) {
+        if ($this->var['expires_time'] !== $expires_time) {
+            $this->var['expires_time'] = $expires_time;
+            $this->update['expires_time'] = true;
+        }
     }
     public function getExpiresTime() {
         return $this->var['expires_time'];
     }
 
-// ======================================================================================== override
-
     public function getTableName() {
-        return 'access_token';
+        return self::$table;
     }
 
     protected function getIdColumnName() {
         return 'id';
     }
-
-    public function getShardDomain() {
-        return 'l_acct_token';
-    }
 }
-?>

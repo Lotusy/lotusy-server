@@ -1,15 +1,13 @@
 <?php
 class AccessTokenDao extends AccessTokenDaoGenerated {
 
+	const AccessTokenDuration = 15552000;
+
 // ========================================================================================== public
 
 	public static function retriveDaoByAccessToken($accessToken) {
-		$token = new AccessTokenDao();
-		$sequence = Utility::hashString($accessToken);
-		$token->setServerAddress( $sequence );
-
-		$builder = new QueryBuilder($token);
-		$res = $builder->select('*')->where('access_token', $accessToken)->find();
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)->where('access_token', $accessToken)->find();
 
 		return self::makeObjectFromSelectResult($res, 'AccessTokenDao');
 	}
@@ -21,18 +19,7 @@ class AccessTokenDao extends AccessTokenDaoGenerated {
 // ======================================================================================== override
 
 	protected function beforeInsert() {
-		$lookup = new LookupRefreshAccessDao();
-		$lookup->setAccessToken($this->getAccessToken());
-		$lookup->setRefreshToken($this->getRefreshToken());
-		$lookup->save();
-
-		$sequence = Utility::hashString($this->getAccessToken());
-		$this->setShardId($sequence);
-		$this->setExpiresTime(15552000+time());
-	}
-
-	protected function isShardBaseObject() {
-		return false;
+		$this->setExpiresTime(self::AccessTokenDuration+time());
 	}
 }
 ?>

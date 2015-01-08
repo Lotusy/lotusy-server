@@ -19,8 +19,7 @@ class RegistrationValidator extends Validator {
 		}
 
 		if ($valid) {
-			$lookup = new LookupUserExternalDao();
-			$valid = !$lookup->isExternalRefExist($json['external_type'], $json['id']);
+			$valid = !UserDao::isExternalRefExist($json['external_type'], $json['id']);
 			if (!$valid) {
 				header('HTTP/1.0 409 Conflict');
 				$this->setErrorMessage('user_already_exist'); 

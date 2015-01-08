@@ -9,14 +9,14 @@ if (!$session->get('admin_id')) {
 $users = array();
 
 if (!empty($_POST['nickname'])) {
-	$ids = LookupUserNicknameDao::getUserIdsFromNickName(trim($_POST['nickname']));
+	$ids = UserDao::getUserIdsFromNickName(trim($_POST['nickname']));
 	foreach ($ids as $id) {
 		$users[$id] = new UserDao($id);
 	}
 }
 
 if (!empty($_POST['ref_type']) && !empty($_POST['ref_id'])) {
-	$ids = LookupUserExternalDao::getUserIdsFromExternalRef(trim($_POST['ref_type']), trim($_POST['ref_id']));
+	$ids = UserDao::getUserIdsFromExternalRef(trim($_POST['ref_type']), trim($_POST['ref_id']));
 	foreach ($ids as $id) {
 		$users[$id] = new UserDao($id);
 	}

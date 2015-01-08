@@ -8,7 +8,7 @@ class GetUserDishCollectionHandler extends UnauthorizedRequestHandler {
 			return $validator->getMessage();
 		}
 
-		$dishIds = DishCollectionDao::getCollectedDishes($params['userid'], $json['start'], $json['size']);
+		$dishIds = DishActivityDao::getCollectedDishes($params['userid'], $json['start'], $json['size']);
 
 		$request = new GetDishesRequest($dishIds);
 		$response = $request->execute();

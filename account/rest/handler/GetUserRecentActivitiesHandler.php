@@ -10,7 +10,7 @@ class GetUserRecentActivitiesHandler extends UnauthorizedRequestHandler {
 			return $validator->getMessage();
 		}
 
-		$map = LookupUserDishDao::getUserRecentDishes($json['user_id'], $json['start'], $json['size']);
+		$map = DishActivityDao::getUserRecentDishes($json['user_id'], $json['start'], $json['size']);
 		$dishIds = array_keys($map['dish_ids']); 
 
 		$request = new GetDishesRequest($dishIds);
@@ -34,7 +34,7 @@ class GetUserRecentActivitiesHandler extends UnauthorizedRequestHandler {
 		$response['activities'] = array();
 		foreach ($map as $time=>$dishList) {
 			$activity = $dishes[$dishList['dish_id']];
-			$activity['type'] = ($dishList['list']==LookupUserDishDao::LIST_COLLECTION) ? 'collection' : 'hitlist';
+			$activity['type'] = ($dishList['list']==DishActivityDao::LIST_COLLECTION) ? 'collection' : 'hitlist';
 
 			$request = new GetUserDishCommentRequest($json['user_id'], $dishList['dish_id']);
 			$commentResponse = $request->execute();

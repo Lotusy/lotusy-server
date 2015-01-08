@@ -13,7 +13,7 @@ class GetUserActivitiesCountHandler extends UnauthorizedRequestHandler {
 		$date = strtotime("+".$json['length']." days", strtotime($json['start']));
     	$end = date("Y-m-d", $date);
 
-		$counts = LookupUserDishDao::getUserActivityCounts($json['user_id'], $json['start'], $end);
+		$counts = DishActivityDao::getUserActivityCounts($json['user_id'], $json['start'], $end);
 
 		for ($ii=0; $ii<$json['length']; $ii++) {
 			$date = strtotime("+".$ii." days", strtotime($json['start']));

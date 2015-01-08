@@ -4,11 +4,8 @@ class AdminDao extends AdminDaoGenerated {
 // ========================================================================================== public
 
 	public static function login($email, $password) {
-		$admin = new AccountAdminDao();
-		$admin->setServerAddress( Utility::hashString($email) );
-
-		$builder = new QueryBuilder($admin);
-		$res = $builder->select('*')->where('email', $email)->find();
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)->where('email', $email)->find();
 
 		$admin = self::makeObjectFromSelectResult($res, 'AccountAdminDao');
 
@@ -27,13 +24,6 @@ class AdminDao extends AdminDaoGenerated {
 	protected function beforeInsert() {
 		$passwd = $this->getPassword();
 		$this->setPassword(md5($passwd));
-
-		$sequence = Utility::hashString($this->getEmail());
-		$this->setShardId($sequence);
-	}
-
-	protected function isShardBaseObject() {
-		return false;
 	}
 }
 ?>

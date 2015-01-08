@@ -19,8 +19,6 @@ class AdminDao extends AdminDaoGenerated {
 
 	protected function beforeInsert() {
 		$this->setPassword(md5($this->getPassword()));
-		$sequence = Utility::hashString($this->getEmail());
-		$this->setShardId($sequence);
 	}
 }
 ?>

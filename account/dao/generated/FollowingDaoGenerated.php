@@ -1,10 +1,12 @@
 <?php
-abstract class FollowingDaoGenerated extends LotusyDaoBase {
+abstract class FollowingDaoGenerated extends LotusyDaoParent {
+
+    protected static $table = 'following';
 
     protected function init() {
-        $this->var['id'] = '';
-        $this->var['user_id'] = '';
-        $this->var['following_id'] = '';
+        $this->var['id'] = 0;
+        $this->var['user_id'] = null;
+        $this->var['following_id'] = null;
 
         $this->update['id'] = false;
         $this->update['user_id'] = false;
@@ -15,34 +17,31 @@ abstract class FollowingDaoGenerated extends LotusyDaoBase {
         return $this->var['id'];
     }
 
-    public function setUserId($userId) {
-        $this->var['user_id'] = $userId;
-        $this->update['user_id'] = true;
+    public function setUserId($user_id) {
+        if ($this->var['user_id'] !== $user_id) {
+            $this->var['user_id'] = $user_id;
+            $this->update['user_id'] = true;
+        }
     }
     public function getUserId() {
         return $this->var['user_id'];
     }
 
-    public function setFollowingId($followingId) {
-        $this->var['following_id'] = $followingId;
-        $this->update['following_id'] = true;
+    public function setFollowingId($following_id) {
+        if ($this->var['following_id'] !== $following_id) {
+            $this->var['following_id'] = $following_id;
+            $this->update['following_id'] = true;
+        }
     }
     public function getFollowingId() {
         return $this->var['following_id'];
     }
 
-// ======================================================================================== override
-
     public function getTableName() {
-        return 'following';
+        return self::$table;
     }
 
     protected function getIdColumnName() {
         return 'id';
     }
-
-    public function getShardDomain() {
-        return 'l_acct_user';
-    }
 }
-?>

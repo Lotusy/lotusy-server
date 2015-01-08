@@ -41,4 +41,6 @@ ln -s config.inc.dev config.inc
 cd ..
 mkdir logs
 chmod 777 logs
+rm /etc/apache2/sites-enabled/lotusy-*
+ln -s /opt/lotusy/deployment/apache/local/lotusy-* /etc/apache2/sites-enabled/
 

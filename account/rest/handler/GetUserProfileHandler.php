@@ -15,7 +15,7 @@ class GetUserProfileHandler extends UnauthorizedRequestHandler {
 		$followerCount = FollowerDao::getUserFollowerCount($validator->getUserId());
 		$response['follower_count'] = (int)$followerCount;
 
-		$dishCount = DishCollectionDao::getDishCount($validator->getUserId());
+		$dishCount = DishActivityDao::getUserCollectedDishCount($validator->getUserId());
 		$response['dish_collection_count'] = (int)$dishCount;
 
 		$now = strtotime('now');

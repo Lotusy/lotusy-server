@@ -1,20 +1,22 @@
 <?php
-abstract class UserDaoGenerated extends LotusyDaoBase {
+abstract class UserDaoGenerated extends LotusyDaoParent {
+
+    protected static $table = 'user';
 
     protected function init() {
-        $this->var['id'] = '';
-        $this->var['external_type'] = '';
-        $this->var['external_ref'] = '';
-        $this->var['email'] = '';
-        $this->var['password'] = '';
-        $this->var['username'] = '';
-        $this->var['nickname'] = '';
-        $this->var['gender'] = '';
-        $this->var['profile_pic'] = '';
-        $this->var['description'] = '';
-        $this->var['last_login'] = '';
-        $this->var['superuser'] = '';
-        $this->var['blocked'] = '';
+        $this->var['id'] = 0;
+        $this->var['external_type'] = null;
+        $this->var['external_ref'] = null;
+        $this->var['email'] = null;
+        $this->var['password'] = null;
+        $this->var['username'] = null;
+        $this->var['nickname'] = null;
+        $this->var['gender'] = null;
+        $this->var['profile_pic'] = null;
+        $this->var['description'] = null;
+        $this->var['last_login'] = null;
+        $this->var['superuser'] = null;
+        $this->var['blocked'] = null;
 
         $this->update['id'] = false;
         $this->update['external_type'] = false;
@@ -35,114 +37,131 @@ abstract class UserDaoGenerated extends LotusyDaoBase {
         return $this->var['id'];
     }
 
-    public function setExternalType($externalType) {
-        $this->var['external_type'] = $externalType;
-        $this->update['external_type'] = true;
+    public function setExternalType($external_type) {
+        if ($this->var['external_type'] !== $external_type) {
+            $this->var['external_type'] = $external_type;
+            $this->update['external_type'] = true;
+        }
     }
     public function getExternalType() {
         return $this->var['external_type'];
     }
 
-    public function setExternalRef($externalRef) {
-        $this->var['external_ref'] = $externalRef;
-        $this->update['external_ref'] = true;
+    public function setExternalRef($external_ref) {
+        if ($this->var['external_ref'] !== $external_ref) {
+            $this->var['external_ref'] = $external_ref;
+            $this->update['external_ref'] = true;
+        }
     }
     public function getExternalRef() {
         return $this->var['external_ref'];
     }
 
     public function setEmail($email) {
-        $this->var['email'] = $email;
-        $this->update['email'] = true;
+        if ($this->var['email'] !== $email) {
+            $this->var['email'] = $email;
+            $this->update['email'] = true;
+        }
     }
     public function getEmail() {
         return $this->var['email'];
     }
 
     public function setPassword($password) {
-        $this->var['password'] = $password;
-        $this->update['password'] = true;
+        if ($this->var['password'] !== $password) {
+            $this->var['password'] = $password;
+            $this->update['password'] = true;
+        }
     }
     public function getPassword() {
         return $this->var['password'];
     }
 
     public function setUsername($username) {
-        $this->var['username'] = $username;
-        $this->update['username'] = true;
+        if ($this->var['username'] !== $username) {
+            $this->var['username'] = $username;
+            $this->update['username'] = true;
+        }
     }
     public function getUsername() {
         return $this->var['username'];
     }
 
     public function setNickname($nickname) {
-        $this->var['nickname'] = $nickname;
-        $this->update['nickname'] = true;
+        if ($this->var['nickname'] !== $nickname) {
+            $this->var['nickname'] = $nickname;
+            $this->update['nickname'] = true;
+        }
     }
     public function getNickname() {
         return $this->var['nickname'];
     }
 
     public function setGender($gender) {
-        $this->var['gender'] = $gender;
-        $this->update['gender'] = true;
+        if ($this->var['gender'] !== $gender) {
+            $this->var['gender'] = $gender;
+            $this->update['gender'] = true;
+        }
     }
     public function getGender() {
         return $this->var['gender'];
     }
 
-    public function setProfilePic($profilePic) {
-        $this->var['profile_pic'] = $profilePic;
-        $this->update['profile_pic'] = true;
+    public function setProfilePic($profile_pic) {
+        if ($this->var['profile_pic'] !== $profile_pic) {
+            $this->var['profile_pic'] = $profile_pic;
+            $this->update['profile_pic'] = true;
+        }
     }
     public function getProfilePic() {
         return $this->var['profile_pic'];
     }
 
     public function setDescription($description) {
-        $this->var['description'] = $description;
-        $this->update['description'] = true;
+        if ($this->var['description'] !== $description) {
+            $this->var['description'] = $description;
+            $this->update['description'] = true;
+        }
     }
     public function getDescription() {
         return $this->var['description'];
     }
 
-    public function setLastLogin($lastLogin) {
-        $this->var['last_login'] = $lastLogin;
-        $this->update['last_login'] = true;
+    public function setLastLogin($last_login) {
+        if ($this->var['last_login'] !== $last_login) {
+            $this->var['last_login'] = $last_login;
+            $this->update['last_login'] = true;
+        }
     }
     public function getLastLogin() {
         return $this->var['last_login'];
     }
 
     public function setSuperuser($superuser) {
-        $this->var['superuser'] = $superuser;
-        $this->update['superuser'] = true;
+        if ($this->var['superuser'] !== $superuser) {
+            $this->var['superuser'] = $superuser;
+            $this->update['superuser'] = true;
+        }
     }
     public function getSuperuser() {
         return $this->var['superuser'];
     }
 
     public function setBlocked($blocked) {
-        $this->var['blocked'] = $blocked;
-        $this->update['blocked'] = true;
+        if ($this->var['blocked'] !== $blocked) {
+            $this->var['blocked'] = $blocked;
+            $this->update['blocked'] = true;
+        }
     }
     public function getBlocked() {
         return $this->var['blocked'];
     }
 
-// ======================================================================================== override
-
     public function getTableName() {
-        return 'user';
+        return self::$table;
     }
 
     protected function getIdColumnName() {
         return 'id';
     }
-
-    public function getShardDomain() {
-        return 'l_acct_user';
-    }
 }
-?>

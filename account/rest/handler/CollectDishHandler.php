@@ -7,19 +7,13 @@ class CollectDishHandler extends UnauthorizedRequestHandler {
 			return $validator->getMessage();
 		}
 
-		$dishCollection = new DishCollectionDao();
-		$dishCollection->setDishId($params['dishid']);
-		$dishCollection->setUserId($validator->getUserId());
-		$dishCollection->save();
+		$dishActivity = new DishActivityDao();
+		$dishActivity->setDishId($params['dishid']);
+		$dishActivity->setUserId($validator->getUserId());
+		$dishActivity->setActivity(DishActivityDao::LIST_COLLECTION);
+		$dishActivity->save();
 
-		$lookup = new LookupUserDishDao();
-		$lookup->setDishId($params['dishid']);
-		$lookup->setUserId($validator->getUserId());
-		$lookup->setList(LookupUserDishDao::LIST_COLLECTION);
-		$lookup->setCreateTime(date('Y-m-d H:i:s'));
-		$lookup->save();
-
-		DishHitlistDao::deleteDishHitlist($validator->getUserId(), $params['dishid']);
+		DishActivityDao::deleteUserDishHitlist($validator->getUserId(), $params['dishid']);
 
 		$response = array();
 		$response['status'] = 'success';

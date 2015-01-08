@@ -20,7 +20,7 @@ class TokenAuthenticationHandler extends UnauthorizedRequestHandler {
 		}
 
 		if ($info['status']=='success') {
-			$userId = LookupUserExternalDao::getUniqueUserIdFromExternalRef($params['type'], $info['id']);
+			$userId = UserDao::getUniqueUserIdFromExternalRef($params['type'], $info['id']);
 			if ($userId>0) {
 				$user = new UserDao($userId);
 			} else {
