@@ -11,12 +11,16 @@ class CollectDishHandler extends UnauthorizedRequestHandler {
 		$dishActivity->setDishId($params['dishid']);
 		$dishActivity->setUserId($validator->getUserId());
 		$dishActivity->setActivity(DishActivityDao::LIST_COLLECTION);
-		$dishActivity->save();
+		
+		if ($dishActivity->save()) {
+			DishActivityDao::deleteUserDishHitlist($validator->getUserId(), $params['dishid']);
 
-		DishActivityDao::deleteUserDishHitlist($validator->getUserId(), $params['dishid']);
-
-		$response = array();
-		$response['status'] = 'success';
+			$response = array();
+			$response['status'] = 'success';
+		} else {
+			$response['status'] = 'success';
+			$response['description'] = 'Error occur when save activity.';
+		}
 
 		return $response;
 	}

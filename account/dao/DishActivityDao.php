@@ -60,7 +60,7 @@ class DishActivityDao extends DishActivityDaoGenerated {
 		foreach ($res as $row) {
 			$createTimes = substr($row['create_time'], 0, 10);
 			if (!isset($rv[$createTimes])) {
-				$rv[$createTimes] = 0;
+				$rv[$createTimes] = 1;
 			} else {
 				$rv[$createTimes] = $rv[$createTimes]+1;
 			}

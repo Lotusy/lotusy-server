@@ -1,7 +1,7 @@
 <?php
 abstract class DishActivityDaoGenerated extends LotusyDaoParent {
 
-    protected static $table = 'dish_hitlist';
+    protected static $table = 'dish_activity';
 
     protected function init() {
         $this->var['id'] = 0;

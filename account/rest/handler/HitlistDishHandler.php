@@ -10,7 +10,7 @@ class HitlistDishHandler extends UnauthorizedRequestHandler {
 		$lookup = new DishActivityDao();
 		$lookup->setDishId($params['dishid']);
 		$lookup->setUserId($validator->getUserId());
-		$lookup->setList(DishActivityDao::LIST_HITLIST);
+		$lookup->setActivity(DishActivityDao::LIST_HITLIST);
 		$lookup->save();
 
 		$response = array();
