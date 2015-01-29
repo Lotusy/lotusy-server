@@ -23,6 +23,25 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
 		return self::makeObjectsFromSelectListResult($res, 'DishUserLikeDao');
 	}
 
+	public static function getDishLikedCount($dishId) {
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table)
+					   ->where('dish_id', $dishId)
+					   ->where('is_like', 'Y')
+					   ->find();
+
+		return $res['count'];
+	}
+
+	public static function getDishCount($dishId) {
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table)
+					   ->where('dish_id', $dishId)
+					   ->find();
+
+		return $res['count'];
+	}
+
 // ============================================ override functions ==================================================
 
 }

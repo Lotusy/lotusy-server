@@ -26,6 +26,7 @@ register('POST', '/dish/:dishid/like',       new DishLikeHandler());
 register('POST', '/dish/:dishid/dislike',    new DishDislikeHandler());
 register('GET',  '/dish/location',           new GetLocationDishHandler());
 register('GET',  '/dish/:dishid/preference', new GetDishPreferenceDetailHandler());
+register('GET',  '/:dishid/popularity/info', new GetDishPopularityInfoHandler());
 
 
 // keywords end points

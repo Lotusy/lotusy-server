@@ -3,7 +3,7 @@ class GetDishUserInfoHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
 		$userId = $this->getUserId();
-		$dishId = $params['dish_id'];
+		$dishId = $params['dishid'];
 
 		$followingIds = FollowingDao::getFollowingIds($userId, 0, 1000);
 		$userIds = DishActivityDao::getDishTwoUserCollected($dishId, $followingIds);
