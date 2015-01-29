@@ -119,6 +119,31 @@ class DishActivityDao extends DishActivityDaoGenerated {
 		return $ids;
 	}
 
+	public static function getDishTwoUserCollected($dishId, $userIds) {
+		$builder = new QueryMaster();
+		$res = $builder->select('user_id', self::$table)
+					   ->where('dish_id', $dishId)
+					   ->in('user_id', $userIds)
+					   ->where('activity', self::LIST_COLLECTION)
+					   ->limit(0, 2)
+					   ->findList();
+		$ids = array();
+		foreach ($res as $row) {
+			array_push($ids, $row['user_id']);
+		}
+
+		return $ids;
+	}
+
+	public static function getDishUserCount($dishId) {
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table) 
+					   ->where('dish_id', $dishId)
+					   ->where('activity', self::LIST_COLLECTION)
+					   ->find();
+		return $res['count'];
+	}
+
 // ======================================================================================== override
 
 	protected function beforeInsert() {
