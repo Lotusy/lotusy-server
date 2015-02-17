@@ -1,13 +1,15 @@
 <?php
-abstract class ReplyDaoGenerated extends LotusyDaoBase {
+abstract class ReplyDaoGenerated extends LotusyDaoParent {
+
+    protected static $table = 'reply';
 
     protected function init() {
-        $this->var['id'] = '';
-        $this->var['comment_id'] = '';
-        $this->var['user_id'] = '';
-        $this->var['nickname'] = '';
-        $this->var['message'] = '';
-        $this->var['create_time'] = '';
+        $this->var['id'] = 0;
+        $this->var['comment_id'] = null;
+        $this->var['user_id'] = null;
+        $this->var['nickname'] = null;
+        $this->var['message'] = null;
+        $this->var['create_time'] = null;
 
         $this->update['id'] = false;
         $this->update['comment_id'] = false;
@@ -21,58 +23,61 @@ abstract class ReplyDaoGenerated extends LotusyDaoBase {
         return $this->var['id'];
     }
 
-    public function setCommentId($commentId) {
-        $this->var['comment_id'] = $commentId;
-        $this->update['comment_id'] = true;
+    public function setCommentId($comment_id) {
+        if ($this->var['comment_id'] !== $comment_id) {
+            $this->var['comment_id'] = $comment_id;
+            $this->update['comment_id'] = true;
+        }
     }
     public function getCommentId() {
         return $this->var['comment_id'];
     }
 
-    public function setUserId($userId) {
-        $this->var['user_id'] = $userId;
-        $this->update['user_id'] = true;
+    public function setUserId($user_id) {
+        if ($this->var['user_id'] !== $user_id) {
+            $this->var['user_id'] = $user_id;
+            $this->update['user_id'] = true;
+        }
     }
     public function getUserId() {
         return $this->var['user_id'];
     }
 
     public function setNickname($nickname) {
-        $this->var['nickname'] = $nickname;
-        $this->update['nickname'] = true;
+        if ($this->var['nickname'] !== $nickname) {
+            $this->var['nickname'] = $nickname;
+            $this->update['nickname'] = true;
+        }
     }
     public function getNickname() {
         return $this->var['nickname'];
     }
 
     public function setMessage($message) {
-        $this->var['message'] = $message;
-        $this->update['message'] = true;
+        if ($this->var['message'] !== $message) {
+            $this->var['message'] = $message;
+            $this->update['message'] = true;
+        }
     }
     public function getMessage() {
         return $this->var['message'];
     }
 
-    public function setCreateTime($createTime) {
-        $this->var['create_time'] = $createTime;
-        $this->update['create_time'] = true;
+    public function setCreateTime($create_time) {
+        if ($this->var['create_time'] !== $create_time) {
+            $this->var['create_time'] = $create_time;
+            $this->update['create_time'] = true;
+        }
     }
     public function getCreateTime() {
         return $this->var['create_time'];
     }
 
-// ======================================================================================== override
-
     public function getTableName() {
-        return 'reply';
+        return self::$table;
     }
 
     protected function getIdColumnName() {
         return 'id';
     }
-
-    public function getShardDomain() {
-        return 'l_comm_comment';
-    }
 }
-?>
