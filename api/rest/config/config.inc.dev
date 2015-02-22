@@ -1,5 +1,4 @@
 <?php
-include '../dao/config/config.inc';
 include '../../core/dao/config/config.inc';
 
 $component_name = 'account';
@@ -15,12 +14,21 @@ $base_comment_host = 'http://local.comment.lotusy.com';
 //=======================================================================================
 // auto include directory information
 $autoload_dirs = array (
-'handler', 
-'request', 
-'validator', 
+'handler/account',
+'handler/business',
+'handler/comment', 
+'request/account', 
+'request/business', 
+'request/comment', 
+'validator/account', 
+'validator/business', 
+'validator/comment', 
 '../util', 
 '../dao',
 '../dao/generated',
+'../dao/account',
+'../dao/business',
+'../dao/comment',
 '../../core/dao',
 '../../core/dao/generated',
 '../../core/util',
@@ -34,10 +42,21 @@ $autoload_dirs = array (
 // logging information
 // INFO=4, WARN=3, ERROR=2, FATAL=1, NOTHING=0
 $log_level = 4;
-$log_file = '/opt/lotusy/account/logs/rest.log';
+$log_file = '/opt/lotusy/api/logs/rest.log';
 
 $access_on = 1;
-$access_log = '/opt/lotusy/account/logs/rest_access.log';
+$access_log = '/opt/lotusy/api/logs/rest_access.log';
+
+
+//=======================================================================================
+// database information
+$DB_HOST = 'localhost';
+$DB_USER = 'foodsteraccount';
+$DB_PASS = 'foodsterpasswd';
+$DB_NAME = 'foodster';
+
+// 0 - OFF, 1 - ERROR, 2 - INFO
+$DB_LOG_LEVEL = 2;
 
 
 //=======================================================================================

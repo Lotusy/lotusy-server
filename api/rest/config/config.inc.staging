@@ -1,5 +1,4 @@
 <?php
-include '/opt/lotusy/account/current/dao/config/config.inc';
 include '/opt/lotusy/core/current/dao/config/config.inc';
 
 $component_name = 'account';
@@ -15,12 +14,21 @@ $base_comment_host = 'http://staging.comment.lotusy.com';
 //=======================================================================================
 // auto include directory information
 $autoload_dirs = array (
-'/opt/lotusy/account/current/rest/handler', 
-'/opt/lotusy/account/current/rest/request', 
-'/opt/lotusy/account/current/rest/validator', 
-'/opt/lotusy/account/current/util', 
-'/opt/lotusy/account/current/dao',
-'/opt/lotusy/account/current/dao/generated',
+'/opt/lotusy/api/current/rest/handler/account',
+'/opt/lotusy/api/current/rest/handler/business',
+'/opt/lotusy/api/current/rest/handler/comment', 
+'/opt/lotusy/api/current/rest/request/account', 
+'/opt/lotusy/api/current/rest/request/business', 
+'/opt/lotusy/api/current/rest/request/comment', 
+'/opt/lotusy/api/current/rest/validator/account', 
+'/opt/lotusy/api/current/rest/validator/business', 
+'/opt/lotusy/api/current/rest/validator/comment', 
+'/opt/lotusy/api/current/util', 
+'/opt/lotusy/api/current/dao',
+'/opt/lotusy/api/current/dao/generated',
+'/opt/lotusy/api/current/dao/account',
+'/opt/lotusy/api/current/dao/business',
+'/opt/lotusy/api/current/dao/comment',
 '/opt/lotusy/core/current/dao',
 '/opt/lotusy/core/current/dao/generated',
 '/opt/lotusy/core/current/util',
@@ -34,10 +42,21 @@ $autoload_dirs = array (
 // logging information
 // INFO=4, WARN=3, ERROR=2, FATAL=1, NOTHING=0
 $log_level = 4;
-$log_file = '/opt/lotusy/account/logs/rest.log';
+$log_file = '/opt/lotusy/api/logs/rest.log';
 
 $access_on = 1;
-$access_log = '/opt/lotusy/account/logs/rest_access.log';
+$access_log = '/opt/lotusy/api/logs/rest_access.log';
+
+
+//=======================================================================================
+// database information
+$DB_HOST = 'localhost';
+$DB_USER = 'foodsteraccount';
+$DB_PASS = 'foodsterpasswd';
+$DB_NAME = 'foodster';
+
+// 0 - OFF, 1 - ERROR, 2 - INFO
+$DB_LOG_LEVEL = 2;
 
 
 //=======================================================================================
