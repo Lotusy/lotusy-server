@@ -1,0 +1,9 @@
+<?php
+    $DB_HOST = 'localhost';
+    $DB_USER = 'lotusyaccount';
+    $DB_PASS = 'lotusypasswd';
+    $DB_NAME = 'foodster';
+
+    // 0 - OFF, 1 - ERROR, 2 - INFO
+    $DB_LOG_LEVEL = 2;
+?>

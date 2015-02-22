@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<style>
+body{background-color:#e9e9e9;font-family:verdana,helvetica,arial,sans-serif;text-shadow:1px 1px #fff;margin-left:10px;}
+b{cursor:pointer;}
+div#title{margin:10px 0 10px 0;}
+div.title{font-style:italic;margin:30px 0 15px 0;color:green;font-size:.8em;}
+a{font-size:.8em;text-decoration:underline;color:blue;display:block;margin-bottom:5px;}
+</style>
+<script>
+function navigate(link, url) {
+	var anchors = document.getElementsByTagName('a');
+	for(var i = 0; i < anchors.length; i++) {
+	    anchors[i].style.color = 'blue';
+	}
+    parent.document.getElementById('content').src = url;
+    if (link!=null) { link.style.color = "#f00"; }
+}
+</script>
+</head>
+<body>
+<div id="title">
+<b onclick='javascript:navigate(null,"welcome.html")'>ACCOUNTS REST APIs</b>
+</div>
+<div class="title">
+Token API :
+</div>
+<div>
+<a href="#" onclick='javascript:navigate(this,"external_token_register.html")'>Register an Account by Access Token</a>
+<a href="#" onclick='javascript:navigate(this,"token_register.html")'>Register an Account (Test)</a>
+<a href="#" onclick='javascript:navigate(this,"token_auth.html")'>Authorize an Account (Test)</a>
+<a href="#" onclick='javascript:navigate(this,"token_info.html")'>Get Access Token Information</a>
+</div>
+<div class="title">
+User API :
+</div>
+<div>
+<a href="#" onclick='javascript:navigate(this,"user_current_profile.html")'>Get Current User Profile</a>
+<a href="#" onclick='javascript:navigate(this,"user_profile.html")'>Get User Profile</a>
+<a href="#" onclick='javascript:navigate(this,"user_update.html")'>Update Current User Profile</a>
+</div>
+<div class="title">
+User Dish API :
+</div>
+<div>
+<a href="#" onclick='javascript:navigate(this,"collect_dish.html")'>Collect a Dish</a>
+<a href="#" onclick='javascript:navigate(this,"user_dish_collection.html")'>Get User Dish Collection</a>
+<a href="#" onclick='javascript:navigate(this,"hitlist_dish.html")'>Add a Dish to Hitlist</a>
+<a href="#" onclick='javascript:navigate(this,"user_dish_hitlist.html")'>Get User Dish Hitlist</a>
+<a href="#" onclick='javascript:navigate(this,"user_activities.html")'>Get Recent Activities of a User</a>
+<a href="#" onclick='javascript:navigate(this,"user_activities_count.html")'>Get Recent Activities Count of a User</a>
+<a href="#" onclick='javascript:navigate(this,"get_following_recent_activity.html")'>Get Following Recent Activities</a>
+</div>
+</body>
+</html>

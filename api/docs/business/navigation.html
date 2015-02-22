@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<style>
+body{background-color:#e9e9e9;font-family:verdana,helvetica,arial,sans-serif;text-shadow:1px 1px #fff;margin-left:10px;}
+b{cursor:pointer;}
+div#title{margin:10px 0 10px 0;}
+div.title{font-style:italic;margin:30px 0 15px 0;color:green;font-size:.8em;}
+a{font-size:.8em;text-decoration:underline;color:blue;display:block;margin-bottom:5px;}
+</style>
+<script>
+function navigate(link, url) {
+	var anchors = document.getElementsByTagName('a');
+	for(var i = 0; i < anchors.length; i++) {
+	    anchors[i].style.color = 'blue';
+	}
+    parent.document.getElementById('content').src = url;
+    if (link!=null) { link.style.color = "#f00"; }
+}
+</script>
+</head>
+<body>
+<div id="title">
+<b onclick='javascript:navigate(null,"welcome.html")'>BUSINESS REST APIs</b>
+</div>
+<div class="title">
+Business API :
+</div>
+<div>
+<a href="#" onclick='javascript:navigate(this,"business_create.html")'>Create Business</a>
+<a href="#" onclick='javascript:navigate(this,"business_create_external.html")'>Create External Business</a>
+<a href="#" onclick='javascript:navigate(this,"business_create_quick.html")'>Create Quick Business</a>
+<a href="#" onclick='javascript:navigate(this,"business_get_profile.html")'>Get Business Profile</a>
+<a href="#" onclick='javascript:navigate(this,"business_location.html")'>Get Businesses near a Location</a>
+</div>
+<div class="title">
+Dish API :
+</div>
+<div>
+<a href="#" onclick='javascript:navigate(this,"dish_post.html")'>Create Dish</a>
+<a href="#" onclick='javascript:navigate(this,"business_dishes.html")'>Get Business Dishes</a>
+<a href="#" onclick='javascript:navigate(this,"get_dishes.html")'>Get Dishes by Dish Ids</a>
+<a href="#" onclick='javascript:navigate(this,"dish_like.html")'>Like a Dish</a>
+<a href="#" onclick='javascript:navigate(this,"dish_dislike.html")'>Dislike a Dish</a>
+<a href="#" onclick='javascript:navigate(this,"dish_location.html")'>Get Dishes near a Location</a>
+</div>
+<div class="title">
+Rating API :
+</div>
+<div>
+<a href="#" onclick='javascript:navigate(this,"rating_get.html")'>Get Business Rating</a>
+<a href="#" onclick='javascript:navigate(this,"rating_post.html")'>Rate Business</a>
+<a href="#" onclick='javascript:navigate(this,"rating_count.html")'>Get Business Rating Count</a>
+<a href="#" onclick='javascript:navigate(this,"rating_business_user.html")'>Get User Rating on Business</a>
+</div>
+</body>
+</html>
