@@ -11,7 +11,7 @@ class GetUserDishCommentHandler extends AuthorizedRequestHandler {
 			return $validator->getMessage();
 		}
 
-		$commentId = LookupCommentDishDao::getUserDishComment($params['dishid'], $params['userid']);
+		$commentId = CommentDao::getUserDishComment($params['dishid'], $params['userid']);
 		$comment = new CommentDao($commentId);
 
 		if (!$comment->isFromDatabase()) {

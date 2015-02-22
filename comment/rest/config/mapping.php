@@ -26,8 +26,6 @@ register('GET', '/location', new GetLocationCommentHandler());
 // user comment end points
 //
 register('GET',  '/user/:userid/comments',      new GetUserCommentHandler());
-register('POST', '/collect/comment/:commentid', new CollectCommentHandler());
-register('GET',  '/user/:userid/collection',    new GetUserCommentCollectionHandler());
 
 
 // business comment end points

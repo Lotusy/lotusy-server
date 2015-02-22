@@ -5,7 +5,7 @@ class GetDishCommentCountHandler extends UnauthorizedRequestHandler {
 		$json = $_GET;
 		$json['dish_id'] = $params['dishid'];
 
-		$count = LookupCommentDishDao::getCommentCountByDishId($json['dish_id']);
+		$count = CommentDao::getCommentCountByDishId($json['dish_id']);
 
 		$response = array();
 		$response['status'] = 'success';

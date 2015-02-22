@@ -10,7 +10,7 @@ class GetBusinessCommentCountHandler extends UnauthorizedRequestHandler {
 			return $validator->getMessage();
 		}
 
-		$count = LookupCommentBusinessDao::getCommentCountByBusinessId($json['business_id']);
+		$count = CommentDao::getCommentCountByBusinessId($json['business_id']);
 
 		$response = array();
 		$response['status'] = 'success';

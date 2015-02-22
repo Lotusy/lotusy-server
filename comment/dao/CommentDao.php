@@ -4,11 +4,27 @@ class CommentDao extends CommentDaoGenerated {
 //========================================================================================== public
 
 	public static function getCommentsByLocation($lat, $lng, $radius, $start, $size, $isMiles=false) {
-		$commentIds = LookupCommentLocationDao::getCommentIdsByLocation ( 
-														$lat, $lng, $radius, $start, $size, $isMiles );
+		$earthRadius = $isMiles ? 3959 : 6371;
+		$latRadius = deg2rad($lat);
+
+		$p1 = "cos( $latRadius ) * cos( radians(lat) ) * cos( radians(lng - $lng) )";
+		$p2 = "sin( $latRadius ) * sin( radians(lat) )";
+		
+        $fields = 'id, business_id, user_id, dish_id, lat, lng, message, like_count, dislike_count, is_deleted, create_time';
+
+		$builder = new QueryMaster();
+		$res = $builder->select("$fields, ( $earthRadius * acos( $p1 + $p2 ) ) AS distance", self::$table)
+						->having('distance', $radius, '<')
+						->order('distance')
+						->limit($start, $size)
+						->findList();
+
 		$comments = array();
-		foreach ($commentIds as $commentId => $distance) {
-			$comment = new CommentDao($commentId);
+
+		foreach ($res as $row) {
+			$distance = $row['distance'];
+			unset($row['distance']);
+			$comment = self::makeObjectFromSelectResult($row, 'CommentDao');
 			$comments[$distance] = $comment;
 		}
 
@@ -16,57 +32,74 @@ class CommentDao extends CommentDaoGenerated {
 	}
 
 	public static function getCommentsByBusinessId($businessId, $start, $size) {
-		$commentIds = LookupCommentBusinessDao::getCommentIdsByBusinessId ( 
-																$businessId, $start, $size );
-		$comments = array();
-		foreach ($commentIds as $commentId) {
-			$comment = new CommentDao($commentId);
-			array_push($comments, $comment);
-		}
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
+						->where('business_id', $businessId)
+						->limit($start, $size)
+						->findList();
+
+		$comments = self::makeObjectsFromSelectListResult($row, 'CommentDao');
 
 		return $comments;
 	}
 
 	public static function getCommentsByUserId($userId, $start, $size) {
-		$commentIds = LookupCommentUserDao::getCommentIdsByUserId($userId, $start, $size);
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
+						->where('user_id', $userId)
+						->limit($start, $size)
+						->findList();
 
-		$comments = array();
-		foreach ($commentIds as $commentId) {
-			$comment = new CommentDao($commentId);
-			array_push($comments, $comment);
-		}
+		$comments = self::makeObjectsFromSelectListResult($row, 'CommentDao');
 
 		return $comments;
 	}
 
 	public static function getCommentsByDishId($dishId, $start, $size) {
-		$commentIds = LookupCommentDishDao::getCommentIdsByDishId($dishId, $start, $size);
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
+						->where('dish_id', $dishId)
+						->limit($start, $size)
+						->findList();
 
-		$comments = array();
-		foreach ($commentIds as $commentId) {
-			$comment = new CommentDao($commentId);
-			array_push($comments, $comment);
-		}
+		$comments = self::makeObjectsFromSelectListResult($row, 'CommentDao');
 
 		return $comments;
 	}
 
-	public static function getCommentCollectionByUserId($userId, $start, $size) {
-		$commentIds = LookupUserCollectDao::getUserCollectionCommentIds($userId, $start, $size);
+	public static function getCommentCountByBusinessId($businessId) {
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table)
+					   ->where('business_id', $businessId)
+					   ->find();
 
-		$comments = array();
-		foreach ($commentIds as $commentId) {
-			$comment = new CommentDao($commentId);
-			array_push($comments, $comment);
-		}
+		return $res['count'];
+	}
 
-		return $comments;
+	public static function getCommentCountByDishId($dishId) {
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table)
+					   ->where('dish_id', $dishId)
+					   ->find();
+
+		return $res['count'];
+	}
+
+	public static function getUserDishComment($dishId, $userId) {
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
+					   ->where('dish_id', $dishId)
+					   ->where('user_id', $userId)
+					   ->order('id', true)
+					   ->find();
+
+		return self::makeObjectFromSelectResult($row, 'CommentDao');
 	}
 
 	public function like() {
-		$builder = new QueryBuilder($this);
-		$set = array('like_count' => array('quote'=>false, 'value'=>'like_count+1'));
-		$res = $builder->update($set)->where('id', $this->getId())->query();
+		$builder = new QueryMaster();
+		$set = array('like_count'=>'like_count+1');
+		$res = $builder->update($set, self::$table, true)->where('id', $this->getId())->query();
 
 		if ($res) {
 			$this->setLikeCount($this->getLikeCount()+1);
@@ -76,9 +109,9 @@ class CommentDao extends CommentDaoGenerated {
 	}
 
 	public function dislike() {
-		$builder = new QueryBuilder($this);
-		$set = array('dislike_count' => array('quote'=>false, 'value'=>'dislike_count+1'));
-		$res = $builder->update($set)->where('id', $this->getId())->query();
+		$builder = new QueryMaster();
+		$set = array('like_count'=>'like_count-1');
+		$res = $builder->update($set, self::$table, true)->where('id', $this->getId())->query();
 
 		if ($res) {
 			$this->setDislikeCount($this->getDislikeCount()+1);
@@ -88,9 +121,9 @@ class CommentDao extends CommentDaoGenerated {
 	}
 
 	public function delete() {
-		$builder = new QueryBuilder($this);
-		$set = array('is_deleted' => array('quote'=>true, 'value'=>'Y'));
-		$res = $builder->update($set)->where('id', $this->getId())->query();
+		$builder = new QueryMaster();
+		$set = array('is_deleted' => 'Y');
+		$res = $builder->update($set, self::$table, true)->where('id', $this->getId())->query();
 
 		return $res;
 	}
@@ -98,43 +131,11 @@ class CommentDao extends CommentDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$lookup = new LookupCommentLocationDao();
-		$lookup->setLat($this->getLat());
-		$lookup->setLng($this->getLng());
-		$lookup->setCommentId($this->getId());
-		$lookup->save();
-
-		$lookup = new LookupCommentUserDao();
-		$lookup->setUserId($this->getUserId());
-		$lookup->setCommentId($this->getId());
-		$lookup->save();
-
-		$business_id = $this->getBusinessId();
-		if (!empty($business_id)) {
-			$lookup = new LookupCommentBusinessDao();
-			$lookup->setBusinessId($business_id);
-			$lookup->setCommentId($this->getId());
-			$lookup->save();
-		}
-
-		$dish_id = $this->getDishId();
-		if (!empty($dish_id)) {
-			$lookup = new LookupCommentDishDao();
-			$lookup->setDishId($dish_id);
-			$lookup->setUserId($this->getUserId());
-			$lookup->setCommentId($this->getId());
-			$lookup->save();
-		}
-
 		$this->setLikeCount(0);
 		$this->setDislikeCount(0);
 		$this->setIsDeleted('N');
 		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
-	}
-
-	protected function isShardBaseObject() {
-		return true;
 	}
 }
 ?>

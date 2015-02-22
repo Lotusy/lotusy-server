@@ -4,11 +4,8 @@ class ReplyDao extends ReplyDaoGenerated {
 //========================================================================================== public
 
 	public static function getRepliesByCommentId($commentId, $start, $size) {
-		$comment = new ReplyDao();
-		$comment->setServerAddress($commentId);
-
-		$builder = new QueryBuilder($comment);
-		$res = $builder->select('*')
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
 						->where('comment_id', $commentId)
 						->limit($start, $size)
 						->findList();
@@ -17,11 +14,8 @@ class ReplyDao extends ReplyDaoGenerated {
 	}
 
 	public static function getReplyCountByCommentId($commentId) {
-		$comment = new ReplyDao();
-		$comment->setServerAddress($commentId);
-
-		$builder = new QueryBuilder($comment);
-		$res = $builder->select('COUNT(*) as count')
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table)
 					   ->where('comment_id', $commentId)
 					   ->find();
 
@@ -31,15 +25,8 @@ class ReplyDao extends ReplyDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = $this->getCommentId();
-		$this->setShardId($sequence);
-
 		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
-	}
-
-	protected function isShardBaseObject() {
-		return false;
 	}
 }
 ?>
