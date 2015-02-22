@@ -45,6 +45,15 @@
 			</matcher>
 		</filter>
 		<filter>
+			<id>1424597684380</id>
+			<name>api</name>
+			<type>10</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-logs</arguments>
+			</matcher>
+		</filter>
+		<filter>
 			<id>1403482166122</id>
 			<name>business</name>
 			<type>10</type>
