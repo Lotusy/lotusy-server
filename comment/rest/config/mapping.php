@@ -18,16 +18,6 @@ register('POST', '/:commentid/reply',       new CreateReplyHandler());
 register('GET',  '/:commentid/replies',     new GetCommentReplyHandler());
 
 
-// location comment end points
-//
-register('GET', '/location', new GetLocationCommentHandler());
-
-
-// user comment end points
-//
-register('GET',  '/user/:userid/comments',      new GetUserCommentHandler());
-
-
 // business comment end points
 //
 register('GET',  '/business/:businessid/comment/count', new GetBusinessCommentCountHandler());
