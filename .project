@@ -36,44 +36,8 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1403482154805</id>
-			<name>account</name>
-			<type>10</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-logs</arguments>
-			</matcher>
-		</filter>
-		<filter>
 			<id>1424597684380</id>
 			<name>api</name>
-			<type>10</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-logs</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403482166122</id>
-			<name>business</name>
-			<type>10</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-logs</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403482178763</id>
-			<name>comment</name>
-			<type>10</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-logs</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403482192194</id>
-			<name>image</name>
 			<type>10</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
@@ -99,33 +63,6 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1403503256356</id>
-			<name>account/dao/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403503297200</id>
-			<name>account/portal/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403503315955</id>
-			<name>account/rest/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
 			<id>0</id>
 			<name>api/portal/config</name>
 			<type>6</type>
@@ -137,96 +74,6 @@
 		<filter>
 			<id>0</id>
 			<name>api/rest/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403503417879</id>
-			<name>business/dao/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403503428746</id>
-			<name>business/portal/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403503441085</id>
-			<name>business/rest/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403503550083</id>
-			<name>comment/dao/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403503560731</id>
-			<name>comment/portal/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403503571394</id>
-			<name>comment/rest/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403589999888</id>
-			<name>core/dao/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403503639584</id>
-			<name>image/dao/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403503650666</id>
-			<name>image/portal/config</name>
-			<type>6</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-config.inc</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1403503660239</id>
-			<name>image/rest/config</name>
 			<type>6</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>

@@ -1,9 +1,7 @@
 <?php
-include '/opt/lotusy/core/current/dao/config/config.inc';
+$component_name = 'api';
 
-$component_name = 'account';
-
-$base_host = 'http://int.account.lotusy.com';
+$base_host = 'http://int.api.lotusy.com';
 $base_uri = '/rest';
 
 $app_key = 'E268443E43D93DAB7EBEF303BBE9642F';
@@ -14,27 +12,34 @@ $base_comment_host = 'http://int.comment.lotusy.com';
 //=======================================================================================
 // auto include directory information
 $autoload_dirs = array (
-'/opt/lotusy/api/current/rest/handler/account',
-'/opt/lotusy/api/current/rest/handler/business',
-'/opt/lotusy/api/current/rest/handler/comment', 
-'/opt/lotusy/api/current/rest/request/account', 
-'/opt/lotusy/api/current/rest/request/business', 
-'/opt/lotusy/api/current/rest/request/comment', 
-'/opt/lotusy/api/current/rest/validator/account', 
-'/opt/lotusy/api/current/rest/validator/business', 
-'/opt/lotusy/api/current/rest/validator/comment', 
-'/opt/lotusy/api/current/util', 
 '/opt/lotusy/api/current/dao',
+'/opt/lotusy/api/current/util', 
 '/opt/lotusy/api/current/dao/generated',
+
+'/opt/lotusy/api/current/dao/core',
+'/opt/lotusy/api/current/rest/handler/core',
+'/opt/lotusy/api/current/rest/request/core',
+'/opt/lotusy/api/current/rest/validator/core',
+
 '/opt/lotusy/api/current/dao/account',
+'/opt/lotusy/api/current/rest/handler/account',
+'/opt/lotusy/api/current/rest/request/account', 
+'/opt/lotusy/api/current/rest/validator/account', 
+
 '/opt/lotusy/api/current/dao/business',
+'/opt/lotusy/api/current/rest/handler/business',
+'/opt/lotusy/api/current/rest/request/business', 
+'/opt/lotusy/api/current/rest/validator/business', 
+
 '/opt/lotusy/api/current/dao/comment',
-'/opt/lotusy/core/current/dao',
-'/opt/lotusy/core/current/dao/generated',
-'/opt/lotusy/core/current/util',
-'/opt/lotusy/core/current/rest/handler',
-'/opt/lotusy/core/current/rest/request',
-'/opt/lotusy/core/current/rest/validator'
+'/opt/lotusy/api/current/rest/handler/comment', 
+'/opt/lotusy/api/current/rest/request/comment', 
+'/opt/lotusy/api/current/rest/validator/comment', 
+
+'/opt/lotusy/api/current/dao/image',
+'/opt/lotusy/api/current/rest/handler/image', 
+'/opt/lotusy/api/current/rest/request/image', 
+'/opt/lotusy/api/current/rest/validator/image', 
 );
 
 
