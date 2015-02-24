@@ -10,12 +10,12 @@ class PostCommentDishImageHandler extends AuthorizedRequestHandler {
 
 		$imageDate = Utility::getRawRequestData();
 
-		file_put_contents($path.$name, $imageDate);
+		file_put_contents($comment_image_dir.$fileName, $imageDate);
 
 
 		$image = new FastImageDao();
-		$image->setName($name);
-		$image->setPath($path);
+		$image->setName($fileName);
+		$image->setPath($comment_image_dir);
 		$image->setUserId($userId);
 		$image->setCommentId($params['commentid']);
 		$image->setDishId($params['dishid']);

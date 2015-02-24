@@ -24,11 +24,9 @@ class GetUserDishCommentHandler extends AuthorizedRequestHandler {
 		$response = $comment->toArray();
 		$response['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
 
-		$accessToken = $this->getAccessToken();
-		$request = new GetUserNicknamesRequest(array($comment->getUserId()), $accessToken);
-		$nicknames = $request->execute();
+		$user = new UserDao($comment->getUserId());
 
-		$response['user_nickname'] = $nicknames[$comment->getUserId()];
+		$response['user_nickname'] = $user->getNickname();
 
 		$now = strtotime('now');
 		$last = strtotime($response['create_time']);

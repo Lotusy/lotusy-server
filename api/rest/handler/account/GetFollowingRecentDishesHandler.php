@@ -15,20 +15,13 @@ class GetFollowingRecentDishesHandler extends UnauthorizedRequestHandler {
 		$map = DishActivityDao::getUsersRecentDishes($userIds, $json['start'], $json['size']);
 		$dishIds = array_keys($map['dish_ids']); 
 
-		$request = new GetDishesRequest($dishIds);
-		$response = $request->execute();
-
-		if ($response['status']!='success') {
-			$response['status'] = 'error';
-			$response['description'] = 'cannot_find_dishes';
-			return $response;
-		}
+		$dishDaos = DishDao::getRange($dishIds, true);
 
 		unset($map['dish_ids']);
 
 		$dishes = array();
-		foreach ($response['dishes'] as $dish) {
-			$dishes[$dish['id']] = $dish;
+		foreach ($dishDaos as $dishDao) {
+			$dishes[$dishDao->getId()] = $dishDao->toArray();
 		}
 
 		$users = array();
@@ -46,11 +39,9 @@ class GetFollowingRecentDishesHandler extends UnauthorizedRequestHandler {
 			$activity['dish'] = $dishes[$userDish['dish_id']];
 			$activity['type'] = ($userDish['list']==DishActivityDao::LIST_COLLECTION) ? 'collection' : 'hitlist';
 
-			$request = new GetUserDishCommentRequest($userDish['user_id'], $userDish['dish_id']);
-			$commentResponse = $request->execute();
-			if ($commentResponse['status']=='success') {
-				unset($commentResponse['status']);
-				$activity['comment'] = $commentResponse;
+			$commentDao = CommentDao::getUserDishComment($userDish['dish_id'], $userDish['user_id']);
+			if (isset($commentDao)) {
+				$activity['comment'] = $commentDao->toArray();
 			}
 
 			$now = strtotime('now');

@@ -4,12 +4,10 @@ class PutBusinessImageHandler extends AuthorizedRequestHandler {
 	public function handle($params) {
 		global $base_host, $base_uri, $business_image_dir, $base_business_host;
 
-		$request = new GetBusinessProfileRequest();
-		$request->setUri($base_business_host.'/rest/'.$params['businessid'].'/profile');
-		$response = $request->execute();
+		$businessDao = new BusinessDao($params['businessid']);
 
 		$atReturn = array();
-		if ($response['status']!='success') {
+		if (!$businessDao->isFromDatabase()) {
 			header('HTTP/1.0 404 Not Found');
 			$atReturn['status'] = 'error';
 			$atReturn['description'] = 'business_not_found';

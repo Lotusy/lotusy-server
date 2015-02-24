@@ -2,8 +2,8 @@
 class GetAccountProfileRequest extends RestRequest {
 
 	protected function getUrl() {
-		global $base_account_host;
-		return $base_account_host.'/rest/profile';
+		global $base_host;
+		return $base_host.'/rest/profile';
 	}
 
 	protected function getMethod() {

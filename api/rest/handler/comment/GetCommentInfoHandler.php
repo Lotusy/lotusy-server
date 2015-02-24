@@ -8,16 +8,21 @@ class GetCommentInfoHandler extends AuthorizedRequestHandler {
 			$response = $comment->toArray();
 			$response['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
 
-			$accessToken = $this->getAccessToken();
-			$request = new GetUserNicknamesRequest(array($comment->getUserId()), $accessToken);
-			$nicknames = $request->execute();
+			$user = new UserDao($comment->getUserId());
 
-			$response['user_nickname'] = $nicknames[$comment->getUserId()];
+			$response['user_nickname'] = $user->getNickname();
 
 			$count = ReplyDao::getReplyCountByCommentId($params['commentid']);
 
-			$request = new GetCommentImageLinksRequest($params['commentid'], $this->getAccessToken());
-			$links = $request->execute();
+			$lookupDaos = FastImageDao::getLookupDaosByCommentId($params['commentid']);
+			
+			global $base_host, $base_uri;
+
+			$links = array();
+			foreach ($lookupDaos as $lookupDao) {
+				$link = $base_host.$base_uri.'/display/comment/'.$params['commentid'].'/'.$lookupDao->getFastId();
+				array_push($links, $link);
+			}
 
 			$response['reply_count'] = (int)$count;
 			$response['image_links'] = $links;

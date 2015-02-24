@@ -10,8 +10,15 @@ class GetUserDishHitlistHandler extends UnauthorizedRequestHandler {
 
 		$dishIds = DishActivityDao::getHitlistedDishes($params['userid'], $json['start'], $json['size']);
 
-		$request = new GetDishesRequest($dishIds);
-		$response = $request->execute();
+		$dishes = DishDao::getRange($dishIds);
+		
+		$response = array();
+		$response['status'] = 'success';
+		$response['dishes'] = array();
+		
+		foreach ($dishes as $dish) {
+			array_push($response['dishes'], $dish->toArray());
+		}
 
 		return $response;
 	}

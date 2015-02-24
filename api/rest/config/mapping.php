@@ -15,8 +15,6 @@ register('POST', '/profile',              new UpdateCurrentUserProfileHandler())
 register('POST', '/follow/:userid',       new FollowUserHandler());
 register('GET',  '/:userid/followers',    new GetUserFollowersHandler());
 register('GET',  '/:userid/followings',   new GetUserFollowingsHandler());
-register('GET',  '/:userids/isfollowing', new IsFollowingUsersHandler());
-register('GET',  '/:userids/nicknames',   new GetUserNicknamesHandler());
 
 
 // dish collection end points
@@ -52,7 +50,6 @@ register('GET',  '/business/:businessid/user/:userid/rating', new GetBusinessUse
 //
 register('POST', '/:businessid/dish',        new CreateDishHandler());
 register('GET',  '/:businessid/dishes',      new GetBusinessDishesHandler());
-register('GET',  '/dishes/:dishids',         new GetDishesHandler());
 register('POST', '/dish/:dishid/like',       new DishLikeHandler());
 register('POST', '/dish/:dishid/dislike',    new DishDislikeHandler());
 register('GET',  '/dish/location',           new GetLocationDishHandler());
@@ -102,7 +99,6 @@ register('GET',  '/:commentid/replies',     new GetCommentReplyHandler());
 
 // business comment end points
 //
-register('GET',  '/business/:businessid/comment/count', new GetBusinessCommentCountHandler());
 register('GET',  '/business/:businessid/comments',      new GetBusinessCommentHandler());
 
 
@@ -118,8 +114,6 @@ register('POST', '/dish/:dishid/comment/:commentid', new PostCommentDishImageHan
 // comment end points
 //
 register('GET',  '/display/comment/:commentid/:imageid', new GetCommentImageHandler());
-register('GET',  '/comment/:commentid/links',            new GetCommentImageLinksHandler());
-register('GET',  '/comments/:commentids/links',          new GetCommentsImageLinksHandler());
 
 
 // dish end points

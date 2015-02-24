@@ -14,7 +14,7 @@ abstract class LotusyDaoParent {
     }
 
 
-    public static function getRange($ids) {
+    public static function getRange($ids, $idMap=false) {
         if (empty($ids)) return array();
 
         $class = get_called_class();
@@ -24,7 +24,7 @@ abstract class LotusyDaoParent {
                        ->in('id', $ids)
                        ->findList();
     
-        $objs = self::makeObjectsFromSelectListResult($res, $class);
+        $objs = self::makeObjectsFromSelectListResult($res, $class, $idMap);
 
         return $objs;
     }
@@ -172,14 +172,19 @@ abstract class LotusyDaoParent {
     }
 
 
-    protected static function makeObjectsFromSelectListResult($res, $class) {
+    protected static function makeObjectsFromSelectListResult($res, $class, $idMap=false) {
         $objects = array();
         if (isset($res)) {
             foreach ($res as $row) {
                 $object = new $class;
                 $object->var = $row;
                 $object->fromdb = TRUE;
-                array_push($objects, $object);
+                if ($idMap) {
+        			$idColumn = $this->getIdColumnName();
+                	$objects[$object->var[$idColumn]] = $object;
+                } else {
+                	array_push($objects, $object);
+                }
             }
         }
 

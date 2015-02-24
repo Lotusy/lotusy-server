@@ -24,20 +24,32 @@ class GetDishCommentHandler extends AuthorizedRequestHandler {
 			array_push($userIds, $comment->getUserId());
 		}
 
-		$request = new GetCommentsImageLinksRequest($commentIds, $this->getAccessToken());
-		$links = $request->execute();
+		global $base_host, $base_uri;
+
+		$links = array();
+		foreach ($commentIds as $commentId) {
+			$lookupDaos = FastImageDao::getLookupDaosByCommentId($commentId);
+		
+			$commentLinks = array();
+			foreach ($lookupDaos as $lookupDao) {
+				$commentLink = $base_host.$base_uri.'/display/comment/'.$params['commentid'].'/'.$lookupDao->getFastId();
+				array_push($commentLinks, $commentLink);
+			}
+		
+			$links[$commentId] = $commentLinks;
+		}
 
 		$now = strtotime('now');
 
-		$accessToken = $this->getAccessToken();
-		$request = new GetUserNicknamesRequest($userIds, $accessToken);
-		$nicknames = $request->execute();
+		$userDaos = UserDao::getRange($userIds, true);
 
 		global $base_image_host;
 		foreach ($comments as $comment) {
 			$commentArr = $comment->toArray();
 			$commentArr['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
-			$commentArr['user_nickname'] = $nicknames[$comment->getUserId()];
+
+			$userDao = $userDaos[$comment->getUserId()];
+			$commentArr['user_nickname'] = $userDao->getNickname();
 			$count = ReplyDao::getReplyCountByCommentId($comment->getId());
 
 			$last = strtotime($commentArr['create_time']);

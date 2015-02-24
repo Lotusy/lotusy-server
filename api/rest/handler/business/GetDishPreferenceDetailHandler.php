@@ -34,8 +34,7 @@ class GetDishPreferenceDetailHandler extends AuthorizedRequestHandler {
 
 		$accessToken = $this->getAccessToken();
 
-		$request = new FilterUserFollowingsRequest($userIds, $accessToken);
-		$followings = $request->execute();
+		$followings = FollowingDao::isUserFollowings($userId, $userIds);
 
 		foreach ($elements as $key=>$element) {
 			if (in_array($element['user_id'], $followings)) {
@@ -43,12 +42,11 @@ class GetDishPreferenceDetailHandler extends AuthorizedRequestHandler {
 			}
 		}
 
-		$request = new GetUserNicknamesRequest($userIds, $accessToken);
-		$nicknames = $request->execute();
+		$userDaos = UserDao::getRange($userIds, true);
 
 		foreach ($elements as $key=>$element) {
-			$nickname = $nicknames[$element['user_id']];
-			$elements[$key]['nickname'] = $nickname;
+			$user = $userDaos[$element['user_id']];
+			$elements[$key]['nickname'] = $user->getNickname();
 		}
 
 		$response = array('status'=>'success');

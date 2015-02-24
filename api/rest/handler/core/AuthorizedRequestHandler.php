@@ -34,11 +34,11 @@ abstract class AuthorizedRequestHandler implements RequestHandler {
 
 		if ($valid) {
 			$this->accessToken = $accessToken[1];
-			$request = new GetAccessTokenInfoRequest($this->accessToken);
-			$response = $request->execute();
 
-			if ($response['status']=='success') {
-				$valid = $response['expires_in']>0;
+			$token = AccessTokenDao::retriveDaoByAccessToken($this->accessToken);
+
+			if (isset($token)) {
+				$valid = !$token->expired();
 			} else {
 				$valid = false;
 			}

@@ -32,8 +32,7 @@ class SearchBusinessByNameHandler extends AuthorizedRequestHandler {
 
 			$businessArr['distance'] = round($id['distance'], 1);
 
-			$request = new GetBusinessCommentCountRequest($id['business_id']);
-			$count = $request->execute();
+			$count = CommentDao::getCommentCountByBusinessId($id['business_id']);
 			$businessArr['comment_count'] = (int)$count;
 
 			$rating = BusinessRatingDao::getBusinessRating($id['business_id']);
