@@ -13,8 +13,8 @@ class AccountUtil {
 	 * @param unknown_type $business
 	 */
 	public function createBusiness($business) {
-		global $base_business_host;
-		$path = $base_business_host.'/business';
+		global $api_host;
+		$path = $api_host.'/business';
 		$method = 'POST';
 		$header = $this->getHeader();
 

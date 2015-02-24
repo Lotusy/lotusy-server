@@ -2,7 +2,7 @@
 class PutBusinessImageHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
-		global $base_host, $base_uri, $business_image_dir, $base_business_host;
+		global $base_host, $base_uri, $business_image_dir;
 
 		$businessDao = new BusinessDao($params['businessid']);
 

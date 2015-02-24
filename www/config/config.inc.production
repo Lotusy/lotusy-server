@@ -3,9 +3,6 @@ $component_name = 'www';
 
 $app_key = '9D0E7CE8711F6F1CF87704557828A16E';
 
-$base_account_host = 'https://account.lotusy.com/rest';
-$base_business_host = 'https://business.lotusy.com/rest';
-$base_comment_host = 'https://comment.lotusy.com/rest';
 $base_image_host = 'https://image.lotusy.com/rest';
 
 //=======================================================================================
