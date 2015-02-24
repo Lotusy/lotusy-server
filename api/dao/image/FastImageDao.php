@@ -5,11 +5,8 @@ class FastImageDao extends ImageFastDaoGenerated {
 
 
 	public static function getLookupDaosByUserId($userId, $start, $size) {
-		$user = new LookupUserImageDao();
-		$user->setServerAddress($userId);
-	
-		$builder = new QueryBuilder($user);
-		$res = $builder->select('*')
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
 		->where('user_id', $userId)
 		->limit($start, $size)
 		->findList();
@@ -18,21 +15,15 @@ class FastImageDao extends ImageFastDaoGenerated {
 	}
 	
 	public static function isUserImageExist($userId, $imageId) {
-		$lookup = new LookupUserImageDao();
-		$lookup->setServerAddress($userId);
-	
-		$builder = new QueryBuilder($lookup);
-		$res = $builder->select('COUNT(*) as count')->where('user_id', $userId)->find();
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table)->where('user_id', $userId)->find();
 	
 		return $res['count']>0;
 	}
 
 	public static function getLookupDaosByDishId($dishId) {
-		$lookup = new LookupDishImageDao();
-		$lookup->setServerAddress($dishId);
-
-		$builder = new QueryBuilder($lookup);
-		$res = $builder->select('*')
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
 						->where('dish_id', $dishId)
 						->findList();
 
@@ -40,21 +31,15 @@ class FastImageDao extends ImageFastDaoGenerated {
 	}
 
 	public static function isDishImageExist($dishId, $imageId) {
-		$lookup = new LookupDishImageDao();
-		$lookup->setServerAddress($dishId);
-
-		$builder = new QueryBuilder($lookup);
-		$res = $builder->select('COUNT(*) as count')->where('dish_id', $dishId)->find();
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table)->where('dish_id', $dishId)->find();
 
 		return $res['count']>0;
 	}
 
 	public static function getDefaultDishFastImage($dishId) {
-		$lookup = new LookupDishImageDao();
-		$lookup->setServerAddress($dishId);
-
-		$builder = new QueryBuilder($lookup);
-		$res = $builder->select('*')
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
 						->where('dish_id', $dishId)
 						->find();
 
@@ -62,11 +47,8 @@ class FastImageDao extends ImageFastDaoGenerated {
 	}
 
 	public static function getLookupDaosByCommentId($commentId) {
-		$comment = new LookupCommentImageDao();
-		$comment->setServerAddress($commentId);
-	
-		$builder = new QueryBuilder($comment);
-		$res = $builder->select('*')
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
 		->where('comment_id', $commentId)
 		->findList();
 	
@@ -74,11 +56,8 @@ class FastImageDao extends ImageFastDaoGenerated {
 	}
 	
 	public static function isCommentImageExist($commentId, $imageId) {
-		$lookup = new LookupCommentImageDao();
-		$lookup->setServerAddress($commentId);
-	
-		$builder = new QueryBuilder($lookup);
-		$res = $builder->select('COUNT(*) as count')->where('comment_id', $commentId)->find();
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table)->where('comment_id', $commentId)->find();
 	
 		return $res['count']>0;
 	}
@@ -88,12 +67,6 @@ class FastImageDao extends ImageFastDaoGenerated {
 	protected function beforeInsert() {
 		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
-	}
-
-	protected function beforeUpdate() {}
-
-	protected function isShardBaseObject() {
-		return true;
 	}
 }
 ?>

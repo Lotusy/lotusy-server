@@ -9,11 +9,8 @@ class UserImageDao extends ImageUserDaoGenerated {
 //========================================================================================== public
 
 	public static function getImageDaoByUserId($userId) {
-		$user = new UserImageDao();
-		$user->setServerAddress($userId);
-
-		$builder = new QueryBuilder($user);
-		$res = $builder->select('*')
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
 					   ->where('user_id', $userId)
 					   ->where('is_deleted', 'N')
 					   ->find();
@@ -22,11 +19,8 @@ class UserImageDao extends ImageUserDaoGenerated {
 	}
 
 	public static function getImageDaoByUserIdAndImageId($userId, $imageId) {
-		$user = new UserImageDao();
-		$user->setServerAddress($userId);
-
-		$builder = new QueryBuilder($user);
-		$res = $builder->select('*')
+		$builder = new QueryMaster();
+		$res = $builder->select('*', self::$table)
 					   ->where('user_id', $userId)
 					   ->where('id', $imageId)
 					   ->find();
@@ -35,11 +29,8 @@ class UserImageDao extends ImageUserDaoGenerated {
 	}
 
 	public static function getImageDaoIdsByUserId($userId) {
-		$user = new UserImageDao();
-		$user->setServerAddress($userId);
-
-		$builder = new QueryBuilder($user);
-		$res = $builder->select('id')
+		$builder = new QueryMaster();
+		$res = $builder->select('id', self::$table)
 						->where('user_id', $userId)
 						->findList();
 
@@ -54,24 +45,8 @@ class UserImageDao extends ImageUserDaoGenerated {
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
-		$sequence = $this->getUserId();
-		$this->setShardId($sequence);
-
-		$builder = new QueryBuilder($this);
-		$set = array('is_deleted' => array('quote'=>true, 'value'=>'Y'));
-		$builder->update($set)
-				->where('user_id', $this->getUserId())
-				->where('is_deleted', 'N')
-				->query();
-
 		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
-	}
-
-	protected function beforeUpdate() {}
-
-	protected function isShardBaseObject() {
-		return false;
 	}
 }
 ?>

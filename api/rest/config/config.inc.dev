@@ -54,7 +54,7 @@ $access_log = '/opt/lotusy/api/logs/rest_access.log';
 // database information
 $DB_HOST = 'localhost';
 $DB_USER = 'foodsteraccount';
-$DB_PASS = 'foodsterpasswd';
+$DB_PASS = 'foodsterpass';
 $DB_NAME = 'foodster';
 
 // 0 - OFF, 1 - ERROR, 2 - INFO
