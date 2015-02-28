@@ -96,7 +96,7 @@ class DishActivityDao extends DishActivityDaoGenerated {
 
 	public static function deleteUserDishHitlist($userId, $dishId) {
 		$builder = new QueryMaster();
-		$res = $builder->delete()
+		$res = $builder->update(array('is_deleted'=>'Y'), self::$table)
 					   ->where('user_id', $userId)
 					   ->where('dish_id', $dishId)
 					   ->where('activity', self::LIST_HITLIST)
@@ -108,6 +108,7 @@ class DishActivityDao extends DishActivityDaoGenerated {
 		$builder = new QueryMaster();
 		$res = $builder->select('dish_id', self::$table)
 					   ->where('user_id', $userId)
+					   ->where('is_deleted', 'N')
 					   ->where('activity', self::LIST_HITLIST)
 					   ->limit($start, $size)
 					   ->findList();
@@ -147,6 +148,7 @@ class DishActivityDao extends DishActivityDaoGenerated {
 // ======================================================================================== override
 
 	protected function beforeInsert() {
+		$this->setIsDeleted('N');
 		$this->setCreateTime(date('Y-m-d H:i:s'));
 	}
 }

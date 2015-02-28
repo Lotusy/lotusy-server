@@ -180,7 +180,7 @@ abstract class LotusyDaoParent {
                 $object->var = $row;
                 $object->fromdb = TRUE;
                 if ($idMap) {
-        			$idColumn = $this->getIdColumnName();
+        			$idColumn = $object->getIdColumnName();
                 	$objects[$object->var[$idColumn]] = $object;
                 } else {
                 	array_push($objects, $object);

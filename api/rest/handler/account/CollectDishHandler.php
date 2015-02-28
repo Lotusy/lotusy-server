@@ -1,5 +1,5 @@
 <?php
-class CollectDishHandler extends UnauthorizedRequestHandler {
+class CollectDishHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
 		$validator = new CollectDishValidator($params);
@@ -13,7 +13,7 @@ class CollectDishHandler extends UnauthorizedRequestHandler {
 		$dishActivity->setActivity(DishActivityDao::LIST_COLLECTION);
 		
 		if ($dishActivity->save()) {
-			DishActivityDao::deleteUserDishHitlist($validator->getUserId(), $params['dishid']);
+			DishActivityDao::deleteUserDishHitlist($this->getUserId(), $params['dishid']);
 
 			$response = array();
 			$response['status'] = 'success';

@@ -120,7 +120,7 @@ class QueryMaster {
         return $this;
     }
 
-    public function update($set, $table, $expression=FALSE) {
+    public function update($set, $table, $expression=false) {
         $this->isInsert = false;
         $this->and = false;
 

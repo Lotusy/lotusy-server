@@ -4,6 +4,7 @@ CREATE TABLE foodster.dish_activity
 	user_id INT(10) UNSIGNED,
 	dish_id INT(10) UNSIGNED,
 	activity TINYINT UNSIGNED,
+	is_deleted VARCHAR(2),
 	create_time DATETIME,
 
 	CONSTRAINT user_follower UNIQUE (user_id, dish_id, activity),
@@ -12,4 +13,5 @@ CREATE TABLE foodster.dish_activity
 
 CREATE INDEX foodster_dish_activity_user_id ON foodster.dish_activity (user_id);
 CREATE INDEX foodster_dish_activity_activity ON foodster.dish_activity (activity);
+CREATE INDEX foodster_dish_activity_is_deleted ON foodster.dish_activity (is_deleted(1));
 CREATE INDEX foodster_dish_activity_create_time ON foodster.dish_activity (create_time);

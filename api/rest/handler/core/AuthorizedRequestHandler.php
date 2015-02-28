@@ -45,7 +45,7 @@ abstract class AuthorizedRequestHandler implements RequestHandler {
 		}
 
 		if ($valid) {
-			$this->userId = $response['user_id'];
+			$this->userId = $token->getUserId();
 		}
 
 		return $valid;

@@ -4,7 +4,7 @@ class PostUserDishKeywordHandler extends AuthorizedRequestHandler {
 	public function handle($params) {
 		$json = Utility::getJsonRequestData();
 		$codes = $json['keyword_codes'];
-		$dishId = $json['dish_id'];
+		$dishId = $params['dishid'];
 		$userId = $this->getUserId();
 
 		$result = TRUE;
