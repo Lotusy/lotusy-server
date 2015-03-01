@@ -9,6 +9,7 @@ abstract class ImageDishDaoGenerated extends LotusyDaoParent {
         $this->var['user_id'] = null;
         $this->var['name'] = null;
         $this->var['path'] = null;
+        $this->var['is_default'] = null;
         $this->var['is_deleted'] = null;
         $this->var['create_time'] = null;
 
@@ -17,6 +18,7 @@ abstract class ImageDishDaoGenerated extends LotusyDaoParent {
         $this->update['user_id'] = false;
         $this->update['name'] = false;
         $this->update['path'] = false;
+        $this->update['is_default'] = false;
         $this->update['is_deleted'] = false;
         $this->update['create_time'] = false;
     }
@@ -63,6 +65,16 @@ abstract class ImageDishDaoGenerated extends LotusyDaoParent {
     }
     public function getPath() {
         return $this->var['path'];
+    }
+
+    public function setIsDefault($is_default) {
+        if ($this->var['is_default'] !== $is_default) {
+            $this->var['is_default'] = $is_default;
+            $this->update['is_default'] = true;
+        }
+    }
+    public function getIsDefault() {
+        return $this->var['is_default'];
     }
 
     public function setIsDeleted($is_deleted) {

@@ -1,5 +1,5 @@
 <?php
-class PostCommentDishImageHandler extends AuthorizedRequestHandler {
+class PostCommentImageHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
 		global $comment_image_dir;
@@ -14,12 +14,15 @@ class PostCommentDishImageHandler extends AuthorizedRequestHandler {
 
 		file_put_contents($comment_image_dir.$fileName, $imageDate);
 
+		$comment = new CommentDao($commentId);
+
 		$image = new FastImageDao();
 		$image->setName($fileName);
 		$image->setPath($comment_image_dir);
 		$image->setUserId($userId);
 		$image->setCommentId($commentId);
-		$image->setDishId($dishId);
+		$image->setDishId($comment->getDishId());
+		$image->setBusinessId($comment->getBusinessId());
 		$image->save();
 
 

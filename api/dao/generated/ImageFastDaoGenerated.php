@@ -8,6 +8,7 @@ abstract class ImageFastDaoGenerated extends LotusyDaoParent {
         $this->var['comment_id'] = null;
         $this->var['user_id'] = null;
         $this->var['dish_id'] = null;
+        $this->var['business_id'] = null;
         $this->var['name'] = null;
         $this->var['path'] = null;
         $this->var['create_time'] = null;
@@ -16,6 +17,7 @@ abstract class ImageFastDaoGenerated extends LotusyDaoParent {
         $this->update['comment_id'] = false;
         $this->update['user_id'] = false;
         $this->update['dish_id'] = false;
+        $this->update['business_id'] = false;
         $this->update['name'] = false;
         $this->update['path'] = false;
         $this->update['create_time'] = false;
@@ -53,6 +55,16 @@ abstract class ImageFastDaoGenerated extends LotusyDaoParent {
     }
     public function getDishId() {
         return $this->var['dish_id'];
+    }
+
+    public function setBusinessId($business_id) {
+        if ($this->var['business_id'] !== $business_id) {
+            $this->var['business_id'] = $business_id;
+            $this->update['business_id'] = true;
+        }
+    }
+    public function getBusinessId() {
+        return $this->var['business_id'];
     }
 
     public function setName($name) {

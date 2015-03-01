@@ -76,19 +76,23 @@ register('GET',    '/comment/:commentid/replies',                new GetCommentR
 
 // image end points
 //
-register('GET',  '/image/display/comment/:commentid/:imageid',        new GetCommentImageHandler());
-register('GET',  '/image/display/dish/:dishid/:imageid',	          new GetDishImageHandler());
-register('GET',  '/image/dish/:dishid/links',                         new GetDishImageLinksHandler());
-register('GET',  '/image/display/user/:userid',                       new GetUserCurrentProfileImageHandler());
-register('GET',  '/image/display/user/:userid/:imageid',              new GetUserProfileImageHandler());
-register('GET',  '/image/display/user/:userid/fast/:imageid',         new GetUserFastImageHandler());
-register('POST', '/image/dish/:dishid/comment/:commentid',            new PostCommentDishImageHandler());
-register('POST', '/image/dish/:dishid',                               new PostDishImageHandler());
-register('GET',  '/image/user/:userid/profile/links',                 new GetUserProfileImageLinksHandler());
-register('GET',  '/image/user/:userid/comment/links',                 new GetUserCommentImageLinksHandler());
-register('POST', '/image/user',                                       new PutUserImageHandler());
-register('GET',  '/image/display/business/:businessid/fast/:imageid', new GetBusinessFastImageHandler());
-register('GET',  '/image/display/business/:businessid',               new GetBusinessProfileImageHandler());
-register('GET',  '/image/business/:businessid/links',                 new GetBusinessFastImageLinksHandler());
-register('POST', '/image/business/:businessid',                       new PutBusinessImageHandler());
+register('POST', '/image/dish/:dishid',                                  new PostDishImageHandler());
+register('GET',  '/image/dish/:dishid/profile/links',                    new GetDishProfileImageLinksHandler());
+register('GET',  '/image/dish/:dishid/profile/:imageid/display',         new DisplayDishProfileImageHandler());
+register('GET',  '/image/dish/:dishid/profile/display',                  new DisplayDishProfileDefaultImageHandler());
+
+register('POST', '/image/comment/:commentid',                            new PostCommentImageHandler());
+register('GET',  '/image/comment/:commentid/:imageid/display',           new GetCommentImageHandler());
+register('GET',  '/image/comment/dish/:dishid/:imageid/display',	     new GetDishImageHandler());
+register('GET',  '/image/comment/dish/:dishid/links',                    new GetDishImageLinksHandler());
+register('GET',  '/image/comment/business/:businessid/:imageid/display', new GetBusinessFastImageHandler());
+register('GET',  '/image/comment/business/:businessid/links',            new GetBusinessFastImageLinksHandler());
+register('GET',  '/image/comment/user/:userid/:imageid/display',         new GetUserFastImageHandler());
+register('GET',  '/image/comment/user/:userid/links',                    new GetUserCommentImageLinksHandler());
+
+register('POST', '/image/user',                                          new PutUserImageHandler());
+register('GET',  '/image/user/:userid/profile/:imageid/display',         new GetUserProfileImageHandler());
+
+register('POST', '/image/business/:businessid',                          new PutBusinessImageHandler());
+register('GET',  '/image/business/:businessid/profile/:imageid/display', new GetBusinessProfileImageHandler());
 ?>

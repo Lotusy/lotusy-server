@@ -15,13 +15,15 @@ class PostDishImageHandler extends AuthorizedRequestHandler {
 
 		DishImageDao::deleteUserDishImage($userId, $dishId);
 
+		$hasDefault = DishImageDao::DishHasDefaultImage($dishId);
+
 		$image = new DishImageDao();
 		$image->setName($fileName);
 		$image->setPath($comment_image_dir);
 		$image->setUserId($userId);
 		$image->setDishId($dishId);
+		$image->setIsDefault($hasDefault ? 'N' : 'Y');
 		$image->save();
-
 
 		$atReturn['status'] = 'success';
 		$atReturn['image_id'] = $image->getId();

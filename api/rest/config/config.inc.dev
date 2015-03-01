@@ -62,6 +62,12 @@ $DB_LOG_LEVEL = 2;
 
 
 //=======================================================================================
+// image information
+$dish_image_default = /opt/lotusy/api/image/default_dish.png
+$user_image_default = /opt/lotusy/api/image/default_dish.png
+
+
+//=======================================================================================
 // ip block list
 $ip_block_list = array (
 '000.000.000.000' => 1,
