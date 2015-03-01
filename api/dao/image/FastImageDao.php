@@ -11,7 +11,7 @@ class FastImageDao extends ImageFastDaoGenerated {
 		->limit($start, $size)
 		->findList();
 	
-		return $user->makeObjectsFromSelectListResult($res, 'LookupUserImageDao');
+		return self::makeObjectsFromSelectListResult($res, 'FastImageDao');
 	}
 	
 	public static function isUserImageExist($userId, $imageId) {
@@ -27,7 +27,7 @@ class FastImageDao extends ImageFastDaoGenerated {
 						->where('dish_id', $dishId)
 						->findList();
 
-		return $lookup->makeObjectsFromSelectListResult($res, 'LookupDishImageDao');
+		return self::makeObjectsFromSelectListResult($res, 'FastImageDao');
 	}
 
 	public static function isDishImageExist($dishId, $imageId) {
@@ -43,7 +43,7 @@ class FastImageDao extends ImageFastDaoGenerated {
 						->where('dish_id', $dishId)
 						->find();
 
-		return $lookup->makeObjectFromSelectResult($res, 'LookupDishImageDao');
+		return self::makeObjectFromSelectResult($res, 'FastImageDao');
 	}
 
 	public static function getLookupDaosByCommentId($commentId) {
@@ -52,7 +52,7 @@ class FastImageDao extends ImageFastDaoGenerated {
 		->where('comment_id', $commentId)
 		->findList();
 	
-		return $comment->makeObjectsFromSelectListResult($res, 'LookupCommentImageDao');
+		return self::makeObjectsFromSelectListResult($res, 'FastImageDao');
 	}
 	
 	public static function isCommentImageExist($commentId, $imageId) {

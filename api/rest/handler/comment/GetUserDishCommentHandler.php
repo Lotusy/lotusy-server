@@ -11,8 +11,7 @@ class GetUserDishCommentHandler extends AuthorizedRequestHandler {
 			return $validator->getMessage();
 		}
 
-		$commentId = CommentDao::getUserDishComment($params['dishid'], $params['userid']);
-		$comment = new CommentDao($commentId);
+		$comment = CommentDao::getUserDishComment($params['dishid'], $params['userid']);
 
 		if (!$comment->isFromDatabase()) {
 			header('HTTP/1.0 404 Not Found');

@@ -38,7 +38,7 @@ class CommentDao extends CommentDaoGenerated {
 						->limit($start, $size)
 						->findList();
 
-		$comments = self::makeObjectsFromSelectListResult($row, 'CommentDao');
+		$comments = self::makeObjectsFromSelectListResult($res, 'CommentDao');
 
 		return $comments;
 	}
@@ -50,7 +50,7 @@ class CommentDao extends CommentDaoGenerated {
 						->limit($start, $size)
 						->findList();
 
-		$comments = self::makeObjectsFromSelectListResult($row, 'CommentDao');
+		$comments = self::makeObjectsFromSelectListResult($res, 'CommentDao');
 
 		return $comments;
 	}
@@ -62,7 +62,7 @@ class CommentDao extends CommentDaoGenerated {
 						->limit($start, $size)
 						->findList();
 
-		$comments = self::makeObjectsFromSelectListResult($row, 'CommentDao');
+		$comments = self::makeObjectsFromSelectListResult($res, 'CommentDao');
 
 		return $comments;
 	}
@@ -93,7 +93,7 @@ class CommentDao extends CommentDaoGenerated {
 					   ->order('id', true)
 					   ->find();
 
-		return self::makeObjectFromSelectResult($row, 'CommentDao');
+		return self::makeObjectFromSelectResult($res, 'CommentDao');
 	}
 
 	public function like() {
@@ -123,7 +123,7 @@ class CommentDao extends CommentDaoGenerated {
 	public function delete() {
 		$builder = new QueryMaster();
 		$set = array('is_deleted' => 'Y');
-		$res = $builder->update($set, self::$table, true)->where('id', $this->getId())->query();
+		$res = $builder->update($set, self::$table)->where('id', $this->getId())->query();
 
 		return $res;
 	}

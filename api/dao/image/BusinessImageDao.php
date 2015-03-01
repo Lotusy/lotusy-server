@@ -19,7 +19,7 @@ class BusinessImageDao extends ImageBusinessDaoGenerated {
 						->limit($start, $size)
 						->findList();
 
-		return self::makeObjectsFromSelectListResult($res, 'LookupBusinessImageDao');
+		return self::makeObjectsFromSelectListResult($res, 'BusinessImageDao');
 	}
 
 	public static function isBusinessImageExist($businessId, $imageId) {

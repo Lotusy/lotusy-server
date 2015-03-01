@@ -66,7 +66,6 @@ register('GET',    '/comment/business/:businessid/comments',     new GetBusiness
 register('GET',    '/comment/dish/:dishid/comment/count',        new GetDishCommentCountHandler());
 register('GET',    '/comment/dish/:dishid/comments',             new GetDishCommentHandler());
 register('GET',    '/comment/dish/:dishid/user/:userid/comment', new GetUserDishCommentHandler());
-register('POST',   '/comment/dish/:dishid/comment/:commentid',   new PostCommentDishImageHandler());
 register('GET',    '/comment/:commentid',                        new GetCommentInfoHandler());
 register('DELETE', '/comment/:commentid',                        new DeleteCommentHandler());
 register('PUT',    '/comment/:commentid/like',                   new CommentLikeHandler());
@@ -83,6 +82,8 @@ register('GET',  '/image/dish/:dishid/links',                         new GetDis
 register('GET',  '/image/display/user/:userid',                       new GetUserCurrentProfileImageHandler());
 register('GET',  '/image/display/user/:userid/:imageid',              new GetUserProfileImageHandler());
 register('GET',  '/image/display/user/:userid/fast/:imageid',         new GetUserFastImageHandler());
+register('POST', '/image/dish/:dishid/comment/:commentid',            new PostCommentDishImageHandler());
+register('POST', '/image/dish/:dishid',                               new PostDishImageHandler());
 register('GET',  '/image/user/:userid/profile/links',                 new GetUserProfileImageLinksHandler());
 register('GET',  '/image/user/:userid/comment/links',                 new GetUserCommentImageLinksHandler());
 register('POST', '/image/user',                                       new PutUserImageHandler());
