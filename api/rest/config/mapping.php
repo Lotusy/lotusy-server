@@ -1,4 +1,9 @@
 <?php
+// mobile flow end points
+//
+register('GET', '/flow/user/followings/dishes', new GetFollowingRecentDishesHandler());
+
+
 // token end points
 //
 register('POST', '/token/auth/:type', new TokenAuthenticationHandler());
@@ -19,7 +24,6 @@ register('GET',  '/user/:userid/dishes',          new GetUserDishCollectionHandl
 register('GET',  '/user/:userid/hitlist',         new GetUserDishHitlistHandler());
 register('GET',  '/user/:userid/activites',       new GetUserRecentActivitiesHandler());
 register('GET',  '/user/:userid/activites/count', new GetUserActivitiesCountHandler());
-register('GET',  '/user/followings/dishes',       new GetFollowingRecentDishesHandler());
 
 
 // business end points
