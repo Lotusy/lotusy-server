@@ -9,9 +9,16 @@ class PostDishImageHandler extends AuthorizedRequestHandler {
 
 		$fileName = 'dish_'.$dishId.'_'.date('YmdHis').'_user_'.$userId.'_'.rand (0, 10000).'.png';
 
-		$imageDate = Utility::getRawRequestData();
+		$imageData = Utility::getRawRequestData();
 
-		file_put_contents($image_dir.$fileName, $imageDate);
+		if (empty($imageData)) {
+			header('HTTP/1.0 400 Bad Request');
+			$response = array('status'=>'error');
+			$response['description'] = 'no_image_file_provided';
+			return $response;
+		}
+
+		file_put_contents($image_dir.$fileName, $imageData);
 
 		DishImageDao::deleteUserDishImage($userId, $dishId);
 

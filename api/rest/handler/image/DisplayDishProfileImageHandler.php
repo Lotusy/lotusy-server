@@ -13,8 +13,12 @@ class DisplayDishProfileImageHandler extends UnauthorizedRequestHandler {
 			$filename = $path.$name;
 		}
 
+		Logger::info('file name - '.$filename);
     	header('Content-Type: image/png');
+    	header('Content-Length: ' . filesize($filename));
 		readfile($filename);
+
+		return;
 	}
 }
 ?>

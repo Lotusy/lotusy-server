@@ -18,7 +18,7 @@ if ($access_on!=0) { Logger::access($method.' '.$uri); }
 $uri = parseGetparams($uri);
 
 header('Content-Type: application/json; charset=utf-8');
-header('X-Powered-By: Lotusy Inc.');
+header('X-Powered-By: Foodster Inc.');
 
 // find the handler based on request uri from $services configured in mapping.php
 //
@@ -46,10 +46,12 @@ foreach ($services[$method] as $key=>$val) {
 			Logger::info('Request uri - "'.$_SERVER['REQUEST_URI']);
 			Logger::info('Request body - '.Utility::getRawRequestData());
 			$response = $handler->execute($params);
-			header('Content-length: '.strlen($response));
 			Logger::info($response);
 			Logger::info(get_class($handler).' - end'.PHP_EOL);
-			if (!empty($response)) { echo $response; }
+			if (!empty($response)) { 
+				header('Content-length: '.strlen($response));
+				echo $response; 
+			}
 			exit;
 		}
 	}

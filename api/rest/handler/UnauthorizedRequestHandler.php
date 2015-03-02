@@ -2,11 +2,13 @@
 abstract class UnauthorizedRequestHandler implements RequestHandler {
 
 	public function execute($params) {
-
 		$response = $this->handle($params);
 
-		return json_encode($response);
+		if (!empty($response)) {
+			$response = json_encode($response);
+		}
 
+		return $response;
 	}
 
 	abstract public function handle($params);

@@ -30,4 +30,4 @@ class CreateReplyHandler extends AuthorizedRequestHandler {
 		return $response;
 	}
 }
-?> 
+?>
