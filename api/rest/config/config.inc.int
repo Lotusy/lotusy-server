@@ -8,35 +8,44 @@ $app_key = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 //=======================================================================================
 // auto include directory information
+$static_path = '/opt/lotusy/api/current';
 $autoload_dirs = array (
-'/opt/lotusy/api/current/dao',
-'/opt/lotusy/api/current/util', 
-'/opt/lotusy/api/current/dao/generated',
+$static_path.'/dao',
+$static_path.'/dao/generated',
+$static_path.'/rest/handler',
+$static_path.'/rest/request',
+$static_path.'/rest/validator',
+$static_path.'/util',
 
-'/opt/lotusy/api/current/dao/core',
-'/opt/lotusy/api/current/rest/handler/core',
-'/opt/lotusy/api/current/rest/request/core',
-'/opt/lotusy/api/current/rest/validator/core',
+$static_path.'/dao/dish',
+$static_path.'/rest/handler/dish',
+$static_path.'/rest/request/dish',
+$static_path.'/rest/validator/dish',
 
-'/opt/lotusy/api/current/dao/account',
-'/opt/lotusy/api/current/rest/handler/account',
-'/opt/lotusy/api/current/rest/request/account', 
-'/opt/lotusy/api/current/rest/validator/account', 
+$static_path.'/dao/account',
+$static_path.'/rest/handler/account',
+$static_path.'/rest/request/account', 
+$static_path.'/rest/validator/account',
 
-'/opt/lotusy/api/current/dao/business',
-'/opt/lotusy/api/current/rest/handler/business',
-'/opt/lotusy/api/current/rest/request/business', 
-'/opt/lotusy/api/current/rest/validator/business', 
+$static_path.'/dao/business',
+$static_path.'/rest/handler/business',
+$static_path.'/rest/request/business', 
+$static_path.'/rest/validator/business',
 
-'/opt/lotusy/api/current/dao/comment',
-'/opt/lotusy/api/current/rest/handler/comment', 
-'/opt/lotusy/api/current/rest/request/comment', 
-'/opt/lotusy/api/current/rest/validator/comment', 
+$static_path.'/dao/comment',
+$static_path.'/rest/handler/comment',
+$static_path.'/rest/request/comment', 
+$static_path.'/rest/validator/comment',
 
-'/opt/lotusy/api/current/dao/image',
-'/opt/lotusy/api/current/rest/handler/image', 
-'/opt/lotusy/api/current/rest/request/image', 
-'/opt/lotusy/api/current/rest/validator/image', 
+$static_path.'/dao/image',
+$static_path.'/rest/handler/image',
+$static_path.'/rest/request/image', 
+$static_path.'/rest/validator/image',
+
+$static_path.'/dao/token',
+$static_path.'/rest/handler/token',
+$static_path.'/rest/request/token', 
+$static_path.'/rest/validator/token',
 );
 
 

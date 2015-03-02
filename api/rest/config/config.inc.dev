@@ -8,35 +8,44 @@ $app_key = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 //=======================================================================================
 // auto include directory information
+$static_path = '/opt/lotusy/api';
 $autoload_dirs = array (
-'../dao',
-'../util', 
-'../dao/generated',
+$static_path.'/dao',
+$static_path.'/dao/generated',
+$static_path.'/rest/handler',
+$static_path.'/rest/request',
+$static_path.'/rest/validator',
+$static_path.'/util',
 
-'../dao/core',
-'handler/core',
-'request/core',
-'validator/core',
+$static_path.'/dao/dish',
+$static_path.'/rest/handler/dish',
+$static_path.'/rest/request/dish',
+$static_path.'/rest/validator/dish',
 
-'../dao/account',
-'handler/account',
-'request/account', 
-'validator/account', 
+$static_path.'/dao/account',
+$static_path.'/rest/handler/account',
+$static_path.'/rest/request/account', 
+$static_path.'/rest/validator/account',
 
-'../dao/business',
-'handler/business',
-'request/business', 
-'validator/business', 
+$static_path.'/dao/business',
+$static_path.'/rest/handler/business',
+$static_path.'/rest/request/business', 
+$static_path.'/rest/validator/business',
 
-'../dao/comment',
-'handler/comment', 
-'request/comment', 
-'validator/comment', 
+$static_path.'/dao/comment',
+$static_path.'/rest/handler/comment',
+$static_path.'/rest/request/comment', 
+$static_path.'/rest/validator/comment',
 
-'../dao/image',
-'handler/image', 
-'request/image', 
-'validator/image', 
+$static_path.'/dao/image',
+$static_path.'/rest/handler/image',
+$static_path.'/rest/request/image', 
+$static_path.'/rest/validator/image',
+
+$static_path.'/dao/token',
+$static_path.'/rest/handler/token',
+$static_path.'/rest/request/token', 
+$static_path.'/rest/validator/token',
 );
 
 
