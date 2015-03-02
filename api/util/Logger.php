@@ -1,27 +1,36 @@
 <?php
 class Logger {
-	public static function info($message) {
+	const GENERAL = 0;
+	const DB = 1;
+
+	public static function info($message, $type=Logger::GENERAL) {
 		global $log_level;
-		if ($log_level>3) { Logger::log($message, 4); }
+		if ($log_level>3) { Logger::log($message, 4, $type); }
 	}
 
-	public static function warn($message) {
+	public static function warn($message, $type=Logger::GENERAL) {
 		global $log_level;
-		if ($log_level>2) { Logger::log($message, 3); }
+		if ($log_level>2) { Logger::log($message, 3, $type); }
 	}
 
-	public static function error($message) {
+	public static function error($message, $type=Logger::GENERAL) {
 		global $log_level;
-		if ($log_level>1) { Logger::log($message, 2); }
+		if ($log_level>1) { Logger::log($message, 2, $type); }
 	}
 
-	public static function fatal($message) {
+	public static function fatal($message, $type=Logger::GENERAL) {
 		global $log_level;
-		if ($log_level>0) { Logger::log($message, 1); }
+		if ($log_level>0) { Logger::log($message, 1, $type); }
 	}
 
-	private static function log($message, $level=0) {
-		global $log_file;
+	private static function log($message, $level=0, $type) {
+		global $log_file, $database_log;
+
+		if ($type==Logger::GENERAL) {
+			$output_file = $log_file;
+		} else if ($type==Logger::DB) { 
+			$output_file = $database_log;
+		}
 
 		$slevel = '';
 
@@ -40,8 +49,8 @@ class Logger {
 				break;
 		}
 
-		if (isset($log_file) && !empty($log_file))	{
-			$log = fopen($log_file, 'a');
+		if (isset($output_file) && !empty($output_file))	{
+			$log = fopen($output_file, 'a');
 			fwrite($log, '['.date('Y-m-d H:i:s').'] '.$slevel.$message.PHP_EOL);
 			fclose($log);
 		}

@@ -4,7 +4,7 @@ $db_user = "root";
 $db_pass = "Langara2";
 $db_sche = "foodster";
 $base_class = 'LotusyDaoParent';
-$target_folder = '../../dao/generated/';
+$target_folder = '../../api/dao/generated/';
 
 $conn = mysqli_connect("p:".$db_host, $db_user, $db_pass, $db_sche);
 $sql = "SHOW TABLES";

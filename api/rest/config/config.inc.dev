@@ -59,12 +59,13 @@ $DB_NAME = 'foodster';
 
 // 0 - OFF, 1 - ERROR, 2 - INFO
 $DB_LOG_LEVEL = 2;
+$database_log = '/opt/lotusy/api/logs/database.log';
 
 
 //=======================================================================================
 // image information
-$dish_image_default = /opt/lotusy/api/image/default_dish.png
-$user_image_default = /opt/lotusy/api/image/default_dish.png
+$dish_image_default = '/opt/lotusy/api/image/default_dish.png';
+$user_image_default = '/opt/lotusy/api/image/default_dish.png';
 
 
 //=======================================================================================

@@ -239,7 +239,7 @@ class QueryMaster {
     public function query() {
     	global $DB_LOG_LEVEL;
         if ($DB_LOG_LEVEL>=2) {
-           	Logger::info('[DATABASE] '.$this->query);
+           	Logger::info($this->query, Logger::DB);
         }
 
         if ($this->isInsert) {
@@ -258,9 +258,9 @@ class QueryMaster {
 
         if ($DB_LOG_LEVEL>=1 && !empty($this->errors)) {
         	if ($DB_LOG_LEVEL<2) {
-            	Logger::info('[DATABASE] '.$this->query);
+            	Logger::info($this->query, Logger::DB);
             }
-            Logger::error(json_encode($this->errors));
+            Logger::error(json_encode($this->errors), Logger::DB);
         }
 
         return $result;
