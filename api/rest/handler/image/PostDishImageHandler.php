@@ -2,7 +2,7 @@
 class PostDishImageHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
-		global $comment_image_dir;
+		global $image_dir;
 
 		$userId = $this->getUserId();
 		$dishId = $params['dishid'];
@@ -11,7 +11,7 @@ class PostDishImageHandler extends AuthorizedRequestHandler {
 
 		$imageDate = Utility::getRawRequestData();
 
-		file_put_contents($comment_image_dir.$fileName, $imageDate);
+		file_put_contents($image_dir.$fileName, $imageDate);
 
 		DishImageDao::deleteUserDishImage($userId, $dishId);
 
@@ -19,7 +19,7 @@ class PostDishImageHandler extends AuthorizedRequestHandler {
 
 		$image = new DishImageDao();
 		$image->setName($fileName);
-		$image->setPath($comment_image_dir);
+		$image->setPath($image_dir);
 		$image->setUserId($userId);
 		$image->setDishId($dishId);
 		$image->setIsDefault($hasDefault ? 'N' : 'Y');

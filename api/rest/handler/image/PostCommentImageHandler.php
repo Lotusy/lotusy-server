@@ -2,7 +2,7 @@
 class PostCommentImageHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
-		global $comment_image_dir;
+		global $image_dir;
 
 		$userId = $this->getUserId();
 		$commentId = $params['commentid'];
@@ -12,13 +12,13 @@ class PostCommentImageHandler extends AuthorizedRequestHandler {
 
 		$imageDate = Utility::getRawRequestData();
 
-		file_put_contents($comment_image_dir.$fileName, $imageDate);
+		file_put_contents($image_dir.$fileName, $imageDate);
 
 		$comment = new CommentDao($commentId);
 
 		$image = new FastImageDao();
 		$image->setName($fileName);
-		$image->setPath($comment_image_dir);
+		$image->setPath($image_dir);
 		$image->setUserId($userId);
 		$image->setCommentId($commentId);
 		$image->setDishId($comment->getDishId());

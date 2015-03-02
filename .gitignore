@@ -4,4 +4,5 @@ api/portal/config/config.inc
 api/rest/config/config.inc
 www/config/config.inc
 api/logs/
+api/image/
 www/logs/

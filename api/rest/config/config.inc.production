@@ -74,6 +74,7 @@ $database_log = '/opt/lotusy/api/logs/database.log';
 
 //=======================================================================================
 // image information
+$image_dir = '/opt/lotusy/api/image';
 $dish_image_default = '/opt/lotusy/api/image/default_dish.png';
 $user_image_default = '/opt/lotusy/api/image/default_dish.png';
 

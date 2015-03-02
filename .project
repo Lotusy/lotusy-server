@@ -33,7 +33,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1418962495610</id>
+			<id>1425326006625</id>
 			<name></name>
 			<type>10</type>
 			<matcher>
@@ -42,12 +42,21 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1424597684380</id>
+			<id>1425326135422</id>
 			<name>api</name>
 			<type>10</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
 				<arguments>1.0-name-matches-false-false-logs</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1425326135426</id>
+			<name>api</name>
+			<type>10</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-image</arguments>
 			</matcher>
 		</filter>
 		<filter>
