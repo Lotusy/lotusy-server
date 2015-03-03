@@ -35,6 +35,12 @@ class GetDishCommentHandler extends AuthorizedRequestHandler {
 			$commentArr = $comment->toArray();
 			$commentArr['user_pic_url'] = $base_image_host.'/image/user/'.$comment->getUserId().'/profile/display';
 
+			$preference = DishUserLikeDao::getUserResponseOnDish($comment->getUserId(), $params['dishid']);
+
+			if (isset($preference)) {
+				$commentArr['like'] = $preference->getIsLike()=='Y' ? true : false;
+			}
+
 			$userDao = $userDaos[$comment->getUserId()];
 			$commentArr['user_nickname'] = $userDao->getNickname();
 			$count = ReplyDao::getReplyCountByCommentId($comment->getId());
