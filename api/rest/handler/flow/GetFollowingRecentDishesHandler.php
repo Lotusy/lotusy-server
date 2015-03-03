@@ -1,5 +1,5 @@
 <?php
-class GetFollowingRecentDishesHandler extends UnauthorizedRequestHandler {
+class GetFollowingRecentDishesHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
 		$json = $_GET;
@@ -8,7 +8,7 @@ class GetFollowingRecentDishesHandler extends UnauthorizedRequestHandler {
 			return $validator->getMessage();
 		} 
 
-		$user = new UserDao($validator->getUserId());
+		$user = new UserDao($this->getUserId());
 
 		$userIds = FollowingDao::getFollowingIds($user->getId(), 0, 100000);
 
@@ -38,6 +38,13 @@ class GetFollowingRecentDishesHandler extends UnauthorizedRequestHandler {
 			$activity['user'] = $users[$userDish['user_id']];
 			$activity['dish'] = $dishes[$userDish['dish_id']];
 			$activity['type'] = ($userDish['list']==DishActivityDao::LIST_COLLECTION) ? 'collection' : 'hitlist';
+
+			if ($userDish['list']==DishActivityDao::LIST_COLLECTION) {
+				$preference = DishUserLikeDao::getUserResponseOnDish($userDish['user_id'], $userDish['dish_id']);
+				if (isset($preference)) {
+					$activity['like'] = $preference->getIsLike()=='Y' ? true : false;
+				}
+			}
 
 			$commentDao = CommentDao::getUserDishComment($userDish['dish_id'], $userDish['user_id']);
 			if (isset($commentDao)) {

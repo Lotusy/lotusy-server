@@ -1,7 +1,9 @@
 <?php
-class HitlistDishHandler extends UnauthorizedRequestHandler {
+class HitlistDishHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
+		$params['userid'] = $this->getUserId();
+
 		$validator = new HitlistDishValidator($params);
 		if (!$validator->validate()) {
 			return $validator->getMessage();

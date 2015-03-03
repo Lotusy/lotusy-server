@@ -1,6 +1,9 @@
 <?php
 // mobile flow end points
 //
+// Flow-Add food tried
+register('GET', '/flow/dish/:dishid/detail',    new GetDishDetailHandler());
+// Flow-Discover-addnewfood-rankup
 register('GET', '/flow/user/followings/dishes', new GetFollowingRecentDishesHandler());
 
 

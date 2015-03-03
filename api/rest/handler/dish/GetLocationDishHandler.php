@@ -36,7 +36,7 @@ class GetLocationDishHandler extends UnauthorizedRequestHandler {
 				}
 
 				$dishArr = $dish->toArray(array('create_time'));
-				$dishArr['image'] = $base_image_host.'/rest/dish/'.$dishArr['id'].'/default';
+				$dishArr['image'] = $base_image_host.'/rest/image/dish/'.$dishArr['id'].'/profile/display';
 				array_push($response['dishes'], $dishArr);
 			}
 		}

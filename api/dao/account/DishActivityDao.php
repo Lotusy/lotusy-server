@@ -145,6 +145,17 @@ class DishActivityDao extends DishActivityDaoGenerated {
 		return $res['count'];
 	}
 
+	public static function isDishCollected($dishId, $userId) {
+		$builder = new QueryMaster();
+		$res = $builder->select('COUNT(*) as count', self::$table) 
+					   ->where('user_id', $userId)
+					   ->where('dish_id', $dishId)
+					   ->where('activity', self::LIST_COLLECTION)
+					   ->find();
+
+		return $res['count']>0;
+	}
+
 // ======================================================================================== override
 
 	protected function beforeInsert() {

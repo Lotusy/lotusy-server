@@ -2,6 +2,8 @@
 class CollectDishHandler extends AuthorizedRequestHandler {
 
 	public function handle($params) {
+		$params['userid'] = $this->getUserId();
+
 		$validator = new CollectDishValidator($params);
 		if (!$validator->validate()) {
 			return $validator->getMessage();
