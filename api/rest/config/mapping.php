@@ -4,7 +4,16 @@
 // Flow-Add food tried
 register('GET', '/flow/dish/:dishid/detail',    new GetDishDetailHandler());
 // Flow-Discover-addnewfood-rankup
-register('GET', '/flow/user/followings/dishes', new GetFollowingRecentDishesHandler());
+register('GET', '/flow/user/followings/dishes',  new GetFollowingRecentDishesHandler());
+register('GET', '/flow/search/business/dish',    new SearchBusinessByNameHandler());
+register('GET', '/flow/dish/:dishid/popularity', new GetDishPopularityInfoHandler());
+// Flow-Food details-comments-takephoto
+register('GET', '/flow/dish/:dishid/preference', new GetDishPreferenceDetailHandler());
+// Flow-Profile-Me
+// Flow-Profile-others
+// Flow-Restaurant view
+// Flow-Settings
+// Flow-Stamps
 
 
 // token end points
@@ -50,8 +59,6 @@ register('GET',  '/business/:businessid/dishes',                  new GetBusines
 register('POST', '/dish/:dishid/like',                            new DishLikeHandler());
 register('POST', '/dish/:dishid/dislike',                         new DishDislikeHandler());
 register('GET',  '/dish/location',                                new GetLocationDishHandler());
-register('GET',  '/dish/:dishid/preference',                      new GetDishPreferenceDetailHandler());
-register('GET',  '/dish/:dishid/popularity/info',                 new GetDishPopularityInfoHandler());
 register('POST', '/dish/:dishid/collect',                         new CollectDishHandler());
 register('POST', '/dish/:dishid/hitlist',                         new HitlistDishHandler());
 register('GET',  '/dish/:dishid/users/info',                      new GetDishUserInfoHandler());
@@ -99,6 +106,7 @@ register('GET',  '/image/comment/user/:userid/links',                    new Get
 
 register('POST', '/image/user',                                          new PutUserImageHandler());
 register('GET',  '/image/user/:userid/profile/:imageid/display',         new GetUserProfileImageHandler());
+register('GET',  '/image/user/:userid/profile/display',                 new GetUserProfileDefaultImageHandler());
 
 register('POST', '/image/business/:businessid',                          new PutBusinessImageHandler());
 register('GET',  '/image/business/:businessid/profile/:imageid/display', new GetBusinessProfileImageHandler());

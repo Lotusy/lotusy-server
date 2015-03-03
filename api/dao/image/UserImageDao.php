@@ -42,11 +42,21 @@ class UserImageDao extends ImageUserDaoGenerated {
 		return $ids;
 	}
 
+	public static function deleteUserImages($userId) {
+		$builder = new QueryMaster();
+		$res = $builder->update(array('is_deleted'=>'Y'), self::$table)
+					   ->where('user_id', $userId)
+					   ->where('is_deleted', 'N')
+					   ->query();
+		return $res;
+	}
+
 // ============================================ override functions ==================================================
 
 	protected function beforeInsert() {
 		$date = date('Y-m-d H:i:s');
 		$this->setCreateTime($date);
+		$this->setIsDeleted('N');
 	}
 }
 ?>
