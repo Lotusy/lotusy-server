@@ -6,7 +6,7 @@ class GetCommentInfoHandler extends AuthorizedRequestHandler {
 
 		if ($comment->isFromDatabase()) {
 			$response = $comment->toArray();
-			$response['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
+			$response['user_pic_url'] = $base_image_host.'/image/user/'.$comment->getUserId().'/profile/display';
 
 			$user = new UserDao($comment->getUserId());
 
@@ -14,18 +14,7 @@ class GetCommentInfoHandler extends AuthorizedRequestHandler {
 
 			$count = ReplyDao::getReplyCountByCommentId($params['commentid']);
 
-			$lookupDaos = FastImageDao::getLookupDaosByCommentId($params['commentid']);
-			
-			global $base_host, $base_uri;
-
-			$links = array();
-			foreach ($lookupDaos as $lookupDao) {
-				$link = $base_host.$base_uri.'/display/comment/'.$params['commentid'].'/'.$lookupDao->getFastId();
-				array_push($links, $link);
-			}
-
 			$response['reply_count'] = (int)$count;
-			$response['image_links'] = $links;
 
 			$now = strtotime('now');
 			$last = strtotime($response['create_time']);

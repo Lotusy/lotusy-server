@@ -3,6 +3,7 @@ class ItermDao extends ItermDaoGenerated {
 
 	const TYPE_CUISINE = 'CUISINE';
 	const TYPE_KEYWORD = 'KEYWORD';
+	const TYPE_ALERT = 'ALERT';
 
 // =============================================== public function =================================================
 

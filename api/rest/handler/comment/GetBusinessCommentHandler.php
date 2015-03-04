@@ -26,26 +26,13 @@ class GetBusinessCommentHandler extends AuthorizedRequestHandler {
 
 		global $base_host, $base_uri;
 
-		$links = array();
-		foreach ($commentIds as $commentId) {
-			$lookupDaos = FastImageDao::getLookupDaosByCommentId($commentId);
-		
-			$commentLinks = array();
-			foreach ($lookupDaos as $lookupDao) {
-				$commentLink = $base_host.$base_uri.'/display/comment/'.$params['commentid'].'/'.$lookupDao->getFastId();
-				array_push($commentLinks, $commentLink);
-			}
-		
-			$links[$commentId] = $commentLinks;
-		}
-
 		$now = strtotime('now');
 
 		$userDaos = UserDao::getRange($userIds, true);
 
 		foreach ($comments as $comment) {
 			$commentArr = $comment->toArray();
-			$commentArr['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
+			$commentArr['user_pic_url'] = $base_host.$base_uri.'/image/user/'.$comment->getUserId().'/profile/display';
 
 			$userDao = $userDaos[$comment->getUserId()];
 			$commentArr['user_nickname'] = $userDao->getNickname();
@@ -56,7 +43,6 @@ class GetBusinessCommentHandler extends AuthorizedRequestHandler {
 			$commentArr['create_time'] = $now - $last;
 
 			$commentArr['reply_count'] = (int)$count;
-			$commentArr['image_links'] = $links[$comment->getId()];
 			array_push($response['comments'], $commentArr);
 		}
 

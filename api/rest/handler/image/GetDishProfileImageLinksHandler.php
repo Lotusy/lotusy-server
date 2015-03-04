@@ -8,8 +8,8 @@ class GetDishProfileImageLinksHandler extends AuthorizedRequestHandler {
 
 		$links = array();
 		foreach ($imageDaos as $imageDao) {
-			$link = $base_host.$base_uri.'/image/dish/'.$params['dishid'].'/profile/'.$imageDao->getId().'/display';
-			array_push($links, $link);
+			$link = $base_host.$base_uri.'/image/dish/'.$params['dishid'].'/user/'.$imageDao->getUserId().'/display';
+			$links[$imageDao->getId()] = $link;
 		}
 
 		return array('status'=>'success', 'links'=>$links);

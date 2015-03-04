@@ -9,8 +9,18 @@ register('GET', '/flow/search/business/dish',    new SearchBusinessByNameHandler
 register('GET', '/flow/dish/:dishid/popularity', new GetDishPopularityInfoHandler());
 // Flow-Food details-comments-takephoto
 register('GET', '/flow/dish/:dishid/preference', new GetDishPreferenceDetailHandler());
+register('GET', '/flow/dish/:dishid/infograph',  new GetDishInfoGraphFlowHandler());
 // Flow-Profile-Me
+register('GET', '/flow/user/:userid/activities', new GetFlowUserActivityHandler());
+register('GET', '/flow/me/profile',              new GetMeProfileHandler());
+register('GET', '/flow/me/buddy',                new GetMeBuddyHandler());
+register('GET', '/flow/me/buddy/add',            new GetMeBuddyAddHandler());
+register('GET', '/flow/me/buddy/add/network',    new GetMeBuddyAddNetworkHandler());
+register('GET', '/flow/me/buddy/add/suggest',    new GetMeBuddyAddSuggestHandler());
 // Flow-Profile-others
+register('GET', '/flow/profile/ranking',        new GetProfileRankingHandler());
+register('GET', '/flow/user/:userid/profile',   new GetOtherProfileHandler());
+register('GET', '/flow/user/:userid/buddy',     new GetOtherBuddyHandler());
 // Flow-Restaurant view
 // Flow-Settings
 // Flow-Stamps
@@ -28,6 +38,7 @@ register('GET',  '/tokeninfo',        new GetTokenInfoHandler());
 //
 register('GET',  '/user/profile',                 new GetCurrentUserProfileHandler());
 register('GET',  '/user/:userid/profile',         new GetUserProfileHandler());
+register('GET',  '/user/search/name',             new SearchUserByNameHandler()); // NOT IMPLEMENTED
 register('POST', '/user/profile',                 new UpdateCurrentUserProfileHandler());
 register('POST', '/user/follow/:userid',          new FollowUserHandler());
 register('GET',  '/user/:userid/followers',       new GetUserFollowersHandler());
@@ -36,6 +47,9 @@ register('GET',  '/user/:userid/dishes',          new GetUserDishCollectionHandl
 register('GET',  '/user/:userid/hitlist',         new GetUserDishHitlistHandler());
 register('GET',  '/user/:userid/activites',       new GetUserRecentActivitiesHandler());
 register('GET',  '/user/:userid/activites/count', new GetUserActivitiesCountHandler());
+register('GET',  '/user/:userid/alters',          new GetUserActiveAlertsHandler());
+register('GET',  '/user/alert/:language/terms',   new GetAlertItermHandler());
+register('POST', '/user/alert/:code/:action',     new PostUserAlertHandler());
 
 
 // business end points
@@ -90,24 +104,17 @@ register('GET',    '/comment/:commentid/replies',                new GetCommentR
 
 // image end points
 //
-register('POST', '/image/dish/:dishid',                                  new PostDishImageHandler());
-register('GET',  '/image/dish/:dishid/profile/links',                    new GetDishProfileImageLinksHandler());
-register('GET',  '/image/dish/:dishid/profile/:imageid/display',         new DisplayDishProfileImageHandler());
-register('GET',  '/image/dish/:dishid/profile/display',                  new DisplayDishProfileDefaultImageHandler());
-
-register('POST', '/image/comment/:commentid',                            new PostCommentImageHandler());
-register('GET',  '/image/comment/:commentid/:imageid/display',           new GetCommentImageHandler());
-register('GET',  '/image/comment/dish/:dishid/:imageid/display',	     new GetDishImageHandler());
-register('GET',  '/image/comment/dish/:dishid/links',                    new GetDishImageLinksHandler());
-register('GET',  '/image/comment/business/:businessid/:imageid/display', new GetBusinessFastImageHandler());
-register('GET',  '/image/comment/business/:businessid/links',            new GetBusinessFastImageLinksHandler());
-register('GET',  '/image/comment/user/:userid/:imageid/display',         new GetUserFastImageHandler());
-register('GET',  '/image/comment/user/:userid/links',                    new GetUserCommentImageLinksHandler());
-
-register('POST', '/image/user',                                          new PutUserImageHandler());
-register('GET',  '/image/user/:userid/profile/:imageid/display',         new GetUserProfileImageHandler());
-register('GET',  '/image/user/:userid/profile/display',                 new GetUserProfileDefaultImageHandler());
-
-register('POST', '/image/business/:businessid',                          new PutBusinessImageHandler());
-register('GET',  '/image/business/:businessid/profile/:imageid/display', new GetBusinessProfileImageHandler());
+register('POST',   '/image/dish/:dishid',                                  new PostDishImageHandler());
+register('GET',    '/image/dish/:dishid/profile/links',                    new GetDishProfileImageLinksHandler());
+register('GET',    '/image/dish/:dishid/user/:userid/display',             new DisplayDishUserImageHandler());
+register('GET',    '/image/dish/:dishid/profile/display',                  new DisplayDishProfileDefaultImageHandler());
+register('POST',   '/image/signature',                                     new PostUserSignatureImageHandler());
+register('GET',    '/image/signature/user/:userid/links',                  new GetUserSignatureImageLinksHandler());
+register('GET',    '/image/signature/:signatureid/user/:userid/display',   new DisplayUserSignatureImageHandler());
+register('DELETE', '/image/signature/:signatureid',                        new DeleteUserSigntureImageHandler());
+register('POST',   '/image/user',                                          new PutUserImageHandler());
+register('GET',    '/image/user/:userid/profile/:imageid/display',         new GetUserProfileImageHandler());
+register('GET',    '/image/user/:userid/profile/display',                  new GetUserProfileDefaultImageHandler());
+register('POST',   '/image/business/:businessid',                          new PutBusinessImageHandler());
+register('GET',    '/image/business/:businessid/profile/:imageid/display', new GetBusinessProfileImageHandler());
 ?>
