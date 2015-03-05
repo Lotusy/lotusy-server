@@ -42,6 +42,21 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
 		return $res['count'];
 	}
 
+	public static function getDishUsersInRange($userIds, $dishId, $limit) {
+		$builder = new QueryMaster();
+		$res = $builder->select('user_id', self::$table)
+					   ->where('dish_id', $dishId)
+					   ->in('user_id', $userIds)
+					   ->limit(0, $limit)
+					   ->findList();
+		$ids = array();
+		foreach ($res as $row) {
+			$ids[] = $rwo['user_id'];
+		}
+
+		return $ids;
+	}
+
 // ============================================ override functions ==================================================
 
 }

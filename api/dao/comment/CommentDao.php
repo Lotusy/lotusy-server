@@ -60,6 +60,7 @@ class CommentDao extends CommentDaoGenerated {
 		$res = $builder->select('*', self::$table)
 						->where('dish_id', $dishId)
 						->limit($start, $size)
+						->order('id', true)
 						->findList();
 
 		$comments = self::makeObjectsFromSelectListResult($res, 'CommentDao');

@@ -47,6 +47,7 @@ $static_path.'/rest/validator/image',
 $static_path.'/rest/validator/token',
 
 $static_path.'/util',
+$static_path.'/model'
 );
 
 

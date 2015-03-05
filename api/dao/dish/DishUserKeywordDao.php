@@ -1,7 +1,7 @@
 <?php
 class DishUserKeywordDao extends DishUserKeywordDaoGenerated {
 
-	public static function getUserDishKeywords($userId, $dishId, $language) {
+	public static function getUserDishKeywords($userId, $dishId) {
 		$builder = new QueryMaster();
 		$res = $builder->select('keyword_code', self::$table)
 					   ->where('user_id', $userId)

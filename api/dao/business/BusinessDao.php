@@ -13,6 +13,23 @@ class BusinessDao extends BusinessDaoGenerated {
 
 // =========================================================================================================== public
 
+	public static function getName($language) {
+		$rv = '';
+
+		switch ($language) {
+			case 'tw':
+				$rv = $this->getNameTw();
+				break;
+			case 'zh':
+				$rv = $this->getNameZh();
+				break;
+			default:
+				$rv = $this->getNameEn();
+		}
+
+		return $rv;
+	}
+
 	public static function getBusinessIdsByName($name, $field) {
 		$builder = new QueryMaster();
 		$res = $builder->select($bid)->where($column, '%'.$name.'%', 'LIKE')->findList();

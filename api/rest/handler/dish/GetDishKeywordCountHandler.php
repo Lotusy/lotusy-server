@@ -9,7 +9,7 @@ class GetDishKeywordCountHandler extends AuthorizedRequestHandler {
 
 		$descriptions = ItermDao::getCodeDescriptionArray(array_keys($codes), ItermDao::TYPE_KEYWORD, $language);
 
-		$userCodes = DishUserKeywordDao::getUserDishKeywords($this->getUserId(), $dishId, $language);
+		$userCodes = DishUserKeywordDao::getUserDishKeywords($this->getUserId(), $dishId);
 
 		$keywordUserCount = DishUserKeywordDao::getDishKeywordUserCount($dishId);
 

@@ -6,7 +6,7 @@ class GetUserDishKeywordHandler extends UnauthorizedRequestHandler {
 		$dishId = $params['dishid'];
 		$language = $params['language'];
 
-		$codes = DishUserKeywordDao::getUserDishKeywords($userId, $dishId, $language);
+		$codes = DishUserKeywordDao::getUserDishKeywords($userId, $dishId);
 
 		$descriptions = ItermDao::getCodeDescriptionArray($codes, ItermDao::TYPE_KEYWORD, $language);
 
