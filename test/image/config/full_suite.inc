@@ -15,7 +15,7 @@ include_once 'case/BusinessImageContentTest.php';
 include_once 'case/UserImageContentTest.php';
 include_once 'case/UserCurrentImageContentTest.php';
 
-$baseUri = 'http://local.image.lotusy.com/rest';
+$baseUri = 'http://local.image.foodster.club/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 $testCases = array(

@@ -5,7 +5,7 @@ include_once '../../core/test/helper/TestRunner.php';
 
 include_once 'case/LocationCommentTest.php';
 
-$baseUri = 'http://local.comment.lotusy.com/rest';
+$baseUri = 'http://local.comment.foodster.club/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 $testCases = array(

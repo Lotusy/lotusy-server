@@ -43,7 +43,7 @@ class LSession {
 				$this->sessionId = $component_name.substr($rand, 0, 5).substr($time, -10, 10);
 			}
 
-			setcookie(self::$SESSION_KEY, $this->sessionId, 0, '/', 'lotusy.com', false, true);
+			setcookie(self::$SESSION_KEY, $this->sessionId, 0, '/', 'foodster.club', false, true);
 		}
 	}
 
@@ -77,7 +77,7 @@ class LSession {
 
 	public function destroy() {
 		$this->sessionCache->delete($this->sessionId);
-		setcookie(self::$SESSION_KEY, $this->sessionId, time()-3600, '/', 'lotusy.com', false, true);
+		setcookie(self::$SESSION_KEY, $this->sessionId, time()-3600, '/', 'foodster.club', false, true);
 	}
 
 	public function hasUserId() {

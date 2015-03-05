@@ -6,7 +6,7 @@ upstream commentbackend {
 
 server {
     listen 80;
-    server_name staging.comment.lotusy.com;
+    server_name staging.comment.foodster.club;
     location / {
         proxy_pass http://commentbackend;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

@@ -1,7 +1,7 @@
 <?php
 $component_name = 'api';
 
-$base_host = 'http://local.api.lotusy.com';
+$base_host = 'http://local.api.foodster.club';
 $base_uri = '/rest';
 
 $app_key = 'E268443E43D93DAB7EBEF303BBE9642F';

@@ -1,6 +1,6 @@
 <VirtualHost *:80>
 	ServerAdmin webmaster@localhost
-	ServerName local.comment.lotusy.com
+	ServerName local.comment.foodster.club
 
 	DocumentRoot /opt/lotusy/comment
 	<Directory />

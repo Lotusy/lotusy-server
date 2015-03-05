@@ -4,7 +4,7 @@ include '/opt/lotusy/core/dao/config/config.inc';
 
 $component_name = 'e9f8o';
 
-$base_host = 'http://local.account.lotusy.com';
+$base_host = 'http://local.account.foodster.club';
 $base_uri = '/portal';
 
 $app_key = 'E268443E43D93DAB7EBEF303BBE9642F';

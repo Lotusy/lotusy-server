@@ -5,7 +5,7 @@ include_once '../../core/test/helper/TestRunner.php';
 
 include_once 'case/RegisterAccountTest.php';
 
-$baseUri = 'http://local.account.lotusy.com/rest';
+$baseUri = 'http://local.account.foodster.club/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 $testCases = array(

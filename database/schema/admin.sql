@@ -11,4 +11,4 @@ CREATE TABLE foodster.admin
 CREATE INDEX foodster_admin_email_index ON foodster.admin (email(60));
 CREATE INDEX foodster_admin_password_index ON foodster.admin (password(32));
 
-INSERT INTO admin (email, password, username) VALUES ('peng.shen@lotusy.com', MD5('Langara2'), 'Peng Shen');
+INSERT INTO admin (email, password, username) VALUES ('peng.shen@foodster.club', MD5('Langara2'), 'Peng Shen');

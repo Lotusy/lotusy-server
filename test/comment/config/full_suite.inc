@@ -14,7 +14,7 @@ include_once 'case/UserCommentTest.php';
 include_once 'case/BusinessCommentTest.php';
 include_once 'case/DeleteCommentTest.php';
 
-$baseUri = 'http://local.comment.lotusy.com/rest';
+$baseUri = 'http://local.comment.foodster.club/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 global $comment_id;

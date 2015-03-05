@@ -1,6 +1,6 @@
 <VirtualHost *:80>
 	ServerAdmin webmaster@localhost
-	ServerName local.business.lotusy.com
+	ServerName local.business.foodster.club
 
 	DocumentRoot /opt/lotusy/business
 	<Directory />

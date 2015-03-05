@@ -9,7 +9,7 @@ include_once 'case/GetAccessTokenInfoTest.php';
 include_once 'case/GetCurrentUserProfileTest.php';
 include_once 'case/GetUserProfileTest.php';
 
-$baseUri = 'http://local.account.lotusy.com/rest';
+$baseUri = 'http://local.account.foodster.club/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 $testCases = array(

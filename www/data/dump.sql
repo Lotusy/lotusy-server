@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'peng.shen@lotusy.com','27dfa5bac9461d087bc6c755f64913f5','Peng Shen');
+INSERT INTO `admin` VALUES (1,'peng.shen@foodster.club','27dfa5bac9461d087bc6c755f64913f5','Peng Shen');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -5,7 +5,7 @@ include_once '../../core/test/helper/TestRunner.php';
 
 include_once 'case/GetBusinessRatingTest.php';
 
-$baseUri = 'http://local.business.lotusy.com/rest';
+$baseUri = 'http://local.business.foodster.club/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 $testCases = array(

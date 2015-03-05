@@ -11,7 +11,7 @@ include_once 'case/GetBusinessRatingTest.php';
 include_once 'case/CountBusinessRatingTest.php';
 include_once 'case/CountUserBusinessRatingTest.php';
 
-$baseUri = 'http://local.business.lotusy.com/rest';
+$baseUri = 'http://local.business.foodster.club/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 $testCases = array(

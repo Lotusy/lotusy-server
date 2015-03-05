@@ -6,7 +6,7 @@ upstream wwwbackend {
 
 server {
     listen 80;
-    server_name staging.www.lotusy.com;
+    server_name staging.www.foodster.club;
     location / {
         proxy_pass http://wwwbackend;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
