@@ -3,6 +3,7 @@ CREATE TABLE foodster.follower
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	user_id INT(10) UNSIGNED,
 	follower_id INT(10) UNSIGNED,
+	create_time DATETIME,
 
 	CONSTRAINT user_follower UNIQUE (user_id, follower_id),
 	PRIMARY KEY (id)

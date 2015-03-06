@@ -34,7 +34,7 @@ class GetDishPreferenceDetailHandler extends AuthorizedRequestHandler {
 
 		$accessToken = $this->getAccessToken();
 
-		$followings = FollowingDao::isUserFollowings($userId, $userIds);
+		$followings = FollowerDao::isUserFollowings($userId, $userIds);
 
 		foreach ($elements as $key=>$element) {
 			if (in_array($element['user_id'], $followings)) {

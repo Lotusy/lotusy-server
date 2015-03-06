@@ -7,7 +7,7 @@ class FollowUserHandler extends UnauthorizedRequestHandler {
 			return $validator->getMessage();
 		}
 
-		$following = new FollowingDao();
+		$following = new FollowerDao();
 		$following->setUserId($validator->getUserId());
 		$following->setFollowingId($params['userid']);
 		$following->save();

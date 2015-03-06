@@ -10,7 +10,7 @@ class GetDishInfoGraphFlowHandler extends AuthorizedRequestHandler {
 
 		$dish = Dish::alloc()->initWithId($dishId);
 		$business = Business::alloc()->initWithId($dish->getBusinessId());
-		$followingIds = FollowingDao::getFollowingIds($userId, 0, 10000);
+		$followingIds = FollowerDao::getFollowingIds($userId, 0, 10000);
 
 		$response = array('status'=>'success');
 

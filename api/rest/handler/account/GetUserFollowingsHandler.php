@@ -10,7 +10,7 @@ class GetUserFollowingsHandler extends UnauthorizedRequestHandler {
 			return $validator->getMessage();
 		} 
 
-		$userIds = FollowingDao::getFollowingIds($params['userid'], $json['start'], $json['size']);
+		$userIds = FollowerDao::getFollowingIds($params['userid'], $json['start'], $json['size']);
 
 		$response = array();
 		$response['status'] = 'success';

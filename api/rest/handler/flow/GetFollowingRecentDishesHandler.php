@@ -10,7 +10,7 @@ class GetFollowingRecentDishesHandler extends AuthorizedRequestHandler {
 
 		$user = new UserDao($this->getUserId());
 
-		$userIds = FollowingDao::getFollowingIds($user->getId(), 0, 100000);
+		$userIds = FollowerDao::getFollowingIds($user->getId(), 0, 100000);
 
 		$map = DishActivityDao::getUsersRecentDishes($userIds, $json['start'], $json['size']);
 		$dishIds = array_keys($map['dish_ids']); 
