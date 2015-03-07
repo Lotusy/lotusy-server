@@ -11,8 +11,10 @@ class GetFlowUserActivityHandler extends AuthorizedRequestHandler {
             return $validator->getMessage();
         }
 
+        $now = strtotime("now");
+
         $userId = $this->getUserId();
-        $startTime = $_GET['start_time'];
+        $startTime = $now - $_GET['start_time'];
         $size = $_GET['size'];
         $language = $headers['language'];
 
