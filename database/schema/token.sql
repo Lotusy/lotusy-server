@@ -1,12 +1,12 @@
 CREATE TABLE foodster.access_token
 (
-	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-	user_id INT(10) UNSIGNED NOT NULL,
-	access_token VARCHAR(256),
-	refresh_token VARCHAR(256),
-	expires_time VARCHAR(21),
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT(10) UNSIGNED NOT NULL,
+    access_token VARCHAR(256),
+    refresh_token VARCHAR(256),
+    expires_time VARCHAR(21),
 
-	PRIMARY KEY (id)
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE INDEX foodster_access_token_user_id ON foodster.access_token (user_id);

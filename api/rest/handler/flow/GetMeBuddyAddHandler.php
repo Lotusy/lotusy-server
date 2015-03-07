@@ -1,7 +1,7 @@
 <?php
 class GetMeBuddyAddHandler extends AuthorizedRequestHandler {
 
-	public function handle($params) {
-	}
+    public function handle($params) {
+    }
 }
 ?>

@@ -1,41 +1,41 @@
 <?php
 class GetBusinessProfileHandler extends AuthorizedRequestHandler {
 
-	public function handle($params) {
-		$businessId = $params['businessid'];
+    public function handle($params) {
+        $businessId = $params['businessid'];
 
-		Logger::info('Retrieving Business with id - '.$businessId);
+        Logger::info('Retrieving Business with id - '.$businessId);
 
-		$business = new BusinessDao($businessId);
+        $business = new BusinessDao($businessId);
 
-		if (!$business->isFromDatabase()) {
-			header('HTTP/1.0 404 Not Found');
-			$response = array();
-			$response['status'] = 'error';
-			$response['description'] = 'business_not_found';
+        if (!$business->isFromDatabase()) {
+            header('HTTP/1.0 404 Not Found');
+            $response = array();
+            $response['status'] = 'error';
+            $response['description'] = 'business_not_found';
 
-			Logger::info('Cannot find business ');
+            Logger::info('Cannot find business ');
 
-			return $response;
-		}
+            return $response;
+        }
 
-		$response = $business->toArray();
+        $response = $business->toArray();
 
-		$count = CommentDao::getCommentCountByBusinessId($businessId);
-		$response['comment_count'] = (int)$count;
+        $count = CommentDao::getCommentCountByBusinessId($businessId);
+        $response['comment_count'] = (int)$count;
 
-		$rating = BusinessRatingDao::getBusinessRating($businessId);
-		$response['rating'] = $rating;
+        $rating = BusinessRatingDao::getBusinessRating($businessId);
+        $response['rating'] = $rating;
 
-		$ratingCount = BusinessRatingDao::getBusinessRatingCount($businessId);
-		$response['rating_count'] = (int)$ratingCount;
+        $ratingCount = BusinessRatingDao::getBusinessRatingCount($businessId);
+        $response['rating_count'] = (int)$ratingCount;
 
-		Logger::info(json_encode($response));
+        Logger::info(json_encode($response));
 
-		$response['status'] = 'success';
+        $response['status'] = 'success';
 
-		return $response;
-	}
+        return $response;
+    }
 
 }
 ?>

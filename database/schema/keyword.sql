@@ -1,10 +1,10 @@
 CREATE TABLE foodster.keyword
 (
-	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-	code INT(10) UNSIGNED,
-	color VARCHAR(8),
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    code INT(10) UNSIGNED,
+    color VARCHAR(8),
 
-	PRIMARY KEY (id)
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE INDEX keyword_code ON foodster.keyword (code);

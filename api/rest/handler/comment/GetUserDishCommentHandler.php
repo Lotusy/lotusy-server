@@ -1,39 +1,39 @@
 <?php
 class GetUserDishCommentHandler extends AuthorizedRequestHandler {
 
-	public function handle($params) {
-		$json = $_GET;
-		$json['user_id'] = $params['userid'];
-		$json['dish_id'] = $params['dishid'];
+    public function handle($params) {
+        $json = $_GET;
+        $json['user_id'] = $params['userid'];
+        $json['dish_id'] = $params['dishid'];
 
-		$validator = new GetUserDishCommentValidator($json);
-		if (!$validator->validate()) {
-			return $validator->getMessage();
-		}
+        $validator = new GetUserDishCommentValidator($json);
+        if (!$validator->validate()) {
+            return $validator->getMessage();
+        }
 
-		$comment = CommentDao::getUserDishComment($params['dishid'], $params['userid']);
+        $comment = CommentDao::getUserDishComment($params['dishid'], $params['userid']);
 
-		if (!$comment->isFromDatabase()) {
-			header('HTTP/1.0 404 Not Found');
-			$response = array('status'=>'error');
-			$response['description'] = 'cannot_find_comment';
-			return $response;
-		}
+        if (!$comment->isFromDatabase()) {
+            header('HTTP/1.0 404 Not Found');
+            $response = array('status'=>'error');
+            $response['description'] = 'cannot_find_comment';
+            return $response;
+        }
 
-		$response = $comment->toArray();
-		$response['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
+        $response = $comment->toArray();
+        $response['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
 
-		$user = new UserDao($comment->getUserId());
+        $user = new UserDao($comment->getUserId());
 
-		$response['user_nickname'] = $user->getNickname();
+        $response['user_nickname'] = $user->getNickname();
 
-		$now = strtotime('now');
-		$last = strtotime($response['create_time']);
-		$response['create_time'] = $now - $last;
+        $now = strtotime('now');
+        $last = strtotime($response['create_time']);
+        $response['create_time'] = $now - $last;
 
-		$response['status'] = 'success';
+        $response['status'] = 'success';
 
-		return $response;
-	}
+        return $response;
+    }
 }
 ?>

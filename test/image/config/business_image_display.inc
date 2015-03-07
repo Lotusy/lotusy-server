@@ -9,12 +9,12 @@ $baseUri = 'http://local.image.foodster.club/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 $testCases = array(
-	0 => new BusinessImageContentTest()
+    0 => new BusinessImageContentTest()
 );
 
 $inputs = array(
-	0 => array(
-		'businessid' => 1
-	)
+    0 => array(
+        'businessid' => 1
+    )
 );
 ?>

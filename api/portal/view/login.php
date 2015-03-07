@@ -4,15 +4,15 @@ include 'config/config.inc';
 $session = LSession::instance();
 
 if (isset($_POST['account_admin_email']) && isset($_POST['account_admin_passwd'])) {
-	$admin = AccountAdminDao::login($_POST['account_admin_email'], $_POST['account_admin_passwd']);
-	if (isset($admin)) {
-		$session->set('admin_id', $admin->var[AccountAdminDao::IDCOLUMN]);
-		$session->set('admin_name', $admin->var[AccountAdminDao::USERNAME]);
-	}
+    $admin = AccountAdminDao::login($_POST['account_admin_email'], $_POST['account_admin_passwd']);
+    if (isset($admin)) {
+        $session->set('admin_id', $admin->var[AccountAdminDao::IDCOLUMN]);
+        $session->set('admin_name', $admin->var[AccountAdminDao::USERNAME]);
+    }
 }
 
 if ($session->get('admin_id')) {
-	header('Location: search.php');
+    header('Location: search.php');
 }
 ?>
 <!DOCTYPE>

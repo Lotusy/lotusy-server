@@ -1,32 +1,32 @@
 <?php
 class CommentLikeValidator extends Validator {
 
-	private $comment = null;
+    private $comment = null;
 
-	public function validate() {
-		$json = $this->getObjectToBeValidated();
+    public function validate() {
+        $json = $this->getObjectToBeValidated();
 
-		$valid = $this->nonEmpty($json, 'missing request body');
+        $valid = $this->nonEmpty($json, 'missing request body');
 
-		if ($valid) {
-			$indexes = array('commentid');
-			$valid = $this->nonEmptyArrayIndex($indexes, $json);
-		}
+        if ($valid) {
+            $indexes = array('commentid');
+            $valid = $this->nonEmptyArrayIndex($indexes, $json);
+        }
 
-		if ($valid) {
-			$this->comment = new CommentDao($json['commentid']);
-			$valid = $this->comment->isFromDatabase();
-			if (!$valid) {
-				header('HTTP/1.0 404 Not Found');
-				$this->setErrorMessage('comment_not_found');
-			}
-		}
+        if ($valid) {
+            $this->comment = new CommentDao($json['commentid']);
+            $valid = $this->comment->isFromDatabase();
+            if (!$valid) {
+                header('HTTP/1.0 404 Not Found');
+                $this->setErrorMessage('comment_not_found');
+            }
+        }
 
-		return $valid;
-	}
+        return $valid;
+    }
 
-	public function getComment() {
-		return $this->comment;
-	}
+    public function getComment() {
+        return $this->comment;
+    }
 }
 ?>

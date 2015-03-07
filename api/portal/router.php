@@ -27,15 +27,15 @@ if (!empty($_URI)) {
     $gets = explode('?', $_URI, 2);
 
     if (count($gets)>1) {
-	    $getParams = explode('&', $gets[1]);
-	    foreach ($getParams as $getParam) {
-	        $pair = explode('=', $getParam, 2);
-	        if (sizeof($pair)==2) {
-	            $_GET[$pair[0]] = urlencode(urldecode($pair[1]));
-	        }
-	    }
+        $getParams = explode('&', $gets[1]);
+        foreach ($getParams as $getParam) {
+            $pair = explode('=', $getParam, 2);
+            if (sizeof($pair)==2) {
+                $_GET[$pair[0]] = urlencode(urldecode($pair[1]));
+            }
+        }
 
-	    $uri = $gets[0];
+        $uri = $gets[0];
     }
 }
 
@@ -64,9 +64,9 @@ foreach ($services as $key=>$val) {
                 $controller->execute();
             } catch (Exception $e) {
                 Logger::error($e->getMessage());
-            	exit;
+                exit;
             }
-			exit;
+            exit;
         }
     }
 }
@@ -97,18 +97,18 @@ function __autoload($class_name) {
 }
 
 function param($key) {
-	if (isset($_POST[$key])) {
-		return $_POST[$key];
-	} else if (isset($_GET[$key])) {
-		return urldecode($_GET[$key]);
-	} else {
-		global $_PARAM;
-		if (isset($_PARAM[$key])) {
-			return $_PARAM[$key];
-		} else {
-			return null;
-		}
-	}
+    if (isset($_POST[$key])) {
+        return $_POST[$key];
+    } else if (isset($_GET[$key])) {
+        return urldecode($_GET[$key]);
+    } else {
+        global $_PARAM;
+        if (isset($_PARAM[$key])) {
+            return $_PARAM[$key];
+        } else {
+            return null;
+        }
+    }
 }
 
 function blockIp() {

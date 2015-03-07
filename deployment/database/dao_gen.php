@@ -29,7 +29,7 @@ while ($tableRow = $tableResult->fetch_array(MYSQLI_ASSOC)) {
 }
 
 function genClass($table, $fields, $primaryKey) {
-	global $base_class, $db_sche;
+    global $base_class, $db_sche;
     $rv = "<?php".PHP_EOL;
     $class = to_camel_case("_".$table."DaoGenerated");
     $rv.= "abstract class $class extends $base_class {".PHP_EOL.PHP_EOL;

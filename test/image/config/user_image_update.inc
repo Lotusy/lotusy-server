@@ -9,13 +9,13 @@ $baseUri = 'http://local.image.foodster.club/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 $testCases = array(
-	0 => new UserImageUploadTest()
+    0 => new UserImageUploadTest()
 );
 
 $inputs = array(
-	0 => array(
-		'access_token' => 'AF66F04AD2292308DBE8DD91FEDBFE53.A2F82F928D',
-		'image' => 'image_user.jpg'
-	)
+    0 => array(
+        'access_token' => 'AF66F04AD2292308DBE8DD91FEDBFE53.A2F82F928D',
+        'image' => 'image_user.jpg'
+    )
 );
 ?>

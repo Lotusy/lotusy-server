@@ -31,7 +31,7 @@ while ($tableRow = $tableResult->fetch_array(MYSQLI_ASSOC)) {
 }
 
 function genParentClass($class, $table, $fields, $primaryKey) {
-	global $base_class, $db_sche;
+    global $base_class, $db_sche;
 
     $rv = "<?php".PHP_EOL;;
     $rv.= "abstract class $class extends $base_class {".PHP_EOL.PHP_EOL;
@@ -41,7 +41,7 @@ function genParentClass($class, $table, $fields, $primaryKey) {
     $rv.= "    protected function init() {".PHP_EOL;
     $rv.= "        \$this->var['id'] = 0;".PHP_EOL;
     foreach ($fields as $field) {
-    	if ($field=='id') { continue; }
+        if ($field=='id') { continue; }
         $rv.= "        \$this->var['$field'] = null;".PHP_EOL;
     }
     $rv.= PHP_EOL;
@@ -78,7 +78,7 @@ function genParentClass($class, $table, $fields, $primaryKey) {
 }
 
 function to_camel_case($str) {
-	$str[0] = strtoupper($str[0]);
+    $str[0] = strtoupper($str[0]);
     $func = create_function('$c', 'return strtoupper($c[1]);');
     return preg_replace_callback('/_([a-z])/', $func, $str);
 }

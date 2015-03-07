@@ -10,10 +10,10 @@ a{font-size:.8em;text-decoration:underline;color:blue;display:block;margin-botto
 </style>
 <script>
 function navigate(link, url) {
-	var anchors = document.getElementsByTagName('a');
-	for(var i = 0; i < anchors.length; i++) {
-	    anchors[i].style.color = 'blue';
-	}
+    var anchors = document.getElementsByTagName('a');
+    for(var i = 0; i < anchors.length; i++) {
+        anchors[i].style.color = 'blue';
+    }
     parent.document.getElementById('content').src = url;
     if (link!=null) { link.style.color = "#f00"; }
 }

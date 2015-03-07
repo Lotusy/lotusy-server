@@ -1,29 +1,29 @@
 <?php
 class GetUserActivitiesCountValidator extends Validator {
 
-	private $user = null;
+    private $user = null;
 
-	public function validate() {
-		$json = $this->getObjectToBeValidated();
+    public function validate() {
+        $json = $this->getObjectToBeValidated();
 
-		$indexes = array('user_id', 'start', 'length');
-		$valid = $this->nonEmptyArrayIndex($indexes, $json);
+        $indexes = array('user_id', 'start', 'length');
+        $valid = $this->nonEmptyArrayIndex($indexes, $json);
 
-		if ($valid) {
-			$this->user = new UserDao($json['user_id']);
+        if ($valid) {
+            $this->user = new UserDao($json['user_id']);
 
-			$valid = $this->user->isFromDatabase();
-			if (!$valid) {
-				header('HTTP/1.0 404 Not Found');
-				$this->setErrorMessage('user_not_found');
-			}
-		}
+            $valid = $this->user->isFromDatabase();
+            if (!$valid) {
+                header('HTTP/1.0 404 Not Found');
+                $this->setErrorMessage('user_not_found');
+            }
+        }
 
-		return $valid;
-	}
+        return $valid;
+    }
 
-	public function getUser() {
-		return $this->user;
-	}
+    public function getUser() {
+        return $this->user;
+    }
 }
 ?>

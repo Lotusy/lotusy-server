@@ -30,9 +30,9 @@ class DishInfographDao extends DishInfographDaoGenerated {
                        ->where('user_id', $userId)
                        ->find();
 
-		$rv = self::makeObjectFromSelectResult($res, 'DishInfographDao');
+        $rv = self::makeObjectFromSelectResult($res, 'DishInfographDao');
         if (!isset($rv)) {
-        	$rv = new DishInfographDao();
+            $rv = new DishInfographDao();
         }
 
         return $rv;
@@ -41,15 +41,15 @@ class DishInfographDao extends DishInfographDaoGenerated {
 // ============================================== override function ================================================
 
     protected function beforeInsert() {
-    	$itemValue = $this->getItemValue();
-    	$portionSize = $this->getPortionSize();
-    	$presentation = $this->getPresentation();
-    	$uniqueness = $this->getUniqueness();
+        $itemValue = $this->getItemValue();
+        $portionSize = $this->getPortionSize();
+        $presentation = $this->getPresentation();
+        $uniqueness = $this->getUniqueness();
     
-    	if (!isset($itemValue)) { $this->setItemValue(0); }
-    	if (!isset($portionSize)) { $this->setPortionSize(0); }
-    	if (!isset($presentation)) { $this->setPresentation(0); }
-    	if (!isset($uniqueness)) { $this->setUniqueness(0); }
+        if (!isset($itemValue)) { $this->setItemValue(0); }
+        if (!isset($portionSize)) { $this->setPortionSize(0); }
+        if (!isset($presentation)) { $this->setPresentation(0); }
+        if (!isset($uniqueness)) { $this->setUniqueness(0); }
     }
 }
 ?>

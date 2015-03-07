@@ -1,13 +1,13 @@
 <?php
 class ItermDao extends ItermDaoGenerated {
 
-	const TYPE_CUISINE = 'CUISINE';
-	const TYPE_KEYWORD = 'KEYWORD';
-	const TYPE_ALERT = 'ALERT';
+    const TYPE_CUISINE = 'CUISINE';
+    const TYPE_KEYWORD = 'KEYWORD';
+    const TYPE_ALERT = 'ALERT';
 
 // =============================================== public function =================================================
 
-	public static function getTypeLanguageCodes($type, $language='en') {
+    public static function getTypeLanguageCodes($type, $language='en') {
         $builder = new QueryMaster();
         $rows = $builder->select('code, description', self::$table)
                         ->where('language', $language)
@@ -22,7 +22,7 @@ class ItermDao extends ItermDaoGenerated {
         }
 
         return $descriptions;
-	}
+    }
 
     public static function getCodeDescriptionArray($codes, $type, $language='en') {
         $builder = new QueryMaster();

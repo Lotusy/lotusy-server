@@ -1,5 +1,5 @@
 <?php
 interface RequestHandler {
-	public function execute($params);
+    public function execute($params);
 }
 ?>

@@ -1,46 +1,46 @@
 @CHARSET "UTF-8";
 td.first {
-	text-align:right;
+    text-align:right;
 }
 div#body {
-	width:960px;
-	margin: 0 auto;
+    width:960px;
+    margin: 0 auto;
 }
 select.field {
-	width:175px;
-	outline:none;
+    width:175px;
+    outline:none;
 }
 input.button {
-	border:1px solid #AAA;
-	background-color:#EEE;
-	padding:5px 10px 5px 10px;
-	width:80px;
-	outline:none;
+    border:1px solid #AAA;
+    background-color:#EEE;
+    padding:5px 10px 5px 10px;
+    width:80px;
+    outline:none;
 }
 input.button:active {
-	background-color:#CCC;
+    background-color:#CCC;
 }
 table#name_search {
-	float:left;
-	margin-right:100px;
+    float:left;
+    margin-right:100px;
 }
 
 table#user_detail {
-	border-collapse: collapse;
-	border-spacing: 0px;
-	font-size:.8em;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    font-size:.8em;
 }
 table#user_detail td {
-	text-align:center;
-	padding:10px 20px 10px 20px;
+    text-align:center;
+    padding:10px 20px 10px 20px;
 }
 table#user_detail thead td {
-	font-weight:bold;
-	background-color:#DDD;
+    font-weight:bold;
+    background-color:#DDD;
 }
 table#user_detail tbody tr.odd {
-	background-color:#FFF;
+    background-color:#FFF;
 }
 table#user_detail tbody tr.even {
-	background-color:#EEE;
+    background-color:#EEE;
 }

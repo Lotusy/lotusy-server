@@ -3,12 +3,12 @@ abstract class LotusyDaoParent {
 
     protected $var = array();
 
-	protected $update = array();
+    protected $update = array();
 
-	protected $fromdb = FALSE;
+    protected $fromdb = FALSE;
 
 
-	public function __construct( $id=0 ) {
+    public function __construct( $id=0 ) {
         if ($id==0) { $this->init(); }
         else { $this->retrieve($id); }
     }
@@ -46,12 +46,12 @@ abstract class LotusyDaoParent {
 
 
     protected function retrieve($id) {
-		$idColumn = $this->getIdColumnName();
+        $idColumn = $this->getIdColumnName();
 
-		$query = new QueryMaster();
-		$res = $query->select('*', $this->getTableName())
-					 ->where($idColumn, $id)
-					 ->find();
+        $query = new QueryMaster();
+        $res = $query->select('*', $this->getTableName())
+                     ->where($idColumn, $id)
+                     ->find();
     
         if (isset($res) && $res) {
             $this->var = $res;
@@ -79,7 +79,7 @@ abstract class LotusyDaoParent {
     public function delete() {
         $id = $this->var[$this->getIdColumnName()];
 
-		$this->beforeInsert();
+        $this->beforeInsert();
 
         $builder = new QueryMaster();
         $res = $builder->delete($this->getTableName())
@@ -108,55 +108,55 @@ abstract class LotusyDaoParent {
 
 
     private function insert() {
-		$idColumn = $this->getIdColumnName();
+        $idColumn = $this->getIdColumnName();
 
-		$fields = $this->var;
-		unset($fields[$idColumn]);
+        $fields = $this->var;
+        unset($fields[$idColumn]);
 
-		$query = new QueryMaster();
-		$res = $query->insert($fields, $this->getTableName())
-					 ->query();
+        $query = new QueryMaster();
+        $res = $query->insert($fields, $this->getTableName())
+                     ->query();
 
-		$this->update = array_fill_keys(array_values($this->update), false);
+        $this->update = array_fill_keys(array_values($this->update), false);
 
-		if ($res!=-1) {
-		    $this->var[$idColumn] = $res;
-		    $this->fromdb = TRUE;
-		} else {
-		    $message = '';
-		    foreach ($query->getErrors() as $error) {
-		        $message .= $error.' | ';
-		    }
-		    error_log('[DB ERROR] Insert Failed: ' . $message);
-		}
+        if ($res!=-1) {
+            $this->var[$idColumn] = $res;
+            $this->fromdb = TRUE;
+        } else {
+            $message = '';
+            foreach ($query->getErrors() as $error) {
+                $message .= $error.' | ';
+            }
+            error_log('[DB ERROR] Insert Failed: ' . $message);
+        }
 
-		return $res!=-1;
+        return $res!=-1;
     }
 
 
     private function update() {
         $idColumn = $this->getIdColumnName();
 
-		$set = array();
-		foreach ($this->update as $key=>$val) {
-			if ($val) {
-				$set[$key] = $this->var[$key];
-			}
-		}
+        $set = array();
+        foreach ($this->update as $key=>$val) {
+            if ($val) {
+                $set[$key] = $this->var[$key];
+            }
+        }
 
-		if (!empty($set)) {
-    		$builder = new QueryMaster();
-    		$res = $builder->update($set, $this->getTableName())
-    				       ->where($idColumn, $this->var[$idColumn])
-    					   ->query();
-    	    if ($res) {
-        		$this->update = array_fill_keys(array_values($this->update), false);
-    	    }
-		} else {
-		    $res = true;
-		}
+        if (!empty($set)) {
+            $builder = new QueryMaster();
+            $res = $builder->update($set, $this->getTableName())
+                           ->where($idColumn, $this->var[$idColumn])
+                           ->query();
+            if ($res) {
+                $this->update = array_fill_keys(array_values($this->update), false);
+            }
+        } else {
+            $res = true;
+        }
 
-		return $res;
+        return $res;
     }
 
 
@@ -180,10 +180,10 @@ abstract class LotusyDaoParent {
                 $object->var = $row;
                 $object->fromdb = TRUE;
                 if ($idMap) {
-        			$idColumn = $object->getIdColumnName();
-                	$objects[$object->var[$idColumn]] = $object;
+                    $idColumn = $object->getIdColumnName();
+                    $objects[$object->var[$idColumn]] = $object;
                 } else {
-                	array_push($objects, $object);
+                    array_push($objects, $object);
                 }
             }
         }
@@ -203,7 +203,7 @@ abstract class LotusyDaoParent {
 
     abstract protected function init();
 
-	abstract public function getTableName();
+    abstract public function getTableName();
 
-	abstract protected function getIdColumnName(); 
+    abstract protected function getIdColumnName(); 
 }

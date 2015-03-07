@@ -1,23 +1,23 @@
 <?php
 class GetBusinessRatingHandler extends AuthorizedRequestHandler {
 
-	public function handle($params) {
-		$validator = new GetBusinessRatingValidator($params);
-		if (!$validator->validate()) {
-			return $validator->getMessage();
-		}
+    public function handle($params) {
+        $validator = new GetBusinessRatingValidator($params);
+        if (!$validator->validate()) {
+            return $validator->getMessage();
+        }
 
-		$rating = BusinessRatingDao::getBusinessRating($params['businessid']);
+        $rating = BusinessRatingDao::getBusinessRating($params['businessid']);
 
-		$now = strtotime('now');
-		$last = strtotime($rating['create_time']);
-		$rating['create_time'] = $now - $last;
+        $now = strtotime('now');
+        $last = strtotime($rating['create_time']);
+        $rating['create_time'] = $now - $last;
 
-		$response = array();
-		$response = $rating;
-		$response['status'] = 'success';
+        $response = array();
+        $response = $rating;
+        $response['status'] = 'success';
 
-		return $response;
-	}
+        return $response;
+    }
 }
 ?>

@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: l_business
 -- ------------------------------------------------------
--- Server version	5.5.35-0+wheezy1
+-- Server version    5.5.35-0+wheezy1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;

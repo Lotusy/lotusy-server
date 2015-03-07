@@ -1,11 +1,11 @@
 CREATE TABLE foodster.admin
 (
-	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-	email VARCHAR(61),
-	password VARCHAR(33),
-	username VARCHAR(41),
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    email VARCHAR(61),
+    password VARCHAR(33),
+    username VARCHAR(41),
 
-	PRIMARY KEY (id)
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE INDEX foodster_admin_email_index ON foodster.admin (email(60));

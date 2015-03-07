@@ -1,24 +1,24 @@
 @CHARSET "UTF-8";
 div#body {
-	width:960px;
-	margin: 0 auto;
+    width:960px;
+    margin: 0 auto;
 }
 div#body td {
-	padding:10px;
-	font-size:.8em;
+    padding:10px;
+    font-size:.8em;
 }
 div#body span.success {
-	font-size:.8em;
-	color:green;
+    font-size:.8em;
+    color:green;
 }
 div#body span.error {
-	font-size:.8em;
-	color:red;
+    font-size:.8em;
+    color:red;
 }
 input.button {
-	border:1px solid #AAA;
-	background-color:#EEE;
-	padding:5px 10px 5px 10px;
-	width:80px;
-	outline:none;
+    border:1px solid #AAA;
+    background-color:#EEE;
+    padding:5px 10px 5px 10px;
+    width:80px;
+    outline:none;
 }

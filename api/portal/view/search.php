@@ -3,23 +3,23 @@ include 'config/config.inc';
 
 $session = LSession::instance();
 if (!$session->get('admin_id')) {
-	header('Location: login.php');
+    header('Location: login.php');
 }
 
 $users = array();
 
 if (!empty($_POST['nickname'])) {
-	$ids = UserDao::getUserIdsFromNickName(trim($_POST['nickname']));
-	foreach ($ids as $id) {
-		$users[$id] = new UserDao($id);
-	}
+    $ids = UserDao::getUserIdsFromNickName(trim($_POST['nickname']));
+    foreach ($ids as $id) {
+        $users[$id] = new UserDao($id);
+    }
 }
 
 if (!empty($_POST['ref_type']) && !empty($_POST['ref_id'])) {
-	$ids = UserDao::getUserIdsFromExternalRef(trim($_POST['ref_type']), trim($_POST['ref_id']));
-	foreach ($ids as $id) {
-		$users[$id] = new UserDao($id);
-	}
+    $ids = UserDao::getUserIdsFromExternalRef(trim($_POST['ref_type']), trim($_POST['ref_id']));
+    foreach ($ids as $id) {
+        $users[$id] = new UserDao($id);
+    }
 }
 ?>
 <!DOCTYPE>

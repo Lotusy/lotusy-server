@@ -13,25 +13,25 @@ $baseUri = 'http://local.account.foodster.club/rest';
 $applicationKey = 'E268443E43D93DAB7EBEF303BBE9642F';
 
 $testCases = array(
-	0 => new RegisterAccountTest(),
-	1 => new LoginAccountTest(),
-	2 => new GetAccessTokenInfoTest(),
-	3 => new GetCurrentUserProfileTest(),
-	4 => new GetUserProfileTest(),
+    0 => new RegisterAccountTest(),
+    1 => new LoginAccountTest(),
+    2 => new GetAccessTokenInfoTest(),
+    3 => new GetCurrentUserProfileTest(),
+    4 => new GetUserProfileTest(),
 );
 
 $inputs = array(
-	0 => array(
-		'type' => 'facebook',
-		'external_ref' => time().rand(10, 99),
-		'username' => 'John Bob',
-		'nickname' => 'jbob',
-		'profile_pic' => 'http://www.facebook.com/graph/someone/profile_img.jpg',
-		'description' => 'Unit Test Account'
-	),
-	1 => 'aggregate',
-	2 => 'aggregate',
-	3 => 'aggregate',
-	4 => 'aggregate'
+    0 => array(
+        'type' => 'facebook',
+        'external_ref' => time().rand(10, 99),
+        'username' => 'John Bob',
+        'nickname' => 'jbob',
+        'profile_pic' => 'http://www.facebook.com/graph/someone/profile_img.jpg',
+        'description' => 'Unit Test Account'
+    ),
+    1 => 'aggregate',
+    2 => 'aggregate',
+    3 => 'aggregate',
+    4 => 'aggregate'
 );
 ?>

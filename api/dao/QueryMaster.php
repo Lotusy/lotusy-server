@@ -204,15 +204,15 @@ class QueryMaster {
         return $this;
     }
 
-	public function having($field, $value, $operator='=') {
-		$having = ' HAVING';
+    public function having($field, $value, $operator='=') {
+        $having = ' HAVING';
 
-		$having.=" $field ".$operator." '".mysqli_real_escape_string($this->connection, $value)."'";
+        $having.=" $field ".$operator." '".mysqli_real_escape_string($this->connection, $value)."'";
 
-		$this->query.= $having;
+        $this->query.= $having;
 
-		return $this;
-	}
+        return $this;
+    }
 
     public function limit($start, $size) {
         $this->query.= " LIMIT $start, $size";
@@ -237,9 +237,9 @@ class QueryMaster {
     }
 
     public function query() {
-    	global $DB_LOG_LEVEL;
+        global $DB_LOG_LEVEL;
         if ($DB_LOG_LEVEL>=2) {
-           	Logger::info($this->query, Logger::DB);
+               Logger::info($this->query, Logger::DB);
         }
 
         if ($this->isInsert) {
@@ -257,8 +257,8 @@ class QueryMaster {
         }
 
         if ($DB_LOG_LEVEL>=1 && !empty($this->errors)) {
-        	if ($DB_LOG_LEVEL<2) {
-            	Logger::info($this->query, Logger::DB);
+            if ($DB_LOG_LEVEL<2) {
+                Logger::info($this->query, Logger::DB);
             }
             Logger::error(json_encode($this->errors), Logger::DB);
         }

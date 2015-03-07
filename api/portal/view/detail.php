@@ -3,28 +3,28 @@ include 'config/config.inc';
 
 $session = LSession::instance();
 if (!$session->get('admin_id')) {
-	header('Location: login.php');
+    header('Location: login.php');
 }
 
 if (empty($_GET['id'])) {
-	header('Location: search.php');
+    header('Location: search.php');
 }
 
 $user = new UserDao($_GET['id']);
 
 if ($user->var[UserDao::IDCOLUMN]==0) {
-	header('Location: search.php');
+    header('Location: search.php');
 }
 
 if (isset($_POST['username'])) {
-	$user->var[UserDao::USERNAME] = $_POST['username'];
-	$user->var[UserDao::NICKNAME] = $_POST['nickname'];
-	$user->var[UserDao::PROFILEPIC] = $_POST['profile_pic'];
-	$user->var[UserDao::DESCRIPTION] = $_POST['description'];
-	$user->var[UserDao::SUPERUSER] = $_POST['superuser'];
-	$user->var[UserDao::BLOCKED] = $_POST['blocked'];
+    $user->var[UserDao::USERNAME] = $_POST['username'];
+    $user->var[UserDao::NICKNAME] = $_POST['nickname'];
+    $user->var[UserDao::PROFILEPIC] = $_POST['profile_pic'];
+    $user->var[UserDao::DESCRIPTION] = $_POST['description'];
+    $user->var[UserDao::SUPERUSER] = $_POST['superuser'];
+    $user->var[UserDao::BLOCKED] = $_POST['blocked'];
 
-	$updated = $user->save();
+    $updated = $user->save();
 }
 ?>
 <!DOCTYPE>
@@ -40,7 +40,7 @@ if (isset($_POST['username'])) {
 <div id="body">
 <?php
 if (isset($updated)) {
-	echo $updated ? '<span class="success">- Successfully updated</span>' : '<span class="error">x Error on update</span>';
+    echo $updated ? '<span class="success">- Successfully updated</span>' : '<span class="error">x Error on update</span>';
 } 
 ?>
 <form id="update" method="post" action="" enctype="multipart/form-data" accept-charset="UTF-8">

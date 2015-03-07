@@ -26,9 +26,9 @@ abstract class Model {
     }
 
     public function duplicate() {
-    	$model = new static();
-    	$model->dao = $model->dao->copy($this->dao);
-    	return $model;
+        $model = new static();
+        $model->dao = $model->dao->copy($this->dao);
+        return $model;
     }
 
     public function delete() {
@@ -42,9 +42,9 @@ abstract class Model {
     abstract public function initWithId($id);
 
     public function persist() {
-    	if (isset($this->dao)) {
-    		$this->dao->save();
-    	}
+        if (isset($this->dao)) {
+            $this->dao->save();
+        }
     }
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 class GetMeProfileHandler extends AuthorizedRequestHandler {
 
-	public function handle($params) {
-	}
+    public function handle($params) {
+    }
 }
 ?>

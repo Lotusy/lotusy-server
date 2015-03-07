@@ -1,57 +1,57 @@
 @CHARSET "UTF-8";
 html, body {
-	padding:0px;
-	margin:0px;
-	width:100%;
-	background-color:#f9f9f9;
-	font-family: verdana,helvetica,arial,sans-serif;
+    padding:0px;
+    margin:0px;
+    width:100%;
+    background-color:#f9f9f9;
+    font-family: verdana,helvetica,arial,sans-serif;
 }
 input.field {
-	width:200px;
-	height:26px;
-	outline:none;
-	padding:4px;
-	border:1px solid #aaa;
+    width:200px;
+    height:26px;
+    outline:none;
+    padding:4px;
+    border:1px solid #aaa;
 }
 td.first {
-	text-align:right;
+    text-align:right;
 }
 div#header {
-	height:50px;
-	width:100%;
-	background-color:#70E08A;
+    height:50px;
+    width:100%;
+    background-color:#70E08A;
 }
 div#header div#logo {
-	height:49px;
-	width:130px;
-	background: url('../img/word-logo.png') no-repeat center;
-	background-color:#f9f9f9;
-	position:relative;
-	left:13%;
+    height:49px;
+    width:130px;
+    background: url('../img/word-logo.png') no-repeat center;
+    background-color:#f9f9f9;
+    position:relative;
+    left:13%;
 }
 div#header div#logout {
-	float:left;
-	position:relative;
-	left:80%;
-	font-size:.9em;
-	color:#fff;
-	height:35px;
-	width:100px;
-	text-align:center;
-	padding-top:15px;
-	cursor:pointer;
+    float:left;
+    position:relative;
+    left:80%;
+    font-size:.9em;
+    color:#fff;
+    height:35px;
+    width:100px;
+    text-align:center;
+    padding-top:15px;
+    cursor:pointer;
 }
 div#header div#logout:hover {
-	background-color:green;
+    background-color:green;
 }
 div#header div#logout label {
-	cursor:pointer;
+    cursor:pointer;
 }
 div.space {
-	height:30px;
+    height:30px;
 }
 div#footer {
-	width:90%;
-	margin: 0 auto;
-	border-top:1px solid #aaa;
+    width:90%;
+    margin: 0 auto;
+    border-top:1px solid #aaa;
 }

@@ -1,25 +1,25 @@
 <?php
 class UserCurrentImageContentTest extends TestCase {
 
-	const PATH = '/display/user/:userid';
+    const PATH = '/display/user/:userid';
 
-	public function run($input) {
-		$path = str_replace(':userid', $input['userid'], self::PATH);
+    public function run($input) {
+        $path = str_replace(':userid', $input['userid'], self::PATH);
 
-		$response = TestRequestor::sendPaymentRequest($path, 'GET');
+        $response = TestRequestor::sendPaymentRequest($path, 'GET');
 
-		return $response;
-	}
+        return $response;
+    }
 
-	public function validate($result) {
-		$valid = strlen($result) > 0;
+    public function validate($result) {
+        $valid = strlen($result) > 0;
 
-		return $valid;
-	}
+        return $valid;
+    }
 
-	public function failedAction() {
-		echo 'Fails on test case - UserCurrentImageContentTest ('.json_encode($this->getResult()).')'.PHP_EOL;
-		exit;
-	}
+    public function failedAction() {
+        echo 'Fails on test case - UserCurrentImageContentTest ('.json_encode($this->getResult()).')'.PHP_EOL;
+        exit;
+    }
 }
 ?>

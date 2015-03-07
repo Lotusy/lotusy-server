@@ -1,29 +1,29 @@
 <?php
 class CommentImageLinksTest extends TestCase {
 
-	const PATH = '/comment/:commentid/links?start=0&size=10';
+    const PATH = '/comment/:commentid/links?start=0&size=10';
 
-	public function run($input) {
-		$path = str_replace(':commentid', $input['commentid'], self::PATH);
+    public function run($input) {
+        $path = str_replace(':commentid', $input['commentid'], self::PATH);
 
-		$accessToken = $input['access_token'];
+        $accessToken = $input['access_token'];
 
-		$response = TestRequestor::sendPaymentRequest ( 
-						$path, 'GET', null, array('Authorization: Bearer '.$accessToken) );
+        $response = TestRequestor::sendPaymentRequest ( 
+                        $path, 'GET', null, array('Authorization: Bearer '.$accessToken) );
 
-		return $response;
-	}
+        return $response;
+    }
 
-	public function validate($result) {
-		$valid = $result['status'] == 'success';
-		$valid = $valid && !empty($result['links']);
+    public function validate($result) {
+        $valid = $result['status'] == 'success';
+        $valid = $valid && !empty($result['links']);
 
-		return $valid;
-	}
+        return $valid;
+    }
 
-	public function failedAction() {
-		echo 'Fails on test case - CommentImageLinksTest ('.json_encode($this->getResult()).')'.PHP_EOL;
-		exit;
-	}
+    public function failedAction() {
+        echo 'Fails on test case - CommentImageLinksTest ('.json_encode($this->getResult()).')'.PHP_EOL;
+        exit;
+    }
 }
 ?>

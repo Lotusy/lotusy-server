@@ -1,17 +1,17 @@
 <?php
 class GetUserFollowingsValidator extends AccessTokenValidator {
 
-	public function validate() {
-		$valid = $this->isAccessTokenValid();
+    public function validate() {
+        $valid = $this->isAccessTokenValid();
 
-		$json = $this->getObjectToBeValidated();
+        $json = $this->getObjectToBeValidated();
 
-		if ($valid) {
-			$indexes = array('start', 'size');
-			$valid = $this->nonEmptyArrayIndex($indexes, $json);
-		}
+        if ($valid) {
+            $indexes = array('start', 'size');
+            $valid = $this->nonEmptyArrayIndex($indexes, $json);
+        }
 
-		return $valid;
-	}
+        return $valid;
+    }
 }
 ?>
