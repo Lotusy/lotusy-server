@@ -3,6 +3,23 @@ class DishDao extends DishDaoGenerated {
 
 // =========================================================================================================== public
 
+    public function getName($language) {
+        $rv = '';
+
+        switch ($language) {
+            case 'tw':
+                $rv = $this->getNameTw();
+                break;
+            case 'zh':
+                $rv = $this->getNameZh();
+                break;
+            default:
+                $rv = $this->getNameEn();
+        }
+
+        return $rv;
+    }
+
     public function like($increment=true) {
         $sign = $increment ? '+' : '-';
         $builder = new QueryMaster();

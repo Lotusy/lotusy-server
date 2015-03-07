@@ -57,6 +57,25 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
         return $ids;
     }
 
+    public static function getRecentActivities($userId, $startTime, $size) {
+        $builder = new QueryMaster();
+        $res = $builder->select('dish_id, is_like, create_time', self::$table)
+                       ->where('user_id', $userId)
+                       ->where('create_time', $startTime, '<')
+                       ->order('create_time')
+                       ->limit(0, $size)
+                       ->findList();
+
+        $activityMap = array();
+        foreach ($res as $row) {
+            $time = strtotime($row['create_time']);
+            $like = $row['is_like']=='Y';
+            $activityMap[$time] = array('like'=>$like, 'dish'=>$row['dish_id']);
+        }
+
+        return $activityMap;
+    }
+
 // ============================================ override functions ==================================================
 
 }

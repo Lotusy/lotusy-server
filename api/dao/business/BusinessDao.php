@@ -13,7 +13,7 @@ class BusinessDao extends BusinessDaoGenerated {
 
 // =========================================================================================================== public
 
-    public static function getName($language) {
+    public function getName($language) {
         $rv = '';
 
         switch ($language) {

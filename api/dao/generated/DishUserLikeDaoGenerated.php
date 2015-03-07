@@ -8,11 +8,13 @@ abstract class DishUserLikeDaoGenerated extends LotusyDaoParent {
         $this->var['user_id'] = null;
         $this->var['dish_id'] = null;
         $this->var['is_like'] = null;
+        $this->var['create_time'] = null;
 
         $this->update['id'] = false;
         $this->update['user_id'] = false;
         $this->update['dish_id'] = false;
         $this->update['is_like'] = false;
+        $this->update['create_time'] = false;
     }
 
     public function getId() {
@@ -47,6 +49,16 @@ abstract class DishUserLikeDaoGenerated extends LotusyDaoParent {
     }
     public function getIsLike() {
         return $this->var['is_like'];
+    }
+
+    public function setCreateTime($create_time) {
+        if ($this->var['create_time'] !== $create_time) {
+            $this->var['create_time'] = $create_time;
+            $this->update['create_time'] = true;
+        }
+    }
+    public function getCreateTime() {
+        return $this->var['create_time'];
     }
 
     public function getTableName() {

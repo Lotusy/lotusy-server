@@ -7,12 +7,10 @@ abstract class FollowerDaoGenerated extends LotusyDaoParent {
         $this->var['id'] = 0;
         $this->var['user_id'] = null;
         $this->var['follower_id'] = null;
-        $this->var['create_time'] = null;
 
         $this->update['id'] = false;
         $this->update['user_id'] = false;
         $this->update['follower_id'] = false;
-        $this->update['create_time'] = false;
     }
 
     public function getId() {
@@ -37,16 +35,6 @@ abstract class FollowerDaoGenerated extends LotusyDaoParent {
     }
     public function getFollowerId() {
         return $this->var['follower_id'];
-    }
-
-    public function setCreateTime($create_time) {
-        if ($this->var['create_time'] !== $create_time) {
-            $this->var['create_time'] = $create_time;
-            $this->update['create_time'] = true;
-        }
-    }
-    public function getCreateTime() {
-        return $this->var['create_time'];
     }
 
     public function getTableName() {
