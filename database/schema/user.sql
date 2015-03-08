@@ -8,6 +8,7 @@ CREATE TABLE foodster.user
     username VARCHAR(41),
     nickname VARCHAR(41),
     gender VARCHAR(1),
+    rank VARCHAR(11),
     profile_pic VARCHAR(121),
     description VARCHAR(256),
     last_login DATETIME,
@@ -16,3 +17,8 @@ CREATE TABLE foodster.user
 
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE INDEX foodster_user_external_type ON foodster.user (external_type);
+CREATE INDEX foodster_user_external_ref ON foodster.user (external_ref(32));
+CREATE INDEX foodster_user_email ON foodster.user (email(127));
+CREATE INDEX foodster_user_rank ON foodster.user (rank(10));

@@ -2,14 +2,17 @@
 class GetCurrentUserProfileHandler extends UnauthorizedRequestHandler {
 
     public function handle($params) {
+        $headers = apache_request_headers();
+        $language = $headers['language'];
+
         $validator = new GetCurrentUserProfileValidator($params);
         if (!$validator->validate()) {
             return $validator->getMessage();
         } 
 
-        $user = new UserDao($validator->getUserId());
+        $userDao = new UserDao($validator->getUserId());
 
-        $response = $user->toArray();
+        $response = $userDao->toArray();
 
         $followerCount = FollowerDao::getUserFollowerCount($validator->getUserId());
         $response['follower_count'] = (int)$followerCount;
@@ -20,6 +23,9 @@ class GetCurrentUserProfileHandler extends UnauthorizedRequestHandler {
         $now = strtotime('now');
         $last = strtotime($response['last_login']);
         $response['last_login'] = $now - $last;
+
+        $rankDesc = ItermDao::getDescriptionWithCodeAndType($userDao->getRank(), ItermDao::TYPE_USERRANK, $language);
+        $response['rank'] = $rankDesc; 
 
         $response['status'] = 'success';
 

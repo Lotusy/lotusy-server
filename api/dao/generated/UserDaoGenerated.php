@@ -17,6 +17,7 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
         $this->var['last_login'] = null;
         $this->var['superuser'] = null;
         $this->var['blocked'] = null;
+        $this->var['rank'] = null;
 
         $this->update['id'] = false;
         $this->update['external_type'] = false;
@@ -31,6 +32,7 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
         $this->update['last_login'] = false;
         $this->update['superuser'] = false;
         $this->update['blocked'] = false;
+        $this->update['rank'] = false;
     }
 
     public function getId() {
@@ -155,6 +157,16 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
     }
     public function getBlocked() {
         return $this->var['blocked'];
+    }
+
+    public function setRank($rank) {
+        if ($this->var['rank'] !== $rank) {
+            $this->var['rank'] = $rank;
+            $this->update['rank'] = true;
+        }
+    }
+    public function getRank() {
+        return $this->var['rank'];
     }
 
     public function getTableName() {

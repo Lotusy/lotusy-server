@@ -8,9 +8,9 @@ class GetUserProfileHandler extends UnauthorizedRequestHandler {
             return $validator->getMessage();
         }
 
-        $user = $validator->getUser();
+        $userDao = $validator->getUser();
 
-        $response = $user->toArray();
+        $response = $userDao->toArray();
 
         $followerCount = FollowerDao::getUserFollowerCount($validator->getUserId());
         $response['follower_count'] = (int)$followerCount;
@@ -21,6 +21,9 @@ class GetUserProfileHandler extends UnauthorizedRequestHandler {
         $now = strtotime('now');
         $last = strtotime($response['last_login']);
         $response['last_login'] = $now - $last;
+
+        $rankDesc = ItermDao::getDescriptionWithCodeAndType($userDao->getRank(), ItermDao::TYPE_USERRANK, $language);
+        $response['rank'] = $rankDesc; 
 
         $response['status'] = 'success';
 

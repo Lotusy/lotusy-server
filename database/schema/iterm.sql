@@ -140,3 +140,15 @@ VALUES
 (3002, 'INFOGRAPH', 'en', 'Portion Size', 'Y', 1, NOW(), NOW()),
 (3003, 'INFOGRAPH', 'en', 'Presentation', 'Y', 1, NOW(), NOW()),
 (3004, 'INFOGRAPH', 'en', 'Uniqueness Factor', 'Y', 1, NOW(), NOW());
+
+
+INSERT INTO 
+foodster.iterm (code, type, language, description, active, modyfied_by, ctime, mtime)
+VALUES 
+(4001, 'USERALERT', 'en', 'When people follows you.', 'Y', 1, NOW(), NOW());
+
+
+INSERT INTO 
+foodster.iterm (code, type, language, description, active, modyfied_by, ctime, mtime)
+VALUES 
+(5001, 'USERRANK', 'en', 'Beginner', 'Y', 1, NOW(), NOW());

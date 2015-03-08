@@ -17,8 +17,12 @@ class CollectDishHandler extends AuthorizedRequestHandler {
         if ($dishActivity->save()) {
             DishActivityDao::deleteUserDishHitlist($this->getUserId(), $params['dishid']);
 
+            $user = User::alloc()->init_with_id($params['userid']);
+            $res = $user->adjustRank();
+
             $response = array();
             $response['status'] = 'success';
+            $response['rankup'] = ($res==1);
         } else {
             $response['status'] = 'success';
             $response['description'] = 'Error occur when save activity.';
