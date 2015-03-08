@@ -2,25 +2,34 @@
 class GetFlowUserActivityHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
-        $json = $_GET;
-        $headers = apache_request_headers();
-        $json['language'] = $headers['language'];
+        $userId = $this->getUserId();
 
-        $validator = new GetFlowUserActivityValidator($json);
-        if (!$validator->validate()) {
-            return $validator->getMessage();
+        $response = array('status'=>'success');
+
+        $now = date('Y-m-d');
+        $startTime = strtotime("- 4 days", strtotime($now));
+        $start = date("Y-m-d", $startTime);
+
+        $counts = DishActivityDao::getUserActivityCounts($userId, $start, $now);
+
+        for ($ii=0; $ii<$json['length']; $ii++) {
+            $date = strtotime("+".$ii." days", $startTime);
+            $date = date("Y-m-d", $date);
+            if (!isset($counts[$date])) {
+                $counts[$date] = 0;
+            }
         }
 
+        $response['counts'] = $counts;
+
         $userId = $this->getUserId();
-        $start = $_GET['start'];
-        $size = $_GET['size'];
+        $headers = apache_request_headers();
         $language = $headers['language'];
 
         $user = User::alloc()->init_with_id($userId);
 
-        $list = $user->getUserRecentActivitiesArray($start, $size, $language);
+        $list = $user->getUserRecentActivitiesArray(0, 10, $language);
 
-        $response = array('status'=>'success');
         $response['activities'] = $list;
 
         return $response;

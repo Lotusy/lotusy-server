@@ -1,19 +1,19 @@
 <?php
-class GetUserActivitiesCountHandler extends UnauthorizedRequestHandler {
+class GetUserActivitiesCountHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         $json = $_GET;
-        $json['user_id'] = $params['userid'];
+        $json['user_id'] = $this->getUserId();
 
         $validator = new GetUserActivitiesCountValidator($json);
         if (!$validator->validate()) {
             return $validator->getMessage();
         }
 
-        $date = strtotime("+".$json['length']." days", strtotime($json['start']));
-        $end = date("Y-m-d", $date);
+        $date = strtotime("-".$json['length']." days", strtotime($json['start']));
+        $start = date("Y-m-d", $date);
 
-        $counts = DishActivityDao::getUserActivityCounts($json['user_id'], $json['start'], $end);
+        $counts = DishActivityDao::getUserActivityCounts($json['user_id'], $start, $json['start']);
 
         for ($ii=0; $ii<$json['length']; $ii++) {
             $date = strtotime("+".$ii." days", strtotime($json['start']));

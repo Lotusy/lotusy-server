@@ -1,46 +1,27 @@
 <?php
-class GetUserRecentActivitiesHandler extends UnauthorizedRequestHandler {
+class GetUserRecentActivitiesHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         $json = $_GET;
-        $json['user_id'] = $params['userid'];
+        $headers = apache_request_headers();
+        $json['language'] = $headers['language'];
 
-        $validator = new GetUserRecentActivitiesValidator($json);
+        $validator = new GetFlowUserActivityValidator($json);
         if (!$validator->validate()) {
             return $validator->getMessage();
         }
 
-        $map = DishActivityDao::getUserRecentDishes($json['user_id'], $json['start'], $json['size']);
-        $dishIds = array_keys($map['dish_ids']); 
+        $userId = $this->getUserId();
+        $start = $_GET['start'];
+        $size = $_GET['size'];
+        $language = $headers['language'];
 
-        $disheDaos = DishDao::getRange($dishIds);
+        $user = User::alloc()->init_with_id($userId);
 
-        $dishes = array();
-
-        foreach ($disheDaos as $dishDao) {
-            $dishes[$dishDao->getId()] = $dishDao->toArray();
-        }
-
-        unset($map['dish_ids']);
+        $list = $user->getUserRecentActivitiesArray($start, $size, $language);
 
         $response = array('status'=>'success');
-
-        $response['activities'] = array();
-        foreach ($map as $time=>$dishList) {
-            $activity = $dishes[$dishList['dish_id']];
-            $activity['type'] = ($dishList['list']==DishActivityDao::LIST_COLLECTION) ? 'collection' : 'hitlist';
-
-            $commentDao = CommentDao::getUserDishComment($dishList['dish_id'], $json['user_id']);
-            if (isset($commentDao)) {
-                $activity['comment'] = $commentDao->toArray();
-            }
-
-            $now = strtotime('now');
-            $activityTime = strtotime($time);
-            $time = $now - $activityTime;
-
-            $response['activities'][$time] = $activity;
-        }
+        $response['activities'] = $list;
 
         return $response;
     }
