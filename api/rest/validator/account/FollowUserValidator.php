@@ -1,13 +1,11 @@
 <?php
-class FollowUserValidator extends AccessTokenValidator {
+class FollowUserValidator extends Validator {
 
     public function validate() {
-        $valid = $this->isAccessTokenValid();
-
         if ($valid) {
             $json = $this->getObjectToBeValidated();
 
-            $valid = $json['userid']!=$this->getUserId();
+            $valid = $json['userid']!=$json['user_id'];
             if (!$valid) {
                 header('HTTP/1.0 409 Conflict');
                 $this->setErrorMessage('cannot_follower_oneself');

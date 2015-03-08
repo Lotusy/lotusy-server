@@ -1,17 +1,19 @@
 <?php
-abstract class FollowerDaoGenerated extends LotusyDaoParent {
+abstract class UserActivityDaoGenerated extends LotusyDaoParent {
 
-    protected static $table = 'follower';
+    protected static $table = 'user_activity';
 
     protected function init() {
         $this->var['id'] = 0;
         $this->var['user_id'] = null;
-        $this->var['follower_id'] = null;
+        $this->var['type'] = null;
+        $this->var['data'] = null;
         $this->var['create_time'] = null;
 
         $this->update['id'] = false;
         $this->update['user_id'] = false;
-        $this->update['follower_id'] = false;
+        $this->update['type'] = false;
+        $this->update['data'] = false;
         $this->update['create_time'] = false;
     }
 
@@ -29,14 +31,24 @@ abstract class FollowerDaoGenerated extends LotusyDaoParent {
         return $this->var['user_id'];
     }
 
-    public function setFollowerId($follower_id) {
-        if ($this->var['follower_id'] !== $follower_id) {
-            $this->var['follower_id'] = $follower_id;
-            $this->update['follower_id'] = true;
+    public function setType($type) {
+        if ($this->var['type'] !== $type) {
+            $this->var['type'] = $type;
+            $this->update['type'] = true;
         }
     }
-    public function getFollowerId() {
-        return $this->var['follower_id'];
+    public function getType() {
+        return $this->var['type'];
+    }
+
+    public function setData($data) {
+        if ($this->var['data'] !== $data) {
+            $this->var['data'] = $data;
+            $this->update['data'] = true;
+        }
+    }
+    public function getData() {
+        return $this->var['data'];
     }
 
     public function setCreateTime($create_time) {

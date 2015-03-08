@@ -11,16 +11,14 @@ class GetFlowUserActivityHandler extends AuthorizedRequestHandler {
             return $validator->getMessage();
         }
 
-        $now = strtotime("now");
-
         $userId = $this->getUserId();
-        $startTime = $now - $_GET['start_time'];
+        $start = $_GET['start'];
         $size = $_GET['size'];
         $language = $headers['language'];
 
         $user = User::alloc()->init_with_id($userId);
 
-        $list = $user->getNewFollowerArray($startTime, $size, $language);
+        $list = $user->getUserRecentActivitiesArray($start, $size, $language);
 
         $response = array('status'=>'success');
         $response['activities'] = $list;

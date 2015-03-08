@@ -29,6 +29,19 @@ class DishDislikeHandler extends AuthorizedRequestHandler {
             $dish->dislike();
         }
 
+        $userId = $this->getUserId();
+        $type = UserActivityDao::TYPE_DISH_COLLECT;
+
+        $userActivity = UserActivityDao::getUserActivitiesByIdAndType($userId, $type);
+        if (!isset($userActivity)) {
+            $userActivity = new UserActivityDao();
+            $userActivity->setUserId($userId);
+            $userActivity->setType($type);
+        }
+        $data = array('dish_id'=>$params['dishid'], 'like'=>false);
+        $userActivity->setData(json_encode($data));
+        $userActivity->save();
+
         $response = array('status' => 'success');
 
         return $response;
