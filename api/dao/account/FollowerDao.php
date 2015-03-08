@@ -17,7 +17,7 @@ class FollowerDao extends FollowerDaoGenerated {
         return $ids;
     }
 
-    public static function getUserFollowerCount($user) {
+    public static function getUserFollowerCount($userId) {
         $builder = new QueryMaster();
         $res = $builder->select('COUNT(*) as count', self::$table)
                        ->where('user_id', $userId)
@@ -40,7 +40,7 @@ class FollowerDao extends FollowerDaoGenerated {
         return $ids;
     }
 
-    public static function getUserFollowingCount($user) {
+    public static function getUserFollowingCount($userId) {
         $builder = new QueryMaster();
         $res = $builder->select('COUNT(*) as count', self::$table)
                        ->where('follower_id', $userId)

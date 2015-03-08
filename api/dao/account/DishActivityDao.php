@@ -156,6 +156,23 @@ class DishActivityDao extends DishActivityDaoGenerated {
         return $res['count']>0;
     }
 
+    public static function getUsersDishCollectedCount($userIds) {
+        $builder = new QueryMaster();
+        $res = $builder->select('user_id, COUNT(*) as count', self::$table) 
+                       ->in('user_id', $userId)
+                       ->where('activity', self::LIST_COLLECTION)
+                       ->group('user_id')
+                       ->find();
+
+        $counts = array();
+        foreach ($res as $row) {
+            $counts[$row['user_id']] = $row['count'];
+        }
+        $counts = arsort($counts);
+
+        return $counts;
+    }
+
 // ======================================================================================== override
 
     protected function beforeInsert() {
