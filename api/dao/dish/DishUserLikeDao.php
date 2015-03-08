@@ -76,6 +76,25 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
         return $activityMap;
     }
 
+    public static function getUserDishCount($userId) {
+        $builder = new QueryMaster();
+        $res = $builder->select('COUNT(*) as count', self::$table)
+                       ->where('$userId', $userId)
+                       ->find();
+
+        return $res['count'];
+    }
+
+    public static function getUserLikedDishCount($userId) {
+        $builder = new QueryMaster();
+        $res = $builder->select('COUNT(*) as count', self::$table)
+                       ->where('$userId', $userId)
+                       ->where('is_like', 'Y')
+                       ->find();
+
+        return $res['count'];
+    }
+
 // ============================================ override functions ==================================================
 
 }

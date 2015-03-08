@@ -64,6 +64,13 @@ class User extends Model {
         return $counts;
     }
 
+    public function getLikeFoodScore() {
+        $total = DishUserLikeDao::getUserDishCount($this->getId());
+        $liked = DishUserLikeDao::getUserLikedDishCount($this->getId());
+
+        return round($liked/$total);
+    }
+
     public function adjustRank() {
         $rank = $this->dao->getRank();
 
