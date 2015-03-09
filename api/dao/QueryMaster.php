@@ -238,6 +238,8 @@ class QueryMaster {
 
     public function adhocQuery($inputQuery) {
         $this->query = $inputQuery;
+
+        return $this;
     }
 
     public function query() {

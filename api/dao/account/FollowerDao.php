@@ -102,6 +102,22 @@ class FollowerDao extends FollowerDaoGenerated {
         return $idMap;
     }
 
+    public static function getFollowingSimilarUsers($userId, $start, $size) {
+        $builder = new QueryMaster();
+        $subSelect = "SELECT user_id FROM ".self::$table." WHERE follower_id=$userId";
+        $query = "SELECT follower_id, COUNT(*) as count FROM ".self::$table.
+                 " WHERE user_id IN ($subSelect) AND follower_id NOT IN ($subSelect) AND follower_id<>$userId".
+                 " GROUP BY follower_id ORDER BY count DESC LIMIT $start, $size";
+        $res = $builder->adhocQuery($query)->findList();
+
+        $idMap = array();
+        foreach ($res as $row) {
+            $idMap[$row['follower_id']] = $row['count'];
+        }
+
+        return $idMap;
+    }
+
 
 // ======================================================================================== override
 
