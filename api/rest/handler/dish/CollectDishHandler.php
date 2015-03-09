@@ -9,8 +9,11 @@ class CollectDishHandler extends AuthorizedRequestHandler {
             return $validator->getMessage();
         }
 
+        $dishDao = new DishDao($params['dishid']);
+
         $dishActivity = new DishActivityDao();
         $dishActivity->setDishId($params['dishid']);
+        $dishActivity->setBusinessId($dishDao->getBusinessId());
         $dishActivity->setUserId($validator->getUserId());
         $dishActivity->setActivity(DishActivityDao::LIST_COLLECTION);
         

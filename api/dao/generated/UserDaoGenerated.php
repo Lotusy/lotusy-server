@@ -12,12 +12,12 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
         $this->var['username'] = null;
         $this->var['nickname'] = null;
         $this->var['gender'] = null;
+        $this->var['rank'] = null;
         $this->var['profile_pic'] = null;
         $this->var['description'] = null;
         $this->var['last_login'] = null;
         $this->var['superuser'] = null;
         $this->var['blocked'] = null;
-        $this->var['rank'] = null;
 
         $this->update['id'] = false;
         $this->update['external_type'] = false;
@@ -27,12 +27,12 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
         $this->update['username'] = false;
         $this->update['nickname'] = false;
         $this->update['gender'] = false;
+        $this->update['rank'] = false;
         $this->update['profile_pic'] = false;
         $this->update['description'] = false;
         $this->update['last_login'] = false;
         $this->update['superuser'] = false;
         $this->update['blocked'] = false;
-        $this->update['rank'] = false;
     }
 
     public function getId() {
@@ -109,6 +109,16 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
         return $this->var['gender'];
     }
 
+    public function setRank($rank) {
+        if ($this->var['rank'] !== $rank) {
+            $this->var['rank'] = $rank;
+            $this->update['rank'] = true;
+        }
+    }
+    public function getRank() {
+        return $this->var['rank'];
+    }
+
     public function setProfilePic($profile_pic) {
         if ($this->var['profile_pic'] !== $profile_pic) {
             $this->var['profile_pic'] = $profile_pic;
@@ -157,16 +167,6 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
     }
     public function getBlocked() {
         return $this->var['blocked'];
-    }
-
-    public function setRank($rank) {
-        if ($this->var['rank'] !== $rank) {
-            $this->var['rank'] = $rank;
-            $this->update['rank'] = true;
-        }
-    }
-    public function getRank() {
-        return $this->var['rank'];
     }
 
     public function getTableName() {

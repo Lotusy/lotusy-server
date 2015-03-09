@@ -9,8 +9,11 @@ class HitlistDishHandler extends AuthorizedRequestHandler {
             return $validator->getMessage();
         }
 
+        $dishDao = new DishDao($params['dishid']);
+
         $lookup = new DishActivityDao();
         $lookup->setDishId($params['dishid']);
+        $lookup->setBusinessId($dishDao->getBusinessId());
         $lookup->setUserId($validator->getUserId());
         $lookup->setActivity(DishActivityDao::LIST_HITLIST);
         $lookup->save();

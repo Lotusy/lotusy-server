@@ -17,6 +17,7 @@ class User extends Model {
     	array(5000, 9999) => UserDao::RANK_10
     );
 
+
     public function getUserRecentActivitiesArray($start, $size, $language) {
         $activities = UserActivityDao::getUserActivities($this->getId(), $start, $end);
 
@@ -50,6 +51,7 @@ class User extends Model {
         return $rv;
     }
 
+
     public function getUserRecentActivityCountArray($start, $end) {
         $counts = DishActivityDao::getUserActivityCounts($this->getId(), $start, $end);
 
@@ -64,12 +66,14 @@ class User extends Model {
         return $counts;
     }
 
+
     public function getLikeFoodScore() {
         $total = DishUserLikeDao::getUserDishCount($this->getId());
         $liked = DishUserLikeDao::getUserLikedDishCount($this->getId());
 
         return round($liked/$total);
     }
+
 
     public function adjustRank() {
         $rank = $this->dao->getRank();
@@ -93,15 +97,6 @@ class User extends Model {
         return -1;
     }
 
-    private function lookupRank($count) {
-        foreach (self::$RANKS as $lookup=>$rank) {
-            if ($count>=$lookup[0] && $count<=$lookup[1]) {
-                return $rank;
-            }
-        }
-
-        return FALSE;
-    }
 
     public function getUsersWithSimilarTast($size, $nonFollowing) {
         $total = DishUserLikeDao::getUserDishCount($userId);
@@ -136,6 +131,7 @@ class User extends Model {
         return $rv;
     }
 
+
     public function getUserRankAmoungFollowingArray($size) {
         $count = DishActivityDao::getUserCollectedDishCount($this->getId());
         $rank = DishActivityDao::getUserCollectionCountRank($this->getId(), $count);
@@ -160,6 +156,7 @@ class User extends Model {
 
         return $rv;
     }
+    
 
     public function getFollowerUserArray($start, $size) {
         $followerIds = FollowerDao::getFollowerIds($this->getId(), $start, $size);
@@ -181,6 +178,7 @@ class User extends Model {
         return $rv;
     }
 
+
     public function getFollowingUserArray($start, $size) {
         $followingIds = FollowerDao::getFollowingIds($this->getId(), $start, $size);
         $userDaos = UserDao::getRange($followingIds);
@@ -197,6 +195,54 @@ class User extends Model {
         $rv['list'] = $list;
 
         return $rv;
+    }
+
+
+    public function getUserCuisinePieArray() {
+    	$dishCount = DishActivityDao::getUserBusinessDishCount($this->getId());
+    	$cuisineArr = BusinessDao::getBusinessCuisineInRange($businessIds);
+
+    	$cuisines = array();
+    	foreach ($cuisineArr as $businessId=>$cuisine) {
+    		if (isset($cuisines[$cuisine])) {
+    			$cuisines[$cuisine] = $cuisines[$cuisine]+$dishCount[$businessId];
+    		} else {
+    			$cuisines[$cuisine] = $dishCount[$businessId];
+    		}
+    	}
+
+    	return $cuisines;
+    }
+
+    public function getCollectedDishCount() {
+    	$count = DishActivityDao::getUserCollectedDishCount($this->getId());
+    	return $count;
+    }
+
+    public function getFollowerCount() {
+    	$count = FollowerDao::getUserFollowerCount($this->getId());
+    	return $count;
+    }
+
+
+    private function lookupRank($count) {
+        foreach (self::$RANKS as $lookup=>$rank) {
+            if ($count>=$lookup[0] && $count<=$lookup[1]) {
+                return $rank;
+            }
+        }
+
+        return FALSE;
+    }
+
+// =============================================================== getter/setter
+
+    public function getRank()  {
+    	return $this->dao->getRank();
+    }
+
+    public function getNickname() {
+    	return $this->dao->getNickname();
     }
 
 // ==================================================================== override

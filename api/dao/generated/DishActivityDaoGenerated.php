@@ -7,6 +7,7 @@ abstract class DishActivityDaoGenerated extends LotusyDaoParent {
         $this->var['id'] = 0;
         $this->var['user_id'] = null;
         $this->var['dish_id'] = null;
+        $this->var['business_id'] = null;
         $this->var['activity'] = null;
         $this->var['is_deleted'] = null;
         $this->var['create_time'] = null;
@@ -14,6 +15,7 @@ abstract class DishActivityDaoGenerated extends LotusyDaoParent {
         $this->update['id'] = false;
         $this->update['user_id'] = false;
         $this->update['dish_id'] = false;
+        $this->update['business_id'] = false;
         $this->update['activity'] = false;
         $this->update['is_deleted'] = false;
         $this->update['create_time'] = false;
@@ -41,6 +43,16 @@ abstract class DishActivityDaoGenerated extends LotusyDaoParent {
     }
     public function getDishId() {
         return $this->var['dish_id'];
+    }
+
+    public function setBusinessId($business_id) {
+        if ($this->var['business_id'] !== $business_id) {
+            $this->var['business_id'] = $business_id;
+            $this->update['business_id'] = true;
+        }
+    }
+    public function getBusinessId() {
+        return $this->var['business_id'];
     }
 
     public function setActivity($activity) {

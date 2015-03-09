@@ -161,7 +161,7 @@ class DishActivityDao extends DishActivityDaoGenerated {
         $sign = $more ? '>' : '<';
         $order = $more ? 'ASC' : 'DESC';
         $query = "SELECT user_id, COUNT(*) as count FROM ".self::$table.
-                 " WHERE activity='".self::LIST_COLLECTION."' AND user_id IN (SELECT user_id FROM ".FollowerDao::table()." WHERE follower_id=$userId)".
+                 " WHERE activity='".self::LIST_COLLECTION."' AND user_id IN (SELECT user_id FROM ".FollowerDao::getTableName()." WHERE follower_id=$userId)".
                  " GROUP BY user_id HAVING count$sign$count ORDER BY count $order LIMIT 0, $size";
         $res = $builder->adhocQuery($query)->findList();
 
@@ -175,13 +175,27 @@ class DishActivityDao extends DishActivityDaoGenerated {
     public static function getUserCollectionCountRank($userId, $count) {
         $builder = new QueryMaster();
         $query = "SELECT user_id, COUNT(*) as count FROM ".self::$table.
-                 " WHERE activity='".self::LIST_COLLECTION."' AND user_id IN (SELECT user_id FROM ".FollowerDao::table()." WHERE follower_id=$userId)".
+                 " WHERE activity='".self::LIST_COLLECTION."' AND user_id IN (SELECT user_id FROM ".FollowerDao::getTableName()." WHERE follower_id=$userId)".
                  " GROUP BY user_id HAVING count>$count";
         $res = $builder->adhocQuery($query)->findList();
 
         return count($res);
     }
 
+    public static function getUserBusinessDishCount($userId) {
+        $builder = new QueryMaster();
+        $res = $builder->select('business_id, COUNT(*) as count', self::$table)
+                       ->where('activity', self::LIST_COLLECTION)
+                       ->where('user_id', $userId)
+                       ->group('business_id')
+                       ->findList();
+        $rv = array();
+        foreach ($res as $row) {
+            $rv[$row['business_id']] = $row['count'];
+        }
+
+        return $rv;
+    }
 // ======================================================================================== override
 
     protected function beforeInsert() {

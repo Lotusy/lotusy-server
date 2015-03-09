@@ -84,6 +84,19 @@ class BusinessDao extends BusinessDaoGenerated {
         return $res;
     }
 
+    public static function getBusinessCuisineInRange($businessIds) {
+    	$builder = new QueryMaster();
+        $res = $builder->select('id, category', self::$table)
+                       ->in('id', $businessIds)
+                       ->findList();
+        $rv = array();
+        foreach ($res as $row) {
+        	$rv[$row['id']] = $row['category'];
+        }
+
+        return $rv;
+    }
+
 // ============================================ override functions ==================================================
 
     protected function beforeInsert() {

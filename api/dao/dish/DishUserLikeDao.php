@@ -98,7 +98,7 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
     public static function getSimilarLikeUsers($userId, $size, $nonFollowing=false) {
         $additional = '';
         if ($nonFollowing) {
-            $additional = " AND user_id NOT IN (SELECT user_id FROM ".FollowerDao::table()." WHERE follower_id=$userId) ";
+            $additional = " AND user_id NOT IN (SELECT user_id FROM ".FollowerDao::getTableName()." WHERE follower_id=$userId) ";
         }
 
         $builder = new QueryMaster();
@@ -118,7 +118,7 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
     public static function getSimilarDislikeUsers($userId, $size, $nonFollowing=false) {
         $additional = '';
         if ($nonFollowing) {
-            $additional = " AND user_id NOT IN (SELECT user_id FROM ".FollowerDao::table()." WHERE follower_id=$userId) ";
+            $additional = " AND user_id NOT IN (SELECT user_id FROM ".FollowerDao::getTableName()." WHERE follower_id=$userId) ";
         }
 
         $builder = new QueryMaster();

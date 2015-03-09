@@ -108,9 +108,5 @@ class FollowerDao extends FollowerDaoGenerated {
     protected function beforeInsert() {
         $this->setCreateTime(date('Y-m-d H:i:s'));
     }
-
-    public static function table() {
-        return self::$table;
-    }
 }
 ?>
