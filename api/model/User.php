@@ -99,13 +99,13 @@ class User extends Model {
     }
 
 
-    public function getUsersWithSimilarTaste($size, $nonFollowing) {
+    public function getUsersWithSimilarTaste($start, $size, $nonFollowing) {
         $total = DishUserLikeDao::getUserDishCount($userId);
 
         $userId = $this->getId();
 
-        $likeUsers = DishUserLikeDao::getSimilarLikeUsers($userId, 2*$size, $nonFollowing);
-        $dislikeUsers = DishUserLikeDao::getSimilarDislikeUsers($userId, 2*$size, $nonFollowing);
+        $likeUsers = DishUserLikeDao::getSimilarLikeUsers($userId, $start, 2*$size, $nonFollowing);
+        $dislikeUsers = DishUserLikeDao::getSimilarDislikeUsers($userId, $start, 2*$size, $nonFollowing);
 
         $combined = $likeUsers;
         foreach ($dislikeUsers as $userId=>$count) {

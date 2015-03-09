@@ -6,7 +6,7 @@ class GetMeBuddyHandler extends AuthorizedRequestHandler {
         $user = User::alloc()->init_with_id($userId);
 
         $userRankArr = $user->getUserRankAmoungFollowingArray(2);
-        $similarUsers = $user->getUsersWithSimilarTaste(5, false);
+        $similarUsers = $user->getUsersWithSimilarTaste(0, 5, false);
 
         $followerArr = $user->getFollowerUserArray(0, 4);
         $followingArr = $user->getFollowingUserArray(0, 4);

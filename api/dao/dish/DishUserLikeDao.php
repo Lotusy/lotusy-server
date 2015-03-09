@@ -95,7 +95,7 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
         return $res['count'];
     }
 
-    public static function getSimilarLikeUsers($userId, $size, $nonFollowing=false) {
+    public static function getSimilarLikeUsers($userId, $start, $size, $nonFollowing=false) {
         $additional = '';
         if ($nonFollowing) {
             $additional = " AND user_id NOT IN (SELECT user_id FROM ".FollowerDao::getTableName()." WHERE follower_id=$userId) ";
@@ -104,7 +104,7 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
         $builder = new QueryMaster();
         $query = "SELECT user_id, COUNT(*) as count FROM ".self::$table.
                  " WHERE dish_id IN (SELECT dish_id FROM ".self::$table.
-                     " WHERE user_id=$userId) AND is_like='Y'".$additional." GROUP BY user_id LIMIT 0, $size";
+                     " WHERE user_id=$userId) AND is_like='Y'".$additional." GROUP BY user_id LIMIT $start, $size";
         $res = $builder->adhocQuery($query)->findList();
 
         $counts = array();
@@ -115,7 +115,7 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
         return $counts;
     }
 
-    public static function getSimilarDislikeUsers($userId, $size, $nonFollowing=false) {
+    public static function getSimilarDislikeUsers($userId, $start, $size, $nonFollowing=false) {
         $additional = '';
         if ($nonFollowing) {
             $additional = " AND user_id NOT IN (SELECT user_id FROM ".FollowerDao::getTableName()." WHERE follower_id=$userId) ";
@@ -124,7 +124,7 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
         $builder = new QueryMaster();
         $query = "SELECT user_id, COUNT(*) as count FROM ".self::$table.
                  " WHERE dish_id IN (SELECT dish_id FROM ".self::$table.
-                     " WHERE user_id=$userId) AND is_like='N'".$additional." GROUP BY user_id LIMIT 0, $size";
+                     " WHERE user_id=$userId) AND is_like='N'".$additional." GROUP BY user_id LIMIT $start, $size";
         $res = $builder->adhocQuery($query)->findList();
 
         $counts = array();
