@@ -95,7 +95,51 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
         return $res['count'];
     }
 
+    public static function getSimilarLikeUsers($userId, $size, $nonFollowing=false) {
+        $additional = '';
+        if ($nonFollowing) {
+            $additional = " AND user_id NOT IN (SELECT user_id FROM ".FollowerDao::table()." WHERE follower_id=$userId) ";
+        }
+
+        $builder = new QueryMaster();
+        $query = "SELECT user_id, COUNT(*) as count FROM ".self::$table.
+                 " WHERE dish_id IN (SELECT dish_id FROM ".self::$table.
+                     " WHERE user_id=$userId) AND is_like='Y'".$additional." GROUP BY user_id LIMIT 0, $size";
+        $res = $builder->adhocQuery($query)->findList();
+
+        $counts = array();
+        foreach ($res as $row) {
+            $counts[$row['user_id']] = $count;
+        }
+
+        return $counts;
+    }
+
+    public static function getSimilarDislikeUsers($userId, $size, $nonFollowing=false) {
+        $additional = '';
+        if ($nonFollowing) {
+            $additional = " AND user_id NOT IN (SELECT user_id FROM ".FollowerDao::table()." WHERE follower_id=$userId) ";
+        }
+
+        $builder = new QueryMaster();
+        $query = "SELECT user_id, COUNT(*) as count FROM ".self::$table.
+                 " WHERE dish_id IN (SELECT dish_id FROM ".self::$table.
+                     " WHERE user_id=$userId) AND is_like='N'".$additional." GROUP BY user_id LIMIT 0, $size";
+        $res = $builder->adhocQuery($query)->findList();
+
+        $counts = array();
+        foreach ($res as $row) {
+            $counts[$row['user_id']] = $count;
+        }
+
+        return $counts;
+    }
+
 // ============================================ override functions ==================================================
 
+    protected function beforeInsert() {
+        $this->setIsDeleted('N');
+        $this->setCreateTime(date('Y-m-d H:i:s'));
+    }
 }
 ?>

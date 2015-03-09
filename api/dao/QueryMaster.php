@@ -236,6 +236,10 @@ class QueryMaster {
         return $this;
     }
 
+    public function adhocQuery($inputQuery) {
+        $this->query = $inputQuery;
+    }
+
     public function query() {
         global $DB_LOG_LEVEL;
         if ($DB_LOG_LEVEL>=2) {

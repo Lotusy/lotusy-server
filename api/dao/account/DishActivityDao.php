@@ -156,21 +156,30 @@ class DishActivityDao extends DishActivityDaoGenerated {
         return $res['count']>0;
     }
 
-    public static function getUsersDishCollectedCount($userIds) {
+    public static function getUsersCollectionCountCompareTo($userId, $count, $size, $more=true) {
         $builder = new QueryMaster();
-        $res = $builder->select('user_id, COUNT(*) as count', self::$table) 
-                       ->in('user_id', $userId)
-                       ->where('activity', self::LIST_COLLECTION)
-                       ->group('user_id')
-                       ->find();
+        $sign = $more ? '>' : '<';
+        $order = $more ? 'ASC' : 'DESC';
+        $query = "SELECT user_id, COUNT(*) as count FROM ".self::$table.
+                 " WHERE activity='".self::LIST_COLLECTION."' AND user_id IN (SELECT user_id FROM ".FollowerDao::table()." WHERE follower_id=$userId)".
+                 " GROUP BY user_id HAVING count$sign$count ORDER BY count $order LIMIT 0, $size";
+        $res = $builder->adhocQuery($query)->findList();
 
-        $counts = array();
+        $rv = array();
         foreach ($res as $row) {
-            $counts[$row['user_id']] = $row['count'];
+            $rv[$row['user_id']] = $count;
         }
-        $counts = arsort($counts);
+        return $rv;
+    }
 
-        return $counts;
+    public static function getUserCollectionCountRank($userId, $count) {
+        $builder = new QueryMaster();
+        $query = "SELECT user_id, COUNT(*) as count FROM ".self::$table.
+                 " WHERE activity='".self::LIST_COLLECTION."' AND user_id IN (SELECT user_id FROM ".FollowerDao::table()." WHERE follower_id=$userId)".
+                 " GROUP BY user_id HAVING count>$count";
+        $res = $builder->adhocQuery($query)->findList();
+
+        return count($res);
     }
 
 // ======================================================================================== override

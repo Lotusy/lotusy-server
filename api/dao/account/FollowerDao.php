@@ -7,6 +7,7 @@ class FollowerDao extends FollowerDaoGenerated {
         $builder = new QueryMaster();
         $res = $builder->select('follower_id', self::$table)
                         ->where('user_id', $userId)
+                        ->order('create_time', true)
                         ->limit($start, $size)
                         ->findList();
         $ids = array();
@@ -30,6 +31,7 @@ class FollowerDao extends FollowerDaoGenerated {
         $builder = new QueryMaster();
         $res = $builder->select('user_id', self::$table)
                         ->where('follower_id', $userId)
+                        ->order('create_time', true)
                         ->limit($start, $size)
                         ->findList();
         $ids = array();
@@ -61,6 +63,16 @@ class FollowerDao extends FollowerDaoGenerated {
         }
 
         return $ids;
+    }
+
+    public static function isFollower($userId, $followerId) {
+        $builder = new QueryMaster();
+        $res = $builder->select('COUNT(*) as count', self::$table)
+                       ->where('user_id', $userId)
+                       ->where('follower_id', $followerId)
+                       ->find();
+
+        return $res['count']>0;
     }
 
     public static function removeFollowing($followerId, $userId) {
@@ -95,6 +107,10 @@ class FollowerDao extends FollowerDaoGenerated {
 
     protected function beforeInsert() {
         $this->setCreateTime(date('Y-m-d H:i:s'));
+    }
+
+    public static function table() {
+        return self::$table;
     }
 }
 ?>
