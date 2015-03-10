@@ -11,7 +11,6 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
         $this->var['nickname'] = null;
         $this->var['gender'] = null;
         $this->var['rank'] = null;
-        $this->var['profile_pic'] = null;
         $this->var['description'] = null;
         $this->var['last_login'] = null;
         $this->var['superuser'] = null;
@@ -24,7 +23,6 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
         $this->update['nickname'] = false;
         $this->update['gender'] = false;
         $this->update['rank'] = false;
-        $this->update['profile_pic'] = false;
         $this->update['description'] = false;
         $this->update['last_login'] = false;
         $this->update['superuser'] = false;
@@ -93,16 +91,6 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
     }
     public function getRank() {
         return $this->var['rank'];
-    }
-
-    public function setProfilePic($profile_pic) {
-        if ($this->var['profile_pic'] !== $profile_pic) {
-            $this->var['profile_pic'] = $profile_pic;
-            $this->update['profile_pic'] = true;
-        }
-    }
-    public function getProfilePic() {
-        return $this->var['profile_pic'];
     }
 
     public function setDescription($description) {

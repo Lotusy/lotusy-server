@@ -7,7 +7,6 @@ CREATE TABLE foodster.user
     nickname VARCHAR(41),
     gender VARCHAR(1),
     rank VARCHAR(11),
-    profile_pic VARCHAR(121),
     description VARCHAR(256),
     last_login DATETIME,
     superuser VARCHAR(2),

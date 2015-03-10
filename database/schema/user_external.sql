@@ -4,6 +4,8 @@ CREATE TABLE foodster.user_external
     type SMALLINT UNSIGNED,
     reference VARCHAR(33),
     user_id INT(10) UNSIGNED,
+    profile_pic VARCHAR(121),
+    username VARCHAR(41),
     create_time DATETIME,
 
     CONSTRAINT user_external_ref UNIQUE (type, reference),

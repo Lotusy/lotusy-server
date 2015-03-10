@@ -8,12 +8,16 @@ abstract class UserExternalDaoGenerated extends LotusyDaoParent {
         $this->var['type'] = null;
         $this->var['reference'] = null;
         $this->var['user_id'] = null;
+        $this->var['profile_pic'] = null;
+        $this->var['username'] = null;
         $this->var['create_time'] = null;
 
         $this->update['id'] = false;
         $this->update['type'] = false;
         $this->update['reference'] = false;
         $this->update['user_id'] = false;
+        $this->update['profile_pic'] = false;
+        $this->update['username'] = false;
         $this->update['create_time'] = false;
     }
 
@@ -49,6 +53,26 @@ abstract class UserExternalDaoGenerated extends LotusyDaoParent {
     }
     public function getUserId() {
         return $this->var['user_id'];
+    }
+
+    public function setProfilePic($profile_pic) {
+        if ($this->var['profile_pic'] !== $profile_pic) {
+            $this->var['profile_pic'] = $profile_pic;
+            $this->update['profile_pic'] = true;
+        }
+    }
+    public function getProfilePic() {
+        return $this->var['profile_pic'];
+    }
+
+    public function setUsername($username) {
+        if ($this->var['username'] !== $username) {
+            $this->var['username'] = $username;
+            $this->update['username'] = true;
+        }
+    }
+    public function getUsername() {
+        return $this->var['username'];
     }
 
     public function setCreateTime($create_time) {
