@@ -16,7 +16,7 @@ if (!empty($_POST['nickname'])) {
 }
 
 if (!empty($_POST['ref_type']) && !empty($_POST['ref_id'])) {
-    $ids = UserDao::getUserIdsFromExternalRef(trim($_POST['ref_type']), trim($_POST['ref_id']));
+    $ids = UserExternalDao::getUserIdByExternalTypeAndReference(trim($_POST['ref_type']), trim($_POST['ref_id']));
     foreach ($ids as $id) {
         $users[$id] = new UserDao($id);
     }
@@ -47,7 +47,7 @@ if (!empty($_POST['ref_type']) && !empty($_POST['ref_id'])) {
 <tr><td class="first">External Type:</td><td>
 <select class="field" name="ref_type">
 <option value=""></option>
-<?php foreach (UserDao::$TYPEARRAY as $key=>$val) { ?>
+<?php foreach (UserExternalDao::$TYPEARRAY as $key=>$val) { ?>
 <option value="<?=$val ?>"><?=$key ?></option>
 <?php } ?>
 </select>
@@ -71,7 +71,7 @@ if (!empty($_POST['ref_type']) && !empty($_POST['ref_id'])) {
 <tr class="<?=($index%2==0 ? 'odd' : 'even') ?>">
 <td><a href="detail.php?id=<?=$user->var[UserDao::IDCOLUMN] ?>"><?=$user->var[UserDao::IDCOLUMN] ?></a></td>
 <td><?=$user->var[UserDao::NICKNAME] ?></td>
-<td><?=UserDao::$TYPEARRAYREV[$user->var[UserDao::EXTERNALTYPE]] ?></td>
+<td><?=UserExternalDao::$TYPEARRAYREV[$user->var[UserDao::EXTERNALTYPE]] ?></td>
 <td><?=$user->var[UserDao::EXTERNALREF] ?></td>
 <td><?=$user->var[UserDao::LASTLOGIN] ?></td>
 <td><?=$user->var[UserDao::SUPERUSER] ?></td>

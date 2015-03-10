@@ -20,20 +20,23 @@ class TokenAuthenticationHandler extends UnauthorizedRequestHandler {
         }
 
         if ($info['status']=='success') {
-            $userId = UserDao::getUniqueUserIdFromExternalRef($params['type'], $info['id']);
+            $userId = UserExternalDao::getUserIdByExternalTypeAndReference($params['type'], $info['id']);
             if ($userId>0) {
                 $user = new UserDao($userId);
             } else {
-                $type = UserDao::$TYPEARRAY[$params['type']];
-
                 $user = new UserDao();
-                $user->setExternalType($type);
-                $user->setExternalRef($info['id']);
                 $user->setNickname($info['nickname']);
                 $user->setUsername($info['username']);
                 $user->setGender($info['gender']);
                 $user->setProfilePic($info['profile_pic']);
-                $user->save();
+                if ($user->save()) {
+                    $externalLink = new UserExternalDao();
+                    $type = UserExternalDao::$TYPEARRAY[$params['type']];
+                    $externalLink->setType($type);
+                    $externalLink->setReference($info['id']);
+                    $externalLink->setUserId($user->getId());
+                    $externalLink->save();
+                }
             }
 
             $accessToken = new AccessTokenDao();

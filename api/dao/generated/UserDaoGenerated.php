@@ -5,8 +5,6 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
 
     protected function init() {
         $this->var['id'] = 0;
-        $this->var['external_type'] = null;
-        $this->var['external_ref'] = null;
         $this->var['email'] = null;
         $this->var['password'] = null;
         $this->var['username'] = null;
@@ -20,8 +18,6 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
         $this->var['blocked'] = null;
 
         $this->update['id'] = false;
-        $this->update['external_type'] = false;
-        $this->update['external_ref'] = false;
         $this->update['email'] = false;
         $this->update['password'] = false;
         $this->update['username'] = false;
@@ -37,26 +33,6 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
 
     public function getId() {
         return $this->var['id'];
-    }
-
-    public function setExternalType($external_type) {
-        if ($this->var['external_type'] !== $external_type) {
-            $this->var['external_type'] = $external_type;
-            $this->update['external_type'] = true;
-        }
-    }
-    public function getExternalType() {
-        return $this->var['external_type'];
-    }
-
-    public function setExternalRef($external_ref) {
-        if ($this->var['external_ref'] !== $external_ref) {
-            $this->var['external_ref'] = $external_ref;
-            $this->update['external_ref'] = true;
-        }
-    }
-    public function getExternalRef() {
-        return $this->var['external_ref'];
     }
 
     public function setEmail($email) {

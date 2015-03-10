@@ -25,7 +25,7 @@ class GetWeiboTokenInfoRequest extends RestRequest {
         } else {
             $rv['id'] = $json['uid'];
 
-            $userId = UserDao::getUniqueUserIdFromExternalRef(UserDao::$TYPEARRAYREV[2], $rv['id']);
+            $userId = UserExternalDao::getUserIdByExternalTypeAndReference(UserExternalDao::$TYPEARRAYREV[2], $rv['id']);
             if ($userId>0) {
                 $rv['status'] = 'success';
             } else {

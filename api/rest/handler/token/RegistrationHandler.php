@@ -11,9 +11,6 @@ class RegistrationHandler extends UnauthorizedRequestHandler {
         }
 
         $account = new UserDao();
-        $type = UserDao::$TYPEARRAY[$params['type']];
-        $account->setExternalType($type);
-        $account->setExternalRef($json['id']);
         $account->setUsername($json['username']);
         $account->setNickname($json['nickname']);
         $account->setDescription($json['description']);
@@ -22,6 +19,13 @@ class RegistrationHandler extends UnauthorizedRequestHandler {
         $atReturn = array();
         if ($account->save()) {
             Logger::info('Create User '.json_encode($account->toArray()));
+
+            $externalLink = new UserExternalDao();
+            $type = UserExternalDao::$TYPEARRAY[$params['type']];
+            $externalLink->setType($type);
+            $externalLink->setReference($json['id']);
+            $externalLink->setUserId($account->getId());
+            $externalLink->save();
 
             $accessToken = new AccessTokenDao();
             $accessToken->setUserId($account->getId());

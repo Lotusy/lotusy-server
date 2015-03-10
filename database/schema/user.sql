@@ -1,8 +1,6 @@
 CREATE TABLE foodster.user
 (
     id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    external_type INT(2) UNSIGNED,
-    external_ref VARCHAR(33),
     email VARCHAR(128),
     password VARCHAR(41),
     username VARCHAR(41),
@@ -18,7 +16,5 @@ CREATE TABLE foodster.user
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE INDEX foodster_user_external_type ON foodster.user (external_type);
-CREATE INDEX foodster_user_external_ref ON foodster.user (external_ref(32));
 CREATE INDEX foodster_user_email ON foodster.user (email(127));
 CREATE INDEX foodster_user_rank ON foodster.user (rank(10));

@@ -6,9 +6,9 @@ class AuthenticationValidator extends Validator {
     public function validate() {
         $json = $this->getObjectToBeValidated();
 
-        $this->user = UserDao::getUserDaoByExternalRef($json['type'], $json['id']);
+        $this->user = User::alloc()->init_with_external($json['type'], $json['id']);
 
-        $valid = isset($this->user);
+        $valid = $this->user->getId()>0;
         if (!$valid) {
             header('HTTP/1.0 404 Not Found');
             $this->setErrorMessage('user_not_found');

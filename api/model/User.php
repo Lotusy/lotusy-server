@@ -272,6 +272,11 @@ class User extends Model {
     	return $this->dao->getNickname();
     }
 
+    public function updateLastLogin() {
+        $this->dao->setLastLogin(date('Y-m-d H:i:s'));
+        $this->dao->save();
+    }
+
 // ==================================================================== override
 
     public function init() {
@@ -280,6 +285,15 @@ class User extends Model {
 
     public function init_with_id($id) {
         $this->dao = new UserDao($id);    
+    }
+
+    public function init_with_external($type, $reference) {
+        $userId = UserExternalDao::getUserIdByExternalTypeAndReference($type, $reference);
+        if ($userId>0) {
+            $this->dao = new UserDao($userId);  
+        } else {
+            $this->dao = new UserDao();
+        }
     }
 }
 ?>
