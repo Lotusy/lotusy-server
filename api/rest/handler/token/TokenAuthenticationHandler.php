@@ -28,13 +28,13 @@ class TokenAuthenticationHandler extends UnauthorizedRequestHandler {
                 $user->setNickname($info['nickname']);
                 $user->setUsername($info['username']);
                 $user->setGender($info['gender']);
-                $user->setProfilePic($info['profile_pic']);
                 if ($user->save()) {
                     $externalLink = new UserExternalDao();
                     $type = UserExternalDao::$TYPEARRAY[$params['type']];
                     $externalLink->setType($type);
                     $externalLink->setReference($info['id']);
                     $externalLink->setUserId($user->getId());
+                    $externalLink->setProfilePic($info['profile_pic']);
                     $externalLink->save();
                 }
             }

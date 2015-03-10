@@ -21,10 +21,6 @@ class UpdateCurrentUserProfileHandler extends UnauthorizedRequestHandler {
             $user->setUsername($json['username']); 
             $updated = true;
         }
-        if (isset($json['profile_pic'])) {
-            $user->setProfilePic($json['profile_pic']); 
-            $updated = true;
-        }
         if (isset($json['description'])) {
             $user->setDescription($json['description']); 
             $updated = true;

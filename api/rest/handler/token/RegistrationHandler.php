@@ -14,7 +14,6 @@ class RegistrationHandler extends UnauthorizedRequestHandler {
         $account->setUsername($json['username']);
         $account->setNickname($json['nickname']);
         $account->setDescription($json['description']);
-        $account->setProfilePic($json['profile_pic']);
 
         $atReturn = array();
         if ($account->save()) {
@@ -25,6 +24,7 @@ class RegistrationHandler extends UnauthorizedRequestHandler {
             $externalLink->setType($type);
             $externalLink->setReference($json['id']);
             $externalLink->setUserId($account->getId());
+            $externalLink->setProfilePic($json['profile_pic']);
             $externalLink->save();
 
             $accessToken = new AccessTokenDao();

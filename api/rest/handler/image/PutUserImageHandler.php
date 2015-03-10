@@ -17,14 +17,7 @@ class PutUserImageHandler extends AuthorizedRequestHandler {
         $userImage->setPath($image_dir);
 
         if (UserImageDao::deleteUserImages($userId)) {
-            if($userImage->save()) {
-                
-                $profilePic = $base_host.$base_uri.'/image/user/'.$userId.'/profile/display';
-        
-                $userDao = new UserDao($userId);
-                $userDao->setProfilePic($profilePic);
-                $userDao->save();
-            }
+            $userImage->save();
         }
 
         $atReturn['status'] = 'success';
