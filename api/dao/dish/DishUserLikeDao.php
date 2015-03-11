@@ -135,6 +135,32 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
         return $counts;
     }
 
+    public static function getCommonDishIds($userId1, $userId2, $start, $size, $like=NULL) {
+        $builder = new QueryMaster();
+        $builder->select('dish_id, COUNT(*) as count', self::$table)->in('user_id', array($userId1, $userId2));
+        if (isset($like)) {
+            $builder->where('is_like', $like ? 'Y' : 'N');
+        }
+        $res = $builder->group('dish_id')->having('count', 1, '>')->order('id', true)->limit($start, $size)->findList();
+
+        $ids = array();
+        foreach ($res as $row) {
+            $ids[] = $row['user_id'];
+        }
+        return $ids;
+    }
+
+    public static function getCommonDishCount($userId1, $userId2, $like=NULL) {
+        $builder = new QueryMaster();
+        $builder->select('dish_id, COUNT(*) as count', self::$table)->in('user_id', array($userId1, $userId2));
+        if (isset($like)) {
+            $builder->where('is_like', $like ? 'Y' : 'N');
+        }
+        $res = $builder->group('dish_id')->having('count', 1, '>')->findList();
+
+        return count($res);
+    }
+
 // ============================================ override functions ==================================================
 
     protected function beforeInsert() {

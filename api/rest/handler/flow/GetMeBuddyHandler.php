@@ -8,14 +8,17 @@ class GetMeBuddyHandler extends AuthorizedRequestHandler {
         $userRankArr = $user->getUserRankAmoungFollowingArray(2);
         $similarUsers = $user->getUsersWithSimilarTaste(0, 5, false);
 
-        $followerArr = $user->getFollowerUserArray(0, 4);
-        $followingArr = $user->getFollowingUserArray(0, 4);
+        $followers = $user->getFollowerUsers(0, 4);
+        $followerCount = $user->getFollowerCount();
+
+        $followings = $user->getFollowingUsers(0, 4);
+        $followingCount = $user->getFollowingCount();
 
         $response = array('status'=>'success');
         $response['rank'] = $userRankArr;
         $response['similar'] = $similarUsers;
-        $response['follwer'] = $followerArr;
-        $response['following'] = $followingArr;
+        $response['follwer'] = array('list'=>$followers, 'count'=>$followerCount);
+        $response['following'] = array('list'=>$followings, 'count'=>$followingCount);
 
         return $response;
     }

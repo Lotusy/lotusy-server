@@ -5,8 +5,12 @@ class GetMeBuddyAddHandler extends AuthorizedRequestHandler {
         $userId = $this->getUserId();
         $user = User::alloc()->init_with_id($userId);
 
-        $response = $user->getFollowingUserArray(0, 15);
+        $followings = $user->getFollowingUsers(0, 15);
+        $followingCount = $user->getFollowingCount();
+
         $response['status'] = 'success';
+        $response['list'] = $followings;
+        $response['count'] = $followingCount;
 
         return $response;
     }

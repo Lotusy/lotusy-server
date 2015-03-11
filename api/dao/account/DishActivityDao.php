@@ -120,6 +120,17 @@ class DishActivityDao extends DishActivityDaoGenerated {
         return $ids;
     }
 
+    public static function getHitlistedCount($userId) {
+        $builder = new QueryMaster();
+        $res = $builder->select('COUNT(*) as count', self::$table)
+                       ->where('user_id', $userId)
+                       ->where('is_deleted', 'N')
+                       ->where('activity', self::LIST_HITLIST)
+                       ->find();
+
+        return $res['count'];
+    }
+
     public static function getDishTwoUserCollected($dishId, $userIds) {
         $builder = new QueryMaster();
         $res = $builder->select('user_id', self::$table)
@@ -196,6 +207,39 @@ class DishActivityDao extends DishActivityDaoGenerated {
 
         return $rv;
     }
+
+    public static function getCommonHitlistIds($userId1, $userId2, $start, $size) {
+        $builder = new QueryMaster();
+        $res = $builder->select('dish_id, COUNT(*) as count', self::$table)
+                       ->in('user_id', array($userId1, $userId2))
+                       ->where('activity', self::LIST_HITLIST)
+                       ->where('is_deleted', 'N')
+                       ->group('dish_id')
+                       ->having('count', 1, '>')
+                       ->order('id', true)
+                       ->limit($start, $size)
+                       ->findList();
+
+        $ids = array();
+        foreach ($res as $row) {
+            $ids[] = $row['dish_id'];
+        }
+        return $ids;
+    }
+
+    public static function getCommonHitlistCount($userId1, $userId2) {
+        $builder = new QueryMaster();
+        $res = $builder->select('dish_id, COUNT(*) as count', self::$table)
+                       ->in('user_id', array($userId1, $userId2))
+                       ->where('activity', self::LIST_HITLIST)
+                       ->where('is_deleted', 'N')
+                       ->group('dish_id')
+                       ->having('count', 1, '>')
+                       ->findList();
+
+        return count($res);
+    }
+
 // ======================================================================================== override
 
     protected function beforeInsert() {

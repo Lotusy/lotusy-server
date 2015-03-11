@@ -76,6 +76,28 @@ class Dish extends Model {
         return $rv;
     }
 
+    public static function getDishesDetails($dishIds, $language='en') {
+        $dishDaos = DishDao::getRange($dishIds);
+
+        $businessIds = array();
+        foreach ($dishDaos as $dishDao) {
+            $businessIds[] = $dishDao->getBusinessId();
+        }
+
+        $businessDaos = BusinessDao::getRange($businessIds, true);
+
+        global $base_host,$base_url;
+        $rv = array();
+        foreach ($dishDaos as $dishDao) {
+            $businessDao = $businessDaos[$dishDao->getBusinessId()];
+            $rv[$dishDao->getId()] = array('name'=>$dishDao->getName($language),
+                                           'business'=>$businessDao->getName($language),
+                                           'image'=>$base_host.$base_url.'/image/dish/'.$dishDao->getId().'/user/'.$this->getId().'/display');
+        }
+
+        return $rv;
+    }
+
 // =============================================================== getter/setter
 
     public function getBusinessId() {

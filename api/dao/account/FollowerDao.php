@@ -118,6 +118,31 @@ class FollowerDao extends FollowerDaoGenerated {
         return $idMap;
     }
 
+    public static function getCommonFollowingIds($userId1, $userId2, $start, $size) {
+        $builder = new QueryMaster();
+        $res = $builder->select('user_id, COUNT(*) as count', self::$table)
+                       ->in('following_id', array($userId1, $userId2))
+                       ->group('user_id')
+                       ->having('count', 1, '>')
+                       ->limit($start, $size)
+                       ->findList();
+        $ids = array();
+        foreach ($res as $row) {
+            $ids[] = $row['user_id'];
+        }
+        return $ids;
+    }
+
+    public static function getCommonFollowingCount($userId1, $userId2) {
+        $builder = new QueryMaster();
+        $res = $builder->select('user_id, COUNT(*) as count', self::$table)
+                       ->in('following_id', array($userId1, $userId2))
+                       ->group('user_id')
+                       ->having('count', 1, '>')
+                       ->findList();
+
+        return count($res);
+    }
 
 // ======================================================================================== override
 
