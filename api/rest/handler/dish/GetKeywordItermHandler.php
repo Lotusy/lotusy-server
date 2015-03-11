@@ -2,7 +2,7 @@
 class GetKeywordItermHandler extends UnauthorizedRequestHandler {
 
     public function handle($params) {
-        $terms = ItermDao::getTypeLanguageCodes(ItermDao::TYPE_KEYWORD, $params['language']);
+        $terms = ItermDao::getTypeLanguageCodeDescriptionMap(ItermDao::TYPE_KEYWORD, $params['language']);
 
         $response = array();
         $response['status'] = 'success';

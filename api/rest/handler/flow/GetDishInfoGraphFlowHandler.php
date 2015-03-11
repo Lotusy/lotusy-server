@@ -2,8 +2,7 @@
 class GetDishInfoGraphFlowHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
-        $headers = apache_request_headers();
-        $language = $headers['language'];
+        $language = $this->getLanguage();
 
         $dishId = $params['dishid'];
         $userId = $this->getUserId();

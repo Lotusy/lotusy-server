@@ -4,8 +4,7 @@ class GetMeProfileHandler extends AuthorizedRequestHandler {
     public function handle($params) {
     	global $base_host, $base_url;
 
-    	$headers = apache_request_headers();
-    	$language = $headers['language'];
+        $language = $this->getLanguage();
 
     	$userId = $this->getUserId();
     	$user = User::alloc()->init_with_id($userId);

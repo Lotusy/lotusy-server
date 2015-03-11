@@ -168,7 +168,13 @@ function validateHeaders() {
 
     if (!isset($headers['Content-Type']) || $headers['Content-Type']!='application/json') {
         header('HTTP/1.0 406 Not Acceptable');
-        echo '{"error":"406 Not Acceptable"}';
+        echo '{"error":"406 Content Type Not Acceptable"}';
+        exit;
+    }
+
+    if (!isset($headers['language'])) {
+        header('HTTP/1.0 417 Expectation Failed');
+        echo '{"error":"417 Missing Language Header"}';
         exit;
     }
 }

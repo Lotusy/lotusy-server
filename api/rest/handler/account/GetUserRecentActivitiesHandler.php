@@ -3,8 +3,7 @@ class GetUserRecentActivitiesHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         $json = $_GET;
-        $headers = apache_request_headers();
-        $json['language'] = $headers['language'];
+        $json['language'] = $this->getLanguage();
 
         $validator = new GetFlowUserActivityValidator($json);
         if (!$validator->validate()) {
@@ -14,7 +13,7 @@ class GetUserRecentActivitiesHandler extends AuthorizedRequestHandler {
         $userId = $this->getUserId();
         $start = $_GET['start'];
         $size = $_GET['size'];
-        $language = $headers['language'];
+        $language = $json['language'];
 
         $user = User::alloc()->init_with_id($userId);
 

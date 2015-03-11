@@ -56,7 +56,7 @@ class Dish extends Model {
     public function getUserKeywordArray($userId, $language='en') {
         $rv = array();
 
-        $terms = ItermDao::getTypeLanguageCodes(ItermDao::TYPE_KEYWORD, $language);
+        $terms = ItermDao::getTypeLanguageCodeDescriptionMap(ItermDao::TYPE_KEYWORD, $language);
         $color = KeywordDao::getAllKeywordsColor();
         $total = DishUserKeywordDao::getDishKeywordsCount($this->getId());
         $codes = DishUserKeywordDao::getUserDishKeywords($userId, $this->getId());

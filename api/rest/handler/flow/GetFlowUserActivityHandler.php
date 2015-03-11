@@ -15,8 +15,7 @@ class GetFlowUserActivityHandler extends AuthorizedRequestHandler {
         $response['counts'] = $user->getUserRecentActivityCountArray($start, $now);
 
         $userId = $this->getUserId();
-        $headers = apache_request_headers();
-        $language = $headers['language'];
+        $language = $this->getLanguage();
 
         $list = $user->getUserRecentActivitiesArray(0, 10, $language);
 

@@ -2,7 +2,7 @@
 // mobile flow end points
 //
 // Flow-Add food tried
-register('GET', '/flow/dish/:dishid/detail',    new GetDishDetailHandler());
+register('GET', '/flow/dish/:dishid/detail', new GetDishDetailHandler());
 // Flow-Discover-addnewfood-rankup
 register('GET', '/flow/user/followings/dishes',  new GetFollowingRecentDishesHandler());
 register('GET', '/flow/search/business/dish',    new SearchBusinessByNameHandler());
@@ -18,9 +18,9 @@ register('GET', '/flow/me/buddy/add',            new GetMeBuddyAddHandler());
 register('GET', '/flow/me/buddy/add/network',    new GetMeBuddyAddNetworkHandler());
 register('GET', '/flow/me/buddy/add/suggest',    new GetMeBuddyAddSuggestHandler());
 // Flow-Profile-others
-register('GET', '/flow/profile/ranking',        new GetProfileRankingHandler());
-register('GET', '/flow/user/:userid/profile',   new GetOtherProfileHandler());
-register('GET', '/flow/user/:userid/buddy',     new GetOtherBuddyHandler());
+register('GET', '/flow/user/:userid/profile/ranking', new GetProfileRankingHandler());
+register('GET', '/flow/user/:userid/profile',         new GetOtherProfileHandler());
+register('GET', '/flow/user/:userid/buddy',           new GetOtherBuddyHandler());
 // Flow-Restaurant view
 // Flow-Settings
 // Flow-Stamps

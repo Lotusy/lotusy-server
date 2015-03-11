@@ -1,6 +1,7 @@
 <?php
 class UserDao extends UserDaoGenerated {
 
+    const RANK_00 = '5000';
     const RANK_01 = '5001';
     const RANK_02 = '5002';
     const RANK_03 = '5003';

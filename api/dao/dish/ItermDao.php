@@ -9,7 +9,7 @@ class ItermDao extends ItermDaoGenerated {
 
 // =============================================== public function =================================================
 
-    public static function getTypeLanguageCodes($type, $language='en') {
+    public static function getTypeLanguageCodeDescriptionMap($type, $language='en') {
         $builder = new QueryMaster();
         $rows = $builder->select('code, description', self::$table)
                         ->where('language', $language)

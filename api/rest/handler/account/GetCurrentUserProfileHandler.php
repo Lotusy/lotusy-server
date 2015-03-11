@@ -1,14 +1,8 @@
 <?php
-class GetCurrentUserProfileHandler extends UnauthorizedRequestHandler {
+class GetCurrentUserProfileHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
-        $headers = apache_request_headers();
-        $language = $headers['language'];
-
-        $validator = new GetCurrentUserProfileValidator($params);
-        if (!$validator->validate()) {
-            return $validator->getMessage();
-        } 
+        $language = $this->getLanguage();
 
         $userDao = new UserDao($validator->getUserId());
 

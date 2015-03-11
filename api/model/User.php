@@ -5,7 +5,8 @@ class User extends Model {
     const ACTIVITY_TYPE_USER = 2;
 
     private static $RANKS = array(
-        array(0, 9) => UserDao::RANK_01,
+        array(0, 0) => UserDao::RANK_00,
+        array(1, 9) => UserDao::RANK_01,
     	array(10, 49) => UserDao::RANK_02,
     	array(50, 149) => UserDao::RANK_03,
     	array(150, 299) => UserDao::RANK_04,
@@ -225,12 +226,6 @@ class User extends Model {
     }
 
 
-    public function getCollectedDishCount() {
-    	$count = DishActivityDao::getUserCollectedDishCount($this->getId());
-    	return $count;
-    }
-
-
     public function getFollowerCount() {
     	$count = FollowerDao::getUserFollowerCount($this->getId());
     	return $count;
@@ -275,6 +270,24 @@ class User extends Model {
     public function updateLastLogin() {
         $this->dao->setLastLogin(date('Y-m-d H:i:s'));
         $this->dao->save();
+    }
+
+    public function getCollectedDishCount() {
+        $count = DishActivityDao::getUserCollectedDishCount($this->getId());
+        return $count;
+    }
+
+// ====================================================================== static
+
+    public static function getRanksMap($language) {
+        $ranks = ItermDao::getTypeLanguageCodeDescriptionMap(ItermDao::TYPE_USERRANK, $language);
+
+        $rv = array();
+        foreach (self::$RANKS as $range=>$code) {
+            $rv[$ranks[$code]] = $range[1];
+        }
+
+        return $rv;
     }
 
 // ==================================================================== override
