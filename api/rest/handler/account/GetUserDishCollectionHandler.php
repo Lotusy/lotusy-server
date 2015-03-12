@@ -1,5 +1,5 @@
 <?php
-class GetUserDishCollectionHandler extends UnauthorizedRequestHandler {
+class GetUserDishCollectionHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         $json = array_merge($_GET, $params);
@@ -8,17 +8,19 @@ class GetUserDishCollectionHandler extends UnauthorizedRequestHandler {
             return $validator->getMessage();
         }
 
-        $dishIds = DishActivityDao::getCollectedDishes($params['userid'], $json['start'], $json['size']);
+        $language = $this->getLanguage();
 
-        $dishes = DishDao::getRange($dishIds);
+        $user = User::alloc()->init_with_id($params['userid']);
+
+        $like = isset($json['like']) ? $like : null;
+
+        $dishes = $user->getCollectedDishes($json['start'], $json['size'], $language, $like);
+        $count = $user->getCollectedDishCount($like);
 
         $response = array();
         $response['status'] = 'success';
-        $response['dishes'] = array();
-
-        foreach ($dishes as $dish) {
-            array_push($response['dishes'], $dish->toArray());
-        }
+        $response['dishes'] = $dishes;
+        $response['count'] = $count;
 
         return $response;
     }

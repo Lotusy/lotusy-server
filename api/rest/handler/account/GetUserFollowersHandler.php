@@ -1,5 +1,5 @@
 <?php
-class GetUserFollowersHandler extends UnauthorizedRequestHandler {
+class GetUserFollowersHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         $json = $_GET;
@@ -10,24 +10,16 @@ class GetUserFollowersHandler extends UnauthorizedRequestHandler {
             return $validator->getMessage();
         }
 
-        $userIds = FollowerDao::getFollowerIds($params['userid'], $json['start'], $json['size']);
+        $user = User::alloc()->init_with_id($params['userid']);
+        $followers = $user->getFollowerUsers($json['start'], $json['size']);
 
         $response = array();
         $response['status'] = 'success';
         $response['users'] = array();
-
-        global $base_host, $base_uri;
-
-        foreach ($userIds as $userId) {
-            $user = new UserDao($userId);
-            if ($user->isFromDatabase()) {
-                $userArr = array();
-                $userArr['id'] = $userId;
-                $userArr['nickname'] = $user->getNickname();
-                $userArr['profile_pic'] = $base_host.$base_uri.'/image/user/'.$userId.'/profile/display';
-
-                array_push($response['users'], $userArr);
-            }
+        foreach ($followers as $userId=>$follower) {
+            $response['users'] = $follower;
+            $isFollowing = FollowerDao::isFollower($userId, $this->getUserId());
+            $response['users']['following'] = $isFollowing;
         }
 
         return $response;

@@ -79,7 +79,7 @@ class DishActivityDao extends DishActivityDaoGenerated {
         return $res['count'];
     }
 
-    public static function getCollectedDishes($userId, $start, $size) {
+    public static function getUserCollectedDishes($userId, $start, $size) {
         $builder = new QueryMaster();
         $res = $builder->select('dish_id', self::$table)
                        ->where('user_id', $userId)

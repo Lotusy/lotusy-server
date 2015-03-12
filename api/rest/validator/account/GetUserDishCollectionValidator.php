@@ -1,5 +1,5 @@
 <?php
-class GetUserDishCollectionValidator extends AccessTokenValidator {
+class GetUserDishCollectionValidator extends Validator {
 
     public function validate() {
         $json = $this->getObjectToBeValidated();

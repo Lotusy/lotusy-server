@@ -271,6 +271,18 @@ class User extends Model {
     }
 
 
+    public function getCollectedDishes($start, $end, $language, $like=null) {
+        if (!isset($like)) {
+            $dishIds = DishActivityDao::getUserCollectedDishes($this->getId(), $start, $end);
+        } else {
+            $dishIds = DishUserLikeDao::getUserDishes($start, $end, $language, $like);
+        }
+        $rv = Dish::getDishesDetails($dishIds, $language);
+
+        return $rv;
+    }
+
+
     private function lookupRank($count) {
         foreach (self::$RANKS as $lookup=>$rank) {
             if ($count>=$lookup[0] && $count<=$lookup[1]) {
@@ -333,6 +345,15 @@ class User extends Model {
 
     public function getHitlistCount() {
         $count = DishActivityDao::getHitlistedCount($this->getId());
+        return $count;
+    }
+
+    public function getCollectedDishCount($like=null) {
+        if (!isset($like)) {
+            $count = DishActivityDao::getUserCollectedDishCount($this->getId());
+        } else {
+            $count = DishUserLikeDao::getUserLikedDishCount($userId, $like);
+        }
         return $count;
     }
 

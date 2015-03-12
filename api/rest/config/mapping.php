@@ -20,7 +20,6 @@ register('GET', '/flow/me/buddy/add/suggest',    new GetMeBuddyAddSuggestHandler
 // Flow-Profile-others
 register('GET', '/flow/user/:userid/profile/ranking', new GetProfileRankingHandler());
 register('GET', '/flow/user/:userid/profile',         new GetOtherProfileHandler());
-register('GET', '/flow/user/:userid/buddy',           new GetOtherBuddyHandler());
 // Flow-Restaurant view
 // Flow-Settings
 // Flow-Stamps

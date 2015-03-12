@@ -85,11 +85,11 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
         return $res['count'];
     }
 
-    public static function getUserLikedDishCount($userId) {
+    public static function getUserLikedDishCount($userId, $like=true) {
         $builder = new QueryMaster();
         $res = $builder->select('COUNT(*) as count', self::$table)
                        ->where('$userId', $userId)
-                       ->where('is_like', 'Y')
+                       ->where('is_like', $like ? 'Y' : 'N')
                        ->find();
 
         return $res['count'];
@@ -159,6 +159,21 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
         $res = $builder->group('dish_id')->having('count', 1, '>')->findList();
 
         return count($res);
+    }
+
+    public static function getUserDishes($userId, $start, $size, $like=true) {
+        $builder = new QueryMaster();
+        $res = $builder->select('dish_id', self::$table)
+                       ->where('user_id', $userId)
+                       ->where('is_like', $like ? 'Y' : 'N')
+                       ->order('id', true)
+                       ->limit($start, $size)
+                       ->findList();
+        $ids = array();
+        foreach ($res as $row) {
+            $ids[] = $row['dish_id'];
+        }
+        return $ids;
     }
 
 // ============================================ override functions ==================================================
