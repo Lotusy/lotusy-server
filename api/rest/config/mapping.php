@@ -22,6 +22,8 @@ register('GET', '/flow/user/:userid/profile/ranking', new GetProfileRankingHandl
 register('GET', '/flow/user/:userid/profile',         new GetOtherProfileHandler());
 // Flow-Restaurant view
 // Flow-Settings
+register('GET', '/flow/me/setting',        new GetMeProfileSettingHandler());
+register('GET', '/flow/me/setting/alerts', new GetMeProfileAlertsHandler());
 // Flow-Stamps
 
 
