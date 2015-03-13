@@ -55,6 +55,17 @@ class ItermDao extends ItermDaoGenerated {
         return $res['description'];
     }
 
+    public static function getUserRanksMap($language='en') {
+        $ranks = ItermDao::getTypeLanguageCodeDescriptionMap(ItermDao::TYPE_USERRANK, $language);
+
+        $rv = array();
+        foreach (self::$RANKS as $range=>$code) {
+            $rv[$ranks[$code]] = $range[1];
+        }
+
+        return $rv;
+    }
+
 // ============================================ override functions ==================================================
 
 }

@@ -13,7 +13,7 @@ class GetProfileRankingHandler extends AuthorizedRequestHandler {
 
         $response = array('status'=>'success');
 
-        $response['static'] = User::getRanksMap($language);
+        $response['static'] = ItermDao::getUserRanksMap($language);
 
         $response['me'] = array('rank'=>$me->getRank(),
                                 'image'=>$base_host.$base_url.'/image/user/'.$meId.'/profile/display',

@@ -283,6 +283,20 @@ class User extends Model {
     }
 
 
+    public function getExternalLinkProfiles() {
+        $links = UserExternalDao::getUserExternalLinks($this->getId());
+        $rv = array();
+
+        foreach ($links as $link) {
+            $type = UserExternalDao::$TYPEARRAYREV[$link->getType()];
+            $rv[$type] = array('image' => $link->getProfilePic(),
+                               'name' => $link->getUsername());
+        }
+
+        return $rv;
+    }
+
+
     private function lookupRank($count) {
         foreach (self::$RANKS as $lookup=>$rank) {
             if ($count>=$lookup[0] && $count<=$lookup[1]) {
@@ -357,17 +371,9 @@ class User extends Model {
         return $count;
     }
 
-// ====================================================================== static
-
-    public static function getRanksMap($language) {
-        $ranks = ItermDao::getTypeLanguageCodeDescriptionMap(ItermDao::TYPE_USERRANK, $language);
-
-        $rv = array();
-        foreach (self::$RANKS as $range=>$code) {
-            $rv[$ranks[$code]] = $range[1];
-        }
-
-        return $rv;
+    public function getActiveAlertCodes() {
+        $codes = UserAlertDao::getUserAlertCodes($this->getId());
+        return $codes;
     }
 
 // ==================================================================== override

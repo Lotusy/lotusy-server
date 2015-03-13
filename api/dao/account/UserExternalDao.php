@@ -64,6 +64,15 @@ class UserExternalDao extends UserExternalDaoGenerated {
         return $res;
     }
 
+    public static function getUserExternalLinks($userId) {
+        $builder = new QueryMaster();
+        $res = $builder->select('*', self::$table)
+                       ->where('user_id', $userId)
+                       ->findList();
+
+        return self::makeObjectsFromSelectListResult($res, 'UserExternalDao');
+    }
+
 // ======================================================================================== override
 
     protected function beforeInsert() {
