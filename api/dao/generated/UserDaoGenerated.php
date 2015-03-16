@@ -6,6 +6,7 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
     protected function init() {
         $this->var['id'] = 0;
         $this->var['email'] = null;
+        $this->var['phone'] = null;
         $this->var['password'] = null;
         $this->var['username'] = null;
         $this->var['nickname'] = null;
@@ -18,6 +19,7 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
 
         $this->update['id'] = false;
         $this->update['email'] = false;
+        $this->update['phone'] = false;
         $this->update['password'] = false;
         $this->update['username'] = false;
         $this->update['nickname'] = false;
@@ -41,6 +43,16 @@ abstract class UserDaoGenerated extends LotusyDaoParent {
     }
     public function getEmail() {
         return $this->var['email'];
+    }
+
+    public function setPhone($phone) {
+        if ($this->var['phone'] !== $phone) {
+            $this->var['phone'] = $phone;
+            $this->update['phone'] = true;
+        }
+    }
+    public function getPhone() {
+        return $this->var['phone'];
     }
 
     public function setPassword($password) {
