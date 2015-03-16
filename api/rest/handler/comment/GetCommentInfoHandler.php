@@ -12,10 +12,6 @@ class GetCommentInfoHandler extends AuthorizedRequestHandler {
 
             $response['user_nickname'] = $user->getNickname();
 
-            $count = ReplyDao::getReplyCountByCommentId($params['commentid']);
-
-            $response['reply_count'] = (int)$count;
-
             $now = strtotime('now');
             $last = strtotime($response['create_time']);
             $response['create_time'] = $now - $last;

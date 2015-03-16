@@ -36,9 +36,6 @@ class GetLocationBusinessHandler extends AuthorizedRequestHandler {
             $count = CommentDao::getCommentCountByBusinessId($id['id']);
             $businessArr['comment_count'] = (int)$count;
 
-            $rating = BusinessRatingDao::getBusinessRating($id['id']);
-            $businessArr['rating'] = $rating;
-
             array_push($response['businesses'], $businessArr);
         }
 

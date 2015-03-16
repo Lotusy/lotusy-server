@@ -43,12 +43,10 @@ class GetDishCommentHandler extends AuthorizedRequestHandler {
 
             $userDao = $userDaos[$comment->getUserId()];
             $commentArr['user_nickname'] = $userDao->getNickname();
-            $count = ReplyDao::getReplyCountByCommentId($comment->getId());
 
             $last = strtotime($commentArr['create_time']);
             $commentArr['create_time'] = $now - $last;
 
-            $commentArr['reply_count'] = (int)$count;
             array_push($response['comments'], $commentArr);
         }
 

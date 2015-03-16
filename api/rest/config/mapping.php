@@ -62,10 +62,6 @@ register('POST', '/business/quick',                           new CreateQuickBus
 register('GET',  '/business/:businessid/profile',             new GetBusinessProfileHandler());
 register('GET',  '/business/location',                        new GetLocationBusinessHandler());
 register('GET',  '/business/search/name',                     new SearchBusinessByNameHandler()); // NOT IMPLEMENTED
-register('GET',  '/business/:businessid/rating',              new GetBusinessRatingHandler());
-register('POST', '/business/:businessid/rate',                new PostBusinessRatingHandler());
-register('GET',  '/business/:businessid/rating/count',        new GetBusinessRatingCountHandler());
-register('GET',  '/business/:businessid/user/:userid/rating', new GetBusinessUserRatingHandler());
 
 
 // dish end points
@@ -100,8 +96,6 @@ register('GET',    '/comment/:commentid',                        new GetCommentI
 register('DELETE', '/comment/:commentid',                        new DeleteCommentHandler());
 register('PUT',    '/comment/:commentid/like',                   new CommentLikeHandler());
 register('PUT',    '/comment/:commentid/dislike',                new CommentDislikeHandler());
-register('POST',   '/comment/:commentid/reply',                  new CreateReplyHandler());
-register('GET',    '/comment/:commentid/replies',                new GetCommentReplyHandler());
 
 
 // image end points
