@@ -10,7 +10,7 @@ class GetUserDishCollectionHandler extends AuthorizedRequestHandler {
 
         $language = $this->getLanguage();
 
-        $user = User::alloc()->init_with_id($params['userid']);
+        $user = User::alloc()->initWithId($params['userid']);
 
         $like = isset($json['like']) ? $like : null;
 

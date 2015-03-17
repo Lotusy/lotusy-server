@@ -3,7 +3,7 @@ class GetMeBuddyAddHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         $userId = $this->getUserId();
-        $user = User::alloc()->init_with_id($userId);
+        $user = User::alloc()->initWithId($userId);
 
         $followings = $user->getFollowingUsers(0, 15);
         $followingCount = $user->getFollowingCount();

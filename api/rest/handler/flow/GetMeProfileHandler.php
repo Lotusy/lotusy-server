@@ -7,7 +7,7 @@ class GetMeProfileHandler extends AuthorizedRequestHandler {
         $language = $this->getLanguage();
 
     	$userId = $this->getUserId();
-    	$user = User::alloc()->init_with_id($userId);
+    	$user = User::alloc()->initWithId($userId);
 
     	$name = $user->getNickname();
     	$image = $base_host.$base_url.'/image/user/'.$userId.'/profile/display';

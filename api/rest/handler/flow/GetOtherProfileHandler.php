@@ -8,8 +8,8 @@ class GetOtherProfileHandler extends AuthorizedRequestHandler {
         $meId = $this->getUserId();
         $userId = $params['userid'];
 
-        $user = User::alloc()->init_with_id($userId);
-        $me = User::alloc()->init_with_id($meId);
+        $user = User::alloc()->initWithId($userId);
+        $me = User::alloc()->initWithId($meId);
 
         $name = $user->getNickname();
         $image = $base_host.$base_url.'/image/user/'.$userId.'/profile/display';

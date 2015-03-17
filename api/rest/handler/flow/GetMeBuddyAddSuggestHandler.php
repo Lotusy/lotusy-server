@@ -3,7 +3,7 @@ class GetMeBuddyAddSuggestHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         $userId = $this->getUserId();
-        $user = User::alloc()->init_with_id($userId);
+        $user = User::alloc()->initWithId($userId);
 
         $followingSuggest = $user->getUsersWithSimilarFollowing(0, 5);
         $dishSuggest = $user->getUsersWithSimilarTaste(0, 5, true);

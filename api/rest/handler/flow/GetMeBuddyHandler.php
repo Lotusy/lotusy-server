@@ -3,7 +3,7 @@ class GetMeBuddyHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         $userId = $this->getUserId();
-        $user = User::alloc()->init_with_id($userId);
+        $user = User::alloc()->initWithId($userId);
 
         $userRankArr = $user->getUserRankAmoungFollowingArray(2);
         $similarUsers = $user->getUsersWithSimilarTaste(0, 5, false);

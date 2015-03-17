@@ -35,11 +35,15 @@ class Comment extends Model {
 // ==================================================================== override
 
     public function init() {
-        $this->dao = new CommentDao();    
+        $this->dao = new CommentDao();
+
+        return $this;
     }
 
-    public function init_with_id($id) {
-        $this->dao = new CommentDao($id);    
+    public function initWithId($id) {
+        $this->dao = new CommentDao($id);
+
+        return $this;
     }
 }
 ?>

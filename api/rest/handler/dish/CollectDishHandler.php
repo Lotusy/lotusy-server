@@ -20,7 +20,7 @@ class CollectDishHandler extends AuthorizedRequestHandler {
         if ($dishActivity->save()) {
             DishActivityDao::deleteUserDishHitlist($this->getUserId(), $params['dishid']);
 
-            $user = User::alloc()->init_with_id($params['userid']);
+            $user = User::alloc()->initWithId($params['userid']);
             $res = $user->adjustRank();
 
             $response = array();

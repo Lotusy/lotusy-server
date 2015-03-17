@@ -5,17 +5,17 @@ class User extends Model {
     const ACTIVITY_TYPE_USER = 2;
 
     private static $RANKS = array(
-        array(0, 0) => UserDao::RANK_00,
-        array(1, 9) => UserDao::RANK_01,
-    	array(10, 49) => UserDao::RANK_02,
-    	array(50, 149) => UserDao::RANK_03,
-    	array(150, 299) => UserDao::RANK_04,
-    	array(300, 499) => UserDao::RANK_05,
-    	array(500, 999) => UserDao::RANK_06,
-    	array(1000, 1499) => UserDao::RANK_07,
-    	array(1500, 2499) => UserDao::RANK_08,
-    	array(2500, 4999) => UserDao::RANK_09,
-    	array(5000, 9999) => UserDao::RANK_10
+        UserDao::RANK_00 => array(0, 1),
+        UserDao::RANK_01 => array(1, 9),
+    	UserDao::RANK_02 => array(10, 49),
+    	UserDao::RANK_03 => array(50, 149),
+    	UserDao::RANK_04 => array(150, 299),
+    	UserDao::RANK_05 => array(300, 499),
+    	UserDao::RANK_06 => array(500, 999),
+    	UserDao::RANK_07 => array(1000, 1499),
+    	UserDao::RANK_08 => array(1500, 2499),
+    	UserDao::RANK_09 => array(2500, 4999),
+    	UserDao::RANK_10 => array(5000, 9999)
     );
 
 
@@ -296,7 +296,7 @@ class User extends Model {
 
 
     private function lookupRank($count) {
-        foreach (self::$RANKS as $lookup=>$rank) {
+        foreach (self::$RANKS as $rank=>$lookup) {
             if ($count>=$lookup[0] && $count<=$lookup[1]) {
                 return $rank;
             }
@@ -318,11 +318,6 @@ class User extends Model {
     public function updateLastLogin() {
         $this->dao->setLastLogin(date('Y-m-d H:i:s'));
         $this->dao->save();
-    }
-
-    public function getCollectedDishCount() {
-        $count = DishActivityDao::getUserCollectedDishCount($this->getId());
-        return $count;
     }
 
     public function isFollowing($user) {
@@ -380,17 +375,21 @@ class User extends Model {
         $this->dao = new UserDao();    
     }
 
-    public function init_with_id($id) {
-        $this->dao = new UserDao($id);    
+    public function initWithId($id) {
+        $this->dao = new UserDao($id);
+
+        return $this;
     }
 
-    public function init_with_external($type, $reference) {
+    public function initWithExternal($type, $reference) {
         $userId = UserExternalDao::getUserIdByExternalTypeAndReference($type, $reference);
         if ($userId>0) {
             $this->dao = new UserDao($userId);  
         } else {
             $this->dao = new UserDao();
         }
+
+        return $this;
     }
 }
 ?>

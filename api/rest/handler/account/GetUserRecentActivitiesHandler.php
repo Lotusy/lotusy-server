@@ -15,7 +15,7 @@ class GetUserRecentActivitiesHandler extends AuthorizedRequestHandler {
         $size = $_GET['size'];
         $language = $json['language'];
 
-        $user = User::alloc()->init_with_id($userId);
+        $user = User::alloc()->initWithId($userId);
 
         $list = $user->getUserRecentActivitiesArray($start, $size, $language);
 

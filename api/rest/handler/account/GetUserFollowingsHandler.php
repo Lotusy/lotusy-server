@@ -10,7 +10,7 @@ class GetUserFollowingsHandler extends AuthorizedRequestHandler {
             return $validator->getMessage();
         }
 
-        $user = User::alloc()->init_with_id($params['userid']);
+        $user = User::alloc()->initWithId($params['userid']);
         $followings = $user->getFollowingUsers($json['start'], $json['size']);
 
         $response = array();

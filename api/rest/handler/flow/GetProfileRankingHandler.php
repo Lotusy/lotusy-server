@@ -8,8 +8,8 @@ class GetProfileRankingHandler extends AuthorizedRequestHandler {
         $meId = $this->getUserId();
         $userId = $params['userid'];
 
-        $me = User::alloc()->init_with_id($meId);
-        $user = User::alloc()->init_with_id($userId);
+        $me = User::alloc()->initWithId($meId);
+        $user = User::alloc()->initWithId($userId);
 
         $response = array('status'=>'success');
 

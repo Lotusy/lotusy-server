@@ -107,11 +107,15 @@ class Dish extends Model {
 // ==================================================================== override
 
     public function init() {
-        $this->dao = new DishDao();    
+        $this->dao = new DishDao();
+
+        return $this; 
     }
 
-    public function init_with_id($id) {
-        $this->dao = new DishDao($id);    
+    public function initWithId($id) {
+        $this->dao = new DishDao($id);
+
+        return $this;  
     }
 }
 ?>

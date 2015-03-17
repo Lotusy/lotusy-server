@@ -18,11 +18,15 @@ class Business extends Model {
 // ==================================================================== override
 
     public function init() {
-        $this->dao = new BusinessDao();    
+        $this->dao = new BusinessDao();
+
+        return $this;
     }
 
-    public function init_with_id($id) {
-        $this->dao = new BusinessDao($id);    
+    public function initWithId($id) {
+        $this->dao = new BusinessDao($id);
+
+        return $this;
     }
 }
 ?>

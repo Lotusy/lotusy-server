@@ -8,11 +8,15 @@ class Signature extends Model {
 // ==================================================================== override
 
     public function init() {
-        $this->dao = new SignatureImageDao();    
+        $this->dao = new SignatureImageDao();
+
+        return $this;
     }
 
-    public function init_with_id($id) {
-        $this->dao = new SignatureImageDao($id);    
+    public function initWithId($id) {
+        $this->dao = new SignatureImageDao($id);   
+
+        return $this; 
     }
 }
 ?>

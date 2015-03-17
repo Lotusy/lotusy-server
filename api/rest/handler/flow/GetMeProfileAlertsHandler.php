@@ -5,7 +5,7 @@ class GetMeProfileAlertsHandler extends AuthorizedRequestHandler {
         $language = $this->getLanguage();
         $userId = $this->getUserId();
 
-        $user = User::alloc()->init_with_id($userId);
+        $user = User::alloc()->initWithId($userId);
 
         $userCodes = $user->getActiveAlertCodes();
         $allCodes = ItermDao::getTypeLanguageCodeDescriptionMap(ItermDao::TYPE_ALERT, $language);

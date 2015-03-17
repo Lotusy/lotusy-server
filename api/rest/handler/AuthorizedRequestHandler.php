@@ -14,9 +14,9 @@ abstract class AuthorizedRequestHandler implements RequestHandler {
             $response['status'] = 'error';
             $response['description'] = 'unauthorized_request';
         } else {
-            $response = $this->handle($params);
             $headers = apache_request_headers();
             $this->language = $headers['language'];
+            $response = $this->handle($params);
         }
 
         if (!empty($response)) {
@@ -26,11 +26,11 @@ abstract class AuthorizedRequestHandler implements RequestHandler {
         return $response;
     }
 
-    protected function getUserId() {
+    protected function getLanguage() {
         return $this->language;
     }
 
-    protected function getLanguage() {
+    protected function getUserId() {
         return $this->userId;
     }
 
