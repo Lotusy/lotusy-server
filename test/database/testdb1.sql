@@ -1,17 +1,17 @@
 -- user table
 INSERT INTO foodster.user 
-(external_type,external_ref,email,phone,password,username,nickname,gender,rank,profile_pic,description,last_login,superuser,blocked)
+(email,phone,password,username,nickname,gender,rank,description,last_login,superuser,blocked)
 VALUES 
-('1','1537102412',NULL,NULL,NULL,'TestUser0','testuser0',NULL,'http://www.facebook.com/2075018','',NULL,'N','N',NULL),
-('2','1537112412',NULL,NULL,NULL,'TestUser1','testuser1',NULL,'http://www.facebook.com/2071235018','',NULL,'N','N',NULL),
-('1','1537122412',NULL,NULL,NULL,'TestUser2','testuser2',NULL,'http://www.facebook.com/2075141518','',NULL,'N','N',NULL),
-('2','1537132412',NULL,NULL,NULL,'TestUser3','testuser3',NULL,'http://www.facebook.com/2073246235018','',NULL,'N','N',NULL),
-('1','1537142412',NULL,NULL,NULL,'TestUser4','testuser4',NULL,'http://www.facebook.com/20724565018','',NULL,'N','N',NULL),
-('2','1537152412',NULL,NULL,NULL,'TestUser5','testuser5',NULL,'http://www.facebook.com/207724575018','',NULL,'N','N',NULL),
-('1','1537162412',NULL,NULL,NULL,'TestUser6','testuser6',NULL,'http://www.facebook.com/2075234018','',NULL,'N','N',NULL),
-('2','1537172412',NULL,NULL,NULL,'TestUser7','testuser7',NULL,'http://www.facebook.com/207234625018','',NULL,'N','N',NULL),
-('1','1537182412',NULL,NULL,NULL,'TestUser8','testuser8',NULL,'http://www.facebook.com/207234565018','',NULL,'N','N',NULL),
-('2','1537192412',NULL,NULL,NULL,'TestUser9','testuser9',NULL,'http://www.facebook.com/2072365018','',NULL,'N','N',NULL);
+(NULL,NULL,NULL,'TestUser0','testuser0',NULL,'',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser1','testuser1',NULL,'',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser2','testuser2',NULL,'',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser3','testuser3',NULL,'',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser4','testuser4',NULL,'',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser5','testuser5',NULL,'',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser6','testuser6',NULL,'',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser7','testuser7',NULL,'',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser8','testuser8',NULL,'',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser9','testuser9',NULL,'',NULL,'N','N',NULL);
 
 INSERT INTO foodster.business
 (external_id,external_type,user_id,name_zh,name_tw,name_en,category,image,street,city,state,country,zip,lat,lng,price,hours,cash_only,verified,tel,website,social)
@@ -113,6 +113,17 @@ VALUES
 (1,1,83,3,4,5),(2,1,83,3,4,5),(3,1,83,3,4,5),(4,1,83,3,4,5),(5,1,83,3,4,5),(6,1,83,3,4,5),(7,1,83,3,4,5),(8,1,83,3,4,5),(9,1,83,3,4,5),(10,1,83,3,4,5),
 (1,2,54,2,1,5),(1,3,74,3,2,5),(1,4,93,1,3,5),(1,5,76,4,2,5),(1,6,90,2,4,5),(1,7,98,3,2,5),(1,8,27,2,3,5),(1,9,47,4,3,5),(1,10,90,1,4,5);
 
+INSERT INTO foodster.dish_user_keyword
+(user_id,dish_id,keyword_code)
+VALUES
+(1,1,2001),(1,1,2002),(1,1,2003),(1,1,2005),(1,1,2008),(1,1,2012),
+(1,2,2001),(1,2,2002),(1,2,2003),(1,2,2005),(1,2,2008),(1,2,2012),
+(1,3,2001),(1,3,2002),(1,3,2003),(1,3,2005),(1,3,2008),(1,3,2012),
+(1,4,2001),(1,4,2002),(1,4,2003),(1,4,2005),(1,4,2008),(1,4,2012),
+(2,1,2011),(2,1,2012),(2,1,2013),(2,1,2005),(2,1,2008),(2,1,2022),
+(3,1,2001),(3,1,2002),(3,1,2003),(3,1,2015),(3,1,2008),(3,1,2022),
+(4,1,2001),(4,1,2022),(4,1,2003),(4,1,2005),(4,1,2002),
+(5,1,2021),(5,1,2002),(5,1,2003),(5,1,2015),(5,1,2008),(5,1,2012);
 
 
 

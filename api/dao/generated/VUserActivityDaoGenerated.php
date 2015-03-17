@@ -1,24 +1,21 @@
 <?php
-abstract class UserActivityDaoGenerated extends LotusyDaoParent {
+abstract class VUserActivityDaoGenerated extends LotusyDaoParent {
 
-    protected static $table = 'user_activity';
+    protected static $table = 'v_user_activity';
 
     protected function init() {
         $this->var['id'] = 0;
         $this->var['user_id'] = null;
+        $this->var['other_id'] = null;
         $this->var['type'] = null;
         $this->var['data'] = null;
         $this->var['create_time'] = null;
 
-        $this->update['id'] = false;
         $this->update['user_id'] = false;
+        $this->update['other_id'] = false;
         $this->update['type'] = false;
         $this->update['data'] = false;
         $this->update['create_time'] = false;
-    }
-
-    public function getId() {
-        return $this->var['id'];
     }
 
     public function setUserId($user_id) {
@@ -29,6 +26,16 @@ abstract class UserActivityDaoGenerated extends LotusyDaoParent {
     }
     public function getUserId() {
         return $this->var['user_id'];
+    }
+
+    public function setOtherId($other_id) {
+        if ($this->var['other_id'] !== $other_id) {
+            $this->var['other_id'] = $other_id;
+            $this->update['other_id'] = true;
+        }
+    }
+    public function getOtherId() {
+        return $this->var['other_id'];
     }
 
     public function setType($type) {
@@ -66,6 +73,6 @@ abstract class UserActivityDaoGenerated extends LotusyDaoParent {
     }
 
     protected function getIdColumnName() {
-        return 'id';
+        return '';
     }
 }

@@ -20,32 +20,30 @@ class User extends Model {
 
 
     public function getUserRecentActivitiesArray($start, $size, $language) {
-        $activities = UserActivityDao::getUserActivities($this->getId(), $start, $end);
+        $activities = VUserActivityDao::getUserActivities($this->getId(), $start, $end);
 
         global $base_host, $base_url;
         $rv = array();
         $now = strtotime('now');
         foreach ($activities as $activity) {
             $type = $activity->getType();
-            $data = json_decode($activity->getData(), true);
+            $otherId = $activity->getOtherId();
             $time = strtotime($activity->getCreateTime());
 
-            if ($type = UserActivityDao::TYPE_DISH_COLLECT) {
-                $dishId = $data['dish_id'];
-                $like = $data['like'];
-                $dishDao = new DishDao($dishId);
+            if ($type = VUserActivityDao::TYPE_DISH_COLLECT) {
+                $like = $activity->getData();
+                $dishDao = new DishDao($otherId);
                 $businessDao = new BusinessDao($dishDao->getBusinessId());
                 $rv[$now-$time] = array('type'=>USER::ACTIVITY_TYPE_DISH, 
                                         'like'=>$like, 
                                         'dish'=>$dishDao->getName($language), 
                                         'business'=>$businessDao->getName($language), 
-                                        'image'=>$base_host.$base_url.'/image/dish/'.$dishId.'/profile/display');
+                                        'image'=>$base_host.$base_url.'/image/dish/'.$otherId.'/profile/display');
             } else {
-                $userId = $data['user_id'];
-                $userDao = new UserDao($userId);
+                $userDao = new UserDao($otherId);
                 $rv[$now-$time] = array('type'=>USER::ACTIVITY_TYPE_USER,
                                         'name'=>$userDao->getNickname(), 
-                                        'image'=>$base_host.$base_url.'/image/user/'.$userId.'/profile/display',
+                                        'image'=>$base_host.$base_url.'/image/user/'.$otherId.'/profile/display',
                                         'rank'=>$userDao->getRank());
             }
         }
