@@ -4,7 +4,7 @@ CREATE TABLE foodster.iterm
     code INT(10) UNSIGNED NOT NULL,
     type VARCHAR(11) NOT NULL,
     language VARCHAR(3) NOT NULL,
-    description VARCHAR(128) NOT NULL,
+    description VARCHAR(256) NOT NULL,
     active VARCHAR(2),
     modyfied_by INT(10) UNSIGNED,
     ctime DATETIME NOT NULL,
@@ -145,7 +145,14 @@ VALUES
 INSERT INTO 
 foodster.iterm (code, type, language, description, active, modyfied_by, ctime, mtime)
 VALUES 
-(4001, 'USERALERT', 'en', 'When people follows you.', 'Y', 1, NOW(), NOW());
+(4001, 'USERALERT', 'en', 'I am close to an item on my hitlist', 'Y', 1, NOW(), NOW()),
+(4002, 'USERALERT', 'en', 'Someone upvoted my comment', 'Y', 1, NOW(), NOW()),
+(4003, 'USERALERT', 'en', 'Someone buddies me', 'Y', 1, NOW(), NOW()),
+(4004, 'USERALERT', 'en', 'A buddy tried more foods than me', 'Y', 1, NOW(), NOW()),
+(4005, 'USERALERT', 'en', 'A buddy ranks up', 'Y', 1, NOW(), NOW()),
+(4006, 'USERALERT', 'en', 'A buddy tries an item', 'Y', 1, NOW(), NOW()),
+(4007, 'USERALERT', 'en', 'A buddy comments on an item', 'Y', 1, NOW(), NOW()),
+(4008, 'USERALERT', 'en', 'A buddy adds an item to their hitlist', 'Y', 1, NOW(), NOW());
 
 
 INSERT INTO 

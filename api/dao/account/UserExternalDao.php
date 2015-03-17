@@ -3,12 +3,14 @@ class UserExternalDao extends UserExternalDaoGenerated {
 
     public static $TYPEARRAY = array(
         'facebook' => 1,
-        'weibo' => 2
+        'twitter' => 2,
+        'weibo' => 3
     );
 
     public static $TYPEARRAYREV = array(
         1 => 'facebook',
-        2 => 'weibo'
+        2 => 'twitter',
+        3 => 'weibo'
     );
 
 // ========================================================================================== public

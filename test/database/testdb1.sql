@@ -113,6 +113,12 @@ VALUES
 (1,1,83,3,4,5),(2,1,83,3,4,5),(3,1,83,3,4,5),(4,1,83,3,4,5),(5,1,83,3,4,5),(6,1,83,3,4,5),(7,1,83,3,4,5),(8,1,83,3,4,5),(9,1,83,3,4,5),(10,1,83,3,4,5),
 (1,2,54,2,1,5),(1,3,74,3,2,5),(1,4,93,1,3,5),(1,5,76,4,2,5),(1,6,90,2,4,5),(1,7,98,3,2,5),(1,8,27,2,3,5),(1,9,47,4,3,5),(1,10,90,1,4,5);
 
+INSERT INTO foodster.dish_user_image
+(user_id,dish_id,image_id)
+VALUES
+(1,1,5),(2,1,6),(3,1,5),(4,1,5),(5,1,5),(6,1,5),(7,1,5),(8,1,5),(9,1,5),(10,1,5),
+(1,2,15),(1,3,21),(1,4,22),(1,5,23),(1,6,24),(1,7,25),(1,8,26),(1,9,27),(1,10,28);
+
 INSERT INTO foodster.dish_user_keyword
 (user_id,dish_id,keyword_code)
 VALUES
@@ -125,7 +131,69 @@ VALUES
 (4,1,2001),(4,1,2022),(4,1,2003),(4,1,2005),(4,1,2002),
 (5,1,2021),(5,1,2002),(5,1,2003),(5,1,2015),(5,1,2008),(5,1,2012);
 
+INSERT INTO foodster.user_alert
+(keyword_code,user_id)
+VALUES
+(4001,1),(4002,1),(4003,1),(4005,1),(4007,1),
+(4001,2),(4002,2),(4003,2),(4005,2),(4007,2),
+(4001,3),(4002,3),(4003,3),(4005,3),(4007,3);
 
+INSERT INTO foodster.user_external
+(type,reference,user_id,profile_pic,username,create_time)
+VALUES
+(1,'123123123',1,'http://www.facebook.com/graph/1231123','Test FB User 1',NOW()),
+(1,'234234234',2,'http://www.twitter.com/graph/1231123','Test TW User 1',NOW()),
+(1,'345345345',3,'http://www.weibo.com/graph/1231123','Test WB User 1',NOW());
 
+INSERT INTO foodster.image_business
+(business_id,name,`path`,create_time)
+VALUES
+(1,'business_1_profile.png','/tmp/',NOW()),
+(2,'business_2_profile.png','/tmp/',NOW()),
+(3,'business_3_profile.png','/tmp/',NOW()),
+(4,'business_4_profile.png','/tmp/',NOW()),
+(5,'business_5_profile.png','/tmp/',NOW()),
+(6,'business_6_profile.png','/tmp/',NOW()),
+(7,'business_7_profile.png','/tmp/',NOW());
 
+INSERT INTO foodster.image_dish
+(dish_id,user_id,name,`path`,is_default,is_deleted,create_time)
+VALUES
+(1,1,'u1_d1_111.png','/tmp/','N','Y',NOW()),
+(1,1,'u1_d1_112.png','/tmp/','N','Y',NOW()),
+(1,1,'u1_d1_113.png','/tmp/','N','N',NOW()),
+(1,2,'u2_d1_111.png','/tmp/','N','N',NOW()),
+(1,3,'u3_d1_111.png','/tmp/','Y','N',NOW()),
+(1,4,'u4_d1_111.png','/tmp/','N','N',NOW()),
+(1,5,'u5_d1_111.png','/tmp/','N','N',NOW()),
+(1,6,'u6_d1_111.png','/tmp/','N','N',NOW()),
+(1,7,'u7_d1_111.png','/tmp/','N','N',NOW()),
+(1,8,'u8_d1_111.png','/tmp/','N','N',NOW()),
+(1,9,'u9_d1_111.png','/tmp/','N','N',NOW()),
+(2,1,'u1_d2_113.png','/tmp/','N','N',NOW()),
+(2,2,'u2_d2_111.png','/tmp/','N','N',NOW()),
+(2,3,'u3_d2_111.png','/tmp/','Y','N',NOW()),
+(2,4,'u4_d2_111.png','/tmp/','N','N',NOW()),
+(2,5,'u5_d2_111.png','/tmp/','N','N',NOW()),
+(2,6,'u6_d2_111.png','/tmp/','N','N',NOW()),
+(2,7,'u7_d2_111.png','/tmp/','N','N',NOW()),
+(2,8,'u8_d2_111.png','/tmp/','N','N',NOW()),
+(2,9,'u9_d2_111.png','/tmp/','N','N',NOW()),
+(3,1,'u1_d3_113.png','/tmp/','Y','N',NOW()),
+(4,1,'u1_d4_113.png','/tmp/','Y','N',NOW()),
+(5,1,'u1_d5_113.png','/tmp/','Y','N',NOW()),
+(6,1,'u1_d6_113.png','/tmp/','Y','N',NOW()),
+(7,1,'u1_d7_113.png','/tmp/','Y','Y',NOW()),
+(8,1,'u1_d8_113.png','/tmp/','Y','N',NOW()),
+(9,1,'u1_d9_113.png','/tmp/','Y','N',NOW());
+
+INSERT INTO foodster.image_user
+(user_id,name,`path`,is_deleted,create_time)
+VALUES
+(1,'u1_profile_1.png','/tmp/','Y',NOW()),
+(1,'u1_profile_2.png','/tmp/','N',NOW()),
+(2,'u2_profile.png','/tmp/','N',NOW()),
+(3,'u3_profile.png','/tmp/','N',NOW()),
+(4,'u4_profile.png','/tmp/','N',NOW()),
+(5,'u5_profile.png','/tmp/','N',NOW());
 
