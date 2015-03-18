@@ -25,7 +25,7 @@ class GetDishPreferenceDetailHandler extends AuthorizedRequestHandler {
             $element = array();
             $element['user_id'] = $dishResponse->getUserId();
             $element['user_pic_url'] = $base_image_host.'/display/user/'.$dishResponse->getUserId();
-            $element['is_like'] = $dishResponse->getIsLike()=='Y';
+            $element['like'] = $dishResponse->getIsLike()=='Y';
             $element['is_buddy'] = false;
             $elements[] = $element;
 

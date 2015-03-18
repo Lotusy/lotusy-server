@@ -14,8 +14,9 @@ class Comment extends Model {
         global $base_host, $base_uri;
         $now = strtotime('now');
         $userDaos = UserDao::getRange($userIds, true);
+        $skip = array('id','business_id','dish_id','lat','lng','is_deleted','like_count','dislike_count');
         foreach ($commentDaos as $commentDao) {
-            $commentArr = $commentDao->toArray();
+            $commentArr = $commentDao->toArray($skip);
             $commentArr['profile_pic'] = $base_host.$base_uri.'/image/user/'.$commentDao->getUserId().'/profile/display';
             $preference = DishUserLikeDao::getUserResponseOnDish($commentDao->getUserId(), $dishId);
             if (isset($preference)) {

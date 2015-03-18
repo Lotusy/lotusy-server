@@ -51,7 +51,7 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
                        ->findList();
         $ids = array();
         foreach ($res as $row) {
-            $ids[] = $rwo['user_id'];
+            $ids[] = $row['user_id'];
         }
 
         return $ids;

@@ -23,7 +23,10 @@ class GetDishInfoGraphFlowHandler extends AuthorizedRequestHandler {
         $response['popularity'] = $dish->getPopularityArray($userId, $followingIds);
 
         // get infograph
-        $response['infograph'] = $dish->getInfoGraphArray();
+        $response['infograph'] = array(
+                'all' => $dish->getInfoGraphArray(),
+                'me' => $dish->getUserInfoGraphArray($userId)
+        );
 
         // get keywords
         $response['keywords'] = $dish->getUserKeywordArray($userId, $language);

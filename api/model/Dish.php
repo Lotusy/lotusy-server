@@ -53,6 +53,15 @@ class Dish extends Model {
         return $rv;
     }
 
+    public function getUserInfoGraphArray($userId) {
+        $rv = array();
+        $infograph = DishInfographDao::getUserDishInfograph($this->getId(), $userId);
+        foreach ($infograph as $key=>$value) {
+            $rv[$key] = round($value);
+        }
+        return $rv;
+    }
+
     public function getUserKeywordArray($userId, $language='en') {
         $rv = array();
 
@@ -67,7 +76,7 @@ class Dish extends Model {
             if (isset($total[$code])) {
                 $keyword['count'] = $total[$code];
             } else {
-                $keyword['count'] = 0;
+                continue;
             }
             $keyword['self'] = in_array($code, $codes);
             $rv[] = $keyword;
