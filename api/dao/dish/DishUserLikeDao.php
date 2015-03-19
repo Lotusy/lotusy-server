@@ -79,7 +79,7 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
     public static function getUserDishCount($userId) {
         $builder = new QueryMaster();
         $res = $builder->select('COUNT(*) as count', self::$table)
-                       ->where('$userId', $userId)
+                       ->where('user_id', $userId)
                        ->find();
 
         return $res['count'];
@@ -88,7 +88,7 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
     public static function getUserLikedDishCount($userId, $like=true) {
         $builder = new QueryMaster();
         $res = $builder->select('COUNT(*) as count', self::$table)
-                       ->where('$userId', $userId)
+                       ->where('user_id', $userId)
                        ->where('is_like', $like ? 'Y' : 'N')
                        ->find();
 

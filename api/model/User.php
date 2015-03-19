@@ -201,6 +201,7 @@ class User extends Model {
 
     public function getUserCuisinePieArray() {
     	$dishCount = DishActivityDao::getUserBusinessDishCount($this->getId());
+    	$businessIds = array_keys($dishCount);
     	$cuisineArr = BusinessDao::getBusinessCuisineInRange($businessIds);
 
     	$cuisines = array();
