@@ -103,13 +103,14 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
 
         $builder = new QueryMaster();
         $query = "SELECT user_id, COUNT(*) as count FROM ".self::$table.
-                 " WHERE dish_id IN (SELECT dish_id FROM ".self::$table.
-                     " WHERE user_id=$userId) AND is_like='Y'".$additional." GROUP BY user_id LIMIT $start, $size";
+                 " WHERE dish_id IN (SELECT dish_id FROM ".self::$table." WHERE user_id=$userId)".
+                    " AND is_like='Y' AND user_id<>$userId".$additional.
+                    " GROUP BY user_id LIMIT $start, $size";
         $res = $builder->adhocQuery($query)->findList();
 
         $counts = array();
         foreach ($res as $row) {
-            $counts[$row['user_id']] = $count;
+            $counts[$row['user_id']] = $row['count'];
         }
 
         return $counts;
@@ -123,13 +124,14 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
 
         $builder = new QueryMaster();
         $query = "SELECT user_id, COUNT(*) as count FROM ".self::$table.
-                 " WHERE dish_id IN (SELECT dish_id FROM ".self::$table.
-                     " WHERE user_id=$userId) AND is_like='N'".$additional." GROUP BY user_id LIMIT $start, $size";
+                 " WHERE dish_id IN (SELECT dish_id FROM ".self::$table." WHERE user_id=$userId)".
+                    " AND is_like='N' AND user_id<>$userId".$additional.
+                    " GROUP BY user_id LIMIT $start, $size";
         $res = $builder->adhocQuery($query)->findList();
 
         $counts = array();
         foreach ($res as $row) {
-            $counts[$row['user_id']] = $count;
+            $counts[$row['user_id']] = $row['count'];
         }
 
         return $counts;

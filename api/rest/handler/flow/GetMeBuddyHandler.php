@@ -17,8 +17,8 @@ class GetMeBuddyHandler extends AuthorizedRequestHandler {
         $response = array('status'=>'success');
         $response['rank'] = $userRankArr;
         $response['similar'] = $similarUsers;
-        $response['follwer'] = array('list'=>$followers, 'count'=>$followerCount);
-        $response['following'] = array('list'=>$followings, 'count'=>$followingCount);
+        $response['follwer'] = array('total'=>$followerCount, 'list'=>$followers);
+        $response['following'] = array('total'=>$followingCount, 'list'=>$followings);
 
         return $response;
     }

@@ -190,7 +190,7 @@ class DishActivityDao extends DishActivityDaoGenerated {
                  " GROUP BY user_id HAVING count>$count";
         $res = $builder->adhocQuery($query)->findList();
 
-        return count($res);
+        return count($res)+1;
     }
 
     public static function getUserBusinessDishCount($userId) {

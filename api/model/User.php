@@ -101,9 +101,9 @@ class User extends Model {
 
 
     public function getUsersWithSimilarTaste($start, $size, $nonFollowing) {
-        $total = DishUserLikeDao::getUserDishCount($userId);
-
         $userId = $this->getId();
+
+        $total = DishUserLikeDao::getUserDishCount($userId);
 
         $likeUsers = DishUserLikeDao::getSimilarLikeUsers($userId, $start, 2*$size, $nonFollowing);
         $dislikeUsers = DishUserLikeDao::getSimilarDislikeUsers($userId, $start, 2*$size, $nonFollowing);
@@ -116,7 +116,7 @@ class User extends Model {
                 $combined[$userId] = $count;
             }
         }
-        $combined = arsort($combined);
+        arsort($combined);
 
         $userDaos = UserDao::getRange(array_keys($combined), true);
 
@@ -129,11 +129,12 @@ class User extends Model {
             } else {
                 $isFollowing = false;
             }
-            $rv[$userId] = array('nickname'=>$userDao->getNickname(),
-                                 'image'=>$base_host.$base_url.'/image/user/'.$userId.'/profile/display',
-                                 'rank'=>$userDao->getRank(),
-                                 'likeratio' => round(100*$count/$total),
-                                 'following' => $isFollowing);
+            $rv[] = array('user_id' =>$userId,
+                          'nickname' =>$userDao->getNickname(),
+                          'image' =>$base_host.$base_url.'/image/user/'.$userId.'/profile/display',
+                          'rank' =>$userDao->getRank(),
+                          'likeratio' => round(100*$count/$total),
+                          'following' => $isFollowing);
         }
 
         return $rv;
@@ -142,7 +143,7 @@ class User extends Model {
 
     public function getUserRankAmoungFollowingArray($size) {
         $count = DishActivityDao::getUserCollectedDishCount($this->getId());
-        $rank = DishActivityDao::getUserCollectionCountRank($this->getId(), $count);
+        $position = DishActivityDao::getUserCollectionCountRank($this->getId(), $count);
         $more = DishActivityDao::getUsersCollectionCountCompareTo($this->getId(), $count, $size, true);
         $less = DishActivityDao::getUsersCollectionCountCompareTo($this->getId(), $count, $size, false);
 
@@ -151,7 +152,7 @@ class User extends Model {
         $rv = $rv+$less;
 
         global $base_host,$base_url;
-        $rv = arsort($rv);
+        arsort($rv);
         foreach ($rv as $userId=>$count) {
             $userDao = new UserDao($userId);
             $rv[$userId] = array('count'=>$count,
@@ -159,7 +160,7 @@ class User extends Model {
                                  'image'=>$base_host.$base_url.'/image/user/'.$userId.'/profile/display',
                                  'rank'=>$userDao->getRank());
             if ($userId==$this->getId()) {
-                $rv[$userId]['rank'] = $rank;
+                $rv[$userId]['position'] = $position;
             }
         }
 
@@ -175,10 +176,11 @@ class User extends Model {
         $rv = array();
         foreach ($userDaos as $userDao) {
             $isFollowing = FollowerDao::isFollower($userId, $this->getId());
-            $rv[$userDao->getId()] = array('nickname'=>$userDao->getNickname(),
-                                           'image'=>$base_host.$base_url.'/image/user/'.$userId.'/profile/display',
-                                           'following'=>$isFollowing,
-                                           'rank'=>$userDao->getRank());
+            $rv[] = array('user_id' => $userDao->getId(),
+                          'nickname' => $userDao->getNickname(),
+                          'image' => $base_host.$base_url.'/image/user/'.$userId.'/profile/display',
+                          'following' => $isFollowing,
+                          'rank' => $userDao->getRank());
         }
         return $rv;
     }
@@ -191,9 +193,10 @@ class User extends Model {
         global $base_host,$base_url;
         $rv = array();
         foreach ($userDaos as $userDao) {
-            $rv[$userDao->getId()] = array('nickname'=>$userDao->getNickname(),
-                                           'image'=>$base_host.$base_url.'/image/user/'.$userDao->getId().'/profile/display',
-                                           'rank'=>$userDao->getRank());
+            $rv[] = array('user_id' => $userDao->getId(),
+                          'nickname' => $userDao->getNickname(),
+                          'image' => $base_host.$base_url.'/image/user/'.$userDao->getId().'/profile/display',
+                          'rank' => $userDao->getRank());
         }
         return $rv;
     }
