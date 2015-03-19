@@ -35,10 +35,10 @@ class GetOtherProfileHandler extends AuthorizedRequestHandler {
             $commonHitlist = $me->getCommonHitlistDishes($user->getId(), 0, 4, $language);
             $commonHitlistCount = $me->getCommonHitlistCount($user->getId());
 
-            $commonLike = $me->getCommonCollectedDishes($userId, $start, $size, $language, true);
+            $commonLike = $me->getCommonCollectedDishes($userId, 0, 4, $language, true);
             $commonLikeCount = $me->getCommonDishFeelingCount($userId, true);
 
-            $commonDislike = $me->getCommonCollectedDishes($userId, $start, $size, $language, false);
+            $commonDislike = $me->getCommonCollectedDishes($userId, 0, 4, $language, false);
             $commonDislikeCount = $me->getCommonDishFeelingCount($userId, false);
         } else {
             $hitlist = $user->getHitlistDishes(0, 4, $language);

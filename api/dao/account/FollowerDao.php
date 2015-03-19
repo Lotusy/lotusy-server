@@ -121,7 +121,7 @@ class FollowerDao extends FollowerDaoGenerated {
     public static function getCommonFollowingIds($userId1, $userId2, $start, $size) {
         $builder = new QueryMaster();
         $res = $builder->select('user_id, COUNT(*) as count', self::$table)
-                       ->in('following_id', array($userId1, $userId2))
+                       ->in('follower_id', array($userId1, $userId2))
                        ->group('user_id')
                        ->having('count', 1, '>')
                        ->limit($start, $size)
@@ -136,7 +136,7 @@ class FollowerDao extends FollowerDaoGenerated {
     public static function getCommonFollowingCount($userId1, $userId2) {
         $builder = new QueryMaster();
         $res = $builder->select('user_id, COUNT(*) as count', self::$table)
-                       ->in('following_id', array($userId1, $userId2))
+                       ->in('follower_id', array($userId1, $userId2))
                        ->group('user_id')
                        ->having('count', 1, '>')
                        ->findList();

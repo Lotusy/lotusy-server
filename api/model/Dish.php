@@ -99,9 +99,10 @@ class Dish extends Model {
         $rv = array();
         foreach ($dishDaos as $dishDao) {
             $businessDao = $businessDaos[$dishDao->getBusinessId()];
-            $rv[$dishDao->getId()] = array('name'=>$dishDao->getName($language),
-                                           'business'=>$businessDao->getName($language),
-                                           'image'=>$base_host.$base_url.'/image/dish/'.$dishDao->getId().'/user/'.$this->getId().'/display');
+            $rv[] = array('dish_id' => $dishDao->getId(),
+                          'name' => $dishDao->getName($language),
+                          'business' => $businessDao->getName($language),
+                          'image' => $base_host.$base_url.'/image/dish/'.$dishDao->getId().'/user/'.$dishDao->getId().'/display');
         }
 
         return $rv;

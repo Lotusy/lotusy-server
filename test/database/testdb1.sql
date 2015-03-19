@@ -2,16 +2,16 @@
 INSERT INTO foodster.user 
 (email,phone,password,username,nickname,gender,rank,description,last_login,superuser,blocked)
 VALUES 
-(NULL,NULL,NULL,'TestUser0','testuser0',NULL,'',NULL,'N','N',NULL),
-(NULL,NULL,NULL,'TestUser1','testuser1',NULL,'',NULL,'N','N',NULL),
-(NULL,NULL,NULL,'TestUser2','testuser2',NULL,'',NULL,'N','N',NULL),
-(NULL,NULL,NULL,'TestUser3','testuser3',NULL,'',NULL,'N','N',NULL),
-(NULL,NULL,NULL,'TestUser4','testuser4',NULL,'',NULL,'N','N',NULL),
-(NULL,NULL,NULL,'TestUser5','testuser5',NULL,'',NULL,'N','N',NULL),
-(NULL,NULL,NULL,'TestUser6','testuser6',NULL,'',NULL,'N','N',NULL),
-(NULL,NULL,NULL,'TestUser7','testuser7',NULL,'',NULL,'N','N',NULL),
-(NULL,NULL,NULL,'TestUser8','testuser8',NULL,'',NULL,'N','N',NULL),
-(NULL,NULL,NULL,'TestUser9','testuser9',NULL,'',NULL,'N','N',NULL);
+(NULL,NULL,NULL,'TestUser0','testuser0',NULL,'5002',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser1','testuser1',NULL,'5001',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser2','testuser2',NULL,'5001',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser3','testuser3',NULL,'5001',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser4','testuser4',NULL,'5001',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser5','testuser5',NULL,'5001',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser6','testuser6',NULL,'5001',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser7','testuser7',NULL,'5001',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser8','testuser8',NULL,'5001',NULL,'N','N',NULL),
+(NULL,NULL,NULL,'TestUser9','testuser9',NULL,'5001',NULL,'N','N',NULL);
 
 INSERT INTO foodster.business
 (external_id,external_type,user_id,name_zh,name_tw,name_en,category,image,street,city,state,country,zip,lat,lng,price,hours,cash_only,verified,tel,website,social)
@@ -166,7 +166,12 @@ VALUES
 (7,1,1,0,'Y','2015-03-17 08:47:45'),
 (8,1,1,0,'Y','2015-03-17 08:48:45'),
 (9,1,1,0,'Y','2015-03-17 08:49:45'),
-(10,1,1,0,'Y','2015-03-17 08:50:45');
+(10,1,1,0,'Y','2015-03-17 08:50:45'),
+(2,11,10,1,'N','2015-03-17 08:51:45'),
+(2,2,2,0,'Y','2015-03-17 08:52:45'),
+(2,3,3,0,'Y','2015-03-17 08:53:45'),
+(2,2,2,1,'N','2015-03-17 08:54:45'),
+(2,3,3,1,'N','2015-03-17 08:55:45');
 
 INSERT INTO foodster.dish_user_like
 (user_id,dish_id,is_like,create_time)
@@ -189,7 +194,9 @@ VALUES
 (7,1,'Y','2015-03-17 08:47:45'),
 (8,1,'Y','2015-03-17 08:48:45'),
 (9,1,'N','2015-03-17 08:49:45'),
-(10,1,'Y','2015-03-17 08:50:45');
+(10,1,'Y','2015-03-17 08:51:45'),
+(2,2,'Y','2015-03-17 08:52:45'),
+(2,3,'N','2015-03-17 08:53:45');
 
 INSERT INTO foodster.dish_infograph
 (dish_id,user_id,item_value,portion_size,presentation,uniqueness)

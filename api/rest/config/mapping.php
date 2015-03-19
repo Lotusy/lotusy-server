@@ -15,7 +15,7 @@ register('GET', '/flow/user/:userid/activities', new GetFlowUserActivityHandler(
 register('GET', '/flow/me/profile',              new GetMeProfileHandler());
 register('GET', '/flow/me/buddy',                new GetMeBuddyHandler());
 register('GET', '/flow/me/buddy/add',            new GetMeBuddyAddHandler());
-register('GET', '/flow/me/buddy/add/network',    new GetMeBuddyAddNetworkHandler());
+register('GET', '/flow/me/buddy/add/network',    new GetMeBuddyAddNetworkHandler()); // NOT IMPLEMENTED
 register('GET', '/flow/me/buddy/add/suggest',    new GetMeBuddyAddSuggestHandler());
 // Flow-Profile-others
 register('GET', '/flow/user/:userid/profile/ranking', new GetProfileRankingHandler());

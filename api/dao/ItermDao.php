@@ -3,7 +3,7 @@ class ItermDao extends ItermDaoGenerated {
 
     const TYPE_CUISINE = 'CUISINE';
     const TYPE_KEYWORD = 'KEYWORD';
-    const TYPE_ALERT = 'ALERT';
+    const TYPE_ALERT = 'USERALERT';
     const TYPE_USERRANK = 'USERRANK';
     const TYPE_INFOGRAPH = 'INFOGRAPH';
 
@@ -59,7 +59,7 @@ class ItermDao extends ItermDaoGenerated {
         $ranks = ItermDao::getTypeLanguageCodeDescriptionMap(ItermDao::TYPE_USERRANK, $language);
 
         $rv = array();
-        foreach (self::$RANKS as $range=>$code) {
+        foreach (USER::$RANKS as $code=>$range) {
             $rv[$ranks[$code]] = $range[1];
         }
 

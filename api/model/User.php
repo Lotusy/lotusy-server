@@ -4,7 +4,7 @@ class User extends Model {
     const ACTIVITY_TYPE_DISH = 1;
     const ACTIVITY_TYPE_USER = 2;
 
-    private static $RANKS = array(
+    public static $RANKS = array(
         UserDao::RANK_00 => array(0, 1),
         UserDao::RANK_01 => array(1, 9),
     	UserDao::RANK_02 => array(10, 49),
@@ -227,10 +227,11 @@ class User extends Model {
         global $base_host,$base_url;
         $list = array();
         foreach ($userDaos as $userDao) {
-            $list[$userDao->getId()] = array('nickname'=>$userDao->getNickname(),
-                                             'image'=>$base_host.$base_url.'/image/user/'.$userDao->getId().'/profile/display',
-                                             'rank'=>$userDao->getRank(),
-                                             'count'=>$userMap[$userDao->getId()]);
+            $list[] = array('user_id' => $userDao->getId(),
+                            'nickname'=>$userDao->getNickname(),
+                            'image'=>$base_host.$base_url.'/image/user/'.$userDao->getId().'/profile/display',
+                            'rank'=>$userDao->getRank(),
+                            'count'=>$userMap[$userDao->getId()]);
         }
     }
 
@@ -242,9 +243,10 @@ class User extends Model {
         global $base_host,$base_url;
         $rv = array();
         foreach ($userDaos as $userDao) {
-            $rv[$userDao->getId()] = array('nickname'=>$userDao->getNickname(),
-                                           'image'=>$base_host.$base_url.'/image/user/'.$userDao->getId().'/profile/display',
-                                           'rank'=>$userDao->getRank());
+            $rv[] = array('user_id' => $userDao->getId(),
+                          'nickname' => $userDao->getNickname(),
+                          'image' => $base_host.$base_url.'/image/user/'.$userDao->getId().'/profile/display',
+                          'rank' => $userDao->getRank());
         }
 
         return $rv;
@@ -326,7 +328,7 @@ class User extends Model {
         $this->dao->save();
     }
 
-    public function isFollowing($user) {
+    public function isFollowing($userId) {
         $isFollowing = FollowerDao::isFollower($userId, $this->getId());
         return $isFollowing;
     }

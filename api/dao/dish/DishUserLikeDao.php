@@ -147,7 +147,7 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
 
         $ids = array();
         foreach ($res as $row) {
-            $ids[] = $row['user_id'];
+            $ids[] = $row['dish_id'];
         }
         return $ids;
     }
