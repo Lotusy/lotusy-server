@@ -1,5 +1,5 @@
 <?php
-class GetBusinessDishesHandler extends UnauthorizedRequestHandler {
+class GetBusinessDishesHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         global $base_image_host;

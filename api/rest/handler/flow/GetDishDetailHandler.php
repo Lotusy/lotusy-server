@@ -18,7 +18,7 @@ class GetDishDetailHandler extends AuthorizedRequestHandler {
             $dishArr['like'] = $preference->getIsLike()=='Y' ? true : false;
         } 
 
-        $response['detail'] = $dishArr;
+        $response['dish'] = $dishArr;
 
         return $response;
     }
