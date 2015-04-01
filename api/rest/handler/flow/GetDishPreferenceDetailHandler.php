@@ -15,7 +15,9 @@ class GetDishPreferenceDetailHandler extends AuthorizedRequestHandler {
         $start = $json['start'];
         $size = $json['size'];
 
-        $dishResponses = DishUserLikeDao::getResponsesOnDish($dishId, $start, $size);
+        $dishLikeResponses = DishUserLikeDao::getResponsesOnDish($dishId, $start, $size, 'Y');
+        $dishDislikeResponses = DishUserLikeDao::getResponsesOnDish($dishId, $start, $size, 'N');
+        $dishResponses = $dishResponses + $dishDislikeResponses;
 
         global $base_image_host;
 
@@ -31,8 +33,6 @@ class GetDishPreferenceDetailHandler extends AuthorizedRequestHandler {
 
             $userIds[] = $dishResponse->getUserId();
         }
-
-        $accessToken = $this->getAccessToken();
 
         $followings = FollowerDao::isUserFollowings($userId, $userIds);
 

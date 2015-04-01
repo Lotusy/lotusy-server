@@ -13,12 +13,13 @@ class DishUserLikeDao extends DishUserLikeDaoGenerated {
         return self::makeObjectFromSelectResult($res, 'DishUserLikeDao');
     }
 
-    public static function getResponsesOnDish($dishId, $start, $size) {
+    public static function getResponsesOnDish($dishId, $start, $size, $like=null) {
         $builder = new QueryMaster();
-        $res = $builder->select('*', self::$table)
-                       ->where('dish_id', $dishId)
-                       ->limit($start, $size)
-                       ->findList();
+        $builder->select('*', self::$table)->where('dish_id', $dishId);
+        if (isset($like)) {
+        	$builder->where('is_like', $like);
+        }
+        $res = $builder->limit($start, $size)->findList();
 
         return self::makeObjectsFromSelectListResult($res, 'DishUserLikeDao');
     }
