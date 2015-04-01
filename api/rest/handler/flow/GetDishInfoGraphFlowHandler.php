@@ -13,26 +13,28 @@ class GetDishInfoGraphFlowHandler extends AuthorizedRequestHandler {
 
         $response = array('status'=>'success');
 
+        $response['detail'] = array();
+
         // get images links
-        $response['images'] = $dish->getProfileImageLinks();
+        $response['detail']['images'] = $dish->getProfileImageLinks();
 
         // get business name and location
-        $response['business'] = $business->getLineInfoArray();
+        $response['detail']['business'] = $business->getLineInfoArray();
 
         // get popularity
-        $response['popularity'] = $dish->getPopularityArray($userId, $followingIds);
+        $response['detail']['popularity'] = $dish->getPopularityArray($userId, $followingIds);
 
         // get infograph
-        $response['infograph'] = array(
+        $response['detail']['infograph'] = array(
                 'all' => $dish->getInfoGraphArray(),
                 'me' => $dish->getUserInfoGraphArray($userId)
         );
 
         // get keywords
-        $response['keywords'] = $dish->getUserKeywordArray($userId, $language);
+        $response['detail']['keywords'] = $dish->getUserKeywordArray($userId, $language);
 
         // get comment
-        $response['comment'] = Comment::getDishCommentArray($dishId, 0, 10, $followingIds);
+        $response['detail']['comment'] = Comment::getDishCommentArray($dishId, 0, 10, $followingIds);
 
         return $response;
     }
