@@ -172,7 +172,7 @@ function validateHeaders() {
         exit;
     }
 
-    if (!isset($headers['language'])) {
+    if (!isset($headers['Language'])) {
         header('HTTP/1.0 417 Expectation Failed');
         echo '{"error":"417 Missing Language Header"}';
         exit;
