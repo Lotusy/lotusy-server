@@ -19,6 +19,7 @@ class GetBusinessDishesHandler extends AuthorizedRequestHandler {
         foreach ($dishes as $dish) {
             $dishArr = $dish->toArray(array('create_time'));
             $dishArr['image'] = $base_host.'/image/dish/'.$dishArr['id'].'/profile/display';
+            $dishArr['verified'] = $dishArr['verified']=='Y';
             array_push($response['dishes'], $dishArr);
         }
 
