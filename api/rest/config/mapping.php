@@ -13,7 +13,7 @@ register('GET', '/flow/dish/:dishid/infograph',  new GetDishInfoGraphFlowHandler
 // Flow-Profile-Me
 register('GET', '/flow/user/:userid/activities', new GetFlowUserActivityHandler());
 register('GET', '/flow/me/profile',              new GetMeProfileHandler());
-register('GET', '/flow/me/buddy',                new GetMeBuddyHandler());
+register('GET', '/flow/me/buddies',              new GetMeBuddyHandler());
 register('GET', '/flow/me/buddy/add',            new GetMeBuddyAddHandler());
 register('GET', '/flow/me/buddy/add/network',    new GetMeBuddyAddNetworkHandler()); // NOT IMPLEMENTED
 register('GET', '/flow/me/buddy/add/suggest',    new GetMeBuddyAddSuggestHandler());
