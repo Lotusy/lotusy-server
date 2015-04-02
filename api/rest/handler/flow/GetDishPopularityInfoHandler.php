@@ -2,7 +2,7 @@
 class GetDishPopularityInfoHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
-        global $base_image_host;
+        global $base_host;
 
         $userId = $this->getUserId();
         $dishId = $params['dishid'];
@@ -20,7 +20,7 @@ class GetDishPopularityInfoHandler extends AuthorizedRequestHandler {
         $response['status'] = 'success';
 
         $dishArr = $dish->toArray(array('create_time'));
-        $dishArr['image'] = $base_image_host.'/rest/display/dish/'.$dishArr['id'].'/default';
+        $dishArr['image'] = $base_host.'/rest/display/dish/'.$dishArr['id'].'/default';
         $response['dish'] = $dishArr;
 
         $likes = DishUserLikeDao::getDishLikedCount($dishId);

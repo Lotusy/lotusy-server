@@ -2,7 +2,7 @@
 class GetLocationDishHandler extends UnauthorizedRequestHandler {
 
     public function handle($params) {
-        global $base_image_host;
+        global $base_host;
         $json = $_GET;
 
         $validator = new GetLocationDishValidator($json);
@@ -47,7 +47,7 @@ class GetLocationDishHandler extends UnauthorizedRequestHandler {
                         }
     
                         $dishArr = $dishes[$jj][$kk]->toArray(array('create_time'));
-                        $dishArr['image'] = $base_image_host.'/rest/image/dish/'.$dishArr['id'].'/profile/display';
+                        $dishArr['image'] = $base_host.'/rest/image/dish/'.$dishArr['id'].'/profile/display';
                         array_push($response['dishes'], $dishArr);
                     }
                 }
