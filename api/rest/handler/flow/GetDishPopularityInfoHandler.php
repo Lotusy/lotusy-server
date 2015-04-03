@@ -35,7 +35,7 @@ class GetDishPopularityInfoHandler extends AuthorizedRequestHandler {
         }
 
         $followingIds = FollowerDao::getFollowingIds($userId, 0, 1000);
-        $likedIds = DishUserLikeDao::getDishUsersInRange($followingIds, $dishId, 2);
+        $likedIds = DishUserLikeDao::getDishUsersInRange($followingIds, $dishId, 2, true);
         $response['friends'] = array();
         foreach ($likedIds as $likedId) {
         	$userDao = new UserDao($likedId);
