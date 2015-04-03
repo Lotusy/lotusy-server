@@ -25,7 +25,7 @@ class GetDishPopularityInfoHandler extends AuthorizedRequestHandler {
 
         $followingIds = FollowerDao::getFollowingIds($userId, 0, 1000);
 
-        $response['dish']['popularity'] = $dish->getPopularityArray($this->getUserId(), $followingIds);
+        $response['dish']['popularity'] = $dish->getPopularityArray($this->getUserId(), $followingIds, $this->getLanguage());
 
         return $response;
     }

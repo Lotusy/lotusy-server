@@ -15,6 +15,12 @@ class Business extends Model {
         return $rv;
     }
 
+// =============================================================== getter/setter
+
+    public function getName($language) {
+        return $this->dao->getName($language);
+    }
+
 // ==================================================================== override
 
     public function init() {
