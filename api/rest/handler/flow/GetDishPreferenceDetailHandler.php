@@ -19,14 +19,14 @@ class GetDishPreferenceDetailHandler extends AuthorizedRequestHandler {
         $dishDislikeResponses = DishUserLikeDao::getResponsesOnDish($dishId, $start, $size, 'N');
         $dishResponses = $dishResponses + $dishDislikeResponses;
 
-        global $base_host;
+        global $base_host,$base_url;
 
         $elements = array();
         $userIds = array();
         foreach ($dishResponses as $dishResponse) {
             $element = array();
             $element['user_id'] = $dishResponse->getUserId();
-            $element['user_pic_url'] = $base_host.'/display/user/'.$dishResponse->getUserId();
+            $element['user_pic_url'] = $base_host.$base_url.'/display/user/'.$dishResponse->getUserId();
             $element['like'] = $dishResponse->getIsLike()=='Y';
             $element['is_buddy'] = false;
             $elements[] = $element;

@@ -26,7 +26,8 @@ class Dish extends Model {
         $rv = array();
         $likes = DishUserLikeDao::getDishLikedCount($this->getId());
         $total = DishUserLikeDao::getDishCount($this->getId());
-        $rv['count'] = $total;
+        $rv['total_count'] = $total;
+        $rv['like_count'] = $likes;
         if ($total>0) {
             $rv['percent'] = round(100*$likes/$total);
         }
@@ -34,7 +35,7 @@ class Dish extends Model {
         if (isset($dao)) {
             $rv['like'] = $dao->getIsLike()=='Y';
         }
-        $userIds = DishUserLikeDao::getDishUsersInRange($followingIds, $this->getId(), 2);
+        $userIds = DishUserLikeDao::getDishUsersInRange($followingIds, $this->getId(), 2, true);
         $userDaos = UserDao::getRange($userIds);
         $rv['friends'] = array();
         foreach ($userDaos as $userDao) {
@@ -112,6 +113,9 @@ class Dish extends Model {
 
     public function getBusinessId() {
         return $this->dao->getBusinessId();
+    }
+    public function getName($language) {
+        return $this->dao->getName($language);
     }
 
 // ==================================================================== override

@@ -2,7 +2,7 @@
 class GetUserDishCommentHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
-        global $base_host;
+        global $base_host,$base_url;
 
         $json = $_GET;
         $json['user_id'] = $params['userid'];
@@ -23,7 +23,7 @@ class GetUserDishCommentHandler extends AuthorizedRequestHandler {
         }
 
         $response = $comment->toArray();
-        $response['user_pic_url'] = $base_host.'/display/user/'.$comment->getUserId();
+        $response['user_pic_url'] = $base_host.$base_url.'/display/user/'.$comment->getUserId();
 
         $user = new UserDao($comment->getUserId());
 

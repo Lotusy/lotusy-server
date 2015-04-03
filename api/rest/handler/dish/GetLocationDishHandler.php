@@ -2,7 +2,7 @@
 class GetLocationDishHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
-        global $base_host;
+        global $base_host,$base_url;
         $json = $_GET;
 
         $validator = new GetLocationDishValidator($json);
@@ -63,7 +63,7 @@ class GetLocationDishHandler extends AuthorizedRequestHandler {
                         $dishArr['name'] = $dishes[$jj][$kk]->getName($this->getLanguage());
                         $business = new BusinessDao($dishArr['business_id']);
                         $dishArr['business'] = $business->getName($this->getLanguage());
-                        $dishArr['image'] = $base_host.'/rest/image/dish/'.$dishArr['id'].'/profile/display';
+                        $dishArr['image'] = $base_host.$base_url.'/rest/image/dish/'.$dishArr['id'].'/profile/display';
                         array_push($response['dishes'], $dishArr);
                     }
                 }

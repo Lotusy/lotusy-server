@@ -2,12 +2,12 @@
 class GetDishPopularityInfoHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
-        global $base_host;
+        global $base_host,$base_url;
 
         $userId = $this->getUserId();
         $dishId = $params['dishid'];
 
-        $dish = new DishDao($dishId);
+        $dish = new Dish($dishId);
 
         if ($dish->getId() <= 0) {
             $response = array();
@@ -19,35 +19,13 @@ class GetDishPopularityInfoHandler extends AuthorizedRequestHandler {
         $response = array();
         $response['status'] = 'success';
 
-        $dishArr = $dish->toArray(array('create_time'));
-        $dishArr['image'] = $base_host.'/rest/display/dish/'.$dishArr['id'].'/default';
-        $response['dish'] = $dishArr;
-
-        $likes = DishUserLikeDao::getDishLikedCount($dishId);
-        $total = DishUserLikeDao::getDishCount($dishId);
-
-        $response['like_count'] = $likes;
-
-        if ($total>0) {
-            $response['popularity'] = round(100*$likes/$total);
-        } else {
-            $response['popularity'] = null;
-        }
+        $response['dish'] = array();
+        $response['dish']['image'] = $base_host.$base_url.'/rest/display/dish/'.$dishArr['id'].'/default';
+        $response['dish']['name'] = $dish->getName($this->getLanguage());
 
         $followingIds = FollowerDao::getFollowingIds($userId, 0, 1000);
-        $likedIds = DishUserLikeDao::getDishUsersInRange($followingIds, $dishId, 2, true);
-        $response['friends'] = array();
-        foreach ($likedIds as $likedId) {
-        	$userDao = new UserDao($likedId);
-        	$response['friends'][] = $userDao->getNickname();
-        }
 
-        $dao = DishUserLikeDao::getUserResponseOnDish($userId, $dishId);
-        if (isset($dao)) {
-            $response['like'] = $dao->getIsLike()=='Y';
-        } else {
-            $response['like'] = null;
-        }
+        $response['dish']['popularity'] = $dish->getPopularityArray($this->getUserId(), $followingIds);
 
         return $response;
     }
