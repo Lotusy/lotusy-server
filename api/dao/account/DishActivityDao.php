@@ -16,12 +16,25 @@ class DishActivityDao extends DishActivityDaoGenerated {
 
         $rv = array();
         $rv['dish_ids'] = array();
+        $rv['user_ids'] = array();
+        $rv['business_ids'] = array();
         foreach ($res as $row) {
             $rv[$row['create_time']] = array();
-            $rv[$row['create_time']] = array('user_id'=>$row['user_id'], 'dish_id'=>$row['dish_id'], 'list'=>$row['activity']);
+            $rv[$row['create_time']] = array('user_id'=>$row['user_id'], 
+                                             'dish_id'=>$row['dish_id'], 
+                                             'business_id'=>$row['business_id'],
+                                             'list'=>$row['activity']);
 
             if (!isset($rv['dish_ids'][$row['dish_id']])) {
                 $rv['dish_ids'][$row['dish_id']] = 1;
+            }
+
+            if (!isset($rv['user_ids'][$row['user_id']])) {
+                $rv['user_ids'][$row['user_id']] = 1;
+            }
+
+            if (!isset($rv['business_ids'][$row['business_id']])) {
+                $rv['business_ids'][$row['business_id']] = 1;
             }
         }
 
