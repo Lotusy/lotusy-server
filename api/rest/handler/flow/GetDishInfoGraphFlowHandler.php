@@ -22,7 +22,7 @@ class GetDishInfoGraphFlowHandler extends AuthorizedRequestHandler {
         $response['detail']['business'] = $business->getLineInfoArray();
 
         // get popularity
-        $response['detail']['popularity'] = $dish->getPopularityArray($userId, $followingIds, $this->getLanguage());
+        $response['detail']['popularity'] = $dish->getPopularityArray($userId, $followingIds, $language);
 
         // get infograph
         $response['detail']['infograph'] = array(
