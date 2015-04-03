@@ -7,7 +7,7 @@ class GetDishPopularityInfoHandler extends AuthorizedRequestHandler {
         $userId = $this->getUserId();
         $dishId = $params['dishid'];
 
-        $dish = new Dish($dishId);
+        $dish = Dish::alloc()->initWithId($dishId);
 
         if ($dish->getId() <= 0) {
             $response = array();
