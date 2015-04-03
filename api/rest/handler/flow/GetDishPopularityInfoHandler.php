@@ -25,17 +25,28 @@ class GetDishPopularityInfoHandler extends AuthorizedRequestHandler {
 
         $likes = DishUserLikeDao::getDishLikedCount($dishId);
         $total = DishUserLikeDao::getDishCount($dishId);
+
+        $response['like_count'] = $likes;
+
         if ($total>0) {
             $response['popularity'] = round(100*$likes/$total);
         } else {
             $response['popularity'] = null;
         }
 
+        $followingIds = FollowerDao::getFollowingIds($userId, 0, 1000);
+        $likedIds = DishUserLikeDao::getDishUsersInRange($followingIds, $dishId, 2);
+        $response['friends'] = array();
+        foreach ($likedIds as $likedId) {
+        	$userDao = new UserDao($likedId);
+        	$response['friends'][] = $userDao->getNickname();
+        }
+
         $dao = DishUserLikeDao::getUserResponseOnDish($userId, $dishId);
         if (isset($dao)) {
-            $response['preference'] = $dao->getIsLike()=='Y';
+            $response['like'] = $dao->getIsLike()=='Y';
         } else {
-            $response['preference'] = null;
+            $response['like'] = null;
         }
 
         return $response;
