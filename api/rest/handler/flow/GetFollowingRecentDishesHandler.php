@@ -33,12 +33,12 @@ class GetFollowingRecentDishesHandler extends AuthorizedRequestHandler {
 
         $users = array();
         foreach ($userDaos as $userDao) {
-            $users[$userDao->getId()] = $userDao->getNickname();
+            $users[$userDao->getId()] = array('id'=>$userDao->getId(), 'name'=>$userDao->getNickname());
         }
 
         $businesses = array();
         foreach ($bussDaos as $bussDao) {
-            $businesses[$bussDao->getId()] = $bussDao->getName($this->getLanguage());
+            $businesses[$bussDao->getId()] = array('id'=>$bussDao->getId(), 'name'=>$bussDao->getName($this->getLanguage()));
         }
 
         $response = array('status'=>'success');
