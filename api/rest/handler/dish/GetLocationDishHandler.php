@@ -1,5 +1,5 @@
 <?php
-class GetLocationDishHandler extends UnauthorizedRequestHandler {
+class GetLocationDishHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         global $base_host;
@@ -47,6 +47,8 @@ class GetLocationDishHandler extends UnauthorizedRequestHandler {
                         }
     
                         $dishArr = $dishes[$jj][$kk]->toArray(array('create_time'));
+                        $business = new BusinessDao($dishArr['business_id']);
+                        $dishArr['business'] = $business->getName($this->getLanguage());
                         $dishArr['image'] = $base_host.'/rest/image/dish/'.$dishArr['id'].'/profile/display';
                         array_push($response['dishes'], $dishArr);
                     }
