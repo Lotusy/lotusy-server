@@ -46,7 +46,8 @@ class GetLocationDishHandler extends AuthorizedRequestHandler {
                             return $response;
                         }
     
-                        $dishArr = $dishes[$jj][$kk]->toArray(array('create_time'));
+                        $dishArr = $dishes[$jj][$kk]->toArray(array('name_zh', 'name_tw', 'name_en', 'create_time'));
+                        $dishArr['name'] = $dishes[$jj][$kk]->getName($this->getLanguage());
                         $business = new BusinessDao($dishArr['business_id']);
                         $dishArr['business'] = $business->getName($this->getLanguage());
                         $dishArr['image'] = $base_host.'/rest/image/dish/'.$dishArr['id'].'/profile/display';
