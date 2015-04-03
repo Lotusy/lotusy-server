@@ -180,6 +180,17 @@ class DishActivityDao extends DishActivityDaoGenerated {
         return $res['count']>0;
     }
 
+    public static function isDishHitlisted($dishId, $userId) {
+        $builder = new QueryMaster();
+        $res = $builder->select('COUNT(*) as count', self::$table) 
+                       ->where('user_id', $userId)
+                       ->where('dish_id', $dishId)
+                       ->where('activity', self::LIST_HITLIST)
+                       ->find();
+
+        return $res['count']>0;
+    }
+
     public static function getUsersCollectionCountCompareTo($userId, $count, $size, $more=true) {
         $builder = new QueryMaster();
         $sign = $more ? '>' : '<';

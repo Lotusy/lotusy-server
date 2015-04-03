@@ -47,6 +47,19 @@ class GetLocationDishHandler extends AuthorizedRequestHandler {
                         }
     
                         $dishArr = $dishes[$jj][$kk]->toArray(array('name_zh', 'name_tw', 'name_en', 'create_time'));
+
+                        $likeDao = DishUserLikeDao::getUserResponseOnDish($this->getUserId(), $dishArr['id']);
+                        if (isset($likeDao)) {
+                        	$dishArr['like'] = $likeDao->getIsLike()=='Y';
+                        	$dishArr['type'] = 'collection';
+                        } else if (DishActivityDao::isDishHitlisted($dishArr['id'], $this->getUserId())) {
+	                       	$dishArr['like'] = null;
+	                       	$dishArr['type'] = 'hitlist';
+                       	} else {
+	                       	$dishArr['like'] = null;
+	                       	$dishArr['type'] = null;
+                        }
+
                         $dishArr['name'] = $dishes[$jj][$kk]->getName($this->getLanguage());
                         $business = new BusinessDao($dishArr['business_id']);
                         $dishArr['business'] = $business->getName($this->getLanguage());
