@@ -19,7 +19,7 @@ class GetDishInfoGraphFlowHandler extends AuthorizedRequestHandler {
         $response['detail']['images'] = $dish->getProfileImageLinks();
 
         // get business name and location
-        $response['detail']['business'] = $business->getLineInfoArray();
+        $response['detail']['business'] = $business->getLineInfoArray($language);
 
         // get popularity
         $response['detail']['popularity'] = $dish->getPopularityArray($userId, $followingIds, $language);

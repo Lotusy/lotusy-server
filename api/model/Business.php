@@ -1,7 +1,7 @@
 <?php
 class Business extends Model {
 
-    public function getLineInfoArray() {
+    public function getLineInfoArray($language) {
         $rv = array();
 
         $rv['name'] = $this->dao->getName($language);
