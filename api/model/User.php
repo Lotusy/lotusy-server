@@ -54,10 +54,10 @@ class User extends Model {
     }
 
 
-    public function getUserRecentActivityCountArray($start, $end) {
+    public function getUserRecentActivityCountArray($start, $end, $numberOfDays) {
         $counts = DishActivityDao::getUserActivityCounts($this->getId(), $start, $end);
 
-        for ($ii=0; $ii<$json['length']; $ii++) {
+        for ($ii=0; $ii<$numberOfDays; $ii++) {
             $date = strtotime("+".$ii." days", strtotime($start));
             $date = date("Y-m-d", $date);
             if (!isset($counts[$date])) {
