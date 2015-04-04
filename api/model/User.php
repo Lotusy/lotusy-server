@@ -37,14 +37,16 @@ class User extends Model {
                 $rv[] = array('time'=>$now-$time,
                               'type'=>USER::ACTIVITY_TYPE_DISH, 
                               'like'=>$like, 
-                              'dish'=>$dishDao->getName($language), 
+                              'dish'=>$dishDao->getName($language),
+                		      'dish_id'=>$dishDao->getId(),
                               'business'=>$businessDao->getName($language), 
                               'image'=>$base_host.$base_url.'/image/dish/'.$otherId.'/profile/display');
             } else {
                 $userDao = new UserDao($otherId);
                 $rv[] = array('time'=>$now-$time,
                               'type'=>USER::ACTIVITY_TYPE_USER,
-                              'name'=>$userDao->getNickname(), 
+                              'name'=>$userDao->getNickname(),
+                              'user_id'=>$userDao->getId(),
                               'image'=>$base_host.$base_url.'/image/user/'.$otherId.'/profile/display',
                               'rank'=>$userDao->getRank());
             }
