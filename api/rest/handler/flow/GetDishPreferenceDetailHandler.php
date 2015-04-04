@@ -17,7 +17,7 @@ class GetDishPreferenceDetailHandler extends AuthorizedRequestHandler {
 
         $dishLikeResponses = DishUserLikeDao::getResponsesOnDish($dishId, $start, $size, 'Y');
         $dishDislikeResponses = DishUserLikeDao::getResponsesOnDish($dishId, $start, $size, 'N');
-        $dishResponses = $dishResponses + $dishDislikeResponses;
+        $dishResponses = $dishLikeResponses + $dishDislikeResponses;
 
         global $base_host,$base_url;
 
