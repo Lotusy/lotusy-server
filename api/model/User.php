@@ -75,7 +75,7 @@ class User extends Model {
         $total = DishUserLikeDao::getUserDishCount($this->getId());
         $liked = DishUserLikeDao::getUserLikedDishCount($this->getId());
 
-        return round($liked/$total);
+        return round(100*$liked/$total);
     }
 
 
