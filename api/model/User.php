@@ -30,7 +30,7 @@ class User extends Model {
             $otherId = $activity->getOtherId();
             $time = strtotime($activity->getCreateTime());
 
-            if ($type = VUserActivityDao::TYPE_DISH_COLLECT) {
+            if ($type == VUserActivityDao::TYPE_DISH_COLLECT) {
                 $like = $activity->getData();
                 $dishDao = new DishDao($otherId);
                 $businessDao = new BusinessDao($dishDao->getBusinessId());
