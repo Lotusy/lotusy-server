@@ -13,8 +13,9 @@ class GetMeProfileAlertsHandler extends AuthorizedRequestHandler {
         $descriptions = array();
         foreach ($allCodes as $code=>$description) {
             $isActive = in_array($code, $userCodes);
-            $descriptions[$code] = array('active'=>in_array($code, $userCodes),
-                                         'description'=>$description);
+            $descriptions[] = array('code'=>$code,
+                                    'active'=>in_array($code, $userCodes),
+                                    'description'=>$description);
         }
 
         $response = array('status'=>'success');
