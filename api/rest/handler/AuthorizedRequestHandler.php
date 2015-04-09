@@ -15,7 +15,7 @@ abstract class AuthorizedRequestHandler implements RequestHandler {
             $response['description'] = 'unauthorized_request';
         } else {
             $headers = apache_request_headers();
-            $this->language = $headers['language'];
+            $this->language = $headers['Language'];
             $response = $this->handle($params);
         }
 

@@ -2,7 +2,7 @@
 class GetBusinessDishesHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
-        global $base_image_host;
+        global $base_host,$base_url;
 
         $json = $_GET;
 
@@ -18,7 +18,8 @@ class GetBusinessDishesHandler extends AuthorizedRequestHandler {
         $response['dishes'] = array();
         foreach ($dishes as $dish) {
             $dishArr = $dish->toArray(array('create_time'));
-            $dishArr['image'] = $base_image_host.'/image/dish/'.$dishArr['id'].'/profile/display';
+            $dishArr['image'] = $base_host.$base_url.'/image/dish/'.$dishArr['id'].'/profile/display';
+            $dishArr['verified'] = $dishArr['verified']=='Y';
             array_push($response['dishes'], $dishArr);
         }
 

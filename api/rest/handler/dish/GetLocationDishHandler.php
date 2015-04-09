@@ -1,8 +1,8 @@
 <?php
-class GetLocationDishHandler extends UnauthorizedRequestHandler {
+class GetLocationDishHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
-        global $base_image_host;
+        global $base_host,$base_url;
         $json = $_GET;
 
         $validator = new GetLocationDishValidator($json);
@@ -46,8 +46,24 @@ class GetLocationDishHandler extends UnauthorizedRequestHandler {
                             return $response;
                         }
     
-                        $dishArr = $dishes[$jj][$kk]->toArray(array('create_time'));
-                        $dishArr['image'] = $base_image_host.'/rest/image/dish/'.$dishArr['id'].'/profile/display';
+                        $dishArr = $dishes[$jj][$kk]->toArray(array('name_zh', 'name_tw', 'name_en', 'create_time'));
+
+                        $likeDao = DishUserLikeDao::getUserResponseOnDish($this->getUserId(), $dishArr['id']);
+                        if (isset($likeDao)) {
+                        	$dishArr['like'] = $likeDao->getIsLike()=='Y';
+                        	$dishArr['type'] = 'collection';
+                        } else if (DishActivityDao::isDishHitlisted($dishArr['id'], $this->getUserId())) {
+	                       	$dishArr['like'] = null;
+	                       	$dishArr['type'] = 'hitlist';
+                       	} else {
+	                       	$dishArr['like'] = null;
+	                       	$dishArr['type'] = null;
+                        }
+
+                        $dishArr['name'] = $dishes[$jj][$kk]->getName($this->getLanguage());
+                        $business = new BusinessDao($dishArr['business_id']);
+                        $dishArr['business'] = $business->getName($this->getLanguage());
+                        $dishArr['image'] = $base_host.$base_url.'/rest/image/dish/'.$dishArr['id'].'/profile/display';
                         array_push($response['dishes'], $dishArr);
                     }
                 }

@@ -2,11 +2,12 @@
 class GetCommentInfoHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
+        global $base_host,$base_url;
         $comment = new CommentDao($params['commentid']);
 
         if ($comment->isFromDatabase()) {
             $response = $comment->toArray();
-            $response['user_pic_url'] = $base_image_host.'/image/user/'.$comment->getUserId().'/profile/display';
+            $response['user_pic_url'] = $base_host.$base_url.'/image/user/'.$comment->getUserId().'/profile/display';
 
             $user = new UserDao($comment->getUserId());
 

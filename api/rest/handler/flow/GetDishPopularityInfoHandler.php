@@ -2,12 +2,12 @@
 class GetDishPopularityInfoHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
-        global $base_image_host;
+        global $base_host,$base_url;
 
         $userId = $this->getUserId();
         $dishId = $params['dishid'];
 
-        $dish = new DishDao($dishId);
+        $dish = Dish::alloc()->initWithId($dishId);
 
         if ($dish->getId() <= 0) {
             $response = array();
@@ -19,24 +19,13 @@ class GetDishPopularityInfoHandler extends AuthorizedRequestHandler {
         $response = array();
         $response['status'] = 'success';
 
-        $dishArr = $dish->toArray(array('create_time'));
-        $dishArr['image'] = $base_image_host.'/rest/display/dish/'.$dishArr['id'].'/default';
-        $response['dish'] = $dishArr;
+        $response['dish'] = array();
+        $response['dish']['image'] = $base_host.$base_url.'/rest/display/dish/'.$dishArr['id'].'/default';
+        $response['dish']['name'] = $dish->getName($this->getLanguage());
 
-        $likes = DishUserLikeDao::getDishLikedCount($dishId);
-        $total = DishUserLikeDao::getDishCount($dishId);
-        if ($total>0) {
-            $response['popularity'] = round(100*$likes/$total);
-        } else {
-            $response['popularity'] = null;
-        }
+        $followingIds = FollowerDao::getFollowingIds($userId, 0, 1000);
 
-        $dao = DishUserLikeDao::getUserResponseOnDish($userId, $dishId);
-        if (isset($dao)) {
-            $response['preference'] = $dao->getIsLike()=='Y';
-        } else {
-            $response['preference'] = null;
-        }
+        $response['dish']['popularity'] = $dish->getPopularityArray($this->getUserId(), $followingIds, $this->getLanguage());
 
         return $response;
     }

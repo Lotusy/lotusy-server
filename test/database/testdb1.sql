@@ -74,16 +74,16 @@ VALUES
 (1,8,1,49.19,-122.85,'Test Message b1 u8',0,0,'N',NOW()),
 (1,9,1,49.19,-122.85,'Test Message b1 u9',0,0,'N',NOW()),
 (1,10,1,49.19,-122.85,'Test Message b1 u10',0,0,'N',NOW()),
-(2,1,1,49.19,-122.85,'Test Message b2 u1',0,0,'N',NOW()),
-(2,2,1,49.19,-122.85,'Test Message b2 u2',0,0,'N',NOW()),
-(2,3,1,49.19,-122.85,'Test Message b2 u3',0,0,'N',NOW()),
-(2,4,1,49.19,-122.85,'Test Message b2 u4',0,0,'N',NOW()),
-(2,5,1,49.19,-122.85,'Test Message b2 u5',0,0,'N',NOW()),
-(2,6,1,49.19,-122.85,'Test Message b2 u6',0,0,'N',NOW()),
-(2,7,1,49.19,-122.85,'Test Message b2 u7',0,0,'N',NOW()),
-(2,8,1,49.19,-122.85,'Test Message b2 u8',0,0,'N',NOW()),
-(2,9,1,49.19,-122.85,'Test Message b2 u9',0,0,'N',NOW()),
-(2,10,1,49.19,-122.85,'Test Message b2 u10',0,0,'N',NOW());
+(2,1,2,49.19,-122.85,'Test Message b2 u1',0,0,'N',NOW()),
+(2,2,2,49.19,-122.85,'Test Message b2 u2',0,0,'N',NOW()),
+(2,3,2,49.19,-122.85,'Test Message b2 u3',0,0,'N',NOW()),
+(2,4,2,49.19,-122.85,'Test Message b2 u4',0,0,'N',NOW()),
+(2,5,2,49.19,-122.85,'Test Message b2 u5',0,0,'N',NOW()),
+(2,6,2,49.19,-122.85,'Test Message b2 u6',0,0,'N',NOW()),
+(2,7,2,49.19,-122.85,'Test Message b2 u7',0,0,'N',NOW()),
+(2,8,2,49.19,-122.85,'Test Message b2 u8',0,0,'N',NOW()),
+(2,9,2,49.19,-122.85,'Test Message b2 u9',0,0,'N',NOW()),
+(2,10,2,49.19,-122.85,'Test Message b2 u10',0,0,'N',NOW());
 
 INSERT INTO foodster.follower
 (user_id,follower_id,create_time)

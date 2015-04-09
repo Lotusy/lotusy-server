@@ -12,7 +12,7 @@ class GetFlowUserActivityHandler extends AuthorizedRequestHandler {
         $startTime = strtotime("- 4 days", strtotime($now));
         $start = date("Y-m-d", $startTime);
 
-        $response['counts'] = $user->getUserRecentActivityCountArray($start, $now);
+        $response['counts'] = $user->getUserRecentActivityCountArray($start, $now, 5);
 
         $userId = $this->getUserId();
         $language = $this->getLanguage();

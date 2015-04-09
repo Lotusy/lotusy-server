@@ -30,10 +30,10 @@ class GetDishCommentHandler extends AuthorizedRequestHandler {
 
         $userDaos = UserDao::getRange($userIds, true);
 
-        global $base_image_host;
+        global $base_host,$base_url;
         foreach ($comments as $comment) {
             $commentArr = $comment->toArray();
-            $commentArr['user_pic_url'] = $base_image_host.'/image/user/'.$comment->getUserId().'/profile/display';
+            $commentArr['user_pic_url'] = $base_host.$base_url.'/image/user/'.$comment->getUserId().'/profile/display';
 
             $preference = DishUserLikeDao::getUserResponseOnDish($comment->getUserId(), $params['dishid']);
 

@@ -1,6 +1,8 @@
 <?php
 class Dish extends Model {
 
+	private $business = null;
+
     public function getProfileImageLinks() {
         $rv = array();
 
@@ -22,26 +24,47 @@ class Dish extends Model {
         return $rv;
     }
 
-    public function getPopularityArray($userId, $followingIds) {
+    public function getPopularityArray($userId, $followingIds, $language='en') {
         $rv = array();
         $likes = DishUserLikeDao::getDishLikedCount($this->getId());
         $total = DishUserLikeDao::getDishCount($this->getId());
-        $rv['count'] = $total;
+        $rv['total_count'] = $total;
+        $rv['like_count'] = $likes;
         if ($total>0) {
             $rv['percent'] = round(100*$likes/$total);
         }
-        $dao = DishUserLikeDao::getUserResponseOnDish($userId, $this->getId());
-        if (isset($dao)) {
-            $rv['like'] = $dao->getIsLike()=='Y';
-        }
-        $userIds = DishUserLikeDao::getDishUsersInRange($followingIds, $this->getId(), 2);
+
+        $userRelation = $this->getUserRelation($userId);
+        $rv = $rv + $userRelation;
+
+        $userIds = DishUserLikeDao::getDishUsersInRange($followingIds, $this->getId(), 2, true);
         $userDaos = UserDao::getRange($userIds);
         $rv['friends'] = array();
         foreach ($userDaos as $userDao) {
             $rv['friends'][] = $userDao->getNickname();
         }
+        $business = $this->getBusiness();
+        $rv['business'] = $business->getName($language);
 
         return $rv;
+    }
+
+    public function getUserRelation($userId) {
+    	$rv = array();
+
+    	$likeDao = DishUserLikeDao::getUserResponseOnDish($userId, $this->getId());
+    	if (isset($likeDao)) {
+    		$rv['like'] = $likeDao->getIsLike()=='Y';
+    		$rv['type'] = 'collection';
+    	} else if (DishActivityDao::isDishHitlisted($this->getId(), $userId)) {
+    		$rv['like'] = null;
+    		$rv['type'] = 'hitlist';
+    	} else {
+    		$rv['like'] = null;
+    		$rv['type'] = null;
+    	}
+
+    	return $rv;
     }
 
     public function getInfoGraphArray() {
@@ -108,10 +131,23 @@ class Dish extends Model {
         return $rv;
     }
 
+
+    public function getBusiness() {
+    	if (!isset($this->business)) {
+    		$this->business = Business::alloc()->initWithId($this->getBusinessId());
+    	}
+
+    	return $this->business;
+    }
+
+
 // =============================================================== getter/setter
 
     public function getBusinessId() {
         return $this->dao->getBusinessId();
+    }
+    public function getName($language) {
+        return $this->dao->getName($language);
     }
 
 // ==================================================================== override

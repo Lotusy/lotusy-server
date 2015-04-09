@@ -13,11 +13,18 @@ class GetFollowingRecentDishesHandler extends AuthorizedRequestHandler {
         $userIds = FollowerDao::getFollowingIds($user->getId(), 0, 100000);
 
         $map = DishActivityDao::getUsersRecentDishes($userIds, $json['start'], $json['size']);
-        $dishIds = array_keys($map['dish_ids']); 
+
+        $dishIds = array_keys($map['dish_ids']);
+        $userIds = array_keys($map['user_ids']); 
+        $bussIds = array_keys($map['business_ids']); 
 
         $dishDaos = DishDao::getRange($dishIds, true);
+        $userDaos = UserDao::getRange($userIds, true);
+        $bussDaos = BusinessDao::getRange($bussIds, true);
 
         unset($map['dish_ids']);
+        unset($map['user_ids']);
+        unset($map['business_ids']);
 
         $dishes = array();
         foreach ($dishDaos as $dishDao) {
@@ -25,32 +32,37 @@ class GetFollowingRecentDishesHandler extends AuthorizedRequestHandler {
         }
 
         $users = array();
-        foreach ($userIds as $id) {
-            $dao = new UserDao($id);
-            $users[$id] = $dao->toArray();
+        foreach ($userDaos as $userDao) {
+            $users[$userDao->getId()] = array('id'=>$userDao->getId(), 'name'=>$userDao->getNickname());
+        }
+
+        $businesses = array();
+        foreach ($bussDaos as $bussDao) {
+            $businesses[$bussDao->getId()] = array('id'=>$bussDao->getId(), 'name'=>$bussDao->getName($this->getLanguage()));
         }
 
         $response = array('status'=>'success');
 
         $response['activities'] = array();
-        foreach ($map as $time=>$userDish) {
+        foreach ($map as $time=>$userDishBusiness) {
             $activity = array();
-            $activity['user'] = $users[$userDish['user_id']];
-            $activity['dish'] = $dishes[$userDish['dish_id']];
-            $activity['type'] = ($userDish['list']==DishActivityDao::LIST_COLLECTION) ? 'collection' : 'hitlist';
+            $activity['user'] = $users[$userDishBusiness['user_id']];
+            $activity['dish'] = $dishes[$userDishBusiness['dish_id']];
+            $activity['business'] = $businesses[$userDishBusiness['business_id']];
+            $activity['type'] = ($userDishBusiness['list']==DishActivityDao::LIST_COLLECTION) ? 'collection' : 'hitlist';
 
-            if ($userDish['list']==DishActivityDao::LIST_COLLECTION) {
-                $preference = DishUserLikeDao::getUserResponseOnDish($userDish['user_id'], $userDish['dish_id']);
+            if ($userDishBusiness['list']==DishActivityDao::LIST_COLLECTION) {
+                $preference = DishUserLikeDao::getUserResponseOnDish($userDishBusiness['user_id'], $userDishBusiness['dish_id']);
                 if (isset($preference)) {
                     $activity['like'] = $preference->getIsLike()=='Y' ? true : false;
                 }
             }
-
-            $commentDao = CommentDao::getUserDishComment($userDish['dish_id'], $userDish['user_id']);
+/*
+            $commentDao = CommentDao::getUserDishComment($userDishBusiness['dish_id'], $userDishBusiness['user_id']);
             if (isset($commentDao)) {
                 $activity['comment'] = $commentDao->toArray();
             }
-
+*/
             $now = strtotime('now');
             $activityTime = strtotime($time);
             $time = $now - $activityTime;

@@ -30,21 +30,23 @@ class User extends Model {
             $otherId = $activity->getOtherId();
             $time = strtotime($activity->getCreateTime());
 
-            if ($type = VUserActivityDao::TYPE_DISH_COLLECT) {
+            if ($type == VUserActivityDao::TYPE_DISH_COLLECT) {
                 $like = $activity->getData();
                 $dishDao = new DishDao($otherId);
                 $businessDao = new BusinessDao($dishDao->getBusinessId());
                 $rv[] = array('time'=>$now-$time,
                               'type'=>USER::ACTIVITY_TYPE_DISH, 
                               'like'=>$like, 
-                              'dish'=>$dishDao->getName($language), 
+                              'dish'=>$dishDao->getName($language),
+                		      'dish_id'=>$dishDao->getId(),
                               'business'=>$businessDao->getName($language), 
                               'image'=>$base_host.$base_url.'/image/dish/'.$otherId.'/profile/display');
             } else {
                 $userDao = new UserDao($otherId);
                 $rv[] = array('time'=>$now-$time,
                               'type'=>USER::ACTIVITY_TYPE_USER,
-                              'name'=>$userDao->getNickname(), 
+                              'name'=>$userDao->getNickname(),
+                              'user_id'=>$userDao->getId(),
                               'image'=>$base_host.$base_url.'/image/user/'.$otherId.'/profile/display',
                               'rank'=>$userDao->getRank());
             }
@@ -54,10 +56,10 @@ class User extends Model {
     }
 
 
-    public function getUserRecentActivityCountArray($start, $end) {
+    public function getUserRecentActivityCountArray($start, $end, $numberOfDays) {
         $counts = DishActivityDao::getUserActivityCounts($this->getId(), $start, $end);
 
-        for ($ii=0; $ii<$json['length']; $ii++) {
+        for ($ii=0; $ii<$numberOfDays; $ii++) {
             $date = strtotime("+".$ii." days", strtotime($start));
             $date = date("Y-m-d", $date);
             if (!isset($counts[$date])) {
@@ -73,7 +75,7 @@ class User extends Model {
         $total = DishUserLikeDao::getUserDishCount($this->getId());
         $liked = DishUserLikeDao::getUserLikedDishCount($this->getId());
 
-        return round($liked/$total);
+        return round(100*$liked/$total);
     }
 
 

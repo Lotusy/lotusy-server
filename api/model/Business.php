@@ -1,7 +1,7 @@
 <?php
 class Business extends Model {
 
-    public function getLineInfoArray() {
+    public function getLineInfoArray($language) {
         $rv = array();
 
         $rv['name'] = $this->dao->getName($language);
@@ -13,6 +13,12 @@ class Business extends Model {
         $rv['price'] = $this->dao->getPrice();
 
         return $rv;
+    }
+
+// =============================================================== getter/setter
+
+    public function getName($language) {
+        return $this->dao->getName($language);
     }
 
 // ==================================================================== override

@@ -2,6 +2,7 @@
 class CreateCommentHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
+        global $base_host,$base_url;
         $json = Utility::getJsonRequestData();
 
         $validator = new CreateCommentValidator($json);
@@ -24,7 +25,7 @@ class CreateCommentHandler extends AuthorizedRequestHandler {
         $response = array();
         if ($comment->save()) {
             $response = $comment->toArray();
-            $response['user_pic_url'] = $base_image_host.'/display/user/'.$comment->getUserId();
+            $response['user_pic_url'] = $base_host.$base_url.'/display/user/'.$comment->getUserId();
             $response['user_nickname'] = $user->getNickname();
             $response['create_time'] = 0;
             $response['status'] = 'success';
