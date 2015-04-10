@@ -37,20 +37,17 @@ register('GET',  '/tokeninfo',        new GetTokenInfoHandler());
 
 // user end points
 //
-register('GET',    '/user/profile',                 new GetCurrentUserProfileHandler());
-register('GET',    '/user/:userid/profile',         new GetUserProfileHandler());
-register('GET',    '/user/search/name',             new SearchUserByNameHandler()); // NOT IMPLEMENTED
-register('POST',   '/user/profile',                 new UpdateCurrentUserProfileHandler());
-register('POST',   '/user/follow/:userid',          new FollowUserHandler());
-register('DELETE', '/user/follow/:userid',          new UnfollowUserHandler());
-register('GET',    '/user/:userid/followers',       new GetUserFollowersHandler());
-register('GET',    '/user/:userid/followings',      new GetUserFollowingsHandler());
-register('GET',    '/user/:userid/dishes',          new GetUserDishCollectionHandler());
-register('GET',    '/user/:userid/hitlist',         new GetUserDishHitlistHandler());
-register('GET',    '/user/:userid/activites',       new GetUserRecentActivitiesHandler());
-register('GET',    '/user/:userid/activites/count', new GetUserActivitiesCountHandler());
-register('GET',    '/user/:userid/alters',          new GetUserActiveAlertsHandler());
-register('POST',   '/user/alert/:code/:action',     new PostUserAlertHandler());
+register('GET',    '/user/:userid/profile',     new GetUserProfileHandler());
+register('GET',    '/user/search/name',         new SearchUserByNameHandler()); // NOT IMPLEMENTED
+register('GET',    '/user/:userid/followers',   new GetUserFollowersHandler());
+register('GET',    '/user/:userid/followings',  new GetUserFollowingsHandler());
+register('GET',    '/user/:userid/collect',     new GetUserDishCollectionHandler());
+register('GET',    '/user/:userid/hitlist',     new GetUserDishHitlistHandler());
+register('GET',    '/user/:userid/activites',   new GetUserRecentActivitiesHandler());
+register('POST',   '/user/profile',             new UpdateCurrentUserProfileHandler());
+register('POST',   '/user/follow/:userid',      new FollowUserHandler());
+register('DELETE', '/user/follow/:userid',      new UnfollowUserHandler());
+register('POST',   '/user/alert/:code/:action', new PostUserAlertHandler());
 
 
 // business end points
