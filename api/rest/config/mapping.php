@@ -50,7 +50,6 @@ register('GET',    '/user/:userid/hitlist',         new GetUserDishHitlistHandle
 register('GET',    '/user/:userid/activites',       new GetUserRecentActivitiesHandler());
 register('GET',    '/user/:userid/activites/count', new GetUserActivitiesCountHandler());
 register('GET',    '/user/:userid/alters',          new GetUserActiveAlertsHandler());
-register('GET',    '/user/alert/:language/terms',   new GetAlertItermHandler());
 register('POST',   '/user/alert/:code/:action',     new PostUserAlertHandler());
 
 
@@ -73,29 +72,17 @@ register('POST', '/dish/:dishid/dislike',                         new DishDislik
 register('GET',  '/dish/location',                                new GetLocationDishHandler());
 register('POST', '/dish/:dishid/collect',                         new CollectDishHandler());
 register('POST', '/dish/:dishid/hitlist',                         new HitlistDishHandler());
-register('GET',  '/dish/:dishid/users/info',                      new GetDishUserInfoHandler());
-register('GET',  '/dish/keyword/:language/terms',                 new GetKeywordItermHandler());
 register('POST', '/dish/:dishid/keywords',                        new PostUserDishKeywordHandler());
-register('GET',  '/dish/:dishid/user/:userid/keywords/:language', new GetUserDishKeywordHandler());
-register('GET',  '/dish/:dishid/keywords/count/:language',        new GetDishKeywordCountHandler());
-register('GET',  '/dish/:dishid/keywords/:language',              new GetDishKeywordsHandler());
-register('GET',  '/dish/:dishid/infograph',                       new GetDishInfoGraphHandler());
 register('POST', '/dish/:dishid/infograph',                       new PostDishInfoGraphHandler());
-register('GET',  '/dish/:dishid/user/:userid/infograph',          new GetUserDishInfoGraphHandler());
 register('GET',  '/dish/cuisine/:language/terms',                 new GetCuisineItermHandler());
 
 
 // comment end points
 //
 register('POST',   '/comment',                                   new CreateCommentHandler());
-register('GET',    '/comment/business/:businessid/comments',     new GetBusinessCommentHandler());
 register('GET',    '/comment/dish/:dishid/comment/count',        new GetDishCommentCountHandler());
 register('GET',    '/comment/dish/:dishid/comments',             new GetDishCommentHandler());
-register('GET',    '/comment/dish/:dishid/user/:userid/comment', new GetUserDishCommentHandler());
-register('GET',    '/comment/:commentid',                        new GetCommentInfoHandler());
 register('DELETE', '/comment/:commentid',                        new DeleteCommentHandler());
-register('PUT',    '/comment/:commentid/like',                   new CommentLikeHandler());
-register('PUT',    '/comment/:commentid/dislike',                new CommentDislikeHandler());
 
 
 // image end points
