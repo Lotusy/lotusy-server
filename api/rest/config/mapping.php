@@ -80,7 +80,6 @@ register('GET',  '/dish/cuisine/:language/terms',                 new GetCuisine
 // comment end points
 //
 register('POST',   '/comment',                                   new CreateCommentHandler());
-register('GET',    '/comment/dish/:dishid/comment/count',        new GetDishCommentCountHandler());
 register('GET',    '/comment/dish/:dishid/comments',             new GetDishCommentHandler());
 register('DELETE', '/comment/:commentid',                        new DeleteCommentHandler());
 

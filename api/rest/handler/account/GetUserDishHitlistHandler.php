@@ -1,5 +1,5 @@
 <?php
-class GetUserDishHitlistHandler extends UnauthorizedRequestHandler {
+class GetUserDishHitlistHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         $json = array_merge($_GET, $params);

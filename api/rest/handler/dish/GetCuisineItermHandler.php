@@ -1,5 +1,5 @@
 <?php
-class GetCuisineItermHandler extends UnauthorizedRequestHandler {
+class GetCuisineItermHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
         $terms = ItermDao::getTypeLanguageCodeDescriptionMap(ItermDao::TYPE_CUISINE, $params['language']);

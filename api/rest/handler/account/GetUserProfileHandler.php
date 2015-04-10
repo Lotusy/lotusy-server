@@ -1,5 +1,5 @@
 <?php
-class GetUserProfileHandler extends UnauthorizedRequestHandler {
+class GetUserProfileHandler extends AuthorizedRequestHandler {
 
     public function handle($params) {
 
