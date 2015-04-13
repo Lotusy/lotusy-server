@@ -52,48 +52,49 @@ register('POST',   '/user/alert/:code/:action', new PostUserAlertHandler());
 
 // business end points
 //
-register('POST', '/business',                                 new CreateBusinessHandler());
-register('POST', '/business/external',                        new CreateExternalBusinessHandler());
-register('POST', '/business/quick',                           new CreateQuickBusinessHandler());
-register('GET',  '/business/:businessid/profile',             new GetBusinessProfileHandler());
-register('GET',  '/business/location',                        new GetLocationBusinessHandler());
-register('GET',  '/business/search/name',                     new SearchBusinessByNameHandler()); // NOT IMPLEMENTED
+register('POST', '/business',                     new CreateBusinessHandler());
+register('POST', '/business/external',            new CreateExternalBusinessHandler());
+register('POST', '/business/quick',               new CreateQuickBusinessHandler());
+register('GET',  '/business/:businessid/profile', new GetBusinessProfileHandler());
+register('GET',  '/business/location',            new GetLocationBusinessHandler());
+register('GET',  '/business/search/name',         new SearchBusinessByNameHandler()); // NOT IMPLEMENTED
 
 
 // dish end points
 //
-register('POST', '/business/:businessid/dish',                    new CreateDishHandler());
-register('GET',  '/business/:businessid/dishes',                  new GetBusinessDishesHandler());
-register('POST', '/dish/:dishid/like',                            new DishLikeHandler());
-register('POST', '/dish/:dishid/dislike',                         new DishDislikeHandler());
-register('GET',  '/dish/location',                                new GetLocationDishHandler());
-register('POST', '/dish/:dishid/collect',                         new CollectDishHandler());
-register('POST', '/dish/:dishid/hitlist',                         new HitlistDishHandler());
-register('POST', '/dish/:dishid/keywords',                        new PostUserDishKeywordHandler());
-register('POST', '/dish/:dishid/infograph',                       new PostDishInfoGraphHandler());
-register('GET',  '/dish/cuisine/:language/terms',                 new GetCuisineItermHandler());
+register('POST', '/business/:businessid/dish',   new CreateDishHandler());
+register('GET',  '/business/:businessid/dishes', new GetBusinessDishesHandler());
+register('POST', '/dish/:dishid/like',           new DishLikeHandler());
+register('POST', '/dish/:dishid/dislike',        new DishDislikeHandler());
+register('GET',  '/dish/location',               new GetLocationDishHandler());
+register('POST', '/dish/:dishid/collect',        new CollectDishHandler());
+register('POST', '/dish/:dishid/hitlist',        new HitlistDishHandler());
+register('POST', '/dish/:dishid/keywords',       new PostUserDishKeywordHandler());
+register('POST', '/dish/:dishid/infograph',      new PostDishInfoGraphHandler());
+register('GET',  '/dish/cuisine/terms',          new GetCuisineItermHandler());
 
 
 // comment end points
 //
-register('POST',   '/comment',                                   new CreateCommentHandler());
-register('GET',    '/comment/dish/:dishid/comments',             new GetDishCommentHandler());
-register('DELETE', '/comment/:commentid',                        new DeleteCommentHandler());
+register('POST',   '/comment',                       new CreateCommentHandler());
+register('GET',    '/comment/dish/:dishid/comments', new GetDishCommentHandler());
+register('DELETE', '/comment/:commentid',            new DeleteCommentHandler());
 
 
 // image end points
 //
-register('POST',   '/image/dish/:dishid',                                  new PostDishImageHandler());
-register('GET',    '/image/dish/:dishid/profile/links',                    new GetDishProfileImageLinksHandler());
+register('POST',   '/image/dish/:dishid',                 new PostDishImageHandler());
+register('GET',    '/image/dish/:dishid/profile/links',   new GetDishProfileImageLinksHandler());
+register('POST',   '/image/signature',                    new PostUserSignatureImageHandler());
+register('GET',    '/image/signature/user/:userid/links', new GetUserSignatureImageLinksHandler());
+register('DELETE', '/image/signature/:signatureid',       new DeleteUserSigntureImageHandler());
+register('POST',   '/image/user',                         new PutUserImageHandler());
+register('POST',   '/image/business/:businessid',         new PutBusinessImageHandler());
+// display end points
 register('GET',    '/image/dish/:dishid/user/:userid/display',             new DisplayDishUserImageHandler());
 register('GET',    '/image/dish/:dishid/profile/display',                  new DisplayDishProfileDefaultImageHandler());
-register('POST',   '/image/signature',                                     new PostUserSignatureImageHandler());
-register('GET',    '/image/signature/user/:userid/links',                  new GetUserSignatureImageLinksHandler());
 register('GET',    '/image/signature/:signatureid/user/:userid/display',   new DisplayUserSignatureImageHandler());
-register('DELETE', '/image/signature/:signatureid',                        new DeleteUserSigntureImageHandler());
-register('POST',   '/image/user',                                          new PutUserImageHandler());
 register('GET',    '/image/user/:userid/profile/:imageid/display',         new GetUserProfileImageHandler());
 register('GET',    '/image/user/:userid/profile/display',                  new GetUserProfileDefaultImageHandler());
-register('POST',   '/image/business/:businessid',                          new PutBusinessImageHandler());
 register('GET',    '/image/business/:businessid/profile/:imageid/display', new GetBusinessProfileImageHandler());
 ?>

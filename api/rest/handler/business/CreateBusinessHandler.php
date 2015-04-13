@@ -25,6 +25,7 @@ class CreateBusinessHandler extends AuthorizedRequestHandler {
         $business->setNameZh(isset($json['name_zh']) ? $json['name_zh'] : '');
         $business->setPrice(isset($json['price']) ? $json['price'] : '');
         $business->setSocial(isset($json['social']) ? $json['social'] : '');
+        $business->setCategory(empty($json['category']) ? '' : $json['category']);
         $business->setState($json['state']);
         $business->setStreet($json['street']);
         $business->setTel(isset($json['tel']) ? $json['tel'] : '');
