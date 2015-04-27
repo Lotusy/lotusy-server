@@ -3,11 +3,12 @@ class DishImageDao extends ImageDishDaoGenerated {
 
 //========================================================================================== public
 
-    public static function getImagesByDishId($dishId) {
+    public static function getImagesByDishId($dishId, $start, $size) {
         $builder = new QueryMaster();
         $res = $builder->select('*', self::$table)
                        ->where('dish_id', $dishId)
                        ->where('is_deleted', 'N')
+                       ->limit($start, $size)
                        ->findList();
 
         return self::makeObjectsFromSelectListResult($res, 'DishImageDao');
