@@ -6,7 +6,7 @@ class Dish extends Model {
     public function getProfileImageLinks() {
         $rv = array();
 
-        $imageDaos = DishImageDao::getImagesByDishId($this->getId());
+        $imageDaos = DishImageDao::getImagesByDishId($this->getId(), 0, 20);
 
         global $base_host, $base_uri;
 

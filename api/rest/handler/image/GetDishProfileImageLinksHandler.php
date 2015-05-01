@@ -4,7 +4,10 @@ class GetDishProfileImageLinksHandler extends AuthorizedRequestHandler {
     public function handle($params) {
         global $base_host, $base_uri;
 
-        $imageDaos = DishImageDao::getImagesByDishId($params['dishid']);
+        $start = empty($_GET['start']) ? 0 : $_GET['start'];
+        $size = empty($_GET['size']) ? 0 : $_GET['size'];
+
+        $imageDaos = DishImageDao::getImagesByDishId($params['dishid'], $start, $size);
 
         $links = array();
         foreach ($imageDaos as $imageDao) {

@@ -17,9 +17,9 @@ class GetUserFollowersHandler extends AuthorizedRequestHandler {
         $response['status'] = 'success';
         $response['users'] = array();
         foreach ($followers as $userId=>$follower) {
-            $response['users'] = $follower;
             $isFollowing = FollowerDao::isFollower($userId, $this->getUserId());
-            $response['users']['following'] = $isFollowing;
+            $follower['following'] = $isFollowing;
+            $response['users'][] = $follower;
         }
 
         return $response;
