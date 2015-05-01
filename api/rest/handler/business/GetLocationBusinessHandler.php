@@ -32,6 +32,8 @@ class GetLocationBusinessHandler extends AuthorizedRequestHandler {
             $businessArr['image'] = $business->getImage();
 
             $businessArr['distance'] = round($id['distance'], 1);
+            $businessArr['lat'] = $business->getLat();
+            $businessArr['lng'] = $business->getLng();
 
             $count = CommentDao::getCommentCountByBusinessId($id['id']);
             $businessArr['comment_count'] = (int)$count;
